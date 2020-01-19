@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="data:image/png;base64,">
+<title>Blog</title>
+<style>
+	/* Contents */
+	body{
+		margin: 5em auto;
+		max-width: 60em;
+		font: 1.2em/1.62 sans-serif;
+	}
+	.content {
+		max-width: 40em;
+		margin-left: 200px;
+		padding: 1px 16px;
+	}
+
+	/* Line spacing */
+	h1, h2, h3 {
+		line-height: 3.24rem;
+	}
+	h1, h2, h3, p {
+		margin:1.62rem 0px;
+	}
+	ul {
+		margin:0;
+		display:inline-block;
+	}
+
+	/* Side bar */
+	.sidebar {
+		margin: 0;
+		padding: 0;
+		width: 200px;
+		background-color: #f1f1f1;
+		position: fixed;
+		overflow: auto;
+		top: 20%;
+		left: 15%;
+	}
+	.sidebar a {
+		display: block;
+		color: black;
+		padding: 16px;
+		text-decoration: none;
+	}
+	.sidebar a.active {
+		background-color: #111;
+		color: white;
+	}
+	.sidebar a:hover:not(.active) {
+		background-color: #555;
+		color: white;
+	}
+	@media screen and (max-width: 800px) {
+		.sidebar {
+			width: 100%;
+			height: auto;
+			position: relative;
+		}
+		.sidebar a {float: left;}
+		div.content {margin-left: 0;}
+	}
+	@media screen and (max-width: 400px) {
+		.sidebar a {
+		text-align: center;
+		float: none;
+		}
+	}
+
+	/* Project description */
+	dt {
+	    font-weight: bold;
+	}
+	dl {
+		padding: 0px;
+		margin: 0px;
+	}
+	dd {
+		font-size: small;
+	}
+	dl dd:last-of-type {
+		display: none;
+	}
+	dl:hover dd:last-of-type {
+		display: block;
+	}
+</style>
+
+<body>
+<div class="sidebar">
+	<a href="index.html">Home</a>
+	<a href="cv.html">CV</a>
+	<a class="active" href="blog.html">Blog</a>
+	<a href="#">Projects</a>
+</div>
+
+<div class="content">
+	<h1>Blog Posts</h1>
+	<ul>
+		<li><a href="blog/programs.html">Programs I Use</a></li>
+	</ul>
+</div>
+
+</body>

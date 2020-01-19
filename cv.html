@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="data:image/png;base64,">
+<title>CV</title>
+<style>
+	/* Contents */
+	body{
+		margin: 5em auto;
+		max-width: 60em;
+		font: 1.2em/1.62 sans-serif;
+	}
+	.content {
+		max-width: 40em;
+		margin-left: 200px;
+		padding: 1px 16px;
+	}
+
+	/* Line spacing */
+	h1, h2, h3 {
+		line-height: 3.24rem;
+	}
+	h1, h2, h3, p {
+		margin:1.62rem 0px;
+	}
+	ul {
+		margin:0;
+		display:inline-block;
+	}
+
+	/* Side bar */
+	.sidebar {
+		margin: 0;
+		padding: 0;
+		width: 200px;
+		background-color: #f1f1f1;
+		position: fixed;
+		overflow: auto;
+		top: 20%;
+		left: 15%;
+	}
+	.sidebar a {
+		display: block;
+		color: black;
+		padding: 16px;
+		text-decoration: none;
+	}
+	.sidebar a.active {
+		background-color: #111;
+		color: white;
+	}
+	.sidebar a:hover:not(.active) {
+		background-color: #555;
+		color: white;
+	}
+	@media screen and (max-width: 800px) {
+		.sidebar {
+			width: 100%;
+			height: auto;
+			position: relative;
+		}
+		.sidebar a {float: left;}
+		div.content {margin-left: 0;}
+	}
+	@media screen and (max-width: 400px) {
+		.sidebar a {
+		text-align: center;
+		float: none;
+		}
+	}
+
+	/* Project description */
+	dt {
+	    font-weight: bold;
+	}
+	dl {
+		padding: 0px;
+		margin: 0px;
+	}
+	dd {
+		font-size: small;
+	}
+	dl dd:last-of-type {
+		display: none;
+	}
+	dl:hover dd:last-of-type {
+		display: block;
+	}
+</style>
+
+<body>
+<div class="sidebar">
+	<a href="index.html">Home</a>
+	<a class="active" href="cv.html">CV</a>
+	<a href="blog.html">Blog</a>
+	<a href="#">Projects</a>
+</div>
+
+<div class="content">
+<h1 id="institutions">Institutions</h1>
+<h2 id="bachelor-of-science-physics-honours">Bachelor of Science, Physics (Honours)</h2>
+<ul>
+<li>Nanyang Technological University (NTU), Singapore</li>
+<li>Aug 2015 - Aug 2019 (Expected)</li>
+<li>GPA: 4.72/5.00</li>
+<li><a href="https://pc.cd/Uh4ctalK">Transcripts</a></li>
+</ul>
+<h2 id="diploma-electrical-engineering-solar-tech-specialisation">Diploma, Electrical Engineering (Solar Tech Specialisation)</h2>
+<ul>
+<li>Ngee Ann Polytechnic (NP), Singapore</li>
+<li>Apr 2010 - May 2013</li>
+<li>GPA: 3.69/4.00</li>
+<li><a href="https://pc.cd/ahJ7">Transcripts</a></li>
+<li><a href="https://pc.cd/tXtitalK">Specialisation Certificate</a></li>
+</ul>
+<h1 id="research-and-projects">Research and Projects</h1>
+<h3 id="efficiency-of-maxwell-demon-as-ratchet-system-subjected-to-both-a-heat-and-information-reservoir">Efficiency of Maxwell Demon as Ratchet System subjected to both a Heat and Information Reservoir</h3>
+<ul>
+<li><dl>
+<dt><u>Description of project</u></dt>
+<dd>In this research, we investigate into a ratchet system that exploits both a heat and information reservoir to extract work and acts as an engine. Such a system, without the information reservoir, is an equilibrium system and will not do work as otherwise it will become a perpetual motion machine of the second kind. However, the inclusion of the information reservoir could drive the system away from equilibrium, and causes it to do useful work. This project explores the use of Markov model of different complexity as information reservoir, and evaluates the effect of the complexity of the model on the efficiency of the resulting engine. In addition, it is known that a ratchet system can be driven into non-equilibrium states by considering it as a flashing ratchet system or when it is subjected to chaotic noise solely with the presence of the heat bath. Here, we shall investigate whether the efficiency of such a non-equilibrium ratchet system can be further enhanced by employing information reservoir that implements Markov model of different complexity.
+</dd>
+</dl></li>
+<li>Final Year Project</li>
+<li>Thesis: (Ongoing)</li>
+</ul>
+<h3 id="characterization-of-quantum-wavefunctions-in-a-tight-binding-lattice">Characterization of quantum wavefunctions in a tight-binding lattice</h3>
+<ul>
+<li><dl>
+<dt><u>Description of project</u></dt>
+<dd>Numerical study of the conductance fluctuations in the SSH and Haldane models. Python is used along with <a href="https://kwant-project.org/">“Kwant”</a> package to simulate electron transports across the 1D SSH chain and the 2D honeycomb lattice of the Haldane model. Disorders are sampled randomly and fluctuations in conductance are calculated. Topological edge states are visualised.
+</dd>
+</dl></li>
+<li>Undergraduate Research Experience in CAmpus (URECA), NTU</li>
+<li>Paper: <a href="https://pc.cd/exX7">Conductance Fluctuations in the SSH and Haldane Models</a></li>
+<li>Poster: <a href="https://pc.cd/edX">Numerical Study of Conductance Properties of 2D Topological Insulators</a></li>
+</ul>
+<h3 id="monte-carlo-photon-transport-in-multi-layered-biological-tissues">Monte Carlo Photon Transport in Multi-layered Biological Tissues</h3>
+<ul>
+<li><dl>
+<dt><u>Description of project</u></dt>
+<dd>Python is used to simulate photon transports in biological tissues by means of random walk. Different biological tissues are defined by their experimentally obtained scattering coefficients, absorption coefficients, refractive index and anisotropy. Variables such as reflectance and absorbance are calculated and visualised. The project is a demonstration of the applications of computational methods on medical areas such as biomedical imaging and photon therapy.
+</dd>
+</dl></li>
+<li>Computational Physics Course, NTU</li>
+<li>This project was done together with <a href="https://www.linkedin.com/in/elainechiu95/">Elaine Chiu</a>, who specialises in Medical Physics and provided the physical knowledge of photon transports in biologically tissues.</li>
+<li>Report: <a href="https://pc.cd/KGHctalK">Monte Carlo Photon Transport in Multi-layered Biological Tissues</a></li>
+</ul>
+<h3 id="numerical-study-of-the-accuracy-of-fermis-golden-rule-in-a-spherically-symmetric-well">Numerical study of the accuracy of Fermi’s golden rule in a spherically symmetric well</h3>
+<ul>
+<li><dl>
+<dt><u>Description of project</u></dt>
+<dd>The Fermi’s golden rule for a spherically symmetric well is solved analytically and compared with the numerical solution computed using partial wave analysis in Python.
+</dd>
+</dl></li>
+<li>Quantum Mechanics 3 Course, NTU</li>
+<li>This project was done together with <a href="https://www.linkedin.com/in/danielchua93">Daniel Chua</a>, who derived most of the equations.</li>
+<li>Paper: <a href="https://pc.cd/vFu">Numerical study of the accuracy of Fermi’s golden rule in a spherically symmetric well</a></li>
+</ul>
+<h3 id="hovering-drone">Hovering Drone</h3>
+<ul>
+<li><dl>
+<dt><u>Description of project</u></dt>
+<dd>A simple quadcopter drone is designed and programmed from scratch. An Arduino microcontroller is programmed for pulse width modulation (PWM) output based on a ultrasonic sensor input. The printed circuit board (PCB) is designed and printed via Autodesk EAGLE and the drone is designed and 3D printed via Autodesk Fusion360. The 3D model is also imported to COMSOL Multiphysics to simulate the physical system.
+</dd>
+</dl></li>
+<li>Making and Tinkering Project, NTU</li>
+<li><a href="https://pc.cd/QuH7">Images</a></li>
+</ul>
+<h1 id="internship-experiences">Internship Experiences</h1>
+<h2 id="st-electronics-6-months">ST Electronics (6 Months)</h2>
+<ul>
+<li>Mar 2012 - Aug 2012</li>
+<li>Large-Scale Systems Group (LSG), Defence Electronics Systems, Unmanned Maritime Vehicle Centre (UMVC)</li>
+<li><dl>
+<dt><u>Description of internship</u></dt>
+<dd>Logistics and parts researching. Electronics parts’ failure rate and mean time between failures analysis. Relay circuits designs for electronics systems. Lightning protection system for electronics in boats out on the sea.
+</dd>
+</dl></li>
+<li><a href="https://pc.cd/oPh7">Certificate</a></li>
+</ul>
+<h1 id="awards-and-achievements">Awards and Achievements</h1>
+<h3 id="deans-list-ntu">Dean’s List (NTU)</h3>
+<ul>
+<li>Academic Year 2017/2018</li>
+<li>Top 5% of cohort</li>
+<li><a href="https://pc.cd/rBz">Letter</a></li>
+</ul>
+<h3 id="ntu-president-research-scholar-ntu">NTU President Research Scholar (NTU)</h3>
+<ul>
+<li>Academic Year 2016/2017</li>
+<li>Completing URECA Programme</li>
+<li><a href="https://pc.cd/EgLctalK">Certificate</a></li>
+</ul>
+<h3 id="directors-list-np">Director’s List (NP)</h3>
+<ul>
+<li>April and October 2011 Semester</li>
+<li>Top 5% of cohort</li>
+<li><a href="https://pc.cd/MqMctalK">Letter</a></li>
+</ul>
+<h3 id="best-performance-np">Best Performance (NP)</h3>
+<ul>
+<li>Programmable Logic Device (April 2011)</li>
+<li>Digital Electronics &amp; Practice (April 2010)</li>
+<li>Top student of cohort</li>
+<li><a href="https://pc.cd/caUrtalK">Certificate</a></li>
+</ul>
+<h3 id="edusave-scholarship-secondary">Edusave Scholarship (Secondary)</h3>
+<ul>
+<li>Academic Year 2008</li>
+<li>Top 10% of cohort</li>
+<li><a href="https://pc.cd/cfPctalK">Certificate</a></li>
+</ul>
+<h1 id="programmes-and-workshops-participated">Programmes and Workshops Participated</h1>
+<ul>
+<li>Learning How to Learn: Powerful mental tools to help you master tough subjects (Coursera) (2016)</li>
+<li>Introduction to Forensic Science (Coursera/NTU) (2015) <a href="https://www.coursera.org/account/accomplishments/certificate/ADJ55WT5Q7">[Certificate]</a></li>
+<li>Professional Preparation Programme (NP) (2012)</li>
+<li>Overseas Immersion Programme to University of Electronic Science and Technology of China (NP) (2011)</li>
+<li>Memory Management/Study Skills Workshop (NP) (2011) <a href="https://pc.cd/EXd">[Certificate]</a></li>
+<li>Leadership and Mentoring Skills Course (Home Team Academy) (2008) <a href="https://pc.cd/vcJ">[Certificate]</a></li>
+</ul>
+<h1 id="skills-and-interests">Skills and Interests</h1>
+<h3 id="programming-languages">Programming Languages</h3>
+<ul>
+<li>Python, MATLAB, C++, Julia, C, R</li>
+</ul>
+<h3 id="markup-languages">Markup Languages</h3>
+<ul>
+<li>LaTeX, Markdown, R Markdown, HTML, CSS</li>
+</ul>
+<h3 id="software">Software</h3>
+<ul>
+<li>Microsoft Office, Arduino, Google Sketchup, Autodesk Fusion360, Autodesk AutoCAD, Autodesk EAGLE, Origin Pro, PASCO Capstone, COMSOL Multiphysics, National Instruments LabVIEW</li>
+</ul>
+<h3 id="language-proficiency">Language Proficiency</h3>
+<ul>
+<li>English (Native), Chinese (Native), French (Basic)</li>
+</ul>
+<h3 id="research-interests">Research Interests</h3>
+<ul>
+<li>Complexity Science, Quantum Information and Computation, Computational Physics, Fundamental Physics and Cosmology</li>
+</ul>
+<h3 id="other-interests">Other Interests</h3>
+<ul>
+<li>Philosophy, Neuroscience, Computer Science, Artificial Intelligence, Film Cinematography, History and Linguistics.</li>
+</ul>
+<h1 id="other-projects">Other Projects</h1>
+<h3 id="whatsapp-chat-analyser-r">WhatsApp Chat Analyser (R)</h3>
+<ul>
+<li>Analyse WhatsApp conversation and generate statistics, sentiments and word clouds.</li>
+<li>First project in learning R programming.</li>
+<li><a href="https://github.com/SataJW/WhatsApp-Chat-Analyser">GitHub</a></li>
+</ul>
+<h3 id="fake-scientific-paper-generator-using-deep-learning-python">Fake Scientific Paper Generator using Deep Learning (Python)</h3>
+<ul>
+<li>Scrap arXiv for papers based on search terms and convert to text files.</li>
+<li>Train a recurrent neural network with the converted text files.</li>
+<li>Generate a paper using the trained network.</li>
+</ul>
+<h3 id="facial-recognition-using-opencv-and-deep-learning-python">Facial Recognition using OpenCV and Deep Learning (Python)</h3>
+<ul>
+<li>Facial features detection using OpenCV</li>
+<li>Train a convolutional neural network with a large facial dataset.</li>
+<li>Recognise emotions and identities using trained network.</li>
+</ul>
+<h3 id="maintain-personal-website-on-github-pages">Maintain Personal Website on GitHub Pages</h3>
+<ul>
+<li>Write blog posts during free time.</li>
+<li>Describe and present projects that were done.</li>
+</ul>
+
+<h3>Contacts</h3>
+<ul>
+		<li><a href="https://www.linkedin.com/in/cheongjianwei/">LinkedIn</a></li>
+		<li><a href="mailto:jianwei@posteo.net">Email</a></li>
+</ul>
+</div>
+
+</body>
