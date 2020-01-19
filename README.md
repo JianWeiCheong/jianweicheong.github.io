@@ -1,2 +1,2 @@
-# jianweicheong.github.io
-Personal Webpage
+# Personal Website
+This is my personal website
