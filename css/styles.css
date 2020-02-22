@@ -2,14 +2,14 @@
 body{
 	margin: 5em auto;
 	max-width: 60em;
-	font: 1.2em/1.62 sans-serif;
+	font: 1em/1.62 sans-serif;
 }
 .content {
 	max-width: 40em;
 	margin-left: 200px;
 	padding: 1px 16px;
-	text-align: justify;
-	text-justify: inter-word;
+	/* text-align: justify; */
+	/* text-justify: inter-word; */
 }
 
 /* Line spacing */
@@ -87,7 +87,7 @@ dl {
 	margin: 0px;
 }
 dd {
-	font-size: small;
+	font-size: medium;
 }
 dl dd:last-of-type {
 	display: none;
