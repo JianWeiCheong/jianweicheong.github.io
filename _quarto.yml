@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Cheong Jian Wei"
+  site-url: "https://jianweicheong.github.io"
+  back-to-top-navigation: true
+  search:
+    location: navbar
+    type: textbox
+  navbar:
+    pinned: true
+    collapse: true
+    left:
+      - href: index.qmd
+        text: home
+      - href: posts.qmd
+        text: posts
+      - href: cv.qmd
+        text: cv
+      - href: contact.qmd
+        text: contact
+
+format:
+  html:
+    theme: simplex
+    css: styles.css
+    toc: true
+
+
+

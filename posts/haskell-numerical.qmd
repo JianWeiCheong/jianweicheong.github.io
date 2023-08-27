@@ -1,0 +1,12 @@
+---
+title: "Haskell for numerical computation?"
+date: 2023-07-04T00:08:04+08:00
+draft: true
+---
+
+# test
+
+```haskell
+func :: [Matrix C] -> Matrix C
+func = meow
+```

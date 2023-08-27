@@ -1,0 +1,137 @@
+---
+title: "Curriculum Vitae"
+date: 3/28/2023
+---
+
+---
+
+### Professional Qualifications
+
++ **Doctor of Philosophy, Physics** 
+  + Nanyang Technological University (NTU), Singapore
+  + Aug 2019 - Aug 2023
+
++ **Bachelor of Science, Physics (Honours)**
+  + Nanyang Technological University (NTU), Singapore
+  + Aug 2015 - Aug 2019
+
++ **Diploma, Electrical Engineering**
+  + Ngee Ann Polytechnic (NP), Singapore
+  + Apr 2010 - May 2013
+
+---
+
+### Research Experience
+
++ **Effects of non-Markovianity in quantum compositions of quantum channels with indefinite causal order**
+  + Theoretical and numerical studies of channel compositions such as the quantum switch.
+  + Framed the advantages of indefinite causal order as effects of non-Markovianity.
+  + Demonstrated for enhancements to communication capacities, and work extraction.
+  + *Publications*:
+    + **J. W. Cheong**, A. Pradana, and L. Y. Chew, *Effects of non-Markovianity on daemonic ergotropy in the quantum switch*, [Physical Review A, 108(1), 012201 (2023)](https://doi.org/10.1103/PhysRevA.108.012201).
+    + **J. W. Cheong**, A. Pradana, and L. Y. Chew, *Communication advantage of quantum compositions of channels from non-Markovianity*, [Physical Review A, 106(5), 052410 (2022)](https://doi.org/10.1103/PhysRevA.106.052410).
+
++ **Information ratchet system as a Maxwell's demon for work production**
+  + Theoretical and numerical studies of an information ratchet system.
+  + Exploit correlations to extract work and acts as an engine.
+  + *Publications*:
+    + L. He, **J. W. Cheong**, A. Pradana, and L. Y. Chew, *Effects of correlation in an information ratchet with finite tape*, [Physical Review E, 107(2), 024130 (2023)](https://doi.org/10.1103/PhysRevE.107.024130).
+    + L. He, A. Pradana, **J. W. Cheong**, and L. Y. Chew, *Information processing second law for an information ratchet with finite tape*, [Physical Review E, 105(5), 054131 (2022)](https://doi.org/10.1103/PhysRevE.105.054131).
+
++ **Characterization of quantum wavefunctions in a tight-binding lattice**
+  + *Undergraduate Research Experience in CAmpus (URECA), NTU*
+  + Numerical study of the conductance fluctuations in the SSH and Haldane models.
+  + Simulate electron transports across the 1D SSH chain and the 2D honeycomb lattice of the Haldane model.
+
+---
+
+### Teaching Experience 
+
++ **Teaching assistant (tutorial)**, NTU Physics
+  + PH3101 Quantum Mechanics 2 | Aug 2021 - Dec 2021
+
++ **Teaching assistant (lab)**, NTU Physics
+  + PH1199 Physics Lab 1B | Jan 2020 - Apr 2020
+  + PH1198 Physics Lab 1A | Aug 2019 - Dec 2019
+
+---
+
+<!-- ### Internship -->
+
+<!-- #### ST Electronics -->
+
+<!-- *Description* -->
+<!-- : Logistics and parts researching. Electronics parts’ failure rate and mean time between failures analysis. Relay circuits designs for electronics systems. Lightning protection system for electronics in boats out on the sea. -->
+
+<!-- + Mar 2012 - Aug 2012 -->
+<!-- + Large-Scale Systems Group (LSG), Defence Electronics Systems, Unmanned Maritime Vehicle Centre (UMVC) -->
+
+<!-- --- -->
+
+### Awards and Achievements
+
++ **Best Presentation for 3min Thesis (NTU)**
+  + Academic Year 2019/2020
+  + PAP701 Graduate seminar module
+
++ **Dean's List (NTU)**
+  + Academic Year 2017/2018
+  + Top 5% of cohort
+
++ **NTU President Research Scholar (NTU)**
+  + Academic Year 2016/2017
+  + Completing URECA Programme
+
++ **Director's List (NP)**
+  + April 2011 Semester
+  + October 2011 Semester
+  + Top 5% of cohort
+
++ **Best Performance (NP)**
+  + Programmable Logic Device (April 2011)
+  + Digital Electronics & Practice (April 2010)
+  + Top student of cohort
+
+---
+
+### Technical Skills
+
++ **Computer language experience**
+  + Python, Julia, R, C, C++, MATLAB, Haskell
+  + LaTeX, HTML, CSS, bash, sh
+
++ **Miscellaneous software experience**
+  + Arduino, Google Sketchup, Autodesk Fusion360, Autodesk AutoCAD, Autodesk EAGLE, Origin Pro, National Instruments LabVIEW
+
++ **Programming projects experience**
+  + **Strain estimation for hazard forecastings before and after 2011 Japan Tohoku earthquake**
+    + *Geophysical Data Analysis, NTU course*
+    + Analyzed seismic GPS displacement data in Python.
+    + Estimated seismic strains with velocity field using Delaunay triangulation.
+    + Demonstrated correlations between between earthquake event hotspots and strain hotspots, both before and after Tohoku earthquake.
+
+  + **Variations in statistical complexity of genome sequences across species**
+    + *Computational and Systems Biology, NTU course*
+    + Analyzed genome sequences of human, chimpanzee, rhesus macaque, dog, and fruit fly, from GenBank assembly in R.
+    + Applied the Baum-Welch algorithm and Akaike information criterion to compute the average statistical complexity of their genomes.
+    + Showed that $S(\text{fruit fly}) > S(\text{dog}) > S(\text{primate})$ with low p-value, where $S$ is the statistical complexity.
+    + Suggested that increasing biological complexity correspond to less statistical complexity in genomes, i.e., less entropy and more stability in genome's randomness.
+
+  + **Detecting adversarial attack of deep neural networks for image recognition from image complexity**
+    + *Chaotic Dynamical Systems, NTU course*
+    + Trained image recognition deep neural networks with MNIST, Fashion-MNIST, and CIFAR10 datasets in Python.
+    + Applied adversarial attacks such as Fast Gradiant Sign Method (FGSM), DeepFool, One Pixel Attack, Jacobian-Based Saliency Map Attack (JSMA).
+    + Showed that FGSM and DeepFool can be detected from its increased image complexity.
+
+  + **Monte Carlo Photon Transport In Multi-layered Biological Tissues**
+    + *Computational Physics, NTU course*
+    + Simulated photon transports in biological tissues by means of random walk in Python.
+    + Demonstrated the applications of computational methods on medical areas such as biomedical imaging and photon therapy.
+
+  + **Designing, programming, 3D printing, and building a hovering drone**
+    + *Making and Tinkering, NTU course*
+    + Designed and programmed a simple quadcopter drone from scratch.
+    + Programmed a Arduino microcontroller.
+    + Designed printed circuit board (PCB) in Autodesk EAGLE.
+    + Designed and 3D printed drone in Autodesk Fusion360.
+    + Simulated physical system in COMSOL Multiphysics.

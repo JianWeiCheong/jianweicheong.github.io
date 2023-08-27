@@ -1,0 +1,99 @@
+---
+title: "Why I recommend Fedora for new Linux users"
+date: 2023-04-01T23:55:29+08:00
+categories: [software, linux]
+draft: false
+---
+
+Here, I provide a list of reasons on why I think Fedora is a good starting point for new Linux users, which comes down to a single advantage: good defaults.
+
+### Semi-rolling release
+
+When you use your computer, here's what you might expect:
+
+1. You want all your programs to be updated to the latest versions.
+2. You want the stuffs running in the background to be updated to the latest versions.
+3. You don't want major changes to your user experience or to how things are done.
+
+This is reasonable; you want frequent updates because you want the latest features, or security and bug fixes.
+But at the same time, you don't want your desktop to completely change after an update (think Windows 7 to 8, or 10 to 11).
+
+Fedora's semi-rolling release cycle abide by these: you get frequent updates (including kernel updates), but some packages like the desktop environment GNOME, or major software decisions (like moving to a new technology), are only updated in a major version release that the user must initiate.
+
+### Wayland
+
+Most Linux distros use `X11` as its windowing system (a program that handles how windows are drawn on your screen).
+However, `X11` does not have GUI isolation, allowing different programs to interact with one another.
+A malicious program can then record your screen, or log the keys you typed in your browser while you are logging in to your bank.
+
+`Wayland` is the successor to `X11`, and is developed with security in mind, isolating each window from one another.
+
+> Unlike X, the Wayland input stack doesn't allow applications to snoop on the input of other programs (preserving confidentiality), to generate input events that appear to come from the user (preserving input integrity), or to capture all the input events to the exclusion of the user's application (preserving availability).
+>
+> -- <cite>[Jake Edge, LWN.net](https://lwn.net/Articles/589147/)</cite>
+
+### Swap on ZRAM
+
+Linux systems offers a "swap" space, where memory on the RAM can be copied to disk space, freeing the RAM in the process.
+Swap is an [important part](https://chrisdown.name/2018/01/02/in-defence-of-swap.html) of a Linux operating system.
+However, sensitive information stored on RAM can be copied to disk, risking potential security issues.
+`ZRAM` solves these problems by having the swap space remain in the RAM with compression, ensuring that no sensitive information will be stored on disk.
+
+### Btrfs
+
+Most Linux distros have traditionally used the `ext4` filesystem.
+`btrfs` is a newer file system that offers advantages over `ext4`:
+
++ Compression leads to less disk space used.
++ Compression also extends the lifespan of flash-based devices (SSDs, etc.).
++ Less likely to have data corruption.
++ Provides snapshots that allows rollback when system breaks.
+
+> For laptop and workstation installs of Fedora, we want to provide file system features to users in a transparent fashion. We want to add new features, while reducing the amount of expertise needed to deal with situations like running out of disk space. Btrfs is well adapted to this role by design philosophy, let's make it the default.
+>
+> ...
+>
+> The Btrfs community has users that have been using it for most of the past decade at scale. It's been the default on openSUSE (and SUSE Linux Enterprise) since 2014, and Facebook has been using it for all their OS and data volumes, in their data centers, for almost as long. Btrfs is a mature, well-understood, and battle-tested file system, used on both desktop/container and server/cloud use-cases.
+>
+> -- <cite>[Fedora Project wiki, Btrfs changes proposal](https://fedoraproject.org/wiki/Changes/BtrfsByDefault)</cite>
+
+### SELinux and firewalld
+
+Security Enhanced Linux (`SELinux`) provides Mandatory Access Control (MAC).
+
+> In computer security, mandatory access control (MAC) refers to a type of access control by which the operating system or database constrains the ability of a subject or initiator to access or generally perform some sort of operation on an object or target.
+>
+> -- <cite>[Wikipedia](https://en.wikipedia.org/wiki/Mandatory_access_control)</cite>
+
+> Security Enhanced Linux (SELinux) provides an additional layer of system security. SELinux fundamentally answers the question: May \<subject\> do \<action\> to \<object\>?, for example: May a web server access files in users' home directories?
+>
+> -- <cite>[Fedora docs](https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-selinux/)</cite>
+
+Fedora comes with good default policies for `SELinux`, as well as good default firewall rules with `firewalld`.
+
+### Flatpak enabled
+
+`Flatpak` is supposed to be a new and universal way of installing programs.
+`Flatpak` is now available on almost all major distros and is also the most popular way of installing programs on the Steam Deck.
+
+Ubuntu on the other hand, while often recommended to beginners, decided to [drop Flatpak](https://discourse.ubuntu.com/t/ubuntu-flavor-packaging-defaults/34061?u=d0od) in favor of `snap`, which is their own alternative that is much less popular.
+`snap` packages [masquerade as traditional packages](https://askubuntu.com/questions/1185091/why-apt-package-chromium-browser-installs-snap-package-instead), which can cause confusion for new users.
+They also [encourage users to sign up an Ubuntu One account](https://forum.snapcraft.io/t/sudo-snap-install-or-just-snap-install/3909) just to install `snap` packages without root.
+
+### Speed of adopting new technologies
+
+Fedora tends to adopt new technologies at a fast pace, such as `Wayland`, swap on `ZRAM`, `Flatpak`, `PipeWire`, `btrfs` etc.
+New technologies tends to offer improvements in terms of usability and security.
+
+For example, Fedora adopted `Wayland` in 2016, but Ubuntu only done so in 2021.
+Even Red Hat Enterprise Linux (RHEL) and Debian adopted `Wayland` in 2019, earlier than Ubuntu, despite both being extremely conservative distros.
+
+### What's next?
+
+If you just want a usable system with no interest in learning more about the Linux ecosystem, then I believe Fedora is the ideal choice.
+However, I do not encourage people to stay on Fedora for the rest of their Linux journey.
+Rather, one should try out different Linux distros and explore alternatives to learn more about the Linux ecosystem.
+
+Eventually, as you gain more understanding of the Linux ecosystem, you will develop your own opinions on things.
+For example, you might be [against `Flatpak`](https://flatkill.org/2020/), or perhaps you might think that [`systemd` has major problems](https://nosystemd.org/).
+Regardless, the greatest strength of the Linux ecosystem is the power to make your own choices on what software and technologies you prefer.

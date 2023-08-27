@@ -1,0 +1,12 @@
+---
+title: Posts
+listing:
+  id: test
+  contents: posts
+  type: table
+  fields: [date, title, reading-time]
+  sort: "date desc"
+  sort-ui: [date, reading-time]
+  categories: true
+  feed: true
+---
