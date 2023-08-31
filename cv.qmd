@@ -1,11 +1,12 @@
 ---
 title: "Curriculum Vitae"
-date: 3/28/2023
+author: "Cheong Jian Wei"
+format:
+  html: default
+  pdf: default
 ---
 
----
-
-### Professional Qualifications
+## Professional Qualifications
 
 + **Doctor of Philosophy, Physics** 
   + Nanyang Technological University (NTU), Singapore
@@ -19,9 +20,7 @@ date: 3/28/2023
   + Ngee Ann Polytechnic (NP), Singapore
   + Apr 2010 - May 2013
 
----
-
-### Research Experience
+## Research Experience
 
 + **Effects of non-Markovianity in quantum compositions of quantum channels with indefinite causal order**
   + Theoretical and numerical studies of channel compositions such as the quantum switch.
@@ -43,9 +42,7 @@ date: 3/28/2023
   + Numerical study of the conductance fluctuations in the SSH and Haldane models.
   + Simulate electron transports across the 1D SSH chain and the 2D honeycomb lattice of the Haldane model.
 
----
-
-### Teaching Experience 
+## Teaching Experience 
 
 + **Teaching assistant (tutorial)**, NTU Physics
   + PH3101 Quantum Mechanics 2 | Aug 2021 - Dec 2021
@@ -54,21 +51,14 @@ date: 3/28/2023
   + PH1199 Physics Lab 1B | Jan 2020 - Apr 2020
   + PH1198 Physics Lab 1A | Aug 2019 - Dec 2019
 
----
+## Internship
 
-<!-- ### Internship -->
++ **ST Electronics**
+  + Logistics and parts researching. Electronics parts’ failure rate and mean time between failures analysis. Relay circuits designs for electronics systems. Lightning protection system for electronics in boats out on the sea.
+  + Mar 2012 - Aug 2012
+  + Large-Scale Systems Group (LSG), Defence Electronics Systems, Unmanned Maritime Vehicle Centre (UMVC)
 
-<!-- #### ST Electronics -->
-
-<!-- *Description* -->
-<!-- : Logistics and parts researching. Electronics parts’ failure rate and mean time between failures analysis. Relay circuits designs for electronics systems. Lightning protection system for electronics in boats out on the sea. -->
-
-<!-- + Mar 2012 - Aug 2012 -->
-<!-- + Large-Scale Systems Group (LSG), Defence Electronics Systems, Unmanned Maritime Vehicle Centre (UMVC) -->
-
-<!-- --- -->
-
-### Awards and Achievements
+## Awards and Achievements
 
 + **Best Presentation for 3min Thesis (NTU)**
   + Academic Year 2019/2020
@@ -92,9 +82,7 @@ date: 3/28/2023
   + Digital Electronics & Practice (April 2010)
   + Top student of cohort
 
----
-
-### Technical Skills
+## Technical Skills
 
 + **Computer language experience**
   + Python, Julia, R, C, C++, MATLAB, Haskell
