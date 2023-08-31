@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Cheong Jian Wei">
+<meta name="dcterms.date" content="2023-07-04">
 
-<title>Cheong Jian Wei - Curriculum Vitae</title>
+<title>Cheong Jian Wei - Haskell for numerical computation?</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,24 +21,58 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -60,10 +94,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -73,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Cheong Jian Wei</span>
     </a>
   </div>
@@ -84,19 +116,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html" rel="" target="">
+    <a class="nav-link" href="../posts.html" rel="" target="">
  <span class="menu-text">posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./cv.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../cv.html" rel="" target="">
  <span class="menu-text">cv</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./contact.html" rel="" target="">
+    <a class="nav-link" href="../contact.html" rel="" target="">
  <span class="menu-text">contact</span></a>
   </li>  
 </ul>
@@ -115,34 +147,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#professional-qualifications" id="toc-professional-qualifications" class="nav-link active" data-scroll-target="#professional-qualifications">Professional Qualifications</a></li>
-  <li><a href="#research-experience" id="toc-research-experience" class="nav-link" data-scroll-target="#research-experience">Research Experience</a></li>
-  <li><a href="#teaching-experience" id="toc-teaching-experience" class="nav-link" data-scroll-target="#teaching-experience">Teaching Experience</a></li>
-  <li><a href="#internship" id="toc-internship" class="nav-link" data-scroll-target="#internship">Internship</a></li>
-  <li><a href="#awards-and-achievements" id="toc-awards-and-achievements" class="nav-link" data-scroll-target="#awards-and-achievements">Awards and Achievements</a></li>
-  <li><a href="#technical-skills" id="toc-technical-skills" class="nav-link" data-scroll-target="#technical-skills">Technical Skills</a></li>
+  <li><a href="#test" id="toc-test" class="nav-link active" data-scroll-target="#test">test</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="cv.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Curriculum Vitae</h1>
+<h1 class="title">Haskell for numerical computation?</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Cheong Jian Wei </p>
-          </div>
-  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 4, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -150,168 +177,10 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="professional-qualifications" class="level2">
-<h2 class="anchored" data-anchor-id="professional-qualifications">Professional Qualifications</h2>
-<ul>
-<li><strong>Doctor of Philosophy, Physics</strong>
-<ul>
-<li>Nanyang Technological University (NTU), Singapore</li>
-<li>Aug 2019 - Aug 2023</li>
-</ul></li>
-<li><strong>Bachelor of Science, Physics (Honours)</strong>
-<ul>
-<li>Nanyang Technological University (NTU), Singapore</li>
-<li>Aug 2015 - Aug 2019</li>
-</ul></li>
-<li><strong>Diploma, Electrical Engineering</strong>
-<ul>
-<li>Ngee Ann Polytechnic (NP), Singapore</li>
-<li>Apr 2010 - May 2013</li>
-</ul></li>
-</ul>
-</section>
-<section id="research-experience" class="level2">
-<h2 class="anchored" data-anchor-id="research-experience">Research Experience</h2>
-<ul>
-<li><strong>Effects of non-Markovianity in quantum compositions of quantum channels with indefinite causal order</strong>
-<ul>
-<li>Theoretical and numerical studies of channel compositions such as the quantum switch.</li>
-<li>Framed the advantages of indefinite causal order as effects of non-Markovianity.</li>
-<li>Demonstrated for enhancements to communication capacities, and work extraction.</li>
-<li><em>Publications</em>:
-<ul>
-<li><strong>J. W. Cheong</strong>, A. Pradana, and L. Y. Chew, <em>Effects of non-Markovianity on daemonic ergotropy in the quantum switch</em>, <a href="https://doi.org/10.1103/PhysRevA.108.012201">Physical Review A, 108(1), 012201 (2023)</a>.</li>
-<li><strong>J. W. Cheong</strong>, A. Pradana, and L. Y. Chew, <em>Communication advantage of quantum compositions of channels from non-Markovianity</em>, <a href="https://doi.org/10.1103/PhysRevA.106.052410">Physical Review A, 106(5), 052410 (2022)</a>.</li>
-</ul></li>
-</ul></li>
-<li><strong>Information ratchet system as a Maxwell’s demon for work production</strong>
-<ul>
-<li>Theoretical and numerical studies of an information ratchet system.</li>
-<li>Exploit correlations to extract work and acts as an engine.</li>
-<li><em>Publications</em>:
-<ul>
-<li>L. He, <strong>J. W. Cheong</strong>, A. Pradana, and L. Y. Chew, <em>Effects of correlation in an information ratchet with finite tape</em>, <a href="https://doi.org/10.1103/PhysRevE.107.024130">Physical Review E, 107(2), 024130 (2023)</a>.</li>
-<li>L. He, A. Pradana, <strong>J. W. Cheong</strong>, and L. Y. Chew, <em>Information processing second law for an information ratchet with finite tape</em>, <a href="https://doi.org/10.1103/PhysRevE.105.054131">Physical Review E, 105(5), 054131 (2022)</a>.</li>
-</ul></li>
-</ul></li>
-<li><strong>Characterization of quantum wavefunctions in a tight-binding lattice</strong>
-<ul>
-<li><em>Undergraduate Research Experience in CAmpus (URECA), NTU</em></li>
-<li>Numerical study of the conductance fluctuations in the SSH and Haldane models.</li>
-<li>Simulate electron transports across the 1D SSH chain and the 2D honeycomb lattice of the Haldane model.</li>
-</ul></li>
-</ul>
-</section>
-<section id="teaching-experience" class="level2">
-<h2 class="anchored" data-anchor-id="teaching-experience">Teaching Experience</h2>
-<ul>
-<li><strong>Teaching assistant (tutorial)</strong>, NTU Physics
-<ul>
-<li>PH3101 Quantum Mechanics 2 | Aug 2021 - Dec 2021</li>
-</ul></li>
-<li><strong>Teaching assistant (lab)</strong>, NTU Physics
-<ul>
-<li>PH1199 Physics Lab 1B | Jan 2020 - Apr 2020</li>
-<li>PH1198 Physics Lab 1A | Aug 2019 - Dec 2019</li>
-</ul></li>
-</ul>
-</section>
-<section id="internship" class="level2">
-<h2 class="anchored" data-anchor-id="internship">Internship</h2>
-<ul>
-<li><strong>ST Electronics</strong>
-<ul>
-<li>Logistics and parts researching. Electronics parts’ failure rate and mean time between failures analysis. Relay circuits designs for electronics systems. Lightning protection system for electronics in boats out on the sea.</li>
-<li>Mar 2012 - Aug 2012</li>
-<li>Large-Scale Systems Group (LSG), Defence Electronics Systems, Unmanned Maritime Vehicle Centre (UMVC)</li>
-</ul></li>
-</ul>
-</section>
-<section id="awards-and-achievements" class="level2">
-<h2 class="anchored" data-anchor-id="awards-and-achievements">Awards and Achievements</h2>
-<ul>
-<li><strong>Best Presentation for 3min Thesis (NTU)</strong>
-<ul>
-<li>Academic Year 2019/2020</li>
-<li>PAP701 Graduate seminar module</li>
-</ul></li>
-<li><strong>Dean’s List (NTU)</strong>
-<ul>
-<li>Academic Year 2017/2018</li>
-<li>Top 5% of cohort</li>
-</ul></li>
-<li><strong>NTU President Research Scholar (NTU)</strong>
-<ul>
-<li>Academic Year 2016/2017</li>
-<li>Completing URECA Programme</li>
-</ul></li>
-<li><strong>Director’s List (NP)</strong>
-<ul>
-<li>April 2011 Semester</li>
-<li>October 2011 Semester</li>
-<li>Top 5% of cohort</li>
-</ul></li>
-<li><strong>Best Performance (NP)</strong>
-<ul>
-<li>Programmable Logic Device (April 2011)</li>
-<li>Digital Electronics &amp; Practice (April 2010)</li>
-<li>Top student of cohort</li>
-</ul></li>
-</ul>
-</section>
-<section id="technical-skills" class="level2">
-<h2 class="anchored" data-anchor-id="technical-skills">Technical Skills</h2>
-<ul>
-<li><strong>Computer language experience</strong>
-<ul>
-<li>Python, Julia, R, C, C++, MATLAB, Haskell</li>
-<li>LaTeX, HTML, CSS, bash, sh</li>
-</ul></li>
-<li><strong>Miscellaneous software experience</strong>
-<ul>
-<li>Arduino, Google Sketchup, Autodesk Fusion360, Autodesk AutoCAD, Autodesk EAGLE, Origin Pro, National Instruments LabVIEW</li>
-</ul></li>
-<li><strong>Programming projects experience</strong>
-<ul>
-<li><strong>Strain estimation for hazard forecastings before and after 2011 Japan Tohoku earthquake</strong>
-<ul>
-<li><em>Geophysical Data Analysis, NTU course</em></li>
-<li>Analyzed seismic GPS displacement data in Python.</li>
-<li>Estimated seismic strains with velocity field using Delaunay triangulation.</li>
-<li>Demonstrated correlations between between earthquake event hotspots and strain hotspots, both before and after Tohoku earthquake.</li>
-</ul></li>
-<li><strong>Variations in statistical complexity of genome sequences across species</strong>
-<ul>
-<li><em>Computational and Systems Biology, NTU course</em></li>
-<li>Analyzed genome sequences of human, chimpanzee, rhesus macaque, dog, and fruit fly, from GenBank assembly in R.</li>
-<li>Applied the Baum-Welch algorithm and Akaike information criterion to compute the average statistical complexity of their genomes.</li>
-<li>Showed that <span class="math inline">\(S(\text{fruit fly}) &gt; S(\text{dog}) &gt; S(\text{primate})\)</span> with low p-value, where <span class="math inline">\(S\)</span> is the statistical complexity.</li>
-<li>Suggested that increasing biological complexity correspond to less statistical complexity in genomes, i.e., less entropy and more stability in genome’s randomness.</li>
-</ul></li>
-<li><strong>Detecting adversarial attack of deep neural networks for image recognition from image complexity</strong>
-<ul>
-<li><em>Chaotic Dynamical Systems, NTU course</em></li>
-<li>Trained image recognition deep neural networks with MNIST, Fashion-MNIST, and CIFAR10 datasets in Python.</li>
-<li>Applied adversarial attacks such as Fast Gradiant Sign Method (FGSM), DeepFool, One Pixel Attack, Jacobian-Based Saliency Map Attack (JSMA).</li>
-<li>Showed that FGSM and DeepFool can be detected from its increased image complexity.</li>
-</ul></li>
-<li><strong>Monte Carlo Photon Transport In Multi-layered Biological Tissues</strong>
-<ul>
-<li><em>Computational Physics, NTU course</em></li>
-<li>Simulated photon transports in biological tissues by means of random walk in Python.</li>
-<li>Demonstrated the applications of computational methods on medical areas such as biomedical imaging and photon therapy.</li>
-</ul></li>
-<li><strong>Designing, programming, 3D printing, and building a hovering drone</strong>
-<ul>
-<li><em>Making and Tinkering, NTU course</em></li>
-<li>Designed and programmed a simple quadcopter drone from scratch.</li>
-<li>Programmed a Arduino microcontroller.</li>
-<li>Designed printed circuit board (PCB) in Autodesk EAGLE.</li>
-<li>Designed and 3D printed drone in Autodesk Fusion360.</li>
-<li>Simulated physical system in COMSOL Multiphysics.</li>
-</ul></li>
-</ul></li>
-</ul>
+<section id="test" class="level1">
+<h1>test</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">func ::</span> [<span class="dt">Matrix</span> <span class="dt">C</span>] <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>func <span class="ot">=</span> meow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
