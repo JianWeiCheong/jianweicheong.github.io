@@ -8,17 +8,26 @@ format:
 
 ## Professional Qualifications
 
-+ **Doctor of Philosophy, Physics** 
-  + Nanyang Technological University (NTU), Singapore
-  + Aug 2019 - Aug 2023
+::: {layout=[2,1]}
++ **Doctor of Philosophy, Physics**
+: Nanyang Technological University (NTU), Singapore
 
+Aug 2019 - Aug 2023
+:::
+
+::: {layout=[2,1]}
 + **Bachelor of Science, Physics (Honours)**
-  + Nanyang Technological University (NTU), Singapore
-  + Aug 2015 - Aug 2019
+: Nanyang Technological University (NTU), Singapore
 
+Aug 2015 - Aug 2019
+:::
+
+::: {layout=[2,1]}
 + **Diploma, Electrical Engineering**
-  + Ngee Ann Polytechnic (NP), Singapore
-  + Apr 2010 - May 2013
+: Ngee Ann Polytechnic (NP), Singapore
+
+Apr 2010 - May 2013
+:::
 
 ## Research Experience
 
@@ -44,12 +53,25 @@ format:
 
 ## Teaching Experience 
 
-+ **Teaching assistant (tutorial)**, NTU Physics
-  + PH3101 Quantum Mechanics 2 | Aug 2021 - Dec 2021
+**Teaching assistant (tutorial)**
 
-+ **Teaching assistant (lab)**, NTU Physics
-  + PH1199 Physics Lab 1B | Jan 2020 - Apr 2020
-  + PH1198 Physics Lab 1A | Aug 2019 - Dec 2019
+::: {layout=[2,1]}
++ PH3101 Quantum Mechanics 2, NTU Physics
+
+Aug 2021 - Dec 2021
+:::
+
+**Teaching assistant (lab)**
+
+::: {layout=[2,1]}
++ PH1199 Physics Lab 1B, NTU Physics
+
+Jan 2020 - Apr 2020
+
++ PH1198 Physics Lab 1A, NTU Physics
+
+Aug 2019 - Dec 2019
+:::
 
 ## Internship
 

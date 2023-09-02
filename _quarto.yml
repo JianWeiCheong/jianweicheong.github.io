@@ -5,13 +5,21 @@ project:
 website:
   title: "Cheong Jian Wei"
   site-url: "https://jianweicheong.github.io"
+  description: "Jian Wei's website"
+  favicon: media/me_crop.png
   back-to-top-navigation: true
+  page-navigation: true
+  repo-url: https://github.com/jianweicheong/jianweicheong.github.io
+  repo-actions: issue
   search:
     location: navbar
     type: textbox
   navbar:
     pinned: true
     collapse: true
+    right:
+      - href: posts.xml
+        icon: rss
     left:
       - href: index.qmd
         text: home

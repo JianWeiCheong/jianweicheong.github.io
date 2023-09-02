@@ -1,12 +1,12 @@
 [
   {
-    "listing": "/posts.html",
+    "listing": "/index.html",
     "items": [
       "/posts/why-fedora.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/posts.html",
     "items": [
       "/posts/why-fedora.html"
     ]
