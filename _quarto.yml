@@ -11,7 +11,8 @@ website:
   page-navigation: true
   repo-url: https://github.com/jianweicheong/jianweicheong.github.io
   repo-actions: issue
-  open-graph: true
+  open-graph:
+    image: media/me_crop.png
   search:
     location: navbar
     type: textbox
