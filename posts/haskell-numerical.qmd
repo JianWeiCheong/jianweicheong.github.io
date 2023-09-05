@@ -1,8 +1,7 @@
 ---
 title: "Haskell for numerical computation?"
-date: 2023-07-04T00:08:04+08:00
+date: 2023-09-05T00:08:04+08:00
 categories: [software, programming]
-draft: false
 ---
 
 # Why Haskell?
