@@ -417,6 +417,7 @@ For example, `iterate (\x -> 2*x) 2` gives `[2, 4, 8 ,16, 32, ...]` to infinity,
 If we were to write the corresponding Python code for `rho_list = take n (iterate (collision ks) rho)`, it might look something like
 
 ```python
+rhos = []
 while True:
     rhos.append(rho)
     rho = collision(ks, rho)
@@ -451,7 +452,7 @@ We will assume that all the subsystems are qubits, i.e., has dimensions of 2, an
 Imperatively in Python, we can simply loop through each indices to be traced out and trace them out one-by-one.
 The joint operation to be performed on the state `rho` in each loop is a tensor product of identity matrices for each indices, except for the index to be traced out, for which it is replaced with $\langle i|$, e.g., if the second subsystem is to be traced out in a system with 3 subsystems, then the operation is simply $I \otimes \langle i| \otimes I$.
 
-After this second subsystem is traced out, if we want to also trace out the third subsystem, we need to be careful that this third subsystem has in fact became the second subsystem, since the operation to be performed is now $I \otimes \langle i|$, i.e., $\langle i|$ is at the second index.
+After this second subsystem is traced out, if we also want to trace out the third subsystem, we need to be careful that this third subsystem has in fact became the second subsystem, since the operation to be performed is now $I \otimes \langle i|$, i.e., $\langle i|$ is at the second index.
 Hence, the index to be traced out should be subtracted by 1 after every loop, and vice versa for the number of subsystems.
 
 We simply have two reductions (two loops): the loop over the indices to be traced out, and the sum over the basis $|i\rangle$. 
@@ -497,7 +498,7 @@ ptrace rho (firstIndex:otherIndex) = ptrace newRho $ map (subtract 1) otherIndex
     bases = [(2><1) [1 :+ 0, 0 :+ 0], (2><1) [0 :+ 0, 1 :+ 0]]
     operationList = [[if i == firstIndex then basis else eye 2 | i <- allIndex] | basis <- bases]
     jointOperation = map tensor_all operationList
-    newRho = sum [jointOper <> rho <> tr jointOper | jointOper <- jointOperation]
+    newRho = sum [tr jointOper <> rho <> jointOper | jointOper <- jointOperation]
 ```
 
 ## Haskell (foldl)
@@ -509,7 +510,7 @@ ptrace rho traceoutIndex = foldl traceOut rho eachTraceoutIndex
     eachTraceoutIndex = zipWith (\idx loop -> idx - loop) traceoutIndex [0..length traceoutIndex]
 
     traceOut :: Matrix C -> Int -> Matrix C
-    traceOut rho' idx = sum [jointOper <> rho' <> tr jointOper | jointOper <- jointOperation]
+    traceOut rho' idx = sum [tr jointOper <> rho' <> jointOper | jointOper <- jointOperation]
       where
         numSubsys = truncate $ logBase 2 $ fromIntegral $ rows rho'
         allIndex = [0.. numSubsys-1]

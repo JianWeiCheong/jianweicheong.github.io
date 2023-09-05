@@ -741,17 +741,20 @@ font-style: inherit;">in</span> rho_list:</span>
 <p>Finally, in the last line we have</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Cmathtt%7Bwhere%5Cquad%20rho%5C_list%7D%20="> <img src="https://latex.codecogs.com/png.latex?%0A%5Cunderbrace%7B%5Cmathtt%7Btake%5Cquad%20n%7D%7D_%5Ctext%7Btake%20first%20$n$%20of%7D%5Cquad%20%5Cunderbrace%7B%5Cmathtt%7B(iterate%5Cquad%20(collision%5Cquad%20ks)%5Cquad%20rho)%7D%7D_%5Ctext%7Breturns%20an%20infinite-sized%20list%20of%20%5Brho,%20collision(rho),%20collision(collision(rho)),...%5D%7D%0A"> which gives <code>rho_list = [rho, collision(rho), collision(collison(rho)),...]</code> up till <code>n</code> number of elements in the list.</p>
 <div class="page-columns page-full"><p>It might be quite surprising that the <code>iterate</code> function returns an infinite-sized list. For example, <code>iterate (\x -&gt; 2*x) 2</code> gives <code>[2, 4, 8 ,16, 32, ...]</code> to infinity, where the function <code>(\x -&gt; 2*x)</code> is applied on <code>2</code> ad infinitum<sup>4</sup>. If we were to write the corresponding Python code for <code>rho_list = take n (iterate (collision ks) rho)</code>, it might look something like</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;<code>(\x -&gt; 2*x)</code> is how an anonymous function is defined.</p></li></div></div>
-<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><span class="cf" style="color: #003B4F;
+<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">rhos <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb20-2"><span class="cf" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">while</span> <span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>:</span>
-<span id="cb20-2">    rhos.append(rho)</span>
-<span id="cb20-3">    rho <span class="op" style="color: #5E5E5E;
+<span id="cb20-3">    rhos.append(rho)</span>
+<span id="cb20-4">    rho <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> collision(ks, rho)</span>
-<span id="cb20-4"></span>
-<span id="cb20-5">rho_list <span class="op" style="color: #5E5E5E;
+<span id="cb20-5"></span>
+<span id="cb20-6">rho_list <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> rhos[:n]</span></code></pre></div>
 
@@ -769,7 +772,7 @@ font-style: inherit;">=</span> rhos[:n]</span></code></pre></div>
 <p>We want to write a function <code>ptrace</code> that is general such that we can partial trace out an arbitrary number of subsystems, i.e., <img src="https://latex.codecogs.com/png.latex?%5Cmathrm%7BTr%7D_%7BA,%20B,C,%5Cldots%7D">, for an arbitrary joint system size. For example, if <code>rho</code> is a joint system of 4 subsystems, <img src="https://latex.codecogs.com/png.latex?%5Crho%5E%7BABCD%7D">, then <code>ptrace(rho, [2, 3])</code> should return <img src="https://latex.codecogs.com/png.latex?%5Crho%5E%7BAB%7D">, where <code>[2, 3]</code> represents the indices of the subsystems to be traced out. Some other examples: <code>ptrace(rho, [2])</code> gives <img src="https://latex.codecogs.com/png.latex?%5Crho%5E%7BABD%7D">, and <code>ptrace(rho, [0, 2, 3])</code> gives <img src="https://latex.codecogs.com/png.latex?%5Crho%5E%7BB%7D">. We will assume that all the subsystems are qubits, i.e., has dimensions of 2, and that the basis <img src="https://latex.codecogs.com/png.latex?%5C%7B%7Ci%5Crangle%5C%7D%20=%20%5C%7B%7C0%5Crangle,%20%7C1%5Crangle%5C%7D">.</p>
 </blockquote>
 <p>Imperatively in Python, we can simply loop through each indices to be traced out and trace them out one-by-one. The joint operation to be performed on the state <code>rho</code> in each loop is a tensor product of identity matrices for each indices, except for the index to be traced out, for which it is replaced with <img src="https://latex.codecogs.com/png.latex?%5Clangle%20i%7C">, e.g., if the second subsystem is to be traced out in a system with 3 subsystems, then the operation is simply <img src="https://latex.codecogs.com/png.latex?I%20%5Cotimes%20%5Clangle%20i%7C%20%5Cotimes%20I">.</p>
-<p>After this second subsystem is traced out, if we want to also trace out the third subsystem, we need to be careful that this third subsystem has in fact became the second subsystem, since the operation to be performed is now <img src="https://latex.codecogs.com/png.latex?I%20%5Cotimes%20%5Clangle%20i%7C">, i.e., <img src="https://latex.codecogs.com/png.latex?%5Clangle%20i%7C"> is at the second index. Hence, the index to be traced out should be subtracted by 1 after every loop, and vice versa for the number of subsystems.</p>
+<p>After this second subsystem is traced out, if we also want to trace out the third subsystem, we need to be careful that this third subsystem has in fact became the second subsystem, since the operation to be performed is now <img src="https://latex.codecogs.com/png.latex?I%20%5Cotimes%20%5Clangle%20i%7C">, i.e., <img src="https://latex.codecogs.com/png.latex?%5Clangle%20i%7C"> is at the second index. Hence, the index to be traced out should be subtracted by 1 after every loop, and vice versa for the number of subsystems.</p>
 <p>We simply have two reductions (two loops): the loop over the indices to be traced out, and the sum over the basis <img src="https://latex.codecogs.com/png.latex?%7Ci%5Crangle">. Reductions can be done with recursion, fold, or list comprehension. In this example, we provide solutions for both recursion and fold for the first reduction, and list comprehension for the sum.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" aria-controls="tabset-6-1" aria-selected="true">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" aria-controls="tabset-6-2" aria-selected="false">Haskell (recursion)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" aria-controls="tabset-6-3" aria-selected="false">Haskell (foldl)</a></li></ul>
@@ -1001,11 +1004,11 @@ font-style: inherit;">map</span> tensor_all operationList</span>
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">sum</span> [jointOper <span class="op" style="color: #5E5E5E;
+font-style: inherit;">sum</span> [tr jointOper <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;&gt;</span> rho <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">&lt;&gt;</span> tr jointOper <span class="op" style="color: #5E5E5E;
+font-style: inherit;">&lt;&gt;</span> jointOper <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|</span> jointOper <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -1074,11 +1077,11 @@ font-style: inherit;">C</span></span>
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">sum</span> [jointOper <span class="op" style="color: #5E5E5E;
+font-style: inherit;">sum</span> [tr jointOper <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;&gt;</span> rho' <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">&lt;&gt;</span> tr jointOper <span class="op" style="color: #5E5E5E;
+font-style: inherit;">&lt;&gt;</span> jointOper <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|</span> jointOper <span class="ot" style="color: #003B4F;
 background-color: null;
