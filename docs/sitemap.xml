@@ -2,22 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jianweicheong.github.io/index.html</loc>
-    <lastmod>2023-09-02T10:56:42.179Z</lastmod>
+    <lastmod>2023-09-05T13:56:05.782Z</lastmod>
   </url>
   <url>
     <loc>https://jianweicheong.github.io/contact.html</loc>
-    <lastmod>2023-09-02T10:56:38.609Z</lastmod>
+    <lastmod>2023-09-05T13:56:02.178Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.github.io/posts/haskell-numerical.html</loc>
+    <lastmod>2023-09-05T13:56:01.678Z</lastmod>
   </url>
   <url>
     <loc>https://jianweicheong.github.io/posts/why-fedora.html</loc>
-    <lastmod>2023-09-02T10:56:38.429Z</lastmod>
+    <lastmod>2023-09-05T13:56:01.988Z</lastmod>
   </url>
   <url>
     <loc>https://jianweicheong.github.io/cv.html</loc>
-    <lastmod>2023-09-02T10:56:41.929Z</lastmod>
+    <lastmod>2023-09-05T13:56:05.539Z</lastmod>
   </url>
   <url>
     <loc>https://jianweicheong.github.io/posts.html</loc>
-    <lastmod>2023-09-02T10:56:42.389Z</lastmod>
+    <lastmod>2023-09-05T13:56:05.995Z</lastmod>
   </url>
 </urlset>

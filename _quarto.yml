@@ -33,11 +33,17 @@ website:
 
 format:
   html:
+    filters:
+      - lightbox
+    lightbox: auto
     theme:
       light: simplex
       dark: [simplex, theme-dark.scss]
     css: styles.css
     toc: true
+    toc-location: left
+    reference-location: margin
+    citation-location: margin
 
 
 

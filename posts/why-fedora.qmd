@@ -3,7 +3,6 @@ title: "Why I recommend Fedora for new Linux users"
 date: 2023-04-01T23:55:29+08:00
 categories: [software, linux]
 draft: false
-toc-location: left
 ---
 
 Here, I provide a list of reasons on why I think Fedora is a good starting point for new Linux users, which comes down to a single advantage: good defaults.

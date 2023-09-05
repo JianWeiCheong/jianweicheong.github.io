@@ -1,12 +1,521 @@
 ---
 title: "Haskell for numerical computation?"
 date: 2023-07-04T00:08:04+08:00
-draft: true
+categories: [software, programming]
+draft: false
 ---
 
-# test
+# Why Haskell?
+
+Recently, I have been experimenting with [Haskell](https://en.wikipedia.org/wiki/Haskell) which I find to be quite enjoyable to program in, thanks to its unique programming paradigm.
+So much so that I am considering using it for numerical computations in my research.
+
+Haskell (named after logician [Haskell Curry](https://en.wikipedia.org/wiki/Haskell_Curry)) is a purely functional programming language in the mathematical sense.
+Every function in Haskell simply takes an input and returns an output---nothing more, nothing less.
+It cannot mutate variables, and it cannot produce side-effects^[Side-effects refers to having an effect on the "outside world", e.g., IO operations, and consists of printing a string to terminal or writing to a file etc.
+Of course, we do want some side-effects for the program to do anything useful.
+In Haskell, side-effects are handled by [monads](https://en.wikipedia.org/wiki/Monad_(functional_programming)), which is a beast of a topic on its own.
+Monads allow the pure and impure (side-effects) to be clearly separated in Haskell.].
+Purely functional programming languages are typically declarative, i.e., one does not write step-by-step instructions like imperative languages such as Python, C, C++, etc.
+For example, there are no loops in Haskell; one has to rely on recursion or functions such as 'fold' and 'scan'.
+
+The two main reasons for my consideration to use it for numerical computations are as follows:
+
+1. Conciseness: Haskell, being declarative rather than imperative, greatly increases the conciseness of the codes.
+   Prototyping and experimentation are frequent in research that utilizes numerical computations, with development time taking up a significant portion of the research process.
+   Concise codes can reduce this development time, and allow faster prototyping.
+
+2. Safety and correctness: Bugs in numerical computations are not obvious.
+   A small bug or typo would not raise any error.
+   Instead, it manifests in computed results or plots, masquerading as valid or even novel results.
+   If these bugs are not identified, one might publish a paper containing faux results that are not reproducible, misleading other researchers in the field.
+   + Haskell's static typing can serve as an additional check to reduce bugs, such as sending the wrong inputs to functions cannot happen.
+   + Furthermore, Haskell's declarative approach means that code is written as expressions, like in mathematics, making it easily verifiable, rather than statements or instructions that are often prone to bugs or human error.
+   + Immutability and the absence of side-effects in functions also significantly reduce hidden bugs.
+     For instance, the risk of a function modifying a variable without the coder's knowledge is mitigated, and parallel computations are less likely to produce incorrect results due to variable mutations in multiple threads.
+
+I am neither a software developer nor am I computer science trained, and so some technical aspects of the language might escape me.
+Therefore, in this article, we will only examine some simple examples to compare traditional imperative languages like Python with purely functional Haskell.
+
+# Some examples
+
+## Sum: recursion
+
+Let's look at an example: ignoring the fact that the function `sum` is built-in in both Python and Haskell, let's see how one can write a `sum` function that sum all the elements in a list.
+
+::: {.panel-tabset}
+## Python
+
+```python
+def sum(xs):
+    sum_all = 0
+    for x in xs:
+        sum_all += x
+    return sum_all
+```
+
+## Haskell
 
 ```haskell
-func :: [Matrix C] -> Matrix C
-func = meow
+sum :: [Float] -> Float
+sum [] = 0
+sum (x:xs) = x + sum xs
 ```
+:::
+
+In the imperative Python example, we tell the program what to do step-by-step: first initialize an accumulator `sum_all` to 0, then loop through each elements in the list and add them to the accumulator.
+
+On the other hand, in the declarative Haskell example, we state that the sum of a list is simply the first element `x` plus the sum of the rest of the elements `xs`.
+This will then carry on recursively.
+As with all recursive functions, we require a base case to end the recursion, which is specified by `sum [] = 0`, which states to return 0 if the input to `sum` is an empty list.
+
+::: {.column-margin}
+One might notice that we have defined the `sum` function twice with `sum [] = 0` and `sum (x:xs) = x + sum xs`.
+This simply means that the first function will be applied when the input is an empty list `[]`, and the second function will be applied otherwise.
+This is referred to as [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
+:::
+
+Finally, Haskell is statically typed, i.e., the types of the inputs and outputs of the function can be specified which in our case is `sum :: [Float] -> Float`, which states that the function `sum` takes in a list of floats `[Float]` and returns a single float `Float`.
+This type declaration looks similar to how one might write $f: X \to Y$ mathematically for a function $y = f(x)$, where $x \in X$, and $y\in Y$.
+
+::: {.column-margin}
+Another thing one might notice is that functions are applied without parenthesis, i.e., applying a function `foo` on a variable `x`, is typically `foo(x)`, but would be `foo x` in Haskell.
+The reason for this has something to do with the concept of "currying" which we will see later.
+:::
+
+## Tensor product: reduction and accumulation
+
+Here is a common example in quantum information/computation, where we have some quantum states that are complex matrices, and we want to perform a tensor product on them so that we can operate on them collectively.
+
+> Given a list of matrices, write a function `tensor_all` that returns the tensor product of all the elements of the list in sequence.
+For example, given the list of matrices $Ms = [A, B, C, D, E]$, `tensor_all(Ms)` should return their tensor product $A\otimes B\otimes C\otimes D\otimes E$.
+
+::: {.panel-tabset}
+## Python
+
+```python
+import numpy as np
+
+def tensor_all(Ms):
+    tensor_prod = 1
+    for M in Ms:
+        tensor_prod = np.kron(tensor_prod, M)
+
+    return tensor_prod
+```
+
+## Haskell
+
+```haskell
+import Numeric.LinearAlgebra
+
+tensor_all :: [Matrix C] -> Matrix C
+tensor_all = foldl kronecker 1
+```
+:::
+
+::: {.column-margin}
+Note we have used the `hmatrix` library which is imported by `import Numeric.LinearAlgebra`.
+[This documentation](https://pechersky.github.io/haskell-numpy-docs/) is a good resource for a comparison between `hmatrix` and Python's `numpy`.
+:::
+
+
+Imperatively, we loop through each element of the list and apply the tensor product (kronecker product `np.kron`) element-by-element with an accumulator, i.e., in the first loop we have $(1) \otimes A$, in the second loop we have $(1\otimes A) \otimes B$, in the third loop we have $(1\otimes A \otimes B) \otimes C$, and so on and so forth, where our accumulator `tensor_prod` is the value in the parenthesis, is initialized as $1$, and is updated every loop.
+
+In Haskell, it should be obvious that we can perform a recursion like the case for `sum`.
+However, here we introduced the function `foldl`, which stands for "fold left".
+`foldl` takes in a binary function (in this case `kronecker`), the initial accumulator (in this case `1`), and a list (e.g., `[a, b, c, d, e]`).
+It then returns `kronecker(kronecker(kronecker(kronecker(kronecker(1, a), b), c), d), e)`.
+There is also `foldr`, or "fold right", which instead returns `kronecker(a, kronecker(b, kronecker(c, kronecker(d, kronecker(e, 1)))))`.
+
+::: {.column-margin}
+Note that in the Haskell example, we could have written the function as `tensor_all ms = foldl kronecker 1 ms`, where the input to the function, the list of matrices `ms`, is specified.
+However, since `ms` is simply the input to the corresponding functions on both sides of the expression, we can omit it and ends up with `tensor_all = foldl kronecker 1`.
+This is referred to as [*point-free style* programming](https://en.wikipedia.org/wiki/Tacit_programming).
+:::
+
+If instead, we want to "accumuate" the result of each loop into a list, i.e., we want the function to return $[A, A \otimes B, A\otimes B\otimes C, A\otimes B\otimes C\otimes D, A\otimes B\otimes C\otimes D\otimes E]$, then, in the Python example we have to append the accumulator `tensor_prod` in each loop into a list.
+On the other hand, in the Haskell example, we can simply replace `foldl` with `scanl`.
+
+::: {.panel-tabset}
+## Python
+
+```python
+import numpy as np
+
+def tensor_all(Ms):
+    tensor_prod = 1
+    tensor_prod_list = []
+    for M in Ms:
+        tensor_prod = np.kron(tensor_prod, M)
+        tensor_prod_list.append(tensor_prod)
+
+    return tensor_prod_list
+```
+
+## Haskell
+
+```haskell
+import Numeric.LinearAlgebra
+
+tensor_all :: [Matrix C] -> Matrix C
+tensor_all = scanl kronecker 1
+```
+:::
+
+Folds and scans are part and parcel of a functional programmer, and are common in functional programming languages, as well as array programming languages.
+Typically, they are referred to as reduction and accumulation, e.g., in the array programming languages, NumPy, Julia, and R, folds and scans are called `reduce` and `accumulate`.
+
+::: {.column-margin}
+![](https://user-images.githubusercontent.com/36027403/193055974-8d8008a2-a1e6-4bd4-8ecc-7624fa611f25.png)
+This image is made by [code_report](https://codereport.github.io/).
+If you would like to know more about array languages, and how they compare to functional languages like Haskell, I highly recommend his [youtube channel](https://www.youtube.com/c/codereport).
+:::
+
+## Collision model: currying and laziness
+
+Let's consider a less simple example to reveal more of Haskell's features:
+
+> A qubit $\rho$ (`rho`) is placed into contact with a heat bath, and thus is undergoing a thermalization process.
+We can model this thermalization process with a collision model, where the qubit evolves via repeated "collision" with bath qubits at each discrete time step, for $n$ (`n`) number of time steps.
+The collision is implemented by the function `collision`, and depends on some set of Kraus operators $\{K_i\}$ (`ks`).
+We want to determine how the von Neumann entropy of $\rho$, $S(\rho)$, changes in each collision up till $n$ time steps.
+The calculation of the von Neumann entropy is implemented by the function `entropy`.
+
+This might look complicated if one does not know quantum mechanics.
+However, if we assume that the collision and entropy calculations are done for us in the functions `collision` and `entropy`, then we simply want a list of `n` entropy values, i.e., `entropy_list = [entropy(rho), entropy(collision(rho)), entropy(collision(collision(rho))),...]`^[Note that for brevity, we have written `collision(ks, rho)` as `collision(rho)`, i.e., we imply that `ks` is fixed and don't have to be an input to the `collision` function.].
+
+::: {.panel-tabset}
+## Python
+
+```python
+import scipy as sp
+
+def collision(ks, rho):
+    return sum([k @ rho @ k.conj().T for k in ks])
+
+def entropy(rho):
+    return - np.trace(rho @ sp.linalg.logm(rho))
+
+def get_entropies(ks, rho, n):
+
+    entropy_list = []
+    for _ in range(n):
+        rho_entropy = entropy(rho)
+        entropy_list.append(rho_entropy)
+        rho = collision(ks, rho)
+
+    return entropy_list
+```
+
+## Haskell
+
+```haskell
+collision :: [Matrix C] -> Matrix C -> Matrix C
+collision ks rho = sum [k <> rho <> tr k | k <- ks]
+
+entropy :: Matrix C -> Float
+entropy rho = - trace (rho <> logm rho)
+  where
+    logm = matFunc log
+
+get_entropies :: Matrix C -> Int -> [Float]
+get_entropies ks rho n = map entropy rho_list
+  where
+    rho_list = take n (iterate (collision ks) rho)
+```
+:::
+
+::: {.column-margin}
+For completeness, the function `collision` performs the operation $\Phi$ of
+$$
+\rho_{t+1} = \Phi\left(\rho_t\right)
+= \sum_i K_i \rho_t K_i^\dagger,
+$$
+and 
+the function `entropy` computes 
+$$
+S\left(\rho_t\right) = -\mathrm{Tr} \left(\rho_t \log \rho_t\right).
+$$
+Therefore, we want the list of $[S(\rho_0), S(\rho_1), \ldots, S(\rho_{n-1})]$.
+:::
+
+::: {.callout-note collapse=true}
+## Extra things to note for the Haskell example
+
+1. Similar to Python, Haskell has list comprehension, which has a mathematical syntax as seen in the function `collision`, e.g.,
+
+   ```haskell
+   example = [p * q | p <- ps, q <- qs, p >= 5, q /= 0]
+   ```
+   would give a list of the set $\{pq\ |\ p \in P,\ q \in Q,\ p \geq 5,\ q \neq 0 \}$.
+   On the other hand, Python's list comprehension is less concise:
+
+   ```python
+   example = [p * q for p in ps for q in qs if p >= 5 and q != 0]
+   ```
+2. In the `entropy` and `get_entropies` functions, we have used the `where` keyword, which allows us to break a function into smaller constituents, e.g.,
+
+   ```haskell
+   exampleFunc a b c = n / d
+   where
+    n = x + y
+    d = x - y
+    x = a + b + c
+    y = a * b * c
+   ```
+   Alternatively, we can also use the `let` and `in` keyword:
+
+   ```haskell
+   exampleFunc a b c =
+    let
+      n = x + y
+      d = x - y
+      x = a + b + c
+      y = a * b * c
+    in
+      n / d 
+   ```
+:::
+
+The Python example, being imperative, should be self-explanatory.
+Instead, we are interested in the Haskell example, specifically the `get_entropies` function, which might look arcane if one does not know common functional programming functions such as `map`, `take`, and `iterate`.
+Let's look at this line-by-line.
+
+### Currying
+
+The very first line of the `get_entropies` function is the type signature of:
+
+$$
+\mathtt{get\_entropies :: Matrix\ C\ -> Int\ -> [Float]}
+$$
+
+which states that the function `get_entropies` takes in a complex matrix and an integer, and returns a list of floats.
+The complex matrix refers to `rho` or $\rho$, and the integer refers to `n`, while the list of floats refers to the output `entropy_list`.
+
+One might be curious at how inputs and output are determined by `Matrix C -> Int -> [Float]`, which doesn't seem to make a clear distinction between them.
+This has to do with the concept of *partial function application*, or [*currying*](https://en.wikipedia.org/wiki/Currying)^[also named after Haskell Curry.].
+
+Implicitly, what's happening is the following:
+
+$$
+\mathtt{get\_entropies :: Matrix\ C\ ->}\ \underbrace{\mathtt{(Int\ -> [Float])}}_\text{function $f$}
+$$
+$$
+f\ \mathtt{:: Int\ -> [Float]}
+$$
+
+where the function `get_entropies` takes in a `Matrix C` as its input, and returns a function $f$ as its output.
+The function $f$ then takes in `Int` as the input and returns `[Float]` as the output.
+This means that functions in Haskell are indeed pure in that they only take in one input and one output, and any functions that appear to take in multiple inputs are in fact taking in only one input and returning a function that takes in also one input, and so on and so forth.
+This is called currying.
+Because of this, we can also apply the functions "partially", for example:
+
+```haskell
+func_f a b = a + b
+func_g = func_f 5
+```
+
+where we only provide one argument to `func_f` when it is expecting two, to create a new function `func_g`.
+This means that `func_f 5 10` and `func_g 10` would give the same output of `15`.
+Currying or partial function application can be a powerful tool for the abstraction and expressiveness of your code.
+
+::: {.callout-note collapse=true}
+## Example of the usefulness of currying
+
+For example, the function `collision` implements the $\Phi$ operation of $\Phi\left(\rho_t\right) = \sum_i K_i \rho_t K_i^\dagger$, which actually takes in two variables, the list of $\{K_i\}$ (`ks`), and $\rho_t$ (`rho`).
+We can then create a new function `collision_A` that takes in some specific `ks`, so that `collision_A` only acts on `rho`:
+
+```haskell
+collision :: [Matrix C] -> Matrix C -> Matrix C
+collision ks rho = sum [k <> rho <> tr k | k <- ks]
+
+collision_A = collision specific_ks
+output_rho = collision_A rho
+```
+
+where we created the function `collison_A` by specifying the required $\{K_i\}$, `specific_ks` to `collision`.
+This is somewhat similar to having default arguments for functions in Python.
+For example,
+
+```python
+def collision(rho, ks=specific_ks):
+    return sum([k @ rho @ k.conj().T for k in ks])
+
+output_rho = collision(rho)
+```
+
+However, currying allows more expressiveness by allowing the definition of new functions, whereas this is not possible in Python:
+
+::: {.panel-tabset}
+## Python
+
+```python
+output_rhoA = collision(rho, ks_A)
+output_rhoB = collision(rho, ks_B)
+output_rhoC = collision(rho, ks_C)
+```
+
+## Haskell
+
+```haskell
+collision_A = collision_full ks_A
+collision_B = collision_full ks_B
+collision_C = collision_full ks_C
+
+output_rhoA = collision_A rho
+output_rhoB = collision_B rho
+output_rhoC = collision_C rho
+```
+:::
+
+In this example, we defined three different collision functions `collision_A`, `collision_B`, and `collision_C`, that acts differently, which only need to be defined once and can then be used repeatedly and conveniently throughout the program.
+On the other hand in Python, we would have to specify `ks_A`, `ks_B`, `ks_C` everytime.
+:::
+
+### Lazy evaluation
+
+Moving on to the function itself of
+
+```haskell
+get_entropies rho n = map entropy rho_list
+  where
+    rho_list = take n (iterate (collision ks) rho)
+```
+
+::: {.column-margin}
+Note that we can reduce the number of parenthesis by using `$` instead, e.g., `rho_list = take n $ iterate (collision ks) rho`.
+:::
+
+The first line features the function `map`, which is another part and parcel of the functional programmer.
+It simply apply a function to every element of a list:
+
+$$
+\underbrace{\mathtt{map\quad entropy}}_\text{apply entropy function to each element of}\quad \mathtt{rho\_list}
+$$
+
+and has the corresponding Python code of
+
+```python
+entropy_list = [entropy(rho) for rho in rho_list]
+
+# or alternatively
+entropy_list = []
+for rho in rho_list:
+    entropy_list.append(entropy(rho))
+```
+
+Finally, in the last line we have
+
+$\mathtt{where\quad rho\_list} =$
+$$
+\underbrace{\mathtt{take\quad n}}_\text{take first $n$ of}\quad \underbrace{\mathtt{(iterate\quad (collision\quad ks)\quad rho)}}_\text{returns an infinite-sized list of [rho, collision(rho), collision(collision(rho)),...]}
+$$
+which gives `rho_list = [rho, collision(rho), collision(collison(rho)),...]` up till `n` number of elements in the list.
+
+It might be quite surprising that the `iterate` function returns an infinite-sized list.
+For example, `iterate (\x -> 2*x) 2` gives `[2, 4, 8 ,16, 32, ...]` to infinity, where the function `(\x -> 2*x)` is applied on `2` ad infinitum^[`(\x -> 2*x)` is how an anonymous function is defined.].
+If we were to write the corresponding Python code for `rho_list = take n (iterate (collision ks) rho)`, it might look something like
+
+```python
+while True:
+    rhos.append(rho)
+    rho = collision(ks, rho)
+
+rho_list = rhos[:n]
+```
+
+::: {.column-margin}
+If this Python code is lazy-evaluated like in Haskell, one might imagine that the program looks ahead and saw that it only require the first `n` elements as stated in `rho_list = rhos[:n]`, and so it stops the `while True` loop after only running `n` times.
+:::
+
+which runs forever and result in a list of infinite size.
+However, this is not a problem in Haskell, thanks to the fact that Haskell is [*lazy-evaluated*](https://en.wikipedia.org/wiki/Lazy_evaluation).
+This means that Haskell only evaluate values when required, and so since we only require the first `n` elements of the infinite list, Haskell only evaluate that first `n` elements.
+
+## Partial trace
+
+Finally, since we looked at the tensor product operation earlier, let's also write a function that perform the [partial trace operation](https://en.wikipedia.org/wiki/Partial_trace#Partial_trace_as_a_quantum_operation).
+We will not explain the partial trace here, but simply note a partial trace on subsystem $B$ of a joint system $AB$ can be written as
+
+$$
+\rho^A = \mathrm{Tr}_B [\rho^{AB}] = \sum_i (I^A \otimes \langle i|^B) \rho^{AB} (I^A \otimes | i\rangle^B),
+$$
+
+where $I$ is the identity matrix, and $\langle i|j\rangle = \delta_{ij}$ such that the set of $\{|i\rangle\}$ are a set of orthonormal basis.
+
+> We want to write a function `ptrace` that is general such that we can partial trace out an arbitrary number of subsystems, i.e., $\mathrm{Tr}_{A, B,C,\ldots}$, for an arbitrary joint system size.
+For example, if `rho` is a joint system of 4 subsystems, $\rho^{ABCD}$, then `ptrace(rho, [2, 3])` should return $\rho^{AB}$, where `[2, 3]` represents the indices of the subsystems to be traced out.
+Some other examples: `ptrace(rho, [2])` gives $\rho^{ABD}$, and `ptrace(rho, [0, 2, 3])` gives $\rho^{B}$.
+We will assume that all the subsystems are qubits, i.e., has dimensions of 2, and that the basis $\{|i\rangle\} = \{|0\rangle, |1\rangle\}$.
+
+Imperatively in Python, we can simply loop through each indices to be traced out and trace them out one-by-one.
+The joint operation to be performed on the state `rho` in each loop is a tensor product of identity matrices for each indices, except for the index to be traced out, for which it is replaced with $\langle i|$, e.g., if the second subsystem is to be traced out in a system with 3 subsystems, then the operation is simply $I \otimes \langle i| \otimes I$.
+
+After this second subsystem is traced out, if we want to also trace out the third subsystem, we need to be careful that this third subsystem has in fact became the second subsystem, since the operation to be performed is now $I \otimes \langle i|$, i.e., $\langle i|$ is at the second index.
+Hence, the index to be traced out should be subtracted by 1 after every loop, and vice versa for the number of subsystems.
+
+We simply have two reductions (two loops): the loop over the indices to be traced out, and the sum over the basis $|i\rangle$. 
+Reductions can be done with recursion, fold, or list comprehension.
+In this example, we provide solutions for both recursion and fold for the first reduction, and list comprehension for the sum.
+
+::: {.panel-tabset}
+## Python
+
+```python
+def ptrace(rho, traceout_index):
+
+    num_of_subsys = int(np.log2(len(x)))
+    bases = [np.array([[1], [0]]), np.array([[0], [1]])]
+
+    for index in traceout_index:
+        dims_new = 2**(num_of_subsys - 1)
+        rho_new = np.zeros([dims_new, dims_new])
+
+        for basis in bases:
+            operation_list = [np.identity(2) for _ in range(num_of_subsys)]
+            operation_list[index] = basis
+            joint_operation = tensor_all(operation_list)
+
+            rho_new += joint_operation.conj().T @ rho @ joint_operation
+
+        rho = rho_new
+        traceout_index -= 1
+        num_of_subsys -= 1
+
+    return rho
+```
+
+## Haskell (recursion)
+
+```haskell
+ptrace :: Matrix C -> [Int] -> Matrix C
+ptrace rho [] = rho
+ptrace rho (firstIndex:otherIndex) = ptrace newRho $ map (subtract 1) otherIndex
+  where
+    numSubsys = truncate $ logBase 2 $ fromIntegral $ rows rho
+    allIndex = [0.. numSubsys-1]
+    bases = [(2><1) [1 :+ 0, 0 :+ 0], (2><1) [0 :+ 0, 1 :+ 0]]
+    operationList = [[if i == firstIndex then basis else eye 2 | i <- allIndex] | basis <- bases]
+    jointOperation = map tensor_all operationList
+    newRho = sum [jointOper <> rho <> tr jointOper | jointOper <- jointOperation]
+```
+
+## Haskell (foldl)
+
+```haskell
+ptrace :: Matrix C -> [Int] -> Matrix C
+ptrace rho traceoutIndex = foldl traceOut rho eachTraceoutIndex
+  where
+    eachTraceoutIndex = zipWith (\idx loop -> idx - loop) traceoutIndex [0..length traceoutIndex]
+
+    traceOut :: Matrix C -> Int -> Matrix C
+    traceOut rho' idx = sum [jointOper <> rho' <> tr jointOper | jointOper <- jointOperation]
+      where
+        numSubsys = truncate $ logBase 2 $ fromIntegral $ rows rho'
+        allIndex = [0.. numSubsys-1]
+        bases = [(2><1) [1 :+ 0, 0 :+ 0], (2><1) [0 :+ 0, 1 :+ 0]]
+        operationList = [[if i == idx then basis else eye 2 | i <- allIndex] | basis <- bases]
+        jointOperation = map tensor_all operationList
+```
+:::

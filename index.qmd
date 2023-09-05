@@ -1,5 +1,6 @@
 ---
 title: "Cheong Jian Wei"
+toc-location: right
 about:
   id: about-me
   template: solana

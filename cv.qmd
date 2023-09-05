@@ -2,8 +2,7 @@
 title: "Curriculum Vitae"
 author: "Cheong Jian Wei"
 format:
-  html:
-    toc-location: left
+  html: default
   pdf: default
 ---
 
