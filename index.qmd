@@ -49,6 +49,7 @@ Everything should be as painless as possible, doing more with less.
 
 #### **List of publications**
 
+1. L. Y. Chew, A. Pradana, L. He, and **J. W. Cheong**, *Stochastic thermodynamics of finite-tape information ratchet*, [European Physical Journal Special Topics (2023)](https://doi.org/10.1140/epjs/s11734-023-00994-3).
 1. **J. W. Cheong**, A. Pradana, and L. Y. Chew, *Effects of non-Markovianity on daemonic ergotropy in the quantum switch*, [Physical Review A, 108(1), 012201 (2023)](https://doi.org/10.1103/PhysRevA.108.012201).
 1. L. He, **J. W. Cheong**, A. Pradana, and L. Y. Chew, *Effects of correlation in an information ratchet with finite tape*, [Physical Review E, 107(2), 024130 (2023)](https://doi.org/10.1103/PhysRevE.107.024130).
 1. **J. W. Cheong**, A. Pradana, and L. Y. Chew, *Communication advantage of quantum compositions of channels from non-Markovianity*, [Physical Review A, 106(5), 052410 (2022)](https://doi.org/10.1103/PhysRevA.106.052410).
