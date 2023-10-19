@@ -40,7 +40,8 @@ format:
     theme:
       light: [simplex, theme-light.scss]
       dark: [simplex, theme-dark.scss]
-    css: styles.css
+    mainfont: sans-serif
+    linestretch: 1.4
     toc: true
     toc-location: left
     reference-location: margin
