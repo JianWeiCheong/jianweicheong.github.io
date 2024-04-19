@@ -19,14 +19,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge49aba0">Semi-rolling release</a></li>
-<li><a href="#orgf99017a">Wayland</a></li>
-<li><a href="#orga2044a8">Swap on ZRAM</a></li>
-<li><a href="#org40f07de">Btrfs</a></li>
-<li><a href="#orgdf4c3ff">SELinux and firewalld</a></li>
-<li><a href="#orgc9c7ae2">Flatpak enabled</a></li>
-<li><a href="#orgfd7de6d">Speed of adopting new technologies</a></li>
-<li><a href="#org7cbcfdb">What's next?</a></li>
+<li><a href="#orgfd467c0">Semi-rolling release</a></li>
+<li><a href="#org83cab2f">Wayland</a></li>
+<li><a href="#orge0f1ddf">Swap on ZRAM</a></li>
+<li><a href="#org6c6a7b6">Btrfs</a></li>
+<li><a href="#org136b1f6">SELinux and firewalld</a></li>
+<li><a href="#org46da856">Flatpak enabled</a></li>
+<li><a href="#orga6621ec">Speed of adopting new technologies</a></li>
+<li><a href="#org6f0d707">What's next?</a></li>
 </ul>
 </div>
 </div>
@@ -38,9 +38,9 @@ Published: 1 April 2023
 Here, I provide a list of reasons on why I think Fedora is a good starting point for new Linux users, which comes down to a single advantage: good defaults.
 </p>
 
-<div id="outline-container-orge49aba0" class="outline-2">
-<h2 id="orge49aba0">Semi-rolling release</h2>
-<div class="outline-text-2" id="text-orge49aba0">
+<div id="outline-container-orgfd467c0" class="outline-2">
+<h2 id="orgfd467c0">Semi-rolling release</h2>
+<div class="outline-text-2" id="text-orgfd467c0">
 <p>
 When you use your computer, here's what you might expect:
 </p>
@@ -62,9 +62,9 @@ Fedora's semi-rolling release cycle abide by these: you get frequent updates (in
 </div>
 </div>
 
-<div id="outline-container-orgf99017a" class="outline-2">
-<h2 id="orgf99017a">Wayland</h2>
-<div class="outline-text-2" id="text-orgf99017a">
+<div id="outline-container-org83cab2f" class="outline-2">
+<h2 id="org83cab2f">Wayland</h2>
+<div class="outline-text-2" id="text-org83cab2f">
 <p>
 Most Linux distros use <code>X11</code> as its windowing system (a program that handles how windows are drawn on your screen).
 However, <code>X11</code> does not have GUI isolation, allowing different programs to interact with one another.
@@ -87,9 +87,9 @@ Unlike X, the Wayland input stack doesn't allow applications to snoop on the inp
 </div>
 </div>
 
-<div id="outline-container-orga2044a8" class="outline-2">
-<h2 id="orga2044a8">Swap on ZRAM</h2>
-<div class="outline-text-2" id="text-orga2044a8">
+<div id="outline-container-orge0f1ddf" class="outline-2">
+<h2 id="orge0f1ddf">Swap on ZRAM</h2>
+<div class="outline-text-2" id="text-orge0f1ddf">
 <p>
 Linux systems offers a "swap" space, where memory on the RAM can be copied to disk space, freeing the RAM in the process.
 Swap is an <a href="https://chrisdown.name/2018/01/02/in-defence-of-swap.html">important part</a> of a Linux operating system.
@@ -99,9 +99,9 @@ However, sensitive information stored on RAM can be copied to disk, risking pote
 </div>
 </div>
 
-<div id="outline-container-org40f07de" class="outline-2">
-<h2 id="org40f07de">Btrfs</h2>
-<div class="outline-text-2" id="text-org40f07de">
+<div id="outline-container-org6c6a7b6" class="outline-2">
+<h2 id="org6c6a7b6">Btrfs</h2>
+<div class="outline-text-2" id="text-org6c6a7b6">
 <p>
 Most Linux distros have traditionally used the <code>ext4</code> filesystem.
 <code>btrfs</code> is a newer file system that offers advantages over <code>ext4</code>:
@@ -134,9 +134,9 @@ The Btrfs community has users that have been using it for most of the past decad
 </div>
 </div>
 
-<div id="outline-container-orgdf4c3ff" class="outline-2">
-<h2 id="orgdf4c3ff">SELinux and firewalld</h2>
-<div class="outline-text-2" id="text-orgdf4c3ff">
+<div id="outline-container-org136b1f6" class="outline-2">
+<h2 id="org136b1f6">SELinux and firewalld</h2>
+<div class="outline-text-2" id="text-org136b1f6">
 <p>
 Security Enhanced Linux (<code>SELinux</code>) provides Mandatory Access Control (MAC).
 </p>
@@ -165,9 +165,9 @@ Fedora comes with good default policies for <code>SELinux</code>, as well as goo
 </div>
 </div>
 
-<div id="outline-container-orgc9c7ae2" class="outline-2">
-<h2 id="orgc9c7ae2">Flatpak enabled</h2>
-<div class="outline-text-2" id="text-orgc9c7ae2">
+<div id="outline-container-org46da856" class="outline-2">
+<h2 id="org46da856">Flatpak enabled</h2>
+<div class="outline-text-2" id="text-org46da856">
 <p>
 <code>Flatpak</code> is supposed to be a new and universal way of installing programs.
 <code>Flatpak</code> is now available on almost all major distros and is also the most popular way of installing programs on the Steam Deck.
@@ -181,9 +181,9 @@ They also <a href="https://forum.snapcraft.io/t/sudo-snap-install-or-just-snap-i
 </div>
 </div>
 
-<div id="outline-container-orgfd7de6d" class="outline-2">
-<h2 id="orgfd7de6d">Speed of adopting new technologies</h2>
-<div class="outline-text-2" id="text-orgfd7de6d">
+<div id="outline-container-orga6621ec" class="outline-2">
+<h2 id="orga6621ec">Speed of adopting new technologies</h2>
+<div class="outline-text-2" id="text-orga6621ec">
 <p>
 Fedora tends to adopt new technologies at a fast pace, such as <code>Wayland</code>, swap on <code>ZRAM</code>, <code>Flatpak</code>, <code>PipeWire</code>, <code>btrfs</code> etc.
 New technologies tends to offer improvements in terms of usability and security.
@@ -196,9 +196,9 @@ Even Red Hat Enterprise Linux (RHEL) and Debian adopted <code>Wayland</code> in 
 </div>
 </div>
 
-<div id="outline-container-org7cbcfdb" class="outline-2">
-<h2 id="org7cbcfdb">What's next?</h2>
-<div class="outline-text-2" id="text-org7cbcfdb">
+<div id="outline-container-org6f0d707" class="outline-2">
+<h2 id="org6f0d707">What's next?</h2>
+<div class="outline-text-2" id="text-org6f0d707">
 <p>
 If you just want a usable system with no interest in learning more about the Linux ecosystem, then I believe Fedora is the ideal choice.
 However, I do not encourage people to stay on Fedora for the rest of their Linux journey.
