@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Haskell for numerical computation?</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+<link rel="stylesheet" href="./css/custom.css">
+<link rel="stylesheet" href="../css/custom.css">
+<header><p>Jian Wei Cheong</p><nav><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="../cv.html">cv</a><a href="../contact.html">contact</a></nav></header><a class="button back-to-top" href="#">back to top</a>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Haskell for numerical computation?</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9b96130">Why Haskell?</a></li>
+<li><a href="#org8feec93">Some examples</a>
+<ul>
+<li><a href="#org4667930">Sum: recursion</a></li>
+<li><a href="#org63dbc42">Tensor product: reduction and accumulation</a></li>
+<li><a href="#org0bd2a37">Collision model: currying and laziness</a>
+<ul>
+<li><a href="#org26ac6bf">Currying</a></li>
+<li><a href="#org55b4e35">Lazy evaluation</a></li>
+</ul>
+</li>
+<li><a href="#org7cea176">Partial trace</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Published: 5 September 2023
+</p>
+
+<div id="outline-container-org9b96130" class="outline-2">
+<h2 id="org9b96130">Why Haskell?</h2>
+<div class="outline-text-2" id="text-org9b96130">
+<p>
+Recently, I have been experimenting with <a href="https://en.wikipedia.org/wiki/Haskell">Haskell</a> which I find to be quite enjoyable to program in, thanks to its unique programming paradigm.
+So much so that I am considering using it for numerical computations in my research.
+</p>
+
+<aside>
+<p><em><b>Side-effects</b></em> refers to having an effect on the "outside world" such as printing a string to terminal or writing to a file etc.
+Of course, we do want some side-effects for the program to do anything useful.
+In Haskell, side-effects are handled by <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">monads</a>, which is a beast of a topic on its own.
+Monads allow the pure and impure (side-effects) to be clearly separated in Haskell.</p>
+</aside>
+
+<p>
+Haskell (named after logician <a href="https://en.wikipedia.org/wiki/Haskell_Curry">Haskell Curry</a>) is a purely functional programming language in the mathematical sense.
+Every function in Haskell simply takes an input and returns an output&#x2014;nothing more, nothing less.
+It cannot mutate variables, and it cannot produce <i><b>side-effects</b></i>.
+</p>
+
+<p>
+Purely functional programming languages are typically declarative, i.e., one does not write step-by-step instructions like imperative languages such as Python, C, C++, etc.
+For example, there are no loops in Haskell; one has to rely on recursion or functions such as 'fold' and 'scan'.
+</p>
+
+<p>
+The two main reasons for my consideration to use it for numerical computations are as follows:
+</p>
+
+<ol class="org-ol">
+<li>Conciseness: Haskell, being declarative rather than imperative, greatly increases the conciseness of the codes.
+Prototyping and experimentation are frequent in research that utilizes numerical computations, with development time taking up a significant portion of the research process.
+Concise codes can reduce this development time, and allow faster prototyping.</li>
+
+<li>Safety and correctness: Bugs in numerical computations are not obvious.
+A small bug or typo would not raise any error.
+Instead, it manifests in computed results or plots, masquerading as valid or even novel results.
+If these bugs are not identified, one might publish a paper containing faux results that are not reproducible, misleading other researchers in the field.
+<ul class="org-ul">
+<li>Haskell's static typing can serve as an additional check to reduce bugs, such as sending the wrong inputs to functions cannot happen.</li>
+<li>Furthermore, Haskell's declarative approach means that code is written as expressions, like in mathematics, making it easily verifiable, rather than statements or instructions that are often prone to bugs or human error.</li>
+<li>Immutability and the absence of side-effects in functions also significantly reduce hidden bugs.
+For instance, the risk of a function modifying a variable without the coder's knowledge is mitigated, and parallel computations are less likely to produce incorrect results due to variable mutations in multiple threads.</li>
+</ul></li>
+</ol>
+
+<p>
+I am neither a software developer nor am I computer science trained, and so some technical aspects of the language might escape me.
+Therefore, in this article, we will only examine some simple examples to compare traditional imperative languages like Python with purely functional Haskell.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8feec93" class="outline-2">
+<h2 id="org8feec93">Some examples</h2>
+<div class="outline-text-2" id="text-org8feec93">
+</div>
+<div id="outline-container-org4667930" class="outline-3">
+<h3 id="org4667930">Sum: recursion</h3>
+<div class="outline-text-3" id="text-org4667930">
+<p>
+Let's look at an example: ignoring the fact that the function <code>sum</code> is built-in in both Python and Haskell, let's see how one can write a <code>sum</code> function that sum all the elements in a list.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Python</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">sum</span>(xs):
+    <span style="font-weight: bold; font-style: italic;">sum_all</span> = 0
+    <span style="font-weight: bold;">for</span> x <span style="font-weight: bold;">in</span> xs:
+        <span style="font-weight: bold; font-style: italic;">sum_all</span> += x
+    <span style="font-weight: bold;">return</span> sum_all
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">-- Haskell
+sum :: [Float] -&gt; Float
+sum [] = 0
+sum (x:xs) = x + sum xs
+</pre>
+</div>
+
+<p>
+In the imperative Python example, we tell the program what to do step-by-step: first initialize an accumulator <code>sum_all</code> to 0, then loop through each elements in the list and add them to the accumulator.
+</p>
+
+<aside>
+<p>One might notice that functions are applied without parenthesis, i.e., applying a function <code>foo</code> on a variable <code>x</code>, is typically <code>foo(x)</code>, but would be <code>foo x</code> in Haskell.
+The reason for this has something to do with the concept of "currying" which we will see later.</p>
+</aside>
+
+<p>
+On the other hand, in the declarative Haskell example, we state that the sum of a list is simply the first element <code>x</code> plus the sum of the rest of the elements <code>xs</code>.
+This will then carry on recursively.
+As with all recursive functions, we require a base case to end the recursion, which is specified by <code>sum [] = 0</code>, which states to return 0 if the input to <code>sum</code> is an empty list.
+This ability to define the <code>sum</code> function twice with <code>sum [] = 0</code> and <code>sum (x:xs) = x + sum xs</code>, is simply <a href="https://en.wikipedia.org/wiki/Pattern_matching">pattern matching</a>.
+</p>
+
+<p>
+Finally, Haskell is statically typed, i.e., the types of the inputs and outputs of the function can be specified which in our case is <code>sum :: [Float] -&gt; Float</code>, which states that the function <code>sum</code> takes in a list of floats <code>[Float]</code> and returns a single float <code>Float</code>.
+This type declaration looks similar to how one might write \(f: X \to Y\) mathematically for a function \(y = f(x)\), where \(x \in X\), and \(y\in Y\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org63dbc42" class="outline-3">
+<h3 id="org63dbc42">Tensor product: reduction and accumulation</h3>
+<div class="outline-text-3" id="text-org63dbc42">
+<p>
+Here is a common example in quantum information/computation, where we have some quantum states that are complex matrices, and we want to perform a tensor product on them so that we can operate on them collectively.
+</p>
+
+<blockquote>
+<p>
+Given a list of matrices, write a function <code>tensor_all</code> that returns the tensor product of all the elements of the list in sequence.
+For example, given the list of matrices \(Ms = [A, B, C]\), <code>tensor_all(Ms)</code> should return their tensor product \(A\otimes B\otimes C\).
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Python</span>
+<span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">tensor_all</span>(Ms):
+    <span style="font-weight: bold; font-style: italic;">tensor_prod</span> = 1
+    <span style="font-weight: bold;">for</span> M <span style="font-weight: bold;">in</span> Ms:
+        <span style="font-weight: bold; font-style: italic;">tensor_prod</span> = np.kron(tensor_prod, M)
+
+    <span style="font-weight: bold;">return</span> tensor_prod
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">-- Haskell
+import Numeric.LinearAlgebra
+
+tensor_all :: [Matrix C] -&gt; Matrix C
+tensor_all = foldl kronecker 1
+</pre>
+</div>
+
+<p>
+Imperatively in the Python example, we loop through each element of the list and apply the tensor product (kronecker product <code>np.kron</code>) element-by-element with an accumulator, i.e., in the first loop we have \((1) \otimes A\), in the second loop we have \((1\otimes A) \otimes B\), in the third loop we have \((1\otimes A \otimes B) \otimes C\), and so on and so forth, where our accumulator <code>tensor_prod</code> is the value in the parenthesis, is initialized as \(1\), and is updated every loop.
+</p>
+
+<aside>
+<p>Note we have used the <code>hmatrix</code> library which is imported by <code>import Numeric.LinearAlgebra</code>.
+<a href="https://pechersky.github.io/haskell-numpy-docs/">This documentation</a> is a good resource for a comparison between <code>hmatrix</code> and Python's <code>numpy</code>.</p>
+</aside>
+
+<p>
+In Haskell, it should be obvious that we can perform a recursion like the case for <code>sum</code>.
+However, here we introduced the function <code>foldl</code>, which stands for "fold left".
+<code>foldl</code> takes in a binary function (in this case <code>kronecker</code>), the initial accumulator (in this case <code>1</code>), and a list (e.g., <code>[a, b, c]</code>).
+It then returns <code>kronecker(kronecker(kronecker(1, a), b), c)</code>.
+There is also <code>foldr</code>, or "fold right", which instead returns <code>kronecker(a, kronecker(b, kronecker(c, 1)))</code>.
+</p>
+
+<details>
+<summary>Point-free style programming</summary>
+<p>Note that in the Haskell example, we could have written the function as <code>tensor_all ms = foldl kronecker 1 ms</code>, where the input to the function, the list of matrices <code>ms</code>, is specified.
+However, since <code>ms</code> is simply the input to the corresponding functions on both sides of the expression, we can omit it and ends up with <code>tensor_all = foldl kronecker 1</code>.
+This is referred to as <a href="https://en.wikipedia.org/wiki/Tacit_programming">point-free style programming</a>.</p>
+</details>
+
+<p>
+If instead, we want to "accumuate" the result of each loop into a list, i.e., we want the function to return \([A, A \otimes B, A\otimes B\otimes C]\), then, in the Python example we have to append the accumulator <code>tensor_prod</code> in each loop into a list.
+On the other hand, in the Haskell example, we can simply replace <code>foldl</code> with <code>scanl</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Python</span>
+<span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">tensor_all</span>(Ms):
+    <span style="font-weight: bold; font-style: italic;">tensor_prod</span> = 1
+    <span style="font-weight: bold; font-style: italic;">tensor_prod_list</span> = []
+    <span style="font-weight: bold;">for</span> M <span style="font-weight: bold;">in</span> Ms:
+        <span style="font-weight: bold; font-style: italic;">tensor_prod</span> = np.kron(tensor_prod, M)
+        tensor_prod_list.append(tensor_prod)
+
+    <span style="font-weight: bold;">return</span> tensor_prod_list
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">-- Haskell
+import Numeric.LinearAlgebra
+
+tensor_all :: [Matrix C] -&gt; Matrix C
+tensor_all = scanl kronecker 1
+</pre>
+</div>
+
+<aside>
+<p>
+<img class="imghover" src="https://user-images.githubusercontent.com/36027403/193055974-8d8008a2-a1e6-4bd4-8ecc-7624fa611f25.png">
+<figcaption>Image credit: <a href="https://codereport.github.io/">code_report</a></figcaption>
+If you would like to know more about <em><b>array languages</b></em>, and how they compare to functional languages like Haskell, I highly recommend the youtube channel <a href="https://www.youtube.com/c/codereport">code_report</a>.
+</p>
+</aside>
+
+<p>
+Folds and scans are part and parcel of a functional programmer, and are common in functional programming languages, as well as array programming languages.
+Typically, they are referred to as reduction and accumulation, e.g., in the <i><b>array programming languages</b></i>, NumPy, Julia, and R, folds and scans are called <code>reduce</code> and <code>accumulate</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0bd2a37" class="outline-3">
+<h3 id="org0bd2a37">Collision model: currying and laziness</h3>
+<div class="outline-text-3" id="text-org0bd2a37">
+<p>
+Let's consider a less simple example to reveal more of Haskell's features:
+</p>
+
+<aside>
+<p>
+For completeness, the function <code>collision</code> performs the operation of
+$$
+\rho_{t+1}
+= \sum_i K_i \rho_t K_i^\dagger,
+$$
+and the function <code>entropy</code> computes
+$$
+S\left(\rho_t\right) = -\mathrm{Tr} \left(\rho_t \log \rho_t\right).
+$$
+Therefore, what we want is simply the list of $$\small[S(\rho_0), S(\rho_1), \ldots, S(\rho_{n-1})]$$
+</p>
+</aside>
+
+<blockquote>
+<p>
+A qubit \(\rho\) (<code>rho</code>) is placed into contact with a heat bath, and thus is undergoing a thermalization process.
+We can model this thermalization process with a collision model, where the qubit evolves via repeated "collision" with multiple qubits in the bath at each discrete time step for \(n\) (<code>n</code>) number of time steps.
+The collision is implemented by the function <code>collision</code>, and depends on some set of Kraus operators \(\{K_i\}\) (<code>ks</code>).
+We want to determine how the von Neumann entropy of \(\rho\), \(S(\rho)\), changes in each collision up till \(n\) time steps.
+The calculation of the von Neumann entropy is implemented by the function <code>entropy</code>.
+</p>
+</blockquote>
+
+<p>
+This might look complicated if one does not know quantum mechanics.
+However, if we assume that the collision and entropy calculations are done for us in the functions <code>collision</code> and <code>entropy</code>, then we simply want a list of <code>n</code> entropy values, i.e., <code>entropy_list = [entropy(rho), entropy(collision(rho)), entropy(collision(collision(rho))),...]</code>.
+Note that for brevity, we have written <code>collision(ks, rho)</code> as <code>collision(rho)</code>, i.e., we imply that <code>ks</code> is fixed and don't have to be an input to the <code>collision</code> function.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Python</span>
+<span style="font-weight: bold;">import</span> scipy <span style="font-weight: bold;">as</span> sp
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">collision</span>(ks, rho):
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">sum</span>([k @ rho @ k.conj().T <span style="font-weight: bold;">for</span> k <span style="font-weight: bold;">in</span> ks])
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">entropy</span>(rho):
+    <span style="font-weight: bold;">return</span> - np.trace(rho @ sp.linalg.logm(rho))
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">get_entropies</span>(ks, rho, n):
+    <span style="font-weight: bold; font-style: italic;">entropy_list</span> = []
+    <span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(n):
+        <span style="font-weight: bold; font-style: italic;">rho_entropy</span> = entropy(rho)
+        entropy_list.append(rho_entropy)
+        <span style="font-weight: bold; font-style: italic;">rho</span> = collision(ks, rho)
+
+    <span style="font-weight: bold;">return</span> entropy_list
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">-- Haskell
+collision :: [Matrix C] -&gt; Matrix C -&gt; Matrix C
+collision ks rho = sum [k &lt;&gt; rho &lt;&gt; tr k | k &lt;- ks]
+
+entropy :: Matrix C -&gt; Float
+entropy rho = - trace (rho &lt;&gt; logm rho)
+  where
+    logm = matFunc log
+
+get_entropies :: Matrix C -&gt; Int -&gt; [Float]
+get_entropies ks rho n = map entropy rho_list
+  where
+    rho_list = take n (iterate (collision ks) rho)
+</pre>
+</div>
+
+<details>
+<summary>Extra things to note for the Haskell example</summary>
+<p>
+<ol>
+<li>Similar to Python, Haskell has list comprehension, which has a mathematical syntax as seen in the function <code>collision</code>, e.g.,
+<pre>
+<code>
+example = [p * q | p <- ps, q <- qs, p >= 5, q /= 0]
+</code>
+</pre>
+would give a list of the set $$\{pq\ |\ p \in P,\ q \in Q,\ p \geq 5,\ q \neq 0 \}.$$
+
+On the other hand, Python's list comprehension is less concise:
+<pre>
+<code>
+example = [p * q for p in ps for q in qs if p >= 5 and q != 0]
+</code>
+</pre>
+</li>
+
+<li>In the <code>entropy</code> and <code>get_entropies</code> functions, we have used the <code>where</code> keyword, which allows us to break a function into smaller constituents, e.g.,
+<pre>
+<code>
+exampleFunc a b c = n / d
+  where
+    n = x + y
+    d = x - y
+    x = a + b + c
+    y = a * b * c
+</code>
+</pre>
+Alternatively, we can also use the <code>let</code> and <code>in</code> keyword:
+<pre>
+<code>
+exampleFunc a b c =
+  let
+    n = x + y
+    d = x - y
+    x = a + b + c
+    y = a * b * c
+  in
+    n / d
+</code>
+</pre>
+</li>
+</ol>
+</p>
+</details>
+
+<p>
+The Python example, being imperative, should be self-explanatory.
+Instead, we are interested in the Haskell example, specifically the <code>get_entropies</code> function, which might look arcane if one does not know common functional programming functions such as <code>map</code>, <code>take</code>, and <code>iterate</code>.
+Let's look at this line-by-line.
+</p>
+</div>
+
+<div id="outline-container-org26ac6bf" class="outline-4">
+<h4 id="org26ac6bf">Currying</h4>
+<div class="outline-text-4" id="text-org26ac6bf">
+<p>
+The very first line of the <code>get_entropies</code> function is the type signature of:
+</p>
+
+<p>
+\[
+\mathtt{get\_entropies :: Matrix\ C\ -> Int\ -> [Float]}
+\]
+</p>
+
+<p>
+which states that the function <code>get_entropies</code> takes in a complex matrix and an integer, and returns a list of floats.
+The complex matrix refers to <code>rho</code> or \(\rho\), and the integer refers to <code>n</code>, while the list of floats refers to the output <code>entropy_list</code>.
+</p>
+
+<p>
+One might be curious at how inputs and outputs are determined by <code>Matrix C -&gt; Int -&gt; [Float]</code>, which doesn't seem to make a clear distinction between them.
+This has to do with the concept of <b>partial function application</b>, or <a href="https://en.wikipedia.org/wiki/Currying"><b>currying</b></a> (also named after Haskell Curry).
+</p>
+
+<p>
+Implicitly, what's happening is the following:
+</p>
+
+<p>
+\[
+\mathtt{get\_entropies :: Matrix\ C\ ->}\ \underbrace{\mathtt{(Int\ -> [Float])}}_\text{function $f$}
+\]
+\[
+f\ \mathtt{:: Int\ -> [Float]}
+\]
+</p>
+
+<p>
+where the function <code>get_entropies</code> takes in a <code>Matrix C</code> as its input, and returns a function \(f\) as its output.
+The function \(f\) then takes in <code>Int</code> as the input and returns <code>[Float]</code> as the output.
+This means that functions in Haskell are indeed pure in that they only take in one input and one output, and any functions that appear to take in multiple inputs are in fact taking in only one input and returning a function that takes in also one input, and so on and so forth.
+This is called currying.
+Because of this, we can also apply the functions "partially", for example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">func_f a b = a + b
+func_g = func_f 5
+</pre>
+</div>
+
+<p>
+where we only provide one argument to <code>func_f</code> when it is expecting two, to create a new function <code>func_g</code>.
+This means that <code>func_f 5 10</code> and <code>func_g 10</code> would give the same output of <code>15</code>.
+Currying or partial function application can be a powerful tool for the abstraction and expressiveness of your code.
+</p>
+
+<details>
+<summary>Example of the usefulness of currying</summary>
+<p>
+Unitary operations are common in quantum mechanics, and are how quantum computers perform computations on quantum states or qubits.
+They are defined as follows:
+$$
+|\psi'\rangle = U |\psi\rangle
+$$
+
+We can define a function <code>unitary_oper</code> to implement this.
+
+<pre>
+<code>
+# Python
+def unitary_oper(U, ket):
+    return U @ ket
+
+# Haskell
+unitary_oper :: Matrix C -> Matrix C -> Matrix C
+unitary_oper u ket = u <> ket
+</code>
+</pre>
+
+There are many common unitaries \(U\) used in quantum computations, referred to as <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate">quantum logic gates</a>.
+We will use the Pauli X gate and the Hadamard gate which are defined as
+$$
+X =
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix},\quad
+H = \frac{1}{\sqrt{2}}
+\begin{pmatrix}
+1 & 1 \\
+1 & -1
+\end{pmatrix},
+$$
+as an example.
+</p>
+<p>
+Currying or partial-function application allows us to easily define these new gate operations on top of the existing <code>unitary_oper</code> function:
+
+<pre>
+<code>
+pauli_x = unitary_oper (2><2) [0, 1, 0, 1]
+hadamard = unitary_oper (cmap (/ sqrt 2) (2><2) [1, 1, 1, -1])
+</code>
+</pre>
+
+We can then easily apply the Pauli X and Hadamard gates on a qubit \(|0\rangle = [1, 0]^T\) with <code>pauli_x (2><1) [1, 0]</code> and <code>hadamard (2><1) [1, 0]</code>.
+This makes the code more concise and clearer.
+</details>
+</div>
+</div>
+
+<div id="outline-container-org55b4e35" class="outline-4">
+<h4 id="org55b4e35">Lazy evaluation</h4>
+<div class="outline-text-4" id="text-org55b4e35">
+<p>
+Moving on to the function itself:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">get_entropies rho n = map entropy rho_list
+  where
+    rho_list = take n (iterate (collision ks) rho)
+</pre>
+</div>
+
+<p>
+The first line features the function <code>map</code>, which is another part and parcel of the functional programmer.
+It simply apply a function to every element of a list:
+</p>
+
+<p>
+\[
+\underbrace{\mathtt{map\quad entropy}}_\text{apply entropy function to each element of}\quad \mathtt{rho\_list}
+\]
+</p>
+
+<p>
+and has the corresponding Python code of
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">entropy_list</span> = [entropy(rho) <span style="font-weight: bold;">for</span> rho <span style="font-weight: bold;">in</span> rho_list]
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">or alternatively</span>
+<span style="font-weight: bold; font-style: italic;">entropy_list</span> = []
+<span style="font-weight: bold;">for</span> rho <span style="font-weight: bold;">in</span> rho_list:
+    entropy_list.append(entropy(rho))
+</pre>
+</div>
+
+<p>
+Finally, in the last line we have
+</p>
+
+<p>
+\(\mathtt{where\quad rho\_list} =\)
+\[
+\underbrace{\mathtt{take\quad n}}_\text{take first $n$ of}\quad \underbrace{\mathtt{(iterate\quad (collision\quad ks)\quad rho)}}_\text{returns an infinite-sized list of [rho, collision(rho), collision(collision(rho)),...]}
+\]
+which gives <code>rho_list = [rho, collision(rho), collision(collison(rho)),...]</code> up till <code>n</code> number of elements in the list.
+</p>
+
+<p>
+Also note that we can reduce the number of parenthesis by using <code>$</code> instead, e.g., <code>rho_list = take n $ iterate (collision ks) rho</code>.
+</p>
+
+<p>
+It might be quite surprising that the <code>iterate</code> function returns an infinite-sized list.
+For example, <code>iterate add1 10</code> gives <code>[11, 12, 13, 14, 15, ...]</code> to infinity, where the function <code>add1</code> is applied on <code>10</code> ad infinitum.
+If we were to write the corresponding Python code for <code>rho_list = take n (iterate (collision ks) rho)</code>, it might look something like
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">rhos</span> = []
+<span style="font-weight: bold;">while</span> <span style="font-weight: bold; text-decoration: underline;">True</span>:
+    rhos.append(rho)
+    <span style="font-weight: bold; font-style: italic;">rho</span> = collision(ks, rho)
+
+<span style="font-weight: bold; font-style: italic;">rho_list</span> = rhos[:n]
+</pre>
+</div>
+
+<p>
+which runs forever and result in a list of infinite size.
+However, this is not a problem in Haskell, thanks to the fact that Haskell is <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><b>lazy-evaluated</b></a>.
+This means that Haskell only evaluate values when required, and so since we only require the first <code>n</code> elements of the infinite list, Haskell only evaluate that first <code>n</code> elements.
+</p>
+
+<p>
+If this Python code is lazy-evaluated like in Haskell, one might imagine that the program looks ahead and saw that it only require the first <code>n</code> elements as stated in <code>rho_list = rhos[:n]</code>, and so it stops the <code>while True</code> loop after only running <code>n</code> times.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7cea176" class="outline-3">
+<h3 id="org7cea176">Partial trace</h3>
+<div class="outline-text-3" id="text-org7cea176">
+<p>
+Finally, since we looked at the tensor product operation earlier, let's also write a function that perform the <a href="https://en.wikipedia.org/wiki/Partial_trace#Partial_trace_as_a_quantum_operation">partial trace operation</a>.
+We will not explain the partial trace here, but simply note that a partial trace on subsystem \(B\) of a joint system \(AB\) can be written as
+</p>
+
+<p>
+\[
+\rho^A = \mathrm{Tr}_B [\rho^{AB}] = \sum_i (I^A \otimes \langle i|^B) \rho^{AB} (I^A \otimes | i\rangle^B),
+\]
+</p>
+
+<p>
+where \(I\) is the identity matrix, and \(\langle i|j\rangle = \delta_{ij}\) such that the set of \(\{|i\rangle\}\) are a set of orthonormal basis.
+</p>
+
+<blockquote>
+<p>
+We want to write a function <code>ptrace</code> that is general such that we can partial trace out an arbitrary number of subsystems, i.e., \(\mathrm{Tr}_{A, B,C,\ldots}\), for an arbitrary joint system size.
+For example, if <code>rho</code> is a joint system of 4 subsystems, \(\rho^{ABCD}\), then <code>ptrace(rho, [2, 3])</code> should return \(\rho^{AB}\), where <code>[2, 3]</code> represents the indices of the subsystems to be traced out.
+Some other examples: <code>ptrace(rho, [2])</code> gives \(\rho^{ABD}\), and <code>ptrace(rho, [0, 2, 3])</code> gives \(\rho^{B}\).
+We will assume that all the subsystems are qubits, i.e., has dimensions of 2, and that the basis \(\{|i\rangle\} = \{|0\rangle, |1\rangle\}\).
+</p>
+</blockquote>
+
+<p>
+Imperatively in Python, we can simply loop through each indices to be traced out and trace them out one-by-one.
+The joint operation to be performed on the state <code>rho</code> in each loop is a tensor product of identity matrices for each indices, except for the index to be traced out, for which it is replaced with \(\langle i|\), e.g., if the second subsystem is to be traced out in a system with 3 subsystems, then the operation is simply \(I \otimes \langle i| \otimes I\).
+</p>
+
+<p>
+After this second subsystem is traced out, if we also want to trace out the third subsystem, we need to be careful that this third subsystem has in fact became the second subsystem, since the operation to be performed is now \(I \otimes \langle i|\), i.e., \(\langle i|\) is at the second index.
+Hence, the index to be traced out should be subtracted by 1 after every loop, and vice versa for the number of subsystems.
+</p>
+
+<p>
+We simply have two reductions (two loops): the loop over the indices to be traced out, and the sum over the basis \(|i\rangle\). 
+Reductions can be done with recursion, fold, or list comprehension.
+In this example, we provide solutions for both recursion and fold for the first reduction, and list comprehension for the sum.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Python</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">ptrace</span>(rho, traceout_index):
+
+    <span style="font-weight: bold; font-style: italic;">num_of_subsys</span> = <span style="font-weight: bold;">int</span>(np.log2(<span style="font-weight: bold;">len</span>(x)))
+    <span style="font-weight: bold; font-style: italic;">bases</span> = [np.array([[1], [0]]), np.array([[0], [1]])]
+
+    <span style="font-weight: bold;">for</span> index <span style="font-weight: bold;">in</span> traceout_index:
+        <span style="font-weight: bold; font-style: italic;">dims_new</span> = 2**(num_of_subsys - 1)
+        <span style="font-weight: bold; font-style: italic;">rho_new</span> = np.zeros([dims_new, dims_new])
+
+        <span style="font-weight: bold;">for</span> basis <span style="font-weight: bold;">in</span> bases:
+            <span style="font-weight: bold; font-style: italic;">operation_list</span> = [np.identity(2) <span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(num_of_subsys)]
+            <span style="font-weight: bold; font-style: italic;">operation_list</span>[index] = basis
+            <span style="font-weight: bold; font-style: italic;">joint_operation</span> = tensor_all(operation_list)
+
+            <span style="font-weight: bold; font-style: italic;">rho_new</span> += joint_operation.conj().T @ rho @ joint_operation
+
+        <span style="font-weight: bold; font-style: italic;">rho</span> = rho_new
+        <span style="font-weight: bold; font-style: italic;">traceout_index</span> -= 1
+        <span style="font-weight: bold; font-style: italic;">num_of_subsys</span> -= 1
+
+    <span style="font-weight: bold;">return</span> rho
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">-- Haskell (recursion)
+ptrace :: Matrix C -&gt; [Int] -&gt; Matrix C
+ptrace rho [] = rho
+ptrace rho (firstIndex:otherIndex) = ptrace newRho $ map (subtract 1) otherIndex
+  where
+    numSubsys = truncate $ logBase 2 $ fromIntegral $ rows rho
+    allIndex = [0.. numSubsys-1]
+    bases = [(2&gt;&lt;1) [1 :+ 0, 0 :+ 0], (2&gt;&lt;1) [0 :+ 0, 1 :+ 0]]
+    operationList = [[if i == firstIndex then basis else eye 2 | i &lt;- allIndex] | basis &lt;- bases]
+    jointOperation = map tensor_all operationList
+    newRho = sum [tr jointOper &lt;&gt; rho &lt;&gt; jointOper | jointOper &lt;- jointOperation]
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-haskell">-- Haskell (foldl)
+ptrace :: Matrix C -&gt; [Int] -&gt; Matrix C
+ptrace rho traceoutIndex = foldl traceOut rho eachTraceoutIndex
+  where
+    eachTraceoutIndex = zipWith (\idx loop -&gt; idx - loop) traceoutIndex [0..length traceoutIndex]
+
+    traceOut :: Matrix C -&gt; Int -&gt; Matrix C
+    traceOut rho' idx = sum [tr jointOper &lt;&gt; rho' &lt;&gt; jointOper | jointOper &lt;- jointOperation]
+      where
+        numSubsys = truncate $ logBase 2 $ fromIntegral $ rows rho'
+        allIndex = [0.. numSubsys-1]
+        bases = [(2&gt;&lt;1) [1 :+ 0, 0 :+ 0], (2&gt;&lt;1) [0 :+ 0, 1 :+ 0]]
+        operationList = [[if i == idx then basis else eye 2 | i &lt;- allIndex] | basis &lt;- bases]
+        jointOperation = map tensor_all operationList
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
