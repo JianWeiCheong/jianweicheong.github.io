@@ -51,30 +51,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org34d1475">Why Haskell?</a></li>
-<li><a href="#org089e5d1">Some examples</a>
+<li><a href="#orgc11cbfb">Why Haskell?</a></li>
+<li><a href="#org6d64390">Some examples</a>
 <ul>
-<li><a href="#org5c5cc9b">Sum: recursion</a></li>
-<li><a href="#org0f953e9">Tensor product: reduction and accumulation</a></li>
-<li><a href="#org9fd51f5">Collision model: currying and laziness</a>
+<li><a href="#orgf373234">Sum: recursion</a></li>
+<li><a href="#org991b2cc">Tensor product: reduction and accumulation</a></li>
+<li><a href="#orgf1c1754">Collision model: currying and laziness</a>
 <ul>
-<li><a href="#orgdcdc1bb">Currying</a></li>
-<li><a href="#org66f6bf5">Lazy evaluation</a></li>
+<li><a href="#orgf1c8d31">Currying</a></li>
+<li><a href="#orgcceb18d">Lazy evaluation</a></li>
 </ul>
 </li>
-<li><a href="#orgbfc755f">Partial trace</a></li>
+<li><a href="#org9f50488">Partial trace</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <p>
-Published: 5 September 2023
+5 September 2023
 </p>
 
-<div id="outline-container-org34d1475" class="outline-2">
-<h2 id="org34d1475">Why Haskell?</h2>
-<div class="outline-text-2" id="text-org34d1475">
+<div id="outline-container-orgc11cbfb" class="outline-2">
+<h2 id="orgc11cbfb">Why Haskell?</h2>
+<div class="outline-text-2" id="text-orgc11cbfb">
 <p>
 Recently, I have been experimenting with <a href="https://en.wikipedia.org/wiki/Haskell">Haskell</a> which I find to be quite enjoyable to program in, thanks to its unique programming paradigm.
 So much so that I am considering using it for numerical computations in my research.
@@ -126,13 +126,13 @@ Therefore, in this article, we will only examine some simple examples to compare
 </div>
 </div>
 
-<div id="outline-container-org089e5d1" class="outline-2">
-<h2 id="org089e5d1">Some examples</h2>
-<div class="outline-text-2" id="text-org089e5d1">
+<div id="outline-container-org6d64390" class="outline-2">
+<h2 id="org6d64390">Some examples</h2>
+<div class="outline-text-2" id="text-org6d64390">
 </div>
-<div id="outline-container-org5c5cc9b" class="outline-3">
-<h3 id="org5c5cc9b">Sum: recursion</h3>
-<div class="outline-text-3" id="text-org5c5cc9b">
+<div id="outline-container-orgf373234" class="outline-3">
+<h3 id="orgf373234">Sum: recursion</h3>
+<div class="outline-text-3" id="text-orgf373234">
 <p>
 Let's look at an example: ignoring the fact that the function <code>sum</code> is built-in in both Python and Haskell, let's see how one can write a <code>sum</code> function that sum all the elements in a list.
 </p>
@@ -178,9 +178,9 @@ This type declaration looks similar to how one might write \(f: X \to Y\) mathem
 </div>
 </div>
 
-<div id="outline-container-org0f953e9" class="outline-3">
-<h3 id="org0f953e9">Tensor product: reduction and accumulation</h3>
-<div class="outline-text-3" id="text-org0f953e9">
+<div id="outline-container-org991b2cc" class="outline-3">
+<h3 id="org991b2cc">Tensor product: reduction and accumulation</h3>
+<div class="outline-text-3" id="text-org991b2cc">
 <p>
 Here is a common example in quantum information/computation, where we have some quantum states that are complex matrices, and we want to perform a tensor product on them so that we can operate on them collectively.
 </p>
@@ -282,9 +282,9 @@ Typically, they are referred to as reduction and accumulation, e.g., in the <i><
 </div>
 </div>
 
-<div id="outline-container-org9fd51f5" class="outline-3">
-<h3 id="org9fd51f5">Collision model: currying and laziness</h3>
-<div class="outline-text-3" id="text-org9fd51f5">
+<div id="outline-container-orgf1c1754" class="outline-3">
+<h3 id="orgf1c1754">Collision model: currying and laziness</h3>
+<div class="outline-text-3" id="text-orgf1c1754">
 <p>
 Let's consider a less simple example to reveal more of Haskell's features:
 </p>
@@ -414,9 +414,9 @@ Let's look at this line-by-line.
 </p>
 </div>
 
-<div id="outline-container-orgdcdc1bb" class="outline-4">
-<h4 id="orgdcdc1bb">Currying</h4>
-<div class="outline-text-4" id="text-orgdcdc1bb">
+<div id="outline-container-orgf1c8d31" class="outline-4">
+<h4 id="orgf1c8d31">Currying</h4>
+<div class="outline-text-4" id="text-orgf1c8d31">
 <p>
 The very first line of the <code>get_entropies</code> function is the type signature of:
 </p>
@@ -525,9 +525,9 @@ This makes the code more concise and clearer.
 </div>
 </div>
 
-<div id="outline-container-org66f6bf5" class="outline-4">
-<h4 id="org66f6bf5">Lazy evaluation</h4>
-<div class="outline-text-4" id="text-org66f6bf5">
+<div id="outline-container-orgcceb18d" class="outline-4">
+<h4 id="orgcceb18d">Lazy evaluation</h4>
+<div class="outline-text-4" id="text-orgcceb18d">
 <p>
 Moving on to the function itself:
 </p>
@@ -609,9 +609,9 @@ If this Python code is lazy-evaluated like in Haskell, one might imagine that th
 </div>
 </div>
 
-<div id="outline-container-orgbfc755f" class="outline-3">
-<h3 id="orgbfc755f">Partial trace</h3>
-<div class="outline-text-3" id="text-orgbfc755f">
+<div id="outline-container-org9f50488" class="outline-3">
+<h3 id="org9f50488">Partial trace</h3>
+<div class="outline-text-3" id="text-org9f50488">
 <p>
 Finally, since we looked at the tensor product operation earlier, let's also write a function that perform the <a href="https://en.wikipedia.org/wiki/Partial_trace#Partial_trace_as_a_quantum_operation">partial trace operation</a>.
 We will not explain the partial trace here, but simply note that a partial trace on subsystem \(B\) of a joint system \(AB\) can be written as
