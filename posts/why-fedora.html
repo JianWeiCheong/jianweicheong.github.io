@@ -1,217 +1,499 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Why I recommend Fedora for new Linux users</title>
-<meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
-<link rel="stylesheet" href="../css/custom.css">
-<header><p>Jian Wei Cheong</p><nav><a href="../index.html">home</a><a href="../posts.html">posts</a><a href="../cv.html">cv</a><a href="../contact.html">contact</a></nav></header>
-<a class="button back-to-top" href="#">back to top</a>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.6">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-04-01">
+
+<title>Why I recommend Fedora for new Linux users – Jian Wei Cheong</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6c21014d9765ba549c6ebad95917e4d7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f33991cf3c59b7de71e019b8ce5d8602.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
 </head>
-<body>
-<div id="content" class="content">
-<h1 class="title">Why I recommend Fedora for new Linux users</h1>
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgbd8c16c">Semi-rolling release</a></li>
-<li><a href="#org6d385b3">Wayland</a></li>
-<li><a href="#org0c14e5a">Swap on ZRAM</a></li>
-<li><a href="#orgd0545b6">Btrfs</a></li>
-<li><a href="#org73c5483">SELinux and firewalld</a></li>
-<li><a href="#orgd02db06">Flatpak enabled</a></li>
-<li><a href="#org1f22f27">Speed of adopting new technologies</a></li>
-<li><a href="#org1f117c7">What's next?</a></li>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Jian Wei Cheong</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html"> 
+<span class="menu-text">Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html"> 
+<span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../contact.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../posts.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
 </div>
-</div>
-<p>
-1 April 2023
-</p>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#semi-rolling-release" id="toc-semi-rolling-release" class="nav-link active" data-scroll-target="#semi-rolling-release">Semi-rolling release</a></li>
+  <li><a href="#wayland" id="toc-wayland" class="nav-link" data-scroll-target="#wayland">Wayland</a></li>
+  <li><a href="#swap-on-zram" id="toc-swap-on-zram" class="nav-link" data-scroll-target="#swap-on-zram">Swap on ZRAM</a></li>
+  <li><a href="#btrfs" id="toc-btrfs" class="nav-link" data-scroll-target="#btrfs">Btrfs</a></li>
+  <li><a href="#selinux-and-firewalld" id="toc-selinux-and-firewalld" class="nav-link" data-scroll-target="#selinux-and-firewalld">SELinux and firewalld</a></li>
+  <li><a href="#flatpak-enabled" id="toc-flatpak-enabled" class="nav-link" data-scroll-target="#flatpak-enabled">Flatpak enabled</a></li>
+  <li><a href="#speed-of-adopting-new-technologies" id="toc-speed-of-adopting-new-technologies" class="nav-link" data-scroll-target="#speed-of-adopting-new-technologies">Speed of adopting new technologies</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next?</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
 
-<p>
-Here, I provide a list of reasons on why I think Fedora is a good starting point for new Linux users, which comes down to a single advantage: good defaults.
-</p>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Why I recommend Fedora for new Linux users</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">software</div>
+    <div class="quarto-category">linux</div>
+  </div>
+  </div>
 
-<div id="outline-container-orgbd8c16c" class="outline-2">
-<h2 id="orgbd8c16c">Semi-rolling release</h2>
-<div class="outline-text-2" id="text-orgbd8c16c">
-<p>
-When you use your computer, here's what you might expect:
-</p>
 
-<ol class="org-ol">
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 1, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Here, I provide a list of reasons on why I think Fedora is a good starting point for new Linux users, which comes down to a single advantage: good defaults.</p>
+<section id="semi-rolling-release" class="level1">
+<h1>Semi-rolling release</h1>
+<p>When you use your computer, here’s what you might expect:</p>
+<ol type="1">
 <li>You want all your programs to be updated to the latest versions.</li>
 <li>You want the stuffs running in the background to be updated to the latest versions.</li>
-<li>You don't want major changes to your user experience or to how things are done.</li>
+<li>You don’t want major changes to your user experience or to how things are done.</li>
 </ol>
-
-<p>
-This is reasonable; you want frequent updates because you want the latest features, or security and bug fixes.
-But at the same time, you don't want your desktop to completely change after an update (think Windows 7 to 8, or 10 to 11).
-</p>
-
-<p>
-Fedora's semi-rolling release cycle abide by these: you get frequent updates (including kernel updates), but some packages like the desktop environment GNOME, or major software decisions (like moving to a new technology), are only updated in a major version release that the user must initiate.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org6d385b3" class="outline-2">
-<h2 id="org6d385b3">Wayland</h2>
-<div class="outline-text-2" id="text-org6d385b3">
-<p>
-Most Linux distros use <code>X11</code> as its windowing system (a program that handles how windows are drawn on your screen).
-However, <code>X11</code> does not have GUI isolation, allowing different programs to interact with one another.
-A malicious program can then record your screen, or log the keys you typed in your browser while you are logging in to your bank.
-</p>
-
-<p>
-<code>Wayland</code> is the successor to <code>X11</code>, and is developed with security in mind, isolating each window from one another.
-</p>
-
-<blockquote>
-<p>
-Unlike X, the Wayland input stack doesn't allow applications to snoop on the input of other programs (preserving confidentiality), to generate input events that appear to come from the user (preserving input integrity), or to capture all the input events to the exclusion of the user's application (preserving availability).
-</p>
-
-<p>
-&#x2014; <a href="https://lwn.net/Articles/589147/">Jake Edge, LWN.net</a>
-</p>
+<p>This is reasonable; you want frequent updates because you want the latest features, or security and bug fixes. But at the same time, you don’t want your desktop to completely change after an update (think Windows 7 to 8, or 10 to 11).</p>
+<p>Fedora’s semi-rolling release cycle abide by these: you get frequent updates (including kernel updates), but some packages like the desktop environment GNOME, or major software decisions (like moving to a new technology), are only updated in a major version release that the user must initiate.</p>
+</section>
+<section id="wayland" class="level1">
+<h1>Wayland</h1>
+<p>Most Linux distros use <code>X11</code> as its windowing system (a program that handles how windows are drawn on your screen). However, <code>X11</code> does not have GUI isolation, allowing different programs to interact with one another. A malicious program can then record your screen, or log the keys you typed in your browser while you are logging in to your bank.</p>
+<p><code>Wayland</code> is the successor to <code>X11</code>, and is developed with security in mind, isolating each window from one another.</p>
+<blockquote class="blockquote">
+<p>Unlike X, the Wayland input stack doesn’t allow applications to snoop on the input of other programs (preserving confidentiality), to generate input events that appear to come from the user (preserving input integrity), or to capture all the input events to the exclusion of the user’s application (preserving availability).</p>
+<p>— <a href="https://lwn.net/Articles/589147/">Jake Edge, LWN.net</a></p>
 </blockquote>
-</div>
-</div>
-
-<div id="outline-container-org0c14e5a" class="outline-2">
-<h2 id="org0c14e5a">Swap on ZRAM</h2>
-<div class="outline-text-2" id="text-org0c14e5a">
-<p>
-Linux systems offers a "swap" space, where memory on the RAM can be copied to disk space, freeing the RAM in the process.
-Swap is an <a href="https://chrisdown.name/2018/01/02/in-defence-of-swap.html">important part</a> of a Linux operating system.
-However, sensitive information stored on RAM can be copied to disk, risking potential security issues.
-<code>ZRAM</code> solves these problems by having the swap space remain in the RAM with compression, ensuring that no sensitive information will be stored on disk.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd0545b6" class="outline-2">
-<h2 id="orgd0545b6">Btrfs</h2>
-<div class="outline-text-2" id="text-orgd0545b6">
-<p>
-Most Linux distros have traditionally used the <code>ext4</code> filesystem.
-<code>btrfs</code> is a newer file system that offers advantages over <code>ext4</code>:
-</p>
-
-<ul class="org-ul">
+</section>
+<section id="swap-on-zram" class="level1">
+<h1>Swap on ZRAM</h1>
+<p>Linux systems offers a “swap” space, where memory on the RAM can be copied to disk space, freeing the RAM in the process. Swap is an <a href="https://chrisdown.name/2018/01/02/in-defence-of-swap.html">important part</a> of a Linux operating system. However, sensitive information stored on RAM can be copied to disk, risking potential security issues. <code>ZRAM</code> solves these problems by having the swap space remain in the RAM with compression, ensuring that no sensitive information will be stored on disk.</p>
+</section>
+<section id="btrfs" class="level1">
+<h1>Btrfs</h1>
+<p>Most Linux distros have traditionally used the <code>ext4</code> filesystem. <code>btrfs</code> is a newer file system that offers advantages over <code>ext4</code>:</p>
+<ul>
 <li>Compression leads to less disk space used.</li>
 <li>Compression also extends the lifespan of flash-based devices (SSDs, etc.).</li>
 <li>Less likely to have data corruption.</li>
 <li>Provides snapshots that allows rollback when system breaks.</li>
 </ul>
-
-<blockquote>
-<p>
-For laptop and workstation installs of Fedora, we want to provide file system features to users in a transparent fashion. We want to add new features, while reducing the amount of expertise needed to deal with situations like running out of disk space. Btrfs is well adapted to this role by design philosophy, let's make it the default.
-</p>
-
-<p>
-&#x2026;
-</p>
-
-<p>
-The Btrfs community has users that have been using it for most of the past decade at scale. It's been the default on openSUSE (and SUSE Linux Enterprise) since 2014, and Facebook has been using it for all their OS and data volumes, in their data centers, for almost as long. Btrfs is a mature, well-understood, and battle-tested file system, used on both desktop/container and server/cloud use-cases.
-</p>
-
-<p>
-&#x2014; <a href="https://fedoraproject.org/wiki/Changes/BtrfsByDefault">Fedora Project wiki, Btrfs changes proposal</a>
-</p>
+<blockquote class="blockquote">
+<p>For laptop and workstation installs of Fedora, we want to provide file system features to users in a transparent fashion. We want to add new features, while reducing the amount of expertise needed to deal with situations like running out of disk space. Btrfs is well adapted to this role by design philosophy, let’s make it the default.</p>
+<p>…</p>
+<p>The Btrfs community has users that have been using it for most of the past decade at scale. It’s been the default on openSUSE (and SUSE Linux Enterprise) since 2014, and Facebook has been using it for all their OS and data volumes, in their data centers, for almost as long. Btrfs is a mature, well-understood, and battle-tested file system, used on both desktop/container and server/cloud use-cases.</p>
+<p>— <a href="https://fedoraproject.org/wiki/Changes/BtrfsByDefault">Fedora Project wiki, Btrfs changes proposal</a></p>
 </blockquote>
-</div>
-</div>
-
-<div id="outline-container-org73c5483" class="outline-2">
-<h2 id="org73c5483">SELinux and firewalld</h2>
-<div class="outline-text-2" id="text-org73c5483">
-<p>
-Security Enhanced Linux (<code>SELinux</code>) provides Mandatory Access Control (MAC).
-</p>
-
-<blockquote>
-<p>
-In computer security, mandatory access control (MAC) refers to a type of access control by which the operating system or database constrains the ability of a subject or initiator to access or generally perform some sort of operation on an object or target.
-</p>
-
-<p>
-&#x2014; <a href="https://en.wikipedia.org/wiki/Mandatory_access_control">Wikipedia</a>
-</p>
-
-<p>
-Security Enhanced Linux (SELinux) provides an additional layer of system security. SELinux fundamentally answers the question: May &lt;subject&gt; do &lt;action&gt; to &lt;object&gt;?, for example: May a web server access files in users' home directories?
-</p>
-
-<p>
-&#x2014; <a href="https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-selinux/">Fedora docs</a>
-</p>
+</section>
+<section id="selinux-and-firewalld" class="level1">
+<h1>SELinux and firewalld</h1>
+<p>Security Enhanced Linux (<code>SELinux</code>) provides Mandatory Access Control (MAC).</p>
+<blockquote class="blockquote">
+<p>In computer security, mandatory access control (MAC) refers to a type of access control by which the operating system or database constrains the ability of a subject or initiator to access or generally perform some sort of operation on an object or target.</p>
+<p>— <a href="https://en.wikipedia.org/wiki/Mandatory_access_control">Wikipedia</a></p>
 </blockquote>
+<blockquote class="blockquote">
+<p>Security Enhanced Linux (SELinux) provides an additional layer of system security. SELinux fundamentally answers the question: May &lt;subject&gt; do &lt;action&gt; to &lt;object&gt;?, for example: May a web server access files in users’ home directories?</p>
+<p>— <a href="https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-selinux/">Fedora docs</a></p>
+</blockquote>
+<p>Fedora comes with good default policies for <code>SELinux</code>, as well as good default firewall rules with <code>firewalld</code>.</p>
+</section>
+<section id="flatpak-enabled" class="level1">
+<h1>Flatpak enabled</h1>
+<p><code>Flatpak</code> is supposed to be a new and universal way of installing programs. <code>Flatpak</code> is now available on almost all major distros and is also the most popular way of installing programs on the Steam Deck.</p>
+<p>Ubuntu on the other hand, while often recommended to beginners, decided to <a href="https://discourse.ubuntu.com/t/ubuntu-flavor-packaging-defaults/34061?u=d0od">drop Flatpak</a> in favor of <code>snap</code>, which is their own alternative that is much less popular. <code>snap</code> packages <a href="https://askubuntu.com/questions/1185091/why-apt-package-chromium-browser-installs-snap-package-instead">masquerade as traditional packages</a>, which can cause confusion for new users. They also <a href="https://forum.snapcraft.io/t/sudo-snap-install-or-just-snap-install/3909">encourage users to sign up an Ubuntu One account</a> just to install <code>snap</code> packages without root.</p>
+</section>
+<section id="speed-of-adopting-new-technologies" class="level1">
+<h1>Speed of adopting new technologies</h1>
+<p>Fedora tends to adopt new technologies at a fast pace, such as <code>Wayland</code>, swap on <code>ZRAM</code>, <code>Flatpak</code>, <code>PipeWire</code>, <code>btrfs</code> etc. New technologies tends to offer improvements in terms of usability and security.</p>
+<p>For example, Fedora adopted <code>Wayland</code> in 2016, but Ubuntu only done so in 2021. Even Red Hat Enterprise Linux (RHEL) and Debian adopted <code>Wayland</code> in 2019, earlier than Ubuntu, despite both being extremely conservative distros.</p>
+</section>
+<section id="whats-next" class="level1">
+<h1>What’s next?</h1>
+<p>If you just want a usable system with no interest in learning more about the Linux ecosystem, then I believe Fedora is the ideal choice. However, I do not encourage people to stay on Fedora for the rest of their Linux journey. Rather, one should try out different Linux distros and explore alternatives to learn more about the Linux ecosystem.</p>
+<p>Eventually, as you gain more understanding of the Linux ecosystem, you will develop your own opinions on things. For example, you might be <a href="https://flatkill.org/2020/">against Flatpak</a>, or perhaps you might think that <a href="https://nosystemd.org/">systemd has major problems</a>. Regardless, the greatest strength of the Linux ecosystem is the power to make your own choices on what software and technologies you prefer.</p>
 
-<p>
-Fedora comes with good default policies for <code>SELinux</code>, as well as good default firewall rules with <code>firewalld</code>.
-</p>
-</div>
-</div>
 
-<div id="outline-container-orgd02db06" class="outline-2">
-<h2 id="orgd02db06">Flatpak enabled</h2>
-<div class="outline-text-2" id="text-orgd02db06">
-<p>
-<code>Flatpak</code> is supposed to be a new and universal way of installing programs.
-<code>Flatpak</code> is now available on almost all major distros and is also the most popular way of installing programs on the Steam Deck.
-</p>
+</section>
 
-<p>
-Ubuntu on the other hand, while often recommended to beginners, decided to <a href="https://discourse.ubuntu.com/t/ubuntu-flavor-packaging-defaults/34061?u=d0od">drop Flatpak</a> in favor of <code>snap</code>, which is their own alternative that is much less popular.
-<code>snap</code> packages <a href="https://askubuntu.com/questions/1185091/why-apt-package-chromium-browser-installs-snap-package-instead">masquerade as traditional packages</a>, which can cause confusion for new users.
-They also <a href="https://forum.snapcraft.io/t/sudo-snap-install-or-just-snap-install/3909">encourage users to sign up an Ubuntu One account</a> just to install <code>snap</code> packages without root.
-</p>
-</div>
-</div>
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jianweicheong\.codeberg\.page");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+});
+</script>
+</div> <!-- /content -->
 
-<div id="outline-container-org1f22f27" class="outline-2">
-<h2 id="org1f22f27">Speed of adopting new technologies</h2>
-<div class="outline-text-2" id="text-org1f22f27">
-<p>
-Fedora tends to adopt new technologies at a fast pace, such as <code>Wayland</code>, swap on <code>ZRAM</code>, <code>Flatpak</code>, <code>PipeWire</code>, <code>btrfs</code> etc.
-New technologies tends to offer improvements in terms of usability and security.
-</p>
 
-<p>
-For example, Fedora adopted <code>Wayland</code> in 2016, but Ubuntu only done so in 2021.
-Even Red Hat Enterprise Linux (RHEL) and Debian adopted <code>Wayland</code> in 2019, earlier than Ubuntu, despite both being extremely conservative distros.
-</p>
-</div>
-</div>
 
-<div id="outline-container-org1f117c7" class="outline-2">
-<h2 id="org1f117c7">What's next?</h2>
-<div class="outline-text-2" id="text-org1f117c7">
-<p>
-If you just want a usable system with no interest in learning more about the Linux ecosystem, then I believe Fedora is the ideal choice.
-However, I do not encourage people to stay on Fedora for the rest of their Linux journey.
-Rather, one should try out different Linux distros and explore alternatives to learn more about the Linux ecosystem.
-</p>
 
-<p>
-Eventually, as you gain more understanding of the Linux ecosystem, you will develop your own opinions on things.
-For example, you might be <a href="https://flatkill.org/2020/">against Flatpak</a>, or perhaps you might think that <a href="https://nosystemd.org/">systemd has major problems</a>.
-Regardless, the greatest strength of the Linux ecosystem is the power to make your own choices on what software and technologies you prefer.
-</p>
-</div>
-</div>
-</div>
-</body>
-</html>
+</body></html>

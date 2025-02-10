@@ -1,0 +1,16 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/posts/haskell-numerical.html",
+      "/posts/why-fedora.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/haskell-numerical.html",
+      "/posts/why-fedora.html"
+    ]
+  }
+]
