@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/life-conspiracy.html",
       "/posts/haskell-numerical.html",
       "/posts/why-fedora.html"
     ]
@@ -9,6 +10,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/life-conspiracy.html",
       "/posts/haskell-numerical.html",
       "/posts/why-fedora.html"
     ]

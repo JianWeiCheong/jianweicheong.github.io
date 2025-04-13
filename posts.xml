@@ -10,7 +10,171 @@
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
 <generator>quarto-1.7.6</generator>
-<lastBuildDate>Mon, 04 Sep 2023 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 30 Apr 2024 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>Life as an entropic conspiracy</title>
+  <link>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="the-trick-question" class="level1 page-columns page-full">
+<h1>The trick question</h1>
+<blockquote class="blockquote">
+<p>“What is the meaning of life?”</p>
+</blockquote>
+<p>This has become such a cliche question that an equally cliche answer of:</p>
+<blockquote class="blockquote">
+<p>“It’s whatever you make it out to be!”</p>
+</blockquote>
+<p>that we are all quite tired of has become the norm.</p>
+<p>I believe the reason why such a cop-out answer is the norm in the first place is because we all understand deep down that life has no intrinsic objective meaning<sup>1</sup>. In fact, given that the prerequisite for the concept of “meaning” to exist in the first place is the existence of life itself, this seems quite like a trick question. Similar to how a system cannot demonstrate its own consistency in Gödel’s second incompleteness theorem, perhaps one must require a framework that is external to life itself to apply “meaning” for life’s existence, before life’s existence<sup>2</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Sans whatever religious/spiritual beliefs that one might have.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;e.g., the aforementioned religious/spiritual beliefs.</p></div></div><p>Nevertheless, by replacing the quite human term of “meaning” with a more mechanistic term of “purpose”, we might be able to answer more reasonably the resulting question of:</p>
+<blockquote class="blockquote">
+<p>“What is the <strong>purpose</strong> of life?”</p>
+</blockquote>
+</section>
+<section id="a-physicists-perspective-the-conspiracy" class="level1 page-columns page-full">
+<h1>A Physicist’s perspective — the conspiracy</h1>
+<p>The study of life has always been in the domain of Biology. However, Physicists have also been trying to uncover a physical principle that leads to life’s emergence and its behaviors <span class="citation" data-cites="PrigogineBiological1971">(Prigogine and Nicolis 1971)</span>. A hint lies in a stark difference between life and inanimate matter: that is life’s ability to efficiently absorb or consume useful energy and dissipating it as heat, resulting in increased entropy production.</p>
+<p>While this have been pointed out by Erwin Schrödinger in his book <a href="https://en.wikipedia.org/wiki/What_Is_Life%3F"><em>What is life?</em></a> back in the 1940s, it has undergo rigorous thermodynamic treatment in the past few years thanks to advances in the physics of non-equilibrium thermodynamics <span class="citation" data-cites="CollinVerification2005 MichaelianThermodynamic2011">(Collin et al. 2005; K. Michaelian 2011)</span>.</p>
+<p>In short, in the presence of an external non-equilibrium energy source like the Sun, systems adapt and self-organize themselves to better absorb energy and dissipate heat or entropy, in a process that has come to be known as <em>dissipation-driven adaptation</em> <span class="citation" data-cites="EnglandStatistical2013 PerunovStatistical2016">(England 2013; Perunov, Marsland, and England 2016)</span>.</p>
+<p>Life is hypothesized to be such a dissipative system that serves to increase entropy production.</p>
+<p>From the birth of planetoids in the dusts of protoplanetary disks, to the formation of vortices we see in chaotic turbulent flows such as hurricanes. Stable structures with low internal entropy arises out of such chaotic interactions in order to more efficiently dissipate entropy.</p>
+<p>Life might be one of such order out of chaos, a long running conspiracy to increase the universe’s entropy.</p>
+<section id="self-organization-order-out-of-chaos" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="self-organization-order-out-of-chaos">Self-organization — order out of chaos</h2>
+<p>Self-organization of complex structures in the presence of an external energy source have been demonstrated both experimentally and computationally. In a computational simulation of twenty particles in a toy chemical space, complex bonding forms under resonance with a periodic drive, increasing the rate of work absorption and heat dissipation <span class="citation" data-cites="KachmanSelfOrganized2017">(Kachman, Owen, and England 2017)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/kondepudi.png" class="img-fluid figure-img"></p>
+<figcaption>Reprinted from <span class="citation" data-cites="KondepudiEnddirected2015">Kondepudi, Kay, and Dixon (2015)</span></figcaption>
+</figure>
+</div>
+<p>Setup and result of self-organizing conducting beads.</p>
+</div></div><p>Experimentally, conducting beads 4mm in diameter immersed in oil in a petri dish were shown to self-organize to a complex tree-like structure in the presence of high voltage. This happens at a critical point with a spike in entropy dissipation <span class="citation" data-cites="KondepudiEnddirected2015">(Kondepudi, Kay, and Dixon 2015)</span>. Silver nanorods were also shown to self-organized in the presence of a doughnut-shaped laser source, with differing structures depending on the wavelengths and polarization of the laser source <span class="citation" data-cites="ItoSelective2013">(Ito et al. 2013)</span>.</p>
+<p>Likewise, by considering UVC light of 230nm to 270nm from the Sun as the non-equilibrium energy source, which was one of the ranges of wavelengths that were most intense in the early Earth, it was demonstrated that RNA polymers proliferate via photochemical reactions and that DNA polymers denature from absorption and dissipation at these UVC wavelengths, which is a crucial step for self-replication without enzymes <span class="citation" data-cites="MichaelianMicroscopic2017 MichaelianUVC2019">(Karo Michaelian 2017; Karo Michaelian and Padilla 2019)</span>.</p>
+<p>Homochirality was also shown to be achieved in DNA and RNA via photochemical reactions with UVC wavelengths light <span class="citation" data-cites="MichaelianHomochirality2018">(Karo Michaelian 2018)</span>. Correlations also exist between the maximum absorbance wavelengths of early life’s nucleobases and amino acids, and UVC wavelengths <span class="citation" data-cites="MichaelianFundamental2015">(K. Michaelian and Simeonov 2015)</span>.</p>
+<p>These might suggest that in the RNA world during early Earth era, RNA or pre-RNA polymers self-organized or adapted to absorb and dissipate UVC solar spectrum efficiently, a feature of dissipative adaptation.</p>
+</section>
+<section id="self-replication-the-more-the-merrier" class="level2">
+<h2 class="anchored" data-anchor-id="self-replication-the-more-the-merrier">Self-replication — the more the merrier</h2>
+<p>Clearly, the more dissipators there are, the more the entropic dissipation. Thus, it’s no wonder that complex systems can also self-replicate to increase dissipation of entropy.</p>
+<p>In fact, even the act of self-replication itself can serves to dissipate heat, e.g., it was shown that <em>E. coli</em> bacterium can dissipates at least 5 times as much heat as its individual heat dissipation when it self-replicates <span class="citation" data-cites="EnglandStatistical2013">(England 2013)</span>.</p>
+<p>The process of replication or copying DNA polymer (DNA copolymerisation) also dissipates entropy depending on the information entropy of the DNA polymer. Information is created at the copied DNA polymer, decreasing the Shannon entropy of itself and generating mutual information with the original copy. In the process, entropy is dissipated to the environment as quantified by the affinity per copied nucleotide <span class="citation" data-cites="AndrieuxNonequilibrium2008">(Andrieux and Gaspard 2008)</span>.</p>
+<p>In general, most dissipative systems exhibit behaviors of self-replications. For example, computer simulations of colloidal clusters show that the exponential growth rate of self-replication varies with the energy landscape of the system <span class="citation" data-cites="ZeravcicSelfreplicating2014">(Zeravcic and Brenner 2014)</span>.</p>
+<p>Three-dimensional vortices also self-replicates in rotating shear flows, as demonstrated in a numerical study <span class="citation" data-cites="MarcusThreeDimensional2013">(Marcus et al. 2013)</span>. This was also proposed to be how planetoids form in protoplanetary disks <span class="citation" data-cites="BarrancoThreeDimensional2005">(Barranco and Marcus 2005)</span>, whereby dissipative system can replicate smaller dissipative systems in it, or eventually splits into a copy or more of itself in phenomenon such as disk fragmentation, forming binary star systems <span class="citation" data-cites="OffnerFormation2010">(Offner et al. 2010)</span>.</p>
+<p>Thus, by itself, the phenomenon of self-replication in complex life and organic polymers and monomers were already a feature of dissipative system. One might even suggest that early organic compounds evolved the ability to self-replicate to ensure that the presence of such dissipative structures are constant.</p>
+</section>
+<section id="adaptation-resonance-with-the-environment" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="adaptation-resonance-with-the-environment">Adaptation — resonance with the environment</h2>
+<p>If life does indeed self-organize to better absorb the surrounding external energy source and to dissipate heat, we would expect it to change or adapt its structures with changes in external energy sources.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/michaelian.png" class="imghover img-fluid figure-img"></p>
+<figcaption>Reprinted from <span class="citation" data-cites="MichaelianFundamental2015">K. Michaelian and Simeonov (2015)</span></figcaption>
+</figure>
+</div>
+<p>Correlations between solar spectrum and the emergence of organic compounds and cells in the five different periods. As Earth’s conditions changes, more complex organic compounds evolved to suit these conditions. The general trends are a shift from UVC absorbing to visible spectrum absorbing compounds, and a shift to oxygen based respiration.</p>
+</div></div><p>This seems to be evident throughout life’s history, where its evolution has underwent avalanche dynamics with quick and sudden changes in complexity instead of a smooth and gradual evolution <span class="citation" data-cites="PaczuskiAvalanche1996">(Paczuski, Maslov, and Bak 1996)</span>. Some has even modeled this sudden transition of evolution as a Big Bang model with evolutionary inflation akin to the cosmological inflation model <span class="citation" data-cites="KooninBiological2007">(Koonin 2007)</span>.</p>
+<p>This was also demonstrated in simulated artificial life <span class="citation" data-cites="AdamiSelforganized1995">(Adami 1995)</span>, whereby microscopic processes can be controlled and fine-tuned to simulate similar behaviours to biological life such as mutation and self-replication. In the simulation, it was shown that the fitness or how the population adapts to the environment, can undergo multiple discontinuous jumps.</p>
+<p>These critical transitions can work towards absorbing more work and dissipating more heat. For example, it was shown that by partitioning Earth’s history based on changes in the environment on the Earth’s surface, such as solar spectrum, temperature, and atmospheric compositions, there are correlations between the emergence or evolution of organic compounds with these changes to better survive or absorb energy according to the environmental conditions in that period <span class="citation" data-cites="MichaelianFundamental2015">(K. Michaelian and Simeonov 2015)</span>.</p>
+<p>One interesting example is the case of adenosine triphosphate (ATP) synthase, an enzyme that lies along the cell membrane of a cell that breaks down ATP to adenosine diphosphate (ADP) and a phosphate. This breakage releases energy that powers the cell.</p>
+<p>By using a kinetic model of ATP synthase, it was shown that both the entropy production during the ATP synthase process, and the Shannon entropy of the transitional states, are maximized at a catalytic dwell angle<sup>3</sup> that is the same as the actual ATP synthase’s angle, demonstrating that the ATP evolved to be consistent with maximum entropy production <span class="citation" data-cites="DewarFunctional2006">(Dewar, Juretić, and Županović 2006)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;The ATP synthase will rotate in angles of <img src="https://latex.codecogs.com/png.latex?120%5E%7B%5Ccirc%7D"> for each ATP to ADP + P<img src="https://latex.codecogs.com/png.latex?_i"> reaction. However, at the moment of breakage of ATP bonds to ADP + P<img src="https://latex.codecogs.com/png.latex?_i">, the synthase will pause for a short amount of time of around 2ms <span class="citation" data-cites="UenoATP2005">(Ueno et al. 2005)</span>, the angle at which this pause happens is known as the catalytic dwell.</p></div></div><p>These might suggest that the process of self-organization to an external energy source does not stop, but carried on instead to continue to adapt to changing conditions.</p>
+</section>
+</section>
+<section id="the-purpose-of-life" class="level1">
+<h1>The purpose of life</h1>
+<p>So why does the universe favors orders such as life, instead of just maintaining the disorder that we might expect?</p>
+<p>As discussed, it turns out that these eddies of order and low entropy corners of the universe such as life, are just a small price for the universe to pay to optimize the production of entropy in the long run.</p>
+<p>In other words, contrary to what one might expect, the presence of stable complex structures such as life produces more entropy in the system than if these structures are absent.</p>
+<p>So it seems that the conspiracy of life is an entropic one.</p>
+<p>The universe has set aside a small part of itself for order and life, seemingly going against the Second Law of thermodynamics. But all these is but an attempt to speed up and maximize the production of entropy and disorder.</p>
+<p>This is the purpose of life.</p>
+
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-AdamiSelforganized1995" class="csl-entry">
+Adami, C. 1995. <span>“Self-Organized Criticality in Living Systems.”</span> <em>Physics Letters A</em> 203 (1): 29–32. <a href="https://doi.org/10.1016/0375-9601(95)00372-a">https://doi.org/10.1016/0375-9601(95)00372-a</a>.
+</div>
+<div id="ref-AndrieuxNonequilibrium2008" class="csl-entry">
+Andrieux, David, and Pierre Gaspard. 2008. <span>“Nonequilibrium Generation of Information in Copolymerization Processes.”</span> <em>Proceedings of the National Academy of Sciences</em> 105 (28): 9516–21. <a href="https://doi.org/10.1073/pnas.0802049105">https://doi.org/10.1073/pnas.0802049105</a>.
+</div>
+<div id="ref-BarrancoThreeDimensional2005" class="csl-entry">
+Barranco, Joseph A., and Philip S. Marcus. 2005. <span>“Three‐dimensional Vortices in Stratified Protoplanetary Disks.”</span> <em>The Astrophysical Journal</em> 623 (2): 1157–70. <a href="https://doi.org/10.1086/428639">https://doi.org/10.1086/428639</a>.
+</div>
+<div id="ref-CollinVerification2005" class="csl-entry">
+Collin, D., F. Ritort, C. Jarzynski, S. B. Smith, I. Tinoco, and C. Bustamante. 2005. <span>“Verification of the Crooks Fluctuation Theorem and Recovery of RNA Folding Free Energies.”</span> <em>Nature</em> 437 (7056): 231–34. <a href="https://doi.org/10.1038/nature04061">https://doi.org/10.1038/nature04061</a>.
+</div>
+<div id="ref-DewarFunctional2006" class="csl-entry">
+Dewar, R. C., D. Juretić, and P. Županović. 2006. <span>“The Functional Design of the Rotary Enzyme ATP Synthase Is Consistent with Maximum Entropy Production.”</span> <em>Chemical Physics Letters</em> 430 (1–3): 177–82. <a href="https://doi.org/10.1016/j.cplett.2006.08.095">https://doi.org/10.1016/j.cplett.2006.08.095</a>.
+</div>
+<div id="ref-EnglandStatistical2013" class="csl-entry">
+England, Jeremy L. 2013. <span>“Statistical Physics of Self-Replication.”</span> <em>The Journal of Chemical Physics</em> 139 (12). <a href="https://doi.org/10.1063/1.4818538">https://doi.org/10.1063/1.4818538</a>.
+</div>
+<div id="ref-ItoSelective2013" class="csl-entry">
+Ito, Syoji, Hiroaki Yamauchi, Mamoru Tamura, Shimpei Hidaka, Hironori Hattori, Taichi Hamada, Keisuke Nishida, et al. 2013. <span>“Selective Optical Assembly of Highly Uniform Nanoparticles by Doughnut-Shaped Beams.”</span> <em>Scientific Reports</em> 3 (1). <a href="https://doi.org/10.1038/srep03047">https://doi.org/10.1038/srep03047</a>.
+</div>
+<div id="ref-KachmanSelfOrganized2017" class="csl-entry">
+Kachman, Tal, Jeremy A. Owen, and Jeremy L. England. 2017. <span>“Self-Organized Resonance During Search of a Diverse Chemical Space.”</span> <em>Physical Review Letters</em> 119 (3). <a href="https://doi.org/10.1103/physrevlett.119.038001">https://doi.org/10.1103/physrevlett.119.038001</a>.
+</div>
+<div id="ref-KondepudiEnddirected2015" class="csl-entry">
+Kondepudi, Dilip, Bruce Kay, and James Dixon. 2015. <span>“End-Directed Evolution and the Emergence of Energy-Seeking Behavior in a Complex System.”</span> <em>Physical Review E</em> 91 (5). <a href="https://doi.org/10.1103/physreve.91.050902">https://doi.org/10.1103/physreve.91.050902</a>.
+</div>
+<div id="ref-KooninBiological2007" class="csl-entry">
+Koonin, Eugene V. 2007. <span>“The Biological Big Bang Model for the Major Transitions in Evolution.”</span> <em>Biology Direct</em> 2 (1): 21. <a href="https://doi.org/10.1186/1745-6150-2-21">https://doi.org/10.1186/1745-6150-2-21</a>.
+</div>
+<div id="ref-MarcusThreeDimensional2013" class="csl-entry">
+Marcus, Philip S., Suyang Pei, Chung-Hsiang Jiang, and Pedram Hassanzadeh. 2013. <span>“Three-Dimensional Vortices Generated by Self-Replication in Stably Stratified Rotating Shear Flows.”</span> <em>Physical Review Letters</em> 111 (8). <a href="https://doi.org/10.1103/physrevlett.111.084501">https://doi.org/10.1103/physrevlett.111.084501</a>.
+</div>
+<div id="ref-MichaelianThermodynamic2011" class="csl-entry">
+Michaelian, K. 2011. <span>“Thermodynamic Dissipation Theory for the Origin of Life.”</span> <em>Earth System Dynamics</em> 2 (1): 37–51. <a href="https://doi.org/10.5194/esd-2-37-2011">https://doi.org/10.5194/esd-2-37-2011</a>.
+</div>
+<div id="ref-MichaelianMicroscopic2017" class="csl-entry">
+Michaelian, Karo. 2017. <span>“Microscopic Dissipative Structuring and Proliferation at the Origin of Life.”</span> <em>Heliyon</em> 3 (10): e00424. <a href="https://doi.org/10.1016/j.heliyon.2017.e00424">https://doi.org/10.1016/j.heliyon.2017.e00424</a>.
+</div>
+<div id="ref-MichaelianHomochirality2018" class="csl-entry">
+———. 2018. <span>“Homochirality Through Photon-Induced Denaturing of RNA/DNA at the Origin of Life.”</span> <em>Life</em> 8 (2): 21. <a href="https://doi.org/10.3390/life8020021">https://doi.org/10.3390/life8020021</a>.
+</div>
+<div id="ref-MichaelianUVC2019" class="csl-entry">
+Michaelian, Karo, and Norberto Santillán Padilla. 2019. <span>“UVC Photon-Induced Denaturing of DNA: A Possible Dissipative Route to Archean Enzyme-Less Replication.”</span> <em>Heliyon</em> 5 (6): e01902. <a href="https://doi.org/10.1016/j.heliyon.2019.e01902">https://doi.org/10.1016/j.heliyon.2019.e01902</a>.
+</div>
+<div id="ref-MichaelianFundamental2015" class="csl-entry">
+Michaelian, K., and A. Simeonov. 2015. <span>“Fundamental Molecules of Life Are Pigments Which Arose and Co-Evolved as a Response to the Thermodynamic Imperative of Dissipating the Prevailing Solar Spectrum.”</span> <em>Biogeosciences</em> 12 (16): 4913–37. <a href="https://doi.org/10.5194/bg-12-4913-2015">https://doi.org/10.5194/bg-12-4913-2015</a>.
+</div>
+<div id="ref-OffnerFormation2010" class="csl-entry">
+Offner, Stella S. R., Kaitlin M. Kratter, Christopher D. Matzner, Mark R. Krumholz, and Richard I. Klein. 2010. <span>“THE FORMATION OF LOW-MASS BINARY STAR SYSTEMS VIA TURBULENT FRAGMENTATION.”</span> <em>The Astrophysical Journal</em> 725 (2): 1485–94. <a href="https://doi.org/10.1088/0004-637x/725/2/1485">https://doi.org/10.1088/0004-637x/725/2/1485</a>.
+</div>
+<div id="ref-PaczuskiAvalanche1996" class="csl-entry">
+Paczuski, Maya, Sergei Maslov, and Per Bak. 1996. <span>“Avalanche Dynamics in Evolution, Growth, and Depinning Models.”</span> <em>Physical Review E</em> 53 (1): 414–43. <a href="https://doi.org/10.1103/physreve.53.414">https://doi.org/10.1103/physreve.53.414</a>.
+</div>
+<div id="ref-PerunovStatistical2016" class="csl-entry">
+Perunov, Nikolay, Robert A. Marsland, and Jeremy L. England. 2016. <span>“Statistical Physics of Adaptation.”</span> <em>Physical Review X</em> 6 (2). <a href="https://doi.org/10.1103/physrevx.6.021036">https://doi.org/10.1103/physrevx.6.021036</a>.
+</div>
+<div id="ref-PrigogineBiological1971" class="csl-entry">
+Prigogine, I., and G. Nicolis. 1971. <span>“Biological Order, Structure and Instabilities.”</span> <em>Quarterly Reviews of Biophysics</em> 4 (2–3): 107–48. <a href="https://doi.org/10.1017/s0033583500000615">https://doi.org/10.1017/s0033583500000615</a>.
+</div>
+<div id="ref-UenoATP2005" class="csl-entry">
+Ueno, Hiroshi, Toshiharu Suzuki, Kazuhiko Kinosita, and Masasuke Yoshida. 2005. <span>“ATP-Driven Stepwise Rotation of f o f 1 -ATP Synthase.”</span> <em>Proceedings of the National Academy of Sciences</em> 102 (5): 1333–38. <a href="https://doi.org/10.1073/pnas.0407857102">https://doi.org/10.1073/pnas.0407857102</a>.
+</div>
+<div id="ref-ZeravcicSelfreplicating2014" class="csl-entry">
+Zeravcic, Zorana, and Michael P. Brenner. 2014. <span>“Self-Replicating Colloidal Clusters.”</span> <em>Proceedings of the National Academy of Sciences</em> 111 (5): 1748–53. <a href="https://doi.org/10.1073/pnas.1313601111">https://doi.org/10.1073/pnas.1313601111</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>physics</category>
+  <guid>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</guid>
+  <pubDate>Tue, 30 Apr 2024 16:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Haskell for numerical computation?</title>
   <link>https://jianweicheong.codeberg.page/posts/haskell-numerical.html</link>
