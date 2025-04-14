@@ -10,7 +10,126 @@
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
 <generator>quarto-1.7.6</generator>
-<lastBuildDate>Tue, 30 Apr 2024 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 10 Jan 2025 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>An honest explanation of quantum computing</title>
+  <link>https://jianweicheong.codeberg.page/posts/quantum-computing.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>We have all heard it before:</p>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>“It’s doing all possible computations simultaneously!”<br>
+“A quantum bit can be both 0 and 1 at the same time!”<br>
+“Quantum computers compute in parallel universes!”<sup>1</sup></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;I’m shocked that this is <a href="https://blog.google/technology/research/google-willow-quantum-chip/">no longer hyperbole</a>.</p></div></div></div>
+<p>I get it, it’s difficult to talk about quantum mechanics without resorting to technical jargon, forcing us to rely on analogies that barely make sense.</p>
+<p>But I mean, if it’s doing multiple computations simultaneously (in parallel universes or not), how many computations (or parallel universes) is it exactly?</p>
+<p>And guess what? We can already do computations in “parallel universes” with classical computers. Its called multithreading and multiprocessing.</p>
+<p>Does that mean that I can achieve the same advantage in principle if I simply match the number of classical computers to the number of parallel universes?</p>
+<p>You see, these popular explanations for how a quantum computer works typically breaks down when you probe them a little. The fact that they even exist in the first place surprises me because <strong>the concepts behind quantum computing is actually quite simple</strong>.</p>
+<p>Yes, that’s right. I believe that the basics of quantum computing is simple enough that any reasonable layperson can understand it.</p>
+<p>The mystique only arises when we conflate the metaphysical interpretations of quantum mechanics<sup>2</sup> with the explanations of the quantum computations that they can perform. This is akin to explaining classical computation with some metaphysical interpretation of the nature of electricity, e.g., “The reason your computer can calculate 1+1 is because electricity running in your computer can add on top of each other.” which is not what happens at all.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;To be fair, these interpretations of quantum mechanics are indeed weird and mind-blowing. But again, no matter how weird electricity is, classical computer science is independent of it. Quantum computing should be viewed the same way. Also keep in mind that these are just interpretations with no evidence of being true.</p></div></div><p>So what exactly is this simple concept behind quantum computing?</p>
+<p>Well, two concepts actually. First, the Bloch sphere.</p>
+<section id="enters-the-bloch-sphere" class="level1 page-columns page-full">
+<h1>Enters the Bloch sphere</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/bloch.svg" class="img-fluid figure-img"></p>
+<figcaption>The Bloch sphere with an arrow inside pointing outwards from the center.</figcaption>
+</figure>
+</div>
+<p>This is called a <a href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch sphere</a>, and it captures everything about a qubit (even all the alleged parallel universes).</p>
+<p>Anyone can understand and visualize a sphere, so it puzzles me as to why we do not start with this instead of parallel universes or “being 0 and 1 at the same time”. The Bloch sphere is also mathematically accurate. That is, it’s not an analogy, its the truth!</p>
+<p>In fact, the Bloch sphere also captures classical computing. The familiar 0 and 1 bits from classical computing are at the North and the South poles, respectively. In a classical computer, imagine a bunch of these spheres with an arrow in each pointing only to either the North pole (bit 0) or the South pole (bit 1). During a classical computation, the arrows simply flip between the North and the South poles, most of the time conditioned on other arrows of other spheres<sup>3</sup>. The sequence of arrows then represents some computation results.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;E.g., a <a href="https://en.wikipedia.org/wiki/Inverter_(logic_gate)">NOT operation</a> flips 0 (North) to 1 (South) and 1 (South) to 0 (North)</p></div></div><p>What about a qubit?</p>
+<p>Well, we simply free the arrow such that it is able to point to anywhere on the sphere. That’s it. Where the arrow points is the <em>state</em> of the qubit.</p>
+<p>So when people say a qubit can be “0 and 1 at the same time”, what they actually mean is that the arrow is pointing at the equator, halfway between the North (0) and the South (1) poles.</p>
+<p>Of course, there is not just one location on the equator of a sphere. Singapore is at the equator, so is Ecuador, and so is multiple other countries on Earth. This means that two qubits that are “0 and 1 at the same time” can be different. To differentiate them (figure out where their arrows point), or to pinpoint a location on Earth, we require two coordinates, the longitude, and the latitude.</p>
+<p>The “longitude” and the “latitude” are the two variables (or degrees of freedom) to define a qubit: <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> the “latitude”, and <img src="https://latex.codecogs.com/png.latex?%5Cvarphi"> the “longitude” also known as the relative phase.</p>
+<p>So what happens during a quantum computation? Well, like the classical case, the arrow in each qubit simply jumps (or rotates) around to and from any point on the sphere<sup>4</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;In general, this is done by performing unitary operations (literally rotations) on it. Typically, these operations can be described by simpler <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate">quantum logic gates</a> like the logic gates in the classical case.</p></div></div><p>So all these talks of a quantum computer being able to perform computations faster because of “superposition” or because it can performs computation “simultaneously” etc., simply refers to the fact that there is an increase in degree of freedoms for the computation as compared to classical computers.</p>
+<p>In other words, this freedom for the arrow (its state) to rotate and point to anywhere on the sphere, allows certain computing tasks to require less operations (flipping or rotating of arrows), than if the arrows are confined to the North and South poles.</p>
+<blockquote class="blockquote">
+<p>“But what’s with all the spooky and mind-blowing things about quantum physics then?”</p>
+</blockquote>
+<p>Well, it’s true that in actual quantum systems that implements a qubit, there are typically two preferred states (the North and South poles of our Bloch sphere). Using our classical human intuition, these preferred states are seen as “real” or consistent with our human experiences, while a superposition state (the equator of our Bloch sphere) are seen as “unreal” or inconsistent with our human experiences, e.g., how can something that takes the “real” states of spin up and spin down, be placed in the “unintuitive” state of “spin up and spin down at the same time”?</p>
+<p>So there are some credence to the spookiness and hype. However, again, just like how the computer science of classical computation is independent of the physics of electricity and electrons etc., the computer science of quantum computation should also be seen separately from the interpretations of what’s happening in the physical systems that implements them.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extra notes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The attentive reader will notice that a sphere is spherically symmetrical. Just like on the Earth, the North and South poles are defined by convention, and that there are no real ups and downs.</p>
+<p>What this means is that we can orient the Bloch sphere however we want. Pick any two points at opposite ends of the sphere and that can be defined as the 0 and 1. The reason the North and the South poles are defined as the 0 and 1 is simply convention.</p>
+<p>Now that you know this, you should realize that the idea that a qubit being “both 0 and 1 at the same time” somehow grants an advantage is quite silly, since it’s just another point on the sphere, no different from the North (0) and the South (1) poles.</p>
+<p>A more attentive reader will also ask “what about the insides of the sphere?”.</p>
+<p>The reader is right. There is actually a third degree of freedom: the “radius”, which describes the length of the arrow. So yes, the arrow can point to somewhere inside the sphere. These are called <em>mixed states</em>, whereas arrows that point to the surface of the sphere are called <em>pure states</em>.</p>
+<p>During a quantum computation, the qubit is sensitive to thermal noises that flip or rotate the arrow in a manner that is undesired. These noises also shortens the arrow’s length to some fixed point inside the sphere depending on the temperature, in a process known as <em>decoherence</em>. This is why (depending on the implementation) quantum computers need to be kept at a very cold temperature, so that they can perform computations before they eventually reach the fixed point inside the sphere.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="entanglement-the-actual-spice" class="level1 page-columns page-full">
+<h1>Entanglement — the actual spice</h1>
+<p>The Bloch sphere might reminds one of analog computers, where quantities can take a continuum of values instead of the 0s and 1s in digital computers. In fact, if we can build an analog computer with two degrees of freedom like the Bloch sphere, then it can function exactly like a single qubit.</p>
+<p>The “quantumness” only comes in if we include the concept of <em>entanglement</em><sup>5</sup>. Entanglement is the main spice that makes quantum systems special, preventing it from being replicated by classical systems, e.g., the analog computer with two degrees of freedom.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Quite annoyingly, entanglement is often conflated with the phrase “<em>spooky action at a distance</em>”. The latter describes the apparent nonlocal collapse of the wave function. <span class="citation" data-cites="EinsteinEPR1935">Einstein, Podolsky, and Rosen (1935)</span> used entanglement as an example to illustrate the significance of this nonlocal collapse, which eventually led to this conflation.</p></div></div><p>Imagine what would happen if we have two qubits.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/bloch2.svg" class="img-fluid figure-img"></p>
+<figcaption>Two Bloch spheres.</figcaption>
+</figure>
+</div>
+<p>You might think that there are now six variables to describe the pair of qubits (where both arrows point) since we now have two Bloch spheres<sup>6</sup>. However, this is only true if there is no correlation between the pair of qubits, that is, the two arrows are independent of each other.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;If you thought the number is four instead, take a look at the <strong>Extra notes</strong> above.</p></div></div><p>Typically, when the two qubits interact with each other (or undergo quantum computations together), they can become entangled, which simply mean that their two arrows (their states) are now correlated in a way that is impossible to achieve classically.</p>
+<p>This is akin to them becoming a single (hyper)sphere with a single arrow pointing at some point that represents their combined state. The dimension of this (hyper)sphere will be the number of variables or degrees of freedom required to describe them.</p>
+<p>Quite surprisingly, there can be up to a total of 15 degrees of freedom!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/bloch15.svg" class="img-fluid figure-img"></p>
+<figcaption>It’s impossible to draw a 15 dimensional sphere, so here’s a fun visual instead.</figcaption>
+</figure>
+</div>
+<p>Six variables describe the two qubits independently (three for each), while the remaining nine describes how they are correlated to each other.</p>
+<p>It is important to note that this single 15 dimensional Bloch sphere describes both qubits together, and it cannot be broken down into separate descriptions for each qubit (without losing information about the entanglement). This means that the two entangled qubits can only be described as single object.</p>
+<p>This is the stark feature of quantum systems that sets it apart from classical systems. Supposed that we were to build two analog computers with three degrees of freedom each to simulate the two Bloch spheres, before attempting to correlate their states (perhaps by performing some joint operations on them). We can never correlate them to the extent that entanglement could.</p>
+<p>This increased correlation gained by entanglement can also be exploited in various quantum computational tasks.</p>
+</section>
+<section id="is-that-it" class="level1 page-columns page-full">
+<h1>Is that it?</h1>
+<p>Yep, that’s it.</p>
+<p>Quantum computation is simply the rotations of these arrows on/in Bloch spheres<sup>7</sup>. While classical computing is confined to flipping between the North and South poles, quantum computing allows arrows to freely rotate anywhere on the Bloch sphere.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;With some caveats like the fact that we can’t determine where the arrows point (read-out of the state) directly, which we did not touch upon.</p></div></div><p>Where the arrows point and how they rotate is how we store and process information, just like how a sequence of North and South poles (0s and 1s) and how they flip encodes and processes information in the classical case.</p>
+<p>By combining multiple qubits, the allowable space or degrees of freedom for this information processing increases. Combined with entanglement, this information processing can take place in even higher dimensional space, with some algorithms exploiting this increased correlation.</p>
+<p>The difficulty of course, is to come up with algorithms that not only can utilize this increased degrees of freedom, but also can be better than the classical case.</p>
+<p>In classical digital computing, how we encode and process information is quite straightforward, and decades of creating higher abstractions means that no programmers are flipping individual bits. However, in the relatively young field of quantum computation, physicists are still concerned with the individual operations or rotations to perform on individual or groups of qubits.</p>
+<p>Perhaps one day quantum computing will reach the same status as classical computing, but for now, we are stuck with rotating arrows.</p>
+
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-EinsteinEPR1935" class="csl-entry">
+Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?”</span> <em>Physical Review</em> 47 (10): 777–80. <a href="https://doi.org/10.1103/physrev.47.777">https://doi.org/10.1103/physrev.47.777</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>physics</category>
+  <guid>https://jianweicheong.codeberg.page/posts/quantum-computing.html</guid>
+  <pubDate>Fri, 10 Jan 2025 16:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Life as an entropic conspiracy</title>
   <link>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</link>

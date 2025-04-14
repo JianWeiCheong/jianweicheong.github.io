@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/quantum-computing.html",
       "/posts/life-conspiracy.html",
       "/posts/haskell-numerical.html",
       "/posts/why-fedora.html"
@@ -10,6 +11,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/quantum-computing.html",
       "/posts/life-conspiracy.html",
       "/posts/haskell-numerical.html",
       "/posts/why-fedora.html"
