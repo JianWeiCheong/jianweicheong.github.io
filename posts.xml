@@ -9,7 +9,7 @@
 <link>https://jianweicheong.codeberg.page/posts.html</link>
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
-<generator>quarto-1.7.6</generator>
+<generator>quarto-1.7.31</generator>
 <lastBuildDate>Fri, 10 Jan 2025 16:00:00 GMT</lastBuildDate>
 <item>
   <title>An honest explanation of quantum computing</title>
@@ -168,9 +168,9 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 <p>I believe the reason why such a cop-out answer is the norm is because deep down, we all understand that life has no intrinsic objective meaning<sup>1</sup>. In fact, given that the prerequisite for the concept of “meaning” to exist in the first place is the existence of life itself, this question seems rather like a trick question.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Sans whatever religious/spiritual beliefs that one might have.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;e.g., the aforementioned religious/spiritual beliefs.</p></div></div><p>Similar to how a system cannot demonstrate its own consistency in Gödel’s second incompleteness theorem, perhaps one must require a framework that is external to life itself to apply “meaning” for life’s existence, before life’s existence<sup>2</sup>.</p>
 <p>Nevertheless, by replacing the quite human term of “meaning” with a more mechanistic term like “purpose”, we might be able to answer more reasonably the resulting question of:</p>
-<blockquote class="blockquote">
-<p>“What is the <strong>purpose</strong> of life?”</p>
-</blockquote>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>“What is the <strong>purpose</strong> of life?”<sup>3</sup></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;The term “purpose” might still be quite “agentic”, in the sense that it might mislead one into thinking that life has some agency over its own evolution based on some sense of purpose that it has. I assure that this is not what this post is about.</p></div></div></div>
 </section>
 <section id="a-physicists-perspective-the-conspiracy" class="level1 page-columns page-full">
 <h1>A Physicist’s perspective — the conspiracy</h1>
@@ -221,8 +221,8 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 </div></div><p>This seems to be evident throughout life’s history, where its evolution has underwent avalanche dynamics with quick and sudden changes in complexity rather than smooth and gradual evolution <span class="citation" data-cites="PaczuskiAvalanche1996">(Paczuski, Maslov, and Bak 1996)</span>. Some even modeled these sudden transitions of evolution as a Big Bang model with “evolutionary inflation” akin to the cosmological inflation model <span class="citation" data-cites="KooninBiological2007">(Koonin 2007)</span>. Simulated artificial life have also demonstrated how the fitness or how the population adapts to the environment, can undergo multiple discontinuous jumps <span class="citation" data-cites="AdamiSelforganized1995">(Adami 1995)</span>.</p>
 <p>Correlating Earth’s historical environmental changes (like solar spectrum, temperature, and atmospheric compositions) with organic compounds’ emergence and evolution shows that life has consistently adapted to better survive and absorb energy according to the prevailing condition in that period <span class="citation" data-cites="MichaelianFundamental2015">(K. Michaelian and Simeonov 2015)</span>.</p>
 <p>An interesting example is the case of adenosine triphosphate (ATP) synthase, an enzyme that lies along the cell membrane of a cell that breaks down ATP to adenosine diphosphate (ADP) and a phosphate. This breakage releases energy that powers the cell.</p>
-<p>Using a kinetic model of the ATP synthase process reveals that both its entropy production and the Shannon entropy of the transitional states, are maximized at a catalytic dwell angle<sup>3</sup> consistent with the actual ATP synthase’s angle, indicating that the ATP synthase evolved to optimize entropy production <span class="citation" data-cites="DewarFunctional2006">(Dewar, Juretić, and Županović 2006)</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;The ATP synthase rotates in angles of <img src="https://latex.codecogs.com/png.latex?120%5E%7B%5Ccirc%7D"> for each ATP to ADP + P<img src="https://latex.codecogs.com/png.latex?_i"> reaction. However, at the moment of breakage of ATP bonds to ADP + P<img src="https://latex.codecogs.com/png.latex?_i">, the synthase will pause for a short amount of time of around 2ms <span class="citation" data-cites="UenoATP2005">(Ueno et al. 2005)</span>. The angle at which this pause happens is known as the catalytic dwell.</p></div></div><p>These findings suggest that the process of self-organization to an external energy source is an ongoing, dynamic phenomenon that continues in response to changing conditions.</p>
+<p>Using a kinetic model of the ATP synthase process reveals that both its entropy production and the Shannon entropy of the transitional states, are maximized at a catalytic dwell angle<sup>4</sup> consistent with the actual ATP synthase’s angle, indicating that the ATP synthase evolved to optimize entropy production <span class="citation" data-cites="DewarFunctional2006">(Dewar, Juretić, and Županović 2006)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;The ATP synthase rotates in angles of <img src="https://latex.codecogs.com/png.latex?120%5E%7B%5Ccirc%7D"> for each ATP to ADP + P<img src="https://latex.codecogs.com/png.latex?_i"> reaction. However, at the moment of breakage of ATP bonds to ADP + P<img src="https://latex.codecogs.com/png.latex?_i">, the synthase will pause for a short amount of time of around 2ms <span class="citation" data-cites="UenoATP2005">(Ueno et al. 2005)</span>. The angle at which this pause happens is known as the catalytic dwell.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;One should keep in mind that none of these results were shown for complex life such as us humans, and one should not have the illusion that this hints at some sort of “<a href="https://en.wikipedia.org/wiki/Lamarckism">Lamarckism</a>”.</p></div></div><p>These findings suggest that the process of self-organization to an external energy source is an ongoing, dynamic phenomenon that continues in response to changing conditions.<sup>5</sup></p>
 </section>
 </section>
 <section id="the-purpose-of-life" class="level1">
@@ -308,6 +308,7 @@ Zeravcic, Zorana, and Michael P. Brenner. 2014. <span>“Self-Replicating Colloi
 </div>
 </div></section></div> ]]></description>
   <category>physics</category>
+  <category>philosophy</category>
   <guid>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</guid>
   <pubDate>Tue, 30 Apr 2024 16:00:00 GMT</pubDate>
 </item>
