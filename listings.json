@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/tools-academic.html",
       "/posts/quantum-computing.html",
       "/posts/life-conspiracy.html",
       "/posts/haskell-numerical.html",
@@ -11,6 +12,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/tools-academic.html",
       "/posts/quantum-computing.html",
       "/posts/life-conspiracy.html",
       "/posts/haskell-numerical.html",
