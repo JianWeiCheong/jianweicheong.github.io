@@ -120,14 +120,14 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
 <p>“It’s doing all possible computations simultaneously!”<br>
 “A quantum bit can be both 0 and 1 at the same time!”<br>
 “Quantum computers compute in parallel universes!”<sup>1</sup></p>
-</blockquote><div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;I’m shocked that this is <a href="https://blog.google/technology/research/google-willow-quantum-chip/">no longer hyperbole</a>.</p></div></div></div>
+</blockquote><div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;I’m shocked that this is <a href="https://blog.google/technology/research/google-willow-quantum-chip/">no longer an exaggeration</a>.</p></div></div></div>
 <p>I get it, it’s difficult to talk about quantum mechanics without resorting to technical jargon, forcing us to rely on analogies that barely make sense.</p>
 <p>But I mean, if it’s doing multiple computations simultaneously (in parallel universes or not), how many computations (or parallel universes) is it exactly?</p>
 <p>And we can already do computations in “parallel universes” with conventional computers. Its called multithreading and multiprocessing.</p>
 <p>So does that mean that I can achieve the same advantage in principle if I simply match the number of conventional computers to the number of parallel universes?</p>
 <p>You see, these popular explanations for how a quantum computer works are typically a gross simplification that fails when probed a little. The fact that they even exist in the first place surprises me because <strong>the concepts behind quantum computing is actually quite simple</strong>.</p>
 <p>Yes, that’s right. I believe that the basics of quantum computing is simple enough that any reasonable layperson can understand it.</p>
-<p>The mystique only arises when we conflate the metaphysical interpretations of quantum mechanics<sup>2</sup> with the explanations of the quantum computations that they can perform. This is akin to explaining classical computation with some metaphysical interpretation of the nature of electricity, e.g., “The reason your computer can calculate 1+1 is because electricity running in your computer can add on top of each other.” which is not what happens at all.</p>
+<p>The mystique only arises when we conflate the metaphysical interpretations of quantum mechanics<sup>2</sup> with the explanations of the quantum computations that they can perform. This is akin to explaining classical computation with some metaphysical interpretation of the nature of electricity, e.g., “The reason your computer can calculate 1+1 is because electricity running in your computer can flow on top of each other and thus adds up.” which is not what happens at all.</p>
 <div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;To be fair, these interpretations of quantum mechanics are indeed weird and mind-blowing. But again, no matter how weird electricity is, classical computer science is independent of it. Quantum computing should be viewed the same way. Also keep in mind that these are just interpretations with no evidence of being true.</p></div></div><p>So what exactly is this simple concept behind quantum computing?</p>
 <p>It’s a sphere.</p>
 <section id="enters-the-bloch-sphere" class="level1 page-columns page-full">
@@ -139,7 +139,7 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
 </figure>
 </div>
 <p>This is called a <a href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch sphere</a>, and it captures everything about a qubit (even all the alleged parallel universes).</p>
-<p>Anyone can understand and visualize a sphere, so it puzzles me as to why we do not start with this instead of parallel universes or “being 0 and 1 at the same time”. The Bloch sphere is also mathematically accurate. That is, it’s not an analogy, its the truth!</p>
+<p>Anyone can understand and visualize a sphere, so it puzzles me as to why we do not start with this instead of parallel universes or “being 0 and 1 at the same time”. The Bloch sphere is also mathematically accurate. That is, it’s not an analogy, it’s the truth!</p>
 <p>In fact, the Bloch sphere also captures classical computing. The familiar logical 0 and 1 bits from classical computing are at the North and the South poles, respectively. In a conventional computer, imagine a bunch of these spheres with an arrow in each pointing only to either the North pole (bit 0) or the South pole (bit 1).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -221,7 +221,7 @@ Extra notes
 <h1>Is that it?</h1>
 <p>Yep, that’s it.</p>
 <p>Quantum computation is simply the rotations of these arrows on/in Bloch spheres<sup>8</sup>. While classical computing is confined to flipping between the North and South poles, quantum computing allows arrows to freely rotate anywhere on the Bloch sphere.</p>
-<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;With some caveats like the fact that we can’t determine where the arrows point (read-out of the state) directly, which we did not touch upon.</p></div></div><p>Where the arrows point and how they rotate is how we store and process information, just like how a sequence of North and South poles (0s and 1s) and how they flip, encodes and processes information in the classical case.</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;With some caveats like the fact that we can’t determine where the arrows point (read-out of the state) directly, which we did not touch upon.</p></div></div><p>Where the arrows point and how they rotate is how we store and process information, just like how a sequence of North and South poles (0s and 1s) and how they flip, encodes, and processes information in the classical case.</p>
 <p>By combining multiple qubits, the allowable space or degrees of freedom for this information processing increases. Combined with entanglement, this information processing can take place in even higher dimensional space, with some algorithms exploiting the increased correlation.</p>
 <p>The main “essence” of quantum computing is this change in computing paradigm, regardless of whether quantum systems that implement it do so with the help of parallel universes or not.</p>
 <p>Again, I want to emphasize the separation between the implementation’s physics (and its interpretation), and this new computing paradigm that grants these advantages over classical computing.</p>
