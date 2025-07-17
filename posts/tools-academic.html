@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -56,12 +56,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
-<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -202,9 +200,9 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="pandoc">Pandoc</h2>
 <p><a href="https://pandoc.org/">Pandoc</a> is a <em>universal document converter</em>. It can convert MS Word to and from LaTeX, an HTML page to EPUB, or MS PowerPoint to HTML, and many more! However, the most popular feature of the universal converter is the ability to write in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> and convert it to a document or a presentation slide.</p>
 <p>Here, we write in simple Markdown and convert to a PDF document via LaTeX<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;We can also convert to presentation slides via LaTeX beamer (or <a href="https://revealjs.com/">reveal.js</a>): <img src="../media/pandoc_beamer.png" class="imghover img-fluid"></p></div></div><div class="quarto-figure quarto-figure-center">
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;We can also convert to presentation slides via LaTeX beamer (or <a href="https://revealjs.com/">reveal.js</a>): <a href="../media/posts/tools-academic/pandoc_beamer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="../media/posts/tools-academic/pandoc_beamer.png" class="img-fluid"></a></p></div></div><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../media/pandoc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Markdown is much easier to write as compared to LaTeX."><img src="../media/pandoc.png" class="img-fluid figure-img" alt="Markdown is much easier to write as compared to LaTeX."></a></p>
+<p><a href="../media/posts/tools-academic/pandoc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Markdown is much easier to write as compared to LaTeX."><img src="../media/posts/tools-academic/pandoc.png" class="img-fluid figure-img" alt="Markdown is much easier to write as compared to LaTeX."></a></p>
 <figcaption>Markdown is much easier to write as compared to LaTeX.</figcaption>
 </figure>
 </div>
@@ -215,14 +213,14 @@ div.csl-indent {
 <p>Coming from the lovely R community and building on top of Pandoc, <a href="https://quarto.org/">Quarto</a> is the successor to <a href="https://rmarkdown.rstudio.com/">R Markdown</a>, an attempt at <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a>. R Markdown does the same as Pandoc, allowing one to write in Markdown and outputs to documents and presentations etc., with the exception that it also allows one to run and output R code inside the document. Quarto extends this functionality to include Python, Julia, and Observable in addition to R.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../media/qmd-how-it-works.png" class="img-fluid figure-img"></p>
+<p><img src="../media/posts/tools-academic/qmd-how-it-works.png" class="img-fluid figure-img"></p>
 <figcaption>Reprinted from <a href="https://quarto.org/docs/get-started/hello/vscode.html#how-it-works">Quarto’s tutorial</a>.</figcaption>
 </figure>
 </div>
 <p>This functionality allows us to mix computation with its documentations, explanations, or mathematics in the same document.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../media/quarto.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="The output of the code appears in the output document!"><img src="../media/quarto.png" class="img-fluid figure-img" alt="The output of the code appears in the output document!"></a></p>
+<p><a href="../media/posts/tools-academic/quarto.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="The output of the code appears in the output document!"><img src="../media/posts/tools-academic/quarto.png" class="img-fluid figure-img" alt="The output of the code appears in the output document!"></a></p>
 <figcaption>The output of the code appears in the output document!</figcaption>
 </figure>
 </div>
@@ -232,8 +230,13 @@ div.csl-indent {
 <section id="typst" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="typst">Typst</h2>
 <p><a href="https://typst.app/">Typst</a> is a modern typesetting system that aims to be an alternative to LaTeX. Fast, easy, sensible, with an actual scripting language, and actively developed, it has completely replaced LaTeX for me except for papers that are submitted for publication<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. I even made a conference poster recently with Typst<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;As far as I am aware, <a href="https://typst.app/blog/2025/typst-at-ijimai">IJIMAI is the only journal that accept Typst</a> at this point of time.</p></div><div id="fn6"><p><sup>6</sup>&nbsp;The package <a href="https://typst.app/universe/package/peace-of-posters">peace-of-posters</a> can be used to easily create posters. <a href="../media/poster_dde2025.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="../media/poster_dde2025.svg" class="img-fluid"></a></p></div></div><p>Not only does Typst has a simple Markdown-like syntax, it is also extremely fast, allowing almost instant live previews while typing.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title="Live preview in Typst"><source src="../media/typst.webm"></video></div>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;As far as I am aware, <a href="https://typst.app/blog/2025/typst-at-ijimai">IJIMAI is the only journal that accept Typst</a> at this point of time.</p></div><div id="fn6"><p><sup>6</sup>&nbsp;The package <a href="https://typst.app/universe/package/peace-of-posters">peace-of-posters</a> can be used to easily create posters. <a href="../media/posts/tools-academic/poster_dde2025.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="../media/posts/tools-academic/poster_dde2025.svg" class="img-fluid"></a></p></div></div><p>Not only does Typst has a simple Markdown-like syntax, it is also extremely fast, allowing almost instant live previews while typing.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="../media/posts/tools-academic/typst.webm" class="img-fluid" controls=""><a href="../media/posts/tools-academic/typst.webm">Video</a></video></p>
+<figcaption>Live preview in Typst.</figcaption>
+</figure>
+</div>
 <p>Typst also has an active <a href="https://typst.app/universe/">package ecosystem</a>, from drawing diagrams with <a href="https://typst.app/universe/package/cetz/">CeTZ</a>, creating presentation slides with <a href="https://typst.app/universe/package/touying/">Touying</a>, drawing quantum circuits with <a href="https://typst.app/universe/package/quill">Quill</a>, to plotting with <a href="https://typst.app/universe/package/lilaq">Lilaq</a>, Typst covers my entire workflow. My research notes that I share with my colleagues are written in Typst, I make diagrams in Typst, and I make worksheets for students in Typst.</p>
 <p>Typst has also gained enough popularity that Pandoc and Quarto now supports it as a PDF backend in place of LaTeX. It even comes preinstalled in Quarto. Unlike LaTeX, there are almost no wait time in compiling a document, and error messages are not cryptic, making Typst a good PDF backend for Quarto<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;Take a look at the talks <a href="https://www.youtube.com/watch?v=t30sqFch2v0">“Never again in outer par mode”</a> from Posit Conference 2023 and <a href="https://www.youtube.com/watch?v=2DbuqYKOsrY">“Styling Quarto PDFs with Typst”</a> from SatRdays London 2024, where they discusses the advantages of using Typst over LaTeX in Quarto</p></div></div></section>
@@ -244,7 +247,7 @@ div.csl-indent {
 <p>Well, turns out journals typically provide a link to subscribe to their RSS feed too. One can then easily keep up with current research in journals relevant to their fields by aggregating them into a single RSS feed reader.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../media/rss1.png" class="img-fluid figure-img"></p>
+<p><a href="../media/posts/tools-academic/rss1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="The RSS feed reader Newsraft showing new published papers in Physical Review Letters."><img src="../media/posts/tools-academic/rss1.png" class="img-fluid figure-img" alt="The RSS feed reader Newsraft showing new published papers in Physical Review Letters."></a></p>
 <figcaption>The RSS feed reader <a href="https://codeberg.org/newsraft/newsraft">Newsraft</a> showing new published papers in Physical Review Letters.</figcaption>
 </figure>
 </div>
@@ -252,7 +255,7 @@ div.csl-indent {
 <p>I am subscribed to 11 journals, totaling to around 50 to 100 new papers everyday (arXiv takes up the bulk of this number), a number that is small enough that it’s not a hassle to go through the feed every day<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;I’m also subscribed to some news site and even some YouTube channels, eliminating the need for an account.</p></div></div><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../media/rss2.png" class="img-fluid figure-img"></p>
+<p><a href="../media/posts/tools-academic/rss2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Reading the abstract of an arXiv paper in Newsraft."><img src="../media/posts/tools-academic/rss2.png" class="img-fluid figure-img" alt="Reading the abstract of an arXiv paper in Newsraft."></a></p>
 <figcaption>Reading the abstract of an arXiv paper in <a href="https://codeberg.org/newsraft/newsraft">Newsraft</a>.</figcaption>
 </figure>
 </div>
@@ -679,7 +682,6 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
   });
   </script>
 </div> <!-- /content -->
-<script>videojs(video_shortcode_videojs_video1);</script>
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;

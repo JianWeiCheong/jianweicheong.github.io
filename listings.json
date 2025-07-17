@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/betty-hill-star-map.html",
       "/posts/tools-academic.html",
       "/posts/quantum-computing.html",
       "/posts/life-conspiracy.html",
@@ -12,6 +13,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/betty-hill-star-map.html",
       "/posts/tools-academic.html",
       "/posts/quantum-computing.html",
       "/posts/life-conspiracy.html",
