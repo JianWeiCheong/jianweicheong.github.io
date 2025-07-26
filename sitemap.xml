@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jianweicheong.codeberg.page/index.html</loc>
-    <lastmod>2025-04-13T16:43:29.679Z</lastmod>
+    <lastmod>2025-07-26T12:14:13.914Z</lastmod>
   </url>
   <url>
-    <loc>https://jianweicheong.codeberg.page/cv.html</loc>
-    <lastmod>2025-02-13T14:47:49.720Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/why-fedora.html</loc>
-    <lastmod>2025-07-17T15:38:48.778Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/quantum-computing.html</loc>
-    <lastmod>2025-07-17T15:38:42.795Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/haskell-numerical.html</loc>
-    <lastmod>2025-07-17T15:38:36.203Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/contact.html</loc>
-    <lastmod>2025-01-26T12:29:23.096Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</loc>
-    <lastmod>2025-07-17T15:38:39.899Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/tools-academic.html</loc>
-    <lastmod>2025-07-17T15:38:46.146Z</lastmod>
+    <loc>https://jianweicheong.codeberg.page/posts.html</loc>
+    <lastmod>2025-04-13T16:42:54.960Z</lastmod>
   </url>
   <url>
     <loc>https://jianweicheong.codeberg.page/posts/betty-hill-star-map.html</loc>
     <lastmod>2025-07-17T16:08:52.816Z</lastmod>
   </url>
   <url>
-    <loc>https://jianweicheong.codeberg.page/posts.html</loc>
-    <lastmod>2025-04-13T16:42:54.960Z</lastmod>
+    <loc>https://jianweicheong.codeberg.page/posts/tools-academic.html</loc>
+    <lastmod>2025-07-17T15:38:46.146Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</loc>
+    <lastmod>2025-07-17T15:38:39.899Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/contact.html</loc>
+    <lastmod>2025-01-26T12:29:23.096Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/haskell-numerical.html</loc>
+    <lastmod>2025-07-17T15:38:36.203Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/quantum-computing.html</loc>
+    <lastmod>2025-07-17T15:38:42.795Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/why-fedora.html</loc>
+    <lastmod>2025-07-17T15:38:48.778Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/cv.html</loc>
+    <lastmod>2025-07-26T11:02:06.021Z</lastmod>
   </url>
 </urlset>

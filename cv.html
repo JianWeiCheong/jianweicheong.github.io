@@ -67,11 +67,54 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="floating nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -129,10 +172,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#professional-qualifications" id="toc-professional-qualifications" class="nav-link active" data-scroll-target="#professional-qualifications">Professional Qualifications</a></li>
   <li><a href="#professional-appointments" id="toc-professional-appointments" class="nav-link" data-scroll-target="#professional-appointments">Professional Appointments</a></li>
   <li><a href="#awards-and-achievements" id="toc-awards-and-achievements" class="nav-link" data-scroll-target="#awards-and-achievements">Awards and Achievements</a></li>
-  <li><a href="#list-of-publications" id="toc-list-of-publications" class="nav-link" data-scroll-target="#list-of-publications">List of Publications</a></li>
+  <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">Bibliography</a>
+  <ul class="collapse">
+  <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">Publications</a></li>
+  <li><a href="#conferences" id="toc-conferences" class="nav-link" data-scroll-target="#conferences">Conferences</a></li>
+  </ul></li>
   <li><a href="#technical-experience" id="toc-technical-experience" class="nav-link" data-scroll-target="#technical-experience">Technical Experience</a>
   <ul class="collapse">
-  <li><a href="#miscellaneous-projects" id="toc-miscellaneous-projects" class="nav-link" data-scroll-target="#miscellaneous-projects">Miscellaneous projects</a></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
+  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
   </ul></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Formats</h2><ul><li><a href="cv.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -142,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -183,12 +231,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="column" style="width:80%;">
 <p><strong>Research Fellow</strong> <br> Nanyang Technological University (NTU), Singapore</p>
 <p><strong>Project Officer</strong> <br> Nanyang Technological University (NTU), Singapore</p>
-<p><strong>Teaching Assistant</strong> <br> PH3101 Quantum Mechanics 2 <br> PH1199 Physics Lab 1B <br> PH1198 Physics Lab 1A <br> Nanyang Technological University (NTU), Singapore</p>
+<p><strong>Teaching</strong> <br> Physics Discovery Camp - Computational Nonlinear Lab, NTU <br> PH3101 Quantum Mechanics 2 (Restricted Repeat), NTU <br> Physics Discovery Camp - Computational Nonlinear Lab, NTU <br> PH3101 Quantum Mechanics 2, NTU <br> PH1199 Physics Lab 1B, NTU <br> PH1198 Physics Lab 1A, NTU</p>
 <p><strong>Intern</strong> <br> ST Electronics, Singapore</p>
 </div><div class="column" style="width:20%;">
 <p>2024 - current</p>
-<p><br> 2023 - 2024</p>
-<p><br> <br> 2021 <br> 2020 <br> 2019</p>
+<p><br> 2023</p>
+<p><br> <br> 2025 <br> 2025 <br> 2024 <br> 2021 <br> 2020 <br> 2019</p>
 <p><br> 2012</p>
 </div>
 </div>
@@ -211,8 +259,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="list-of-publications" class="level2">
-<h2 class="anchored" data-anchor-id="list-of-publications">List of Publications</h2>
+<section id="bibliography" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="bibliography">Bibliography</h2>
+<section id="publications" class="level3">
+<h3 class="anchored" data-anchor-id="publications">Publications</h3>
 <ol type="1">
 <li>J. W. Cheong, A. Pradana, and L. Y. Chew, <strong>Non-Markovian refrigeration and heat flow in the quantum switch</strong>, <a href="https://doi.org/10.1103/physreva.110.022220">Physical Review A, 110(2), 022220 (2024)</a>.</li>
 <li>L. Y. Chew, A. Pradana, L. He, and J. W. Cheong, <strong>Stochastic thermodynamics of finite-tape information ratchet</strong>, <a href="https://doi.org/10.1140/epjs/s11734-023-00994-3">European Physical Journal Special Topics (2023)</a>.</li>
@@ -222,12 +272,31 @@ ul.task-list li input[type="checkbox"] {
 <li>L. He, A. Pradana, J. W. Cheong, and L. Y. Chew, <strong>Information processing second law for an information ratchet with finite tape</strong>, <a href="https://doi.org/10.1103/PhysRevE.105.054131">Physical Review E, 105(5), 054131 (2022)</a>.</li>
 </ol>
 </section>
+<section id="conferences" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="conferences">Conferences</h3>
+<section id="posters" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="posters">Posters</h4>
+<ul>
+<li>J. W. Cheong, A. Pradana, and L. Y. Chew<span class="math inline">^\dagger</span>, <strong>Enhancement of quantum processes from indefinite causal order through non-Markovianity</strong>, <a href="https://statphys29.org/">29th International Conference on Statistical Physics (STATPHYS29), Florence, Italy, July 2025</a>.</li>
+<li>J. W. Cheong<span class="math inline">^\dagger</span>, A. Pradana, and L. Y. Chew, <strong>Non-Markovian refrigeration and heat flow in the quantum switch</strong>, <a href="https://qtd2025.quantumlah.org/">Quantum Thermodynamics Conference 2025 (QTD2025), Singapore, July 2025</a>.</li>
+<li>L. Y. Chew<span class="math inline">^\dagger</span>, J. W. Cheong, and A. Pradana, <strong>Enhancement of quantum processes from indefinite causal order through non-Markovianity</strong>, <a href="https://websites.auth.gr/ddeu2025/">XLV Dynamics Days Europe 2025 (DDE2025), Thessaloniki, Greece, June 2025</a>.</li>
+<li>L. Y. Chew<span class="math inline">^\dagger</span>, L. He, A. Pradana, and J. W. Cheong, <strong>Stochastic thermodynamics and correlation effects of finite-tape information ratchets</strong>, <a href="https://statphys28.org/">28th International Conference on Statistical Physics (STATPHYS28), Tokyo, Japan, August 2023</a>.</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><span class="math inline">^\dagger</span>Presenting author.</p>
+</div></div></section>
+</section>
+</section>
 <section id="technical-experience" class="level2">
 <h2 class="anchored" data-anchor-id="technical-experience">Technical Experience</h2>
+<section id="software" class="level3">
+<h3 class="anchored" data-anchor-id="software">Software</h3>
 <p><strong>Computer languages</strong> <br> Python, Julia, R, C, C++, MATLAB, Haskell, Racket, LaTeX, Typst, HTML, CSS, bash, POSIX sh</p>
 <p><strong>Miscellaneous software</strong> <br> Arduino, Google Sketchup, Autodesk Fusion360, Autodesk AutoCAD, Autodesk EAGLE, Origin Pro, National Instruments LabVIEW</p>
-<section id="miscellaneous-projects" class="level3">
-<h3 class="anchored" data-anchor-id="miscellaneous-projects">Miscellaneous projects</h3>
+</section>
+<section id="projects" class="level3">
+<h3 class="anchored" data-anchor-id="projects">Projects</h3>
 <p><strong>Strain estimation for hazard forecastings before and after 2011 Japan Tohoku earthquake</strong> <br> <em>ES7008 Geophysical Data Analysis, NTU</em> <br> Analyzed seismic GPS displacement data in Python. <br> Estimated seismic strains with velocity fields using Delaunay triangulation. <br> Demonstrated correlations between earthquake event hotspots and strain hotspots, before and after Tohoku earthquake.</p>
 <p><strong>Variations in statistical complexity of genome sequences across species</strong> <br> <em>CE7412 Computational and Systems Biology, NTU</em> <br> Analyzed genome sequences of human, chimpanzee, rhesus macaque, dog, and fruit fly, from GenBank assembly in R. <br> Applied the Baum-Welch algorithm and Akaike information criterion to compute the average statistical complexity of their genomes. <br> Suggested that increased biological complexity corresponds to decreased statistical complexity in genomes.</p>
 <p><strong>Detecting adversarial attack of deep neural networks for image recognition from image complexity</strong> <br> <em>PH3502 Chaotic Dynamical Systems, NTU</em> <br> Trained image recognition deep neural networks with MNIST, Fashion-MNIST, and CIFAR10 datasets in Python. <br> Applied adversarial attacks such as Fast Gradient Sign Method (FGSM), DeepFool, One Pixel Attack, Jacobian-Based Saliency Map Attack (JSMA). <br> Showed that FGSM and DeepFool can be detected from its increased image complexity.</p>
