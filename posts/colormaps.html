@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-01-11">
+<meta name="dcterms.date" content="2025-08-30">
 
-<title>An honest explanation of quantum computing – Jian Wei Cheong</title>
+<title>Scientific colormaps and why you should care – Jian Wei Cheong</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,6 +60,9 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -190,9 +193,10 @@ window.Quarto = {
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#enters-the-bloch-sphere" id="toc-enters-the-bloch-sphere" class="nav-link active" data-scroll-target="#enters-the-bloch-sphere">Enters the Bloch sphere</a></li>
-  <li><a href="#entanglement-the-actual-spice" id="toc-entanglement-the-actual-spice" class="nav-link" data-scroll-target="#entanglement-the-actual-spice">Entanglement — the actual spice</a></li>
-  <li><a href="#is-that-it" id="toc-is-that-it" class="nav-link" data-scroll-target="#is-that-it">Is that it?</a></li>
+  <li><a href="#a-case-study" id="toc-a-case-study" class="nav-link active" data-scroll-target="#a-case-study">A case study</a></li>
+  <li><a href="#so-which-colormap" id="toc-so-which-colormap" class="nav-link" data-scroll-target="#so-which-colormap">So which colormap?</a></li>
+  <li><a href="#what-about-color-cyclessequences" id="toc-what-about-color-cyclessequences" class="nav-link" data-scroll-target="#what-about-color-cyclessequences">What about color cycles/sequences?</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
 </nav>
@@ -205,9 +209,9 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">An honest explanation of quantum computing</h1>
+<h1 class="title">Scientific colormaps and why you should care</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">physics</div>
+    <div class="quarto-category">programming</div>
   </div>
   </div>
 
@@ -219,7 +223,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 11, 2025</p>
+      <p class="date">August 30, 2025</p>
     </div>
   </div>
   
@@ -231,119 +235,89 @@ window.Quarto = {
 </header>
 
 
-<p>We have all heard it before:</p>
-<div class="page-columns page-full"><blockquote class="blockquote">
-<p>“It’s doing all possible computations simultaneously!”<br>
-“A quantum bit can be both 0 and 1 at the same time!”<br>
-“Quantum computers compute in parallel universes!”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-</blockquote><div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;I’m shocked that this is <a href="https://blog.google/technology/research/google-willow-quantum-chip/">no longer an exaggeration</a>.</p></div></div></div>
-<p>I get it, it’s difficult to talk about quantum mechanics without resorting to technical jargon, forcing us to rely on analogies that barely make sense.</p>
-<p>But I mean, if it’s doing multiple computations simultaneously (in parallel universes or not), how many computations (or parallel universes) is it exactly?</p>
-<p>And we can already do computations in “parallel universes” with conventional computers. Its called multithreading and multiprocessing.</p>
-<p>So does that mean that I can achieve the same advantage in principle if I simply match the number of conventional computers to the number of parallel universes?</p>
-<p>You see, these popular explanations for how a quantum computer works are typically a gross simplification that fails when probed a little. The fact that they even exist in the first place surprises me because <strong>the concepts behind quantum computing is actually quite simple</strong>.</p>
-<p>Yes, that’s right. I believe that the basics of quantum computing is simple enough that any reasonable layperson can understand it.</p>
-<p>The mystique only arises when we conflate the metaphysical interpretations of quantum mechanics<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> with the explanations of the quantum computations that they can perform. This is akin to explaining classical computation with some metaphysical interpretation of the nature of electricity, e.g., “The reason your computer can calculate 1+1 is because electricity running in your computer can flow on top of each other and thus adds up.” which is not what happens at all.</p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;To be fair, these interpretations of quantum mechanics are indeed weird and mind-blowing. But again, no matter how weird electricity is, classical computer science is independent of it. Quantum computing should be viewed the same way. Also keep in mind that these are just interpretations with no evidence of being true.</p></div></div><p>So what exactly is this simple concept behind quantum computing?</p>
-<p>It’s a sphere.</p>
-<section id="enters-the-bloch-sphere" class="level1 page-columns page-full">
-<h1>Enters the Bloch sphere</h1>
+<section id="a-case-study" class="level1 page-columns page-full">
+<h1>A case study</h1>
+<p>What’s the difference between these two colormaps?</p>
+<p>Which do we choose to plot our results in?</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../media/posts/quantum-computing/bloch.svg" class="img-fluid figure-img"></p>
-<figcaption>The Bloch sphere with an arrow inside pointing outwards from the center.</figcaption>
+<p><img src="../media/posts/scientific-colormaps/jet_turbo.svg" class="img-fluid figure-img"></p>
+<figcaption>Two similar looking colormaps.</figcaption>
 </figure>
 </div>
-<p>This is called a <a href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch sphere</a>, and it captures everything about a qubit (even all the alleged parallel universes).</p>
-<p>Anyone can understand and visualize a sphere, so it puzzles me as to why we do not start with this instead of parallel universes or “being 0 and 1 at the same time”. The Bloch sphere is also mathematically accurate. That is, it’s not an analogy, it’s the truth!</p>
-<p>In fact, the Bloch sphere also captures classical computing. The familiar logical 0 and 1 bits from classical computing are at the North and the South poles, respectively. In a conventional computer, imagine a bunch of these spheres with an arrow in each pointing only to either the North pole (bit 0) or the South pole (bit 1).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../media/posts/quantum-computing/bits.svg" class="img-fluid figure-img"></p>
-<figcaption>8 Bloch spheres representing a sequence of 8 classical bits.</figcaption>
-</figure>
-</div>
-<p>During a classical computation, the arrows simply flip between the North and the South poles, most of the time conditioned on other arrows of other spheres<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. The sequence of arrows then represents the results of the computation.</p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;E.g., a <a href="https://en.wikipedia.org/wiki/Inverter_(logic_gate)">NOT operation</a> flips 0 (North) to 1 (South) and 1 (South) to 0 (North)</p></div></div><p>What about a qubit?</p>
-<p>Well, we simply free the arrow such that it is able to point to anywhere on the sphere. That’s it. Where the arrow points is the <em>state</em> of the qubit.</p>
-<p>So when people say a qubit can be “0 and 1 at the same time”, what they actually mean is that the arrow is pointing somewhere between the North (0) and the South (1) poles. Typically this is at the equator, halfway between the poles.</p>
-<p>Of course, there is not just one location on the equator of a sphere. Singapore is at the equator, so is Ecuador, and so are multiple other countries on Earth. This means that two qubits that are “0 and 1 at the same time” can be different. To differentiate them (figure out where their arrows point), or to pinpoint a location on Earth, we require two coordinates, the latitude, and the longitude.</p>
-<p>Since the Bloch sphere is also a sphere, the “latitude” and the “longitude” are two variables (or degrees of freedom) that also defines a qubit: <span class="math inline">\theta</span> the “latitude”, and <span class="math inline">\varphi</span> the “longitude” also known as the relative phase.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../media/posts/quantum-computing/qubits.svg" class="img-fluid figure-img"></p>
-<figcaption>8 Bloch spheres representing a sequence of 8 qubits.</figcaption>
-</figure>
-</div>
-<p>So what happens during a quantum computation?</p>
-<p>Well, like the classical case, the arrow in each qubit simply jumps (or rotates) around to and from any point on the sphere<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;In general, this is done by performing unitary operations (literally rotations) on it. Typically, these operations can be described by simpler <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate">quantum logic gates</a> like the logic gates in the classical case.</p></div></div><p>So all these talks of a quantum computer being able to perform computations faster because of “superposition” or because it can performs computation “simultaneously” etc., simply refers to the fact that there is an increase in the degrees of freedom for the computation as compared to classical digital computations.</p>
-<p>In other words, this freedom for the arrow (its state) to rotate and point to anywhere on the sphere, allows certain computing tasks to require less operations (flipping or rotating of arrows), than if the arrows are confined to the North and South poles.</p>
+<p>Despite the fact that visualizations of scientific results or data are enshrined in journals that lives on after we are gone, most of us put little thoughts on the colormaps that we plot our results in.</p>
+<p>I mean, who has the time to care about this? Much less two that hardly look any different! Most will just stick to the default that their plotting programs/libraries chose. In fact, the first colormap of the two was the default used by Matlab and Matplotlib up till around 2015.</p>
+<p>But what if I told you that these two colormaps look quite different to people with <a href="https://en.wikipedia.org/wiki/Color_blindness">color vision deficiency (CVD)</a>, and that the first colormap can and has been shown to <strong>misrepresent scientific results</strong>?</p>
+<p>The first colormap is the infamous <code>jet</code> (sometimes referred to as “rainbow”), and people have been pleading for the end of its use for a long time<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. In the extreme, it might even lead to harmful consequences such as medical diagnostic errors <span class="citation" data-cites="BorkinEvaluation2011">(<a href="#ref-BorkinEvaluation2011" role="doc-biblioref">Borkin et al. 2011</a>)</span>!</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;See <a href="https://www.kennethmoreland.com/color-maps/">this</a>, <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">this</a>, or <a href="https://www.nature.com/articles/519291d">this</a>, and <a href="https://www.climate-lab-book.ac.uk/2014/end-of-the-rainbow/">this</a>, <a href="https://medvis.org/2012/08/21/rainbow-colormaps-what-are-they-good-for-absolutely-nothing/">this</a>, <a href="https://brushingupscience.com/2015/12/15/stop-using-rainbow-colourmaps/">this</a>, or <a href="https://agilescientific.com/blog/2017/12/14/no-more-rainbows">this</a>. Seriously, there are a lot.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Non-uniformity is akin to having a non-uniform scale such as the log-scale, e.g., the <code>jet</code> colormap has a long region of blue which rapidly jumps to cyan then green. The two bright bands of cyan and yellow are also examples of non-linearity.</p></div></div><p>As I found out recently, the use of colormaps in scientific visualization is actually quite well-studied <span class="citation" data-cites="LandiniColor2011 KovesiColour2015 ZhouSurvey2016">(<a href="#ref-LandiniColor2011" role="doc-biblioref">Landini and Perryer 2011</a>; <a href="#ref-KovesiColour2015" role="doc-biblioref">Kovesi 2015</a>; <a href="#ref-ZhouSurvey2016" role="doc-biblioref">Zhou and Hansen 2016</a>)</span>, and it is widely accepted that <strong>colormaps should be perceptually uniform, linear, and CVD-friendly</strong> (or continue to be perceptually uniform and linear for people with CVD)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>The <code>jet</code> colormap fails all three conditions, and thus can easily mislead or misrepresent scientific results. Small differences in values are emphasized if it happens to lie on the cyan-green-yellow region, but greater differences that lies along the blue or red regions are hidden instead. It can also create misleading boundaries in results where there are none due to the sharp cyan and yellow regions.</p>
+<p>These shortcomings are why Matlab and Matplotlib eventually developed new colormaps as replacements around 2015; Matlab developed <a href="https://www.mathworks.com/help/matlab/ref/parula.html"><code>parula</code></a>, and Matplotlib made the now popular <a href="https://bids.github.io/colormap/"><code>viridis</code> and a few others</a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;These <a href="https://www.youtube.com/watch?v=xAoljeRJ3lU">two</a> <a href="https://www.youtube.com/watch?v=XjHzLUnHeM0">talks</a> at the SciPy 2015 conference are great if you want to know more about the problems of “rainbow” colormaps, and on what makes a good colormap for scientific visualization.</p></div></div><p>But yet, <code>jet</code> remains somewhat prevalent as <a href="https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/">some researchers find it hard to give up on it</a> (I spotted some in the wild as recent as this year). This <a href="https://research.google/blog/turbo-an-improved-rainbow-colormap-for-visualization/">led Google to develop the second colormap above, <code>turbo</code></a>, which retains the rainbow color but is supposed to be an improvement over <code>jet</code>. Though it is still not ideal and <a href="https://mpetroff.net/2019/08/discernibility-of-rainbow-colormaps/">there are some criticisms of it</a>. One user on HackerNews even <a href="https://news.ycombinator.com/item?id=20754998">joked that</a>:</p>
 <blockquote class="blockquote">
-<p>“But what’s with all the weirdness of quantum physics then?”</p>
+<p>“One good use for this new color map might be: ‘My ignorant boss keeps insisting on using the jet color map even though it is terrible. I can drop this one in and he won’t notice the difference but it will be somewhat better, even if still problematical in many ways.’”</p>
 </blockquote>
-<p>It’s true that in actual quantum systems that implements a qubit, there are typically two preferred states (the North and South poles of our Bloch sphere). These are sometimes called <a href="https://en.wikipedia.org/wiki/Quantum_Darwinism"><em>pointer states</em></a>. We observes these preferred states in our classical world as they are what remains after the quantum system loses its <a href="https://en.wikipedia.org/wiki/Quantum_decoherence"><em>coherence</em></a>. But in reality, the quantum system sees no difference between these preferred states and any other states it could take (e.g., at the equator of our Bloch sphere).</p>
-<p>Since we only observes these preferred states (and that our macroscopic reality is built out of them), we deemed them as “natural” which led to these apparent weirdness, e.g., how can something that takes the “natural” states of spin up and spin down, be placed in the “unintuitive” state of “spin up and spin down at the same time”?</p>
-<p>So there are some credence to the weirdness and hype. However, again, just like how the computer science of classical computation is independent of the physics of electricity and semiconductors (or their interpretations) etc., the computer science of quantum computation should also be seen as separate from the interpretations of what’s happening in the physical systems that implements them.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Extra notes
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The attentive reader will notice that a sphere is spherically symmetric. Just like on the Earth, there are no real ups and downs except for those defined by convention.</p>
-<p>What this means is that we can orient the Bloch sphere however we want. Pick any two points at opposite ends of the sphere and we can define that as the 0 and 1. The reason the North and the South poles are defined as the 0 and 1 is simply convention.</p>
-<p>Now that you know this, you should realize that the idea that a qubit being “both 0 and 1 at the same time” somehow grants an advantage is quite silly, since it’s just another point on the sphere, no different from the North (0) and the South (1) poles.</p>
-<p>A more attentive reader will also ask “what about the insides of the sphere?”.</p>
-<p>The reader is right. There is actually a third degree of freedom: the “radius”, which describes the length of the arrow. So yes, the arrow can point to somewhere inside the sphere. These are called <em>mixed states</em>, whereas arrows that point to the surface of the sphere are called <em>pure states</em>.</p>
-<p>During a quantum computation, the qubit is sensitive to thermal noises that rotate the arrow in a manner that is undesired. These noises also shortens the arrow’s length to some fixed point inside the sphere depending on the temperature, in a process known as <a href="https://en.wikipedia.org/wiki/Quantum_decoherence"><em>decoherence</em></a>. This is why (depending on the implementation) quantum computers need to be kept at a very cold temperature, so that they can perform computations before they eventually reach the fixed point inside the sphere.</p>
-</div>
-</div>
-</div>
+<p>You see, I believe that it our responsibility to not only ensure that scientific results are not misrepresented, but also to ensure that it is accessible to people with CVD.</p>
+<p>A typical plotting library will provide a myriad of different colormaps, and one should have some restrain to not choose a colormap too freely.</p>
 </section>
-<section id="entanglement-the-actual-spice" class="level1 page-columns page-full">
-<h1>Entanglement — the actual spice</h1>
-<p>The Bloch sphere might reminds one of analog computers, where quantities can take a continuum of values instead of the 0s and 1s in digital computers. In fact, if we can build an analog computer with two degrees of freedom like the Bloch sphere, then it can function exactly like a single qubit.</p>
-<p>The “quantumness” only comes in if we include the concept of <em>entanglement</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Entanglement is the main spice that makes quantum systems special, preventing it from being replicated by classical systems, e.g., the analog computer with two degrees of freedom.</p>
-<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Entanglement is often conflated with the phrase “<em>spooky action at a distance</em>”. The latter describes the apparent nonlocal collapse of the wave function. <span class="citation" data-cites="EinsteinEPR1935">Einstein, Podolsky, and Rosen (<a href="#ref-EinsteinEPR1935" role="doc-biblioref">1935</a>)</span> used entanglement as an example to illustrate the significance of this nonlocal collapse, which eventually led to this conflation.</p></div></div><p>Imagine what would happen if we have two qubits.</p>
+<section id="so-which-colormap" class="level1 page-columns page-full">
+<h1>So which colormap?</h1>
+<p>Neither <code>jet</code> nor <code>turbo</code>. Just do not use “rainbow” colormaps (in 99.9% of all cases) regardless of whether you need a sequential or diverging colormap.</p>
+<p>But a lot of these programs favors quantity over quality. How do I know if that pretty colormap my favorite plotting library provided is perceptually uniform, linear, and CVD-friendly?</p>
+<p>Generally, one just have to know the families of colormaps that were designed with these standards in mind, and plotting libraries with good documentations tend to properly group them into these families, e.g., take a look at <a href="https://juliagraphics.github.io/ColorSchemes.jl/stable/catalogue/">Julia’s</a> where anything grouped under “scientific” or “colorcet” are generally fine.</p>
+<p>Nevertheless, here are some general recommendations:</p>
+<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez, Anderton, and Renslow (<a href="#ref-NunezOptimizing2018" role="doc-biblioref">2018</a>)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(<a href="#ref-CrameriThe2020" role="doc-biblioref">Crameri, Shephard, and Heron 2020</a>)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (<a href="#ref-KovesiColour2015" role="doc-biblioref">2015</a>)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../media/posts/quantum-computing/bloch2.svg" class="img-fluid figure-img"></p>
-<figcaption>Two Bloch spheres.</figcaption>
+<p><img src="../media/posts/scientific-colormaps/colormaps_seq.svg" class="img-fluid figure-img"></p>
+<figcaption>Sequential colormaps.</figcaption>
 </figure>
 </div>
-<p>One might think that there are now six variables to describe the pair of qubits (where both arrows point) since we now have two Bloch spheres<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. However, this is only true if there is no correlation between the pair of qubits, that is, the two arrows are independent of each other.</p>
-<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;If you thought the number is four instead, take a look at the <strong>Extra notes</strong> above.</p></div></div><p>Typically, when the two qubits interact with each other (or undergo quantum computations together), they can become entangled, which means that their two arrows (their states) are now correlated in a way that is impossible to achieve classically.</p>
-<p>This is akin to them becoming a single (hyper)sphere with a single arrow pointing at some point that represents their combined state. The dimension of this (hyper)sphere will be the number of variables or degrees of freedom required to describe them.</p>
-<p>Quite surprisingly, there can be a total of up to 15 degrees of freedom!</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="img-fluid"></a></p>
+<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri, Shephard, and Heron (<a href="#ref-CrameriThe2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>Comparison between <code>jet</code> and <code>batlow</code>.</p>
+<p>Also check out <a href="https://www.youtube.com/watch?v=iDPzWARbFrs">his talk</a> at the University of Oslo <a href="https://www.mn.uio.no/geo/english/about/organisation/geohyd/events/archive/2021/">GEOHYD Lunch Seminar 2021</a>.</p>
+</div></div><p>For diverging colormaps, there’s <a href="https://colorbrewer2.org/">ColorBrewer’s</a> <code>RdBu</code>, ColorCET’s <code>CET-D07</code>, or the CVD-friendlier <code>CET-CBD1</code>, though you can’t really go wrong with the rest of the colormaps by Fabio Crameri either (Matplotlib provides Crameri’s <code>berlin</code>, <code>managua</code>, and <code>vanimo</code>).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../media/posts/quantum-computing/bloch15.svg" class="img-fluid figure-img"></p>
-<figcaption>It’s impossible to draw a 15 dimensional sphere, so here’s a fun visual instead.</figcaption>
+<p><img src="../media/posts/scientific-colormaps/colormaps_div.svg" class="img-fluid figure-img"></p>
+<figcaption>Diverging colormaps.</figcaption>
 </figure>
 </div>
-<p>Six variables describe the two qubits independently (three for each), while the remaining nine describes how they are correlated to each other.</p>
-<p>It is important to note that this single 15 dimensional Bloch (hyper)sphere describes both qubits together, and it cannot be broken down into separate descriptions for each qubit (without losing information about the entanglement). This means that the two entangled qubits can only be described as single object.</p>
-<p>This is the stark feature of quantum systems that sets it apart from classical systems. Supposed that we were to build two analog computers with three degrees of freedom each to simulate the two Bloch spheres, before attempting to correlate their states (perhaps by performing some joint operations on them). We can never correlate them to the extent that entanglement could<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;For classical correlations (no entanglement), they can be represented as a weighted sum of multiple pairs of independent Bloch spheres. These are called <a href="https://en.wikipedia.org/wiki/Separable_state"><em>separable states</em></a>.</p></div></div><p>In addition to the increased degrees of freedom, this increased correlation gained by entanglement can also be exploited in various quantum computational tasks.</p>
+<p>Crameri also has some bi-sequential colormaps that are useful for topographical plots. The only other I know of is <a href="https://matplotlib.org/cmocean/">cmocean’s</a> <code>topo</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../media/posts/scientific-colormaps/colormaps_bi.svg" class="img-fluid figure-img"></p>
+<figcaption>Bi-sequential colormaps.</figcaption>
+</figure>
+</div>
+<p>Overall, when in doubt, stick to <code>viridis</code>, <code>cividis</code>, and the colormaps by Crameri.</p>
 </section>
-<section id="is-that-it" class="level1 page-columns page-full">
-<h1>Is that it?</h1>
-<p>Yep, that’s it.</p>
-<p>Quantum computation is simply the rotations of these arrows on/in Bloch spheres<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. While classical computing is confined to flipping between the North and South poles, quantum computing allows arrows to freely rotate anywhere on the Bloch sphere.</p>
-<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;With some caveats like the fact that we can’t determine where the arrows point (read-out of the state) directly, which we did not touch upon.</p></div></div><p>Where the arrows point and how they rotate is how we store and process information, just like how a sequence of North and South poles (0s and 1s) and how they flip, encodes, and processes information in the classical case.</p>
-<p>By combining multiple qubits, the allowable space or degrees of freedom for this information processing increases. Combined with entanglement, this information processing can take place in even higher dimensional space, with some algorithms exploiting the increased correlation.</p>
-<p>The main “essence” of quantum computing is this change in computing paradigm, regardless of whether quantum systems that implement it do so with the help of parallel universes or not.</p>
-<p>Again, I want to emphasize the separation between the implementation’s physics (and its interpretation), and this new computing paradigm that grants these advantages over classical computing.</p>
-<p>The difficulty of course, is coming up with algorithms that not only can utilize the increased degrees of freedom, but also can be better or faster than the classical case. It turns out however, that classical computing (being confined to the North and South poles) is good enough in most cases, and quantum algorithms that can be better are rare.</p>
-<p>This might be because in classical digital computing, how we encode and process information are quite straightforward, and decades of creating higher abstractions means that no programmers are flipping individual bits. However, in the relatively young field of quantum computation, physicists are still concerned with the individual operations or rotations to perform on individual or groups of qubits.</p>
-<p>Perhaps one day quantum computing will reach the same status as classical computing. But for now, we are stuck with rotating arrows.</p>
+<section id="what-about-color-cyclessequences" class="level1 page-columns page-full">
+<h1>What about color cycles/sequences?</h1>
+<p>Color cycles/sequences too are important in scientific visualization given how much more common qualitative/categorical plots are. The only concern is to be perceptually distinguishable, even for people with CVD. However, there are very little consensus on them, and it seems that different programs or libraries often pick their own based on subjective reasoning or aesthetics.</p>
+<p>For example, the familiar Matplotlib’s palette (also used by <a href="https://vega.github.io/vega/docs/schemes/#category10">Vega</a>, <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category10">d3</a>, <a href="https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express">plotly</a> and various others) often seen in published plots were simply <a href="https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html#colors-in-default-property-cycle">adopted from Tableau</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, and <a href="https://dovydas.com/blog/colorblind-friendly-diagrams">is not CVD-friendly</a> despite its widespread usage! A number of the colors in the palette are not perceptually distinct to people with CVD (see “Category 10” in the margin figure below).</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Tableau has since <a href="https://www.tableau.com/blog/colors-upgrade-tableau-10-56782">changed to a newer palette</a> based yet again on subjective senses of aesthetic.</p></div></div><p>Still, there have been some attempts to look for CVD-friendly color cycles. For example, the palettes by <a href="https://sronpersonalpages.nl/~pault/#sec:qualitative">Paul Tol</a> and the ones by <a href="https://web.archive.org/web/20030821055411/http://jfly.iam.u-tokyo.ac.jp/color/text.html">Okabe and Ito</a> are quite well-known, especially after the latter was brought to light again by <span class="citation" data-cites="WongPoints2011">Wong (<a href="#ref-WongPoints2011" role="doc-biblioref">2011</a>)</span> (and thus often misattributed to him, e.g., in Julia’s <a href="https://docs.makie.org/stable/explanations/colors#Colormaps">Makie.jl</a>). <a href="https://www.youtube.com/watch?v=XJcnxmGrxVY">Crameri too proposed a palette</a> using <code>batlow</code>, though it is only perceptually distinct for roughly the first five colors.</p>
+<p>As far as I’m aware, the most thorough study that attempts to balance CVD-friendliness and aesthetics were conducted by <span class="citation" data-cites="PetroffColor2024">Petroff (<a href="#ref-PetroffColor2024" role="doc-biblioref">2024</a>)</span>, which features a distance metric to measure perceptual distinguishability (including with CVD), and an online survey with 22000 responses that ranks aesthetical preferences. This resulted in 3 palettes of 6, 8, and 10 colors which I am quite fond of. They are also the default used in <a href="https://lilaq.org/docs/reference/color#qualitative-color-maps">Typst’s Lilaq plotting library</a>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="../media/posts/scientific-colormaps/petroff.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="../media/posts/scientific-colormaps/petroff.png" class="img-fluid"></a></p>
+<p>Reprinted from <span class="citation" data-cites="PetroffColor2024">Petroff (<a href="#ref-PetroffColor2024" role="doc-biblioref">2024</a>)</span>.</p>
+<p>Petroff also calculated the perceptual distinguishability of other common color cycles (higher is better).</p>
+</div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../media/posts/scientific-colormaps/colorcycles.svg" class="img-fluid figure-img"></p>
+<figcaption>CVD-friendly color cycles.</figcaption>
+</figure>
+</div>
+<p>Looking at Petroff’s analysis (see figure in the margin), there isn’t a lot of color cycles that are CVD-friendly, so it’s better to stick to Petroff’s color palettes. However, since they are typically not readily available, Okabe’s and Ito’s, and Crameri’s <code>batlowS</code> (up till the first 5 colors) are good alternatives.</p>
+<p>Paul Tol’s “Tol Bright” is also CVD-friendly, but only for people with deuteranopia and protanopia. People with the much less common tritanopia would struggle with it<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, which is why it has a low score in Petroff’s analysis.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;According to <a href="https://en.wikipedia.org/wiki/Color_blindness#Based_on_severity">Wikipedia</a> only <span class="math inline">0.015\%</span> of individuals has tritanopia, which is an order of magnitude less than deuteranopia and protanopia. This is around 1000 people in the entire country of Singapore.</p></div></div></section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>While it’s true that most reputable journals will require plots to be understandable in grayscale, i.e., relying on line style/shape in line and scatter plots, or roughly ensuring the <a href="https://en.wikipedia.org/wiki/Lightness">lightness</a> ordering of colormaps, most readers are reading the colored version on a computer, and color remains an important factor and tool in scientific visualization.</p>
+<p>It can emphasize, direct, focus, mislead or misrepresent scientific results. Instead of just choosing a colormap or palette based on whether it looks aesthetically pleasing to our eyes, more care and responsibility should be taken in choosing one that is perceptually uniform and linear to not mislead, and one that is CVD-friendly to be accessible to more readers.</p>
 
 
 
@@ -351,8 +325,29 @@ Extra notes
 
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-EinsteinEPR1935" class="csl-entry" role="listitem">
-Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?”</span> <em>Physical Review</em> 47 (10): 777–80. <a href="https://doi.org/10.1103/physrev.47.777">https://doi.org/10.1103/physrev.47.777</a>.
+<div id="ref-BorkinEvaluation2011" class="csl-entry" role="listitem">
+Borkin, M., K. Gajos, A. Peters, D. Mitsouras, S. Melchionna, F. Rybicki, C. Feldman, and H. Pfister. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
+</div>
+<div id="ref-CrameriThe2020" class="csl-entry" role="listitem">
+Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. 2020. <span>“The Misuse of Colour in Science Communication.”</span> <em>Nature Communications</em> 11 (1). <a href="https://doi.org/10.1038/s41467-020-19160-7">https://doi.org/10.1038/s41467-020-19160-7</a>.
+</div>
+<div id="ref-KovesiColour2015" class="csl-entry" role="listitem">
+Kovesi, Peter. 2015. <span>“Good Colour Maps: How to Design Them.”</span> <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
+</div>
+<div id="ref-LandiniColor2011" class="csl-entry" role="listitem">
+Landini, Gabriel, and D Giles Perryer. 2011. <span>“More on Color Blindness.”</span> <em>Nature Methods</em> 8 (11): 891–91. <a href="https://doi.org/10.1038/nmeth.1737">https://doi.org/10.1038/nmeth.1737</a>.
+</div>
+<div id="ref-NunezOptimizing2018" class="csl-entry" role="listitem">
+Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> Edited by Jesús Malo. <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
+</div>
+<div id="ref-PetroffColor2024" class="csl-entry" role="listitem">
+Petroff, Matthew A. 2024. <span>“Accessible Color Sequences for Data Visualization.”</span> <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
+</div>
+<div id="ref-WongPoints2011" class="csl-entry" role="listitem">
+Wong, Bang. 2011. <span>“Points of View: Color Blindness.”</span> <em>Nature Methods</em> 8 (6): 441–41. <a href="https://doi.org/10.1038/nmeth.1618">https://doi.org/10.1038/nmeth.1618</a>.
+</div>
+<div id="ref-ZhouSurvey2016" class="csl-entry" role="listitem">
+Zhou, Liang, and Charles D. Hansen. 2016. <span>“A Survey of Colormaps in Visualization.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 22 (8): 2051–69. <a href="https://doi.org/10.1109/tvcg.2015.2489649">https://doi.org/10.1109/tvcg.2015.2489649</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -784,6 +779,38 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
   loadGiscus();
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

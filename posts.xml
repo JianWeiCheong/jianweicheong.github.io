@@ -9,8 +9,135 @@
 <link>https://jianweicheong.codeberg.page/posts.html</link>
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
-<generator>quarto-1.7.33</generator>
-<lastBuildDate>Wed, 16 Jul 2025 16:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.34</generator>
+<lastBuildDate>Fri, 29 Aug 2025 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>Scientific colormaps and why you should care</title>
+  <link>https://jianweicheong.codeberg.page/posts/colormaps.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="a-case-study" class="level1 page-columns page-full">
+<h1>A case study</h1>
+<p>What’s the difference between these two colormaps?</p>
+<p>Which do we choose to plot our results in?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/jet_turbo.svg" class="img-fluid figure-img"></p>
+<figcaption>Two similar looking colormaps.</figcaption>
+</figure>
+</div>
+<p>Despite the fact that visualizations of scientific results or data are enshrined in journals that lives on after we are gone, most of us put little thoughts on the colormaps that we plot our results in.</p>
+<p>I mean, who has the time to care about this? Much less two that hardly look any different! Most will just stick to the default that their plotting programs/libraries chose. In fact, the first colormap of the two was the default used by Matlab and Matplotlib up till around 2015.</p>
+<p>But what if I told you that these two colormaps look quite different to people with <a href="https://en.wikipedia.org/wiki/Color_blindness">color vision deficiency (CVD)</a>, and that the first colormap can and has been shown to <strong>misrepresent scientific results</strong>?</p>
+<p>The first colormap is the infamous <code>jet</code> (sometimes referred to as “rainbow”), and people have been pleading for the end of its use for a long time<sup>1</sup>. In the extreme, it might even lead to harmful consequences such as medical diagnostic errors <span class="citation" data-cites="BorkinEvaluation2011">(Borkin et al. 2011)</span>!</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;See <a href="https://www.kennethmoreland.com/color-maps/">this</a>, <a href="https://jakevdp.github.io/blog/2014/10/16/how-bad-is-your-colormap/">this</a>, or <a href="https://www.nature.com/articles/519291d">this</a>, and <a href="https://www.climate-lab-book.ac.uk/2014/end-of-the-rainbow/">this</a>, <a href="https://medvis.org/2012/08/21/rainbow-colormaps-what-are-they-good-for-absolutely-nothing/">this</a>, <a href="https://brushingupscience.com/2015/12/15/stop-using-rainbow-colourmaps/">this</a>, or <a href="https://agilescientific.com/blog/2017/12/14/no-more-rainbows">this</a>. Seriously, there are a lot.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Non-uniformity is akin to having a non-uniform scale such as the log-scale, e.g., the <code>jet</code> colormap has a long region of blue which rapidly jumps to cyan then green. The two bright bands of cyan and yellow are also examples of non-linearity.</p></div></div><p>As I found out recently, the use of colormaps in scientific visualization is actually quite well-studied <span class="citation" data-cites="LandiniColor2011 KovesiColour2015 ZhouSurvey2016">(Landini and Perryer 2011; Kovesi 2015; Zhou and Hansen 2016)</span>, and it is widely accepted that <strong>colormaps should be perceptually uniform, linear, and CVD-friendly</strong> (or continue to be perceptually uniform and linear for people with CVD)<sup>2</sup>.</p>
+<p>The <code>jet</code> colormap fails all three conditions, and thus can easily mislead or misrepresent scientific results. Small differences in values are emphasized if it happens to lie on the cyan-green-yellow region, but greater differences that lies along the blue or red regions are hidden instead. It can also create misleading boundaries in results where there are none due to the sharp cyan and yellow regions.</p>
+<p>These shortcomings are why Matlab and Matplotlib eventually developed new colormaps as replacements around 2015; Matlab developed <a href="https://www.mathworks.com/help/matlab/ref/parula.html"><code>parula</code></a>, and Matplotlib made the now popular <a href="https://bids.github.io/colormap/"><code>viridis</code> and a few others</a><sup>3</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;These <a href="https://www.youtube.com/watch?v=xAoljeRJ3lU">two</a> <a href="https://www.youtube.com/watch?v=XjHzLUnHeM0">talks</a> at the SciPy 2015 conference are great if you want to know more about the problems of “rainbow” colormaps, and on what makes a good colormap for scientific visualization.</p></div></div><p>But yet, <code>jet</code> remains somewhat prevalent as <a href="https://brushingupscience.com/2019/10/01/default-colormaps-are-parula-and-viridis-really-an-improvement-over-jet/">some researchers find it hard to give up on it</a> (I spotted some in the wild as recent as this year). This <a href="https://research.google/blog/turbo-an-improved-rainbow-colormap-for-visualization/">led Google to develop the second colormap above, <code>turbo</code></a>, which retains the rainbow color but is supposed to be an improvement over <code>jet</code>. Though it is still not ideal and <a href="https://mpetroff.net/2019/08/discernibility-of-rainbow-colormaps/">there are some criticisms of it</a>. One user on HackerNews even <a href="https://news.ycombinator.com/item?id=20754998">joked that</a>:</p>
+<blockquote class="blockquote">
+<p>“One good use for this new color map might be: ‘My ignorant boss keeps insisting on using the jet color map even though it is terrible. I can drop this one in and he won’t notice the difference but it will be somewhat better, even if still problematical in many ways.’”</p>
+</blockquote>
+<p>You see, I believe that it our responsibility to not only ensure that scientific results are not misrepresented, but also to ensure that it is accessible to people with CVD.</p>
+<p>A typical plotting library will provide a myriad of different colormaps, and one should have some restrain to not choose a colormap too freely.</p>
+</section>
+<section id="so-which-colormap" class="level1 page-columns page-full">
+<h1>So which colormap?</h1>
+<p>Neither <code>jet</code> nor <code>turbo</code>. Just do not use “rainbow” colormaps (in 99.9% of all cases) regardless of whether you need a sequential or diverging colormap.</p>
+<p>But a lot of these programs favors quantity over quality. How do I know if that pretty colormap my favorite plotting library provided is perceptually uniform, linear, and CVD-friendly?</p>
+<p>Generally, one just have to know the families of colormaps that were designed with these standards in mind, and plotting libraries with good documentations tend to properly group them into these families, e.g., take a look at <a href="https://juliagraphics.github.io/ColorSchemes.jl/stable/catalogue/">Julia’s</a> where anything grouped under “scientific” or “colorcet” are generally fine.</p>
+<p>Nevertheless, here are some general recommendations:</p>
+<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez, Anderton, and Renslow (2018)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(Crameri, Shephard, and Heron 2020)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (2015)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/colormaps_seq.svg" class="img-fluid figure-img"></p>
+<figcaption>Sequential colormaps.</figcaption>
+</figure>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="img-fluid"></a></p>
+<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri, Shephard, and Heron (2020)</span>.</p>
+<p>Comparison between <code>jet</code> and <code>batlow</code>.</p>
+<p>Also check out <a href="https://www.youtube.com/watch?v=iDPzWARbFrs">his talk</a> at the University of Oslo <a href="https://www.mn.uio.no/geo/english/about/organisation/geohyd/events/archive/2021/">GEOHYD Lunch Seminar 2021</a>.</p>
+</div></div><p>For diverging colormaps, there’s <a href="https://colorbrewer2.org/">ColorBrewer’s</a> <code>RdBu</code>, ColorCET’s <code>CET-D07</code>, or the CVD-friendlier <code>CET-CBD1</code>, though you can’t really go wrong with the rest of the colormaps by Fabio Crameri either (Matplotlib provides Crameri’s <code>berlin</code>, <code>managua</code>, and <code>vanimo</code>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/colormaps_div.svg" class="img-fluid figure-img"></p>
+<figcaption>Diverging colormaps.</figcaption>
+</figure>
+</div>
+<p>Crameri also has some bi-sequential colormaps that are useful for topographical plots. The only other I know of is <a href="https://matplotlib.org/cmocean/">cmocean’s</a> <code>topo</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/colormaps_bi.svg" class="img-fluid figure-img"></p>
+<figcaption>Bi-sequential colormaps.</figcaption>
+</figure>
+</div>
+<p>Overall, when in doubt, stick to <code>viridis</code>, <code>cividis</code>, and the colormaps by Crameri.</p>
+</section>
+<section id="what-about-color-cyclessequences" class="level1 page-columns page-full">
+<h1>What about color cycles/sequences?</h1>
+<p>Color cycles/sequences too are important in scientific visualization given how much more common qualitative/categorical plots are. The only concern is to be perceptually distinguishable, even for people with CVD. However, there are very little consensus on them, and it seems that different programs or libraries often pick their own based on subjective reasoning or aesthetics.</p>
+<p>For example, the familiar Matplotlib’s palette (also used by <a href="https://vega.github.io/vega/docs/schemes/#category10">Vega</a>, <a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Ordinal-Scales.md#category10">d3</a>, <a href="https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express">plotly</a> and various others) often seen in published plots were simply <a href="https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html#colors-in-default-property-cycle">adopted from Tableau</a><sup>4</sup>, and <a href="https://dovydas.com/blog/colorblind-friendly-diagrams">is not CVD-friendly</a> despite its widespread usage! A number of the colors in the palette are not perceptually distinct to people with CVD (see “Category 10” in the margin figure below).</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Tableau has since <a href="https://www.tableau.com/blog/colors-upgrade-tableau-10-56782">changed to a newer palette</a> based yet again on subjective senses of aesthetic.</p></div></div><p>Still, there have been some attempts to look for CVD-friendly color cycles. For example, the palettes by <a href="https://sronpersonalpages.nl/~pault/#sec:qualitative">Paul Tol</a> and the ones by <a href="https://web.archive.org/web/20030821055411/http://jfly.iam.u-tokyo.ac.jp/color/text.html">Okabe and Ito</a> are quite well-known, especially after the latter was brought to light again by <span class="citation" data-cites="WongPoints2011">Wong (2011)</span> (and thus often misattributed to him, e.g., in Julia’s <a href="https://docs.makie.org/stable/explanations/colors#Colormaps">Makie.jl</a>). <a href="https://www.youtube.com/watch?v=XJcnxmGrxVY">Crameri too proposed a palette</a> using <code>batlow</code>, though it is only perceptually distinct for roughly the first five colors.</p>
+<p>As far as I’m aware, the most thorough study that attempts to balance CVD-friendliness and aesthetics were conducted by <span class="citation" data-cites="PetroffColor2024">Petroff (2024)</span>, which features a distance metric to measure perceptual distinguishability (including with CVD), and an online survey with 22000 responses that ranks aesthetical preferences. This resulted in 3 palettes of 6, 8, and 10 colors which I am quite fond of. They are also the default used in <a href="https://lilaq.org/docs/reference/color#qualitative-color-maps">Typst’s Lilaq plotting library</a>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><a href="../media/posts/scientific-colormaps/petroff.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/petroff.png" class="img-fluid"></a></p>
+<p>Reprinted from <span class="citation" data-cites="PetroffColor2024">Petroff (2024)</span>.</p>
+<p>Petroff also calculated the perceptual distinguishability of other common color cycles (higher is better).</p>
+</div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/colorcycles.svg" class="img-fluid figure-img"></p>
+<figcaption>CVD-friendly color cycles.</figcaption>
+</figure>
+</div>
+<p>Looking at Petroff’s analysis (see figure in the margin), there isn’t a lot of color cycles that are CVD-friendly, so it’s better to stick to Petroff’s color palettes. However, since they are typically not readily available, Okabe’s and Ito’s, and Crameri’s <code>batlowS</code> (up till the first 5 colors) are good alternatives.</p>
+<p>Paul Tol’s “Tol Bright” is also CVD-friendly, but only for people with deuteranopia and protanopia. People with the much less common tritanopia would struggle with it<sup>5</sup>, which is why it has a low score in Petroff’s analysis.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;According to <a href="https://en.wikipedia.org/wiki/Color_blindness#Based_on_severity">Wikipedia</a> only <img src="https://latex.codecogs.com/png.latex?0.015%5C%25"> of individuals has tritanopia, which is an order of magnitude less than deuteranopia and protanopia. This is around 1000 people in the entire country of Singapore.</p></div></div></section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>While it’s true that most reputable journals will require plots to be understandable in grayscale, i.e., relying on line style/shape in line and scatter plots, or roughly ensuring the <a href="https://en.wikipedia.org/wiki/Lightness">lightness</a> ordering of colormaps, most readers are reading the colored version on a computer, and color remains an important factor and tool in scientific visualization.</p>
+<p>It can emphasize, direct, focus, mislead or misrepresent scientific results. Instead of just choosing a colormap or palette based on whether it looks aesthetically pleasing to our eyes, more care and responsibility should be taken in choosing one that is perceptually uniform and linear to not mislead, and one that is CVD-friendly to be accessible to more readers.</p>
+
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-BorkinEvaluation2011" class="csl-entry">
+Borkin, M., K. Gajos, A. Peters, D. Mitsouras, S. Melchionna, F. Rybicki, C. Feldman, and H. Pfister. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
+</div>
+<div id="ref-CrameriThe2020" class="csl-entry">
+Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. 2020. <span>“The Misuse of Colour in Science Communication.”</span> <em>Nature Communications</em> 11 (1). <a href="https://doi.org/10.1038/s41467-020-19160-7">https://doi.org/10.1038/s41467-020-19160-7</a>.
+</div>
+<div id="ref-KovesiColour2015" class="csl-entry">
+Kovesi, Peter. 2015. <span>“Good Colour Maps: How to Design Them.”</span> <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
+</div>
+<div id="ref-LandiniColor2011" class="csl-entry">
+Landini, Gabriel, and D Giles Perryer. 2011. <span>“More on Color Blindness.”</span> <em>Nature Methods</em> 8 (11): 891–91. <a href="https://doi.org/10.1038/nmeth.1737">https://doi.org/10.1038/nmeth.1737</a>.
+</div>
+<div id="ref-NunezOptimizing2018" class="csl-entry">
+Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> Edited by Jesús Malo. <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
+</div>
+<div id="ref-PetroffColor2024" class="csl-entry">
+Petroff, Matthew A. 2024. <span>“Accessible Color Sequences for Data Visualization.”</span> <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
+</div>
+<div id="ref-WongPoints2011" class="csl-entry">
+Wong, Bang. 2011. <span>“Points of View: Color Blindness.”</span> <em>Nature Methods</em> 8 (6): 441–41. <a href="https://doi.org/10.1038/nmeth.1618">https://doi.org/10.1038/nmeth.1618</a>.
+</div>
+<div id="ref-ZhouSurvey2016" class="csl-entry">
+Zhou, Liang, and Charles D. Hansen. 2016. <span>“A Survey of Colormaps in Visualization.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 22 (8): 2051–69. <a href="https://doi.org/10.1109/tvcg.2015.2489649">https://doi.org/10.1109/tvcg.2015.2489649</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>programming</category>
+  <guid>https://jianweicheong.codeberg.page/posts/colormaps.html</guid>
+  <pubDate>Fri, 29 Aug 2025 16:00:00 GMT</pubDate>
+</item>
 <item>
   <title>The Betty Hill Star Map: Where are my aliens from?</title>
   <link>https://jianweicheong.codeberg.page/posts/betty-hill-star-map.html</link>
