@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -31,14 +31,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -95,7 +96,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -180,7 +181,7 @@ window.Quarto = {
   <li><a href="#technical-experience" id="toc-technical-experience" class="nav-link" data-scroll-target="#technical-experience">Technical Experience</a>
   <ul class="collapse">
   <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
-  <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
+  <li><a href="#misc-projects" id="toc-misc-projects" class="nav-link" data-scroll-target="#misc-projects">Misc Projects</a></li>
   </ul></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Formats</h2><ul><li><a href="cv.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -216,7 +217,7 @@ window.Quarto = {
 <div class="columns">
 <div class="column" style="width:80%;">
 <p><strong>Doctor of Philosophy, Physics</strong> <br> Nanyang Technological University (NTU), Singapore</p>
-<p><strong>Bachelor of Science, Physics (Honours)</strong> <br> Nanyang Technological University (NTU), Singapore</p>
+<p><strong>Bachelor of Science, Physics, Honours (Highest Distinction)</strong> <br> Nanyang Technological University (NTU), Singapore</p>
 <p><strong>Diploma, Electrical Engineering</strong> <br> Ngee Ann Polytechnic, Singapore</p>
 </div><div class="column" style="width:20%;">
 <p>2019 - 2023</p>
@@ -229,9 +230,9 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="professional-appointments">Professional Appointments</h2>
 <div class="columns">
 <div class="column" style="width:80%;">
-<p><strong>Research Fellow</strong> <br> Nanyang Technological University (NTU), Singapore</p>
-<p><strong>Project Officer</strong> <br> Nanyang Technological University (NTU), Singapore</p>
-<p><strong>Teaching</strong> <br> Physics Discovery Camp - Computational Nonlinear Lab, NTU <br> PH3101 Quantum Mechanics 2 (Restricted Repeat), NTU <br> Physics Discovery Camp - Computational Nonlinear Lab, NTU <br> PH3101 Quantum Mechanics 2, NTU <br> PH1199 Physics Lab 1B, NTU <br> PH1198 Physics Lab 1A, NTU</p>
+<p><strong>Research Fellow</strong> <br> Nanyang Technological University, Singapore</p>
+<p><strong>Project Officer</strong> <br> Nanyang Technological University, Singapore</p>
+<p><strong>Teaching</strong> <br> Physics Discovery Camp - Computational Nonlinear Lab <br> PH3101 Quantum Mechanics 2 (Restricted Repeat) <br> Physics Discovery Camp - Computational Nonlinear Lab <br> PH3101 Quantum Mechanics 2 <br> PH1199 Physics Lab 1B <br> PH1198 Physics Lab 1A <br> Nanyang Technological University, Singapore</p>
 <p><strong>Intern</strong> <br> ST Electronics, Singapore</p>
 </div><div class="column" style="width:20%;">
 <p>2024 - current</p>
@@ -245,9 +246,9 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="awards-and-achievements">Awards and Achievements</h2>
 <div class="columns">
 <div class="column" style="width:80%;">
-<p><strong>Short-speech Contest Best Presentation</strong> <br> PAP701 Graduate seminar module <br> Nanyang Technological University (NTU), Singapore</p>
-<p><strong>Dean’s List (top 5% of cohort)</strong> <br> Nanyang Technological University (NTU), Singapore</p>
-<p><strong>NTU President Research Scholar (completing URECA)</strong> <br> Nanyang Technological University (NTU), Singapore</p>
+<p><strong>Short-speech Contest Best Presentation</strong> <br> PAP701 Graduate seminar module <br> Nanyang Technological University, Singapore</p>
+<p><strong>Dean’s List (top 5% of cohort)</strong> <br> Nanyang Technological University, Singapore</p>
+<p><strong>NTU President Research Scholar (completing URECA)</strong> <br> Nanyang Technological University, Singapore</p>
 <p><strong>Director’s List (top 5% of cohort)</strong> <br> Ngee Ann Polytechnic, Singapore</p>
 <p><strong>Best Performance (top student of cohort)</strong> <br> Programmable Logic Device <br> Digital Electronics &amp; Practice <br> Ngee Ann Polytechnic, Singapore</p>
 </div><div class="column" style="width:20%;">
@@ -274,6 +275,12 @@ window.Quarto = {
 </section>
 <section id="conferences" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="conferences">Conferences</h3>
+<section id="proceedings" class="level4">
+<h4 class="anchored" data-anchor-id="proceedings">Proceedings</h4>
+<ul>
+<li>L. Y. Chew, J. W. Cheong, and A. Pradana, <strong>Thermodynamic Functionality of Non-detailed Balance Finite-Tape Information Ratchet</strong>, <a href="https://doi.org/10.1007/978-3-032-03921-7_18">International Conference on Geometric Science of Information, Springer Nature Switzerland, pp.&nbsp;173–181 (2025)</a></li>
+</ul>
+</section>
 <section id="posters" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="posters">Posters</h4>
 <ul>
@@ -292,17 +299,17 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="technical-experience">Technical Experience</h2>
 <section id="software" class="level3">
 <h3 class="anchored" data-anchor-id="software">Software</h3>
-<p><strong>Computer languages</strong> <br> Python, Julia, R, C, C++, MATLAB, Haskell, Racket, LaTeX, Typst, HTML, CSS, bash, POSIX sh</p>
+<p><strong>Computer languages</strong> <br> Python, Julia, R, C, C++, MATLAB, Haskell, Racket, Common Lisp, LaTeX, Typst, HTML, CSS, bash, POSIX sh</p>
 <p><strong>Miscellaneous software</strong> <br> Arduino, Google Sketchup, Autodesk Fusion360, Autodesk AutoCAD, Autodesk EAGLE, Origin Pro, National Instruments LabVIEW</p>
 </section>
-<section id="projects" class="level3">
-<h3 class="anchored" data-anchor-id="projects">Projects</h3>
-<p><strong>Strain estimation for hazard forecastings before and after 2011 Japan Tohoku earthquake</strong> <br> <em>ES7008 Geophysical Data Analysis, NTU</em> <br> Analyzed seismic GPS displacement data in Python. <br> Estimated seismic strains with velocity fields using Delaunay triangulation. <br> Demonstrated correlations between earthquake event hotspots and strain hotspots, before and after Tohoku earthquake.</p>
-<p><strong>Variations in statistical complexity of genome sequences across species</strong> <br> <em>CE7412 Computational and Systems Biology, NTU</em> <br> Analyzed genome sequences of human, chimpanzee, rhesus macaque, dog, and fruit fly, from GenBank assembly in R. <br> Applied the Baum-Welch algorithm and Akaike information criterion to compute the average statistical complexity of their genomes. <br> Suggested that increased biological complexity corresponds to decreased statistical complexity in genomes.</p>
-<p><strong>Detecting adversarial attack of deep neural networks for image recognition from image complexity</strong> <br> <em>PH3502 Chaotic Dynamical Systems, NTU</em> <br> Trained image recognition deep neural networks with MNIST, Fashion-MNIST, and CIFAR10 datasets in Python. <br> Applied adversarial attacks such as Fast Gradient Sign Method (FGSM), DeepFool, One Pixel Attack, Jacobian-Based Saliency Map Attack (JSMA). <br> Showed that FGSM and DeepFool can be detected from its increased image complexity.</p>
-<p><strong>Monte Carlo photon transport in multi-layered biological tissues</strong> <br> <em>PH4505 Computational Physics, NTU</em> <br> Simulated photon transports in biological tissues by means of random walk in Python. <br> Demonstrated the applications of computational methods on medical areas such as biomedical imaging and photon therapy.</p>
-<p><strong>Monte Carlo simulation of periodic-driven Brownian particles</strong> <br> <em>PAP723 Numerical Methods for Physicists, NTU</em> <br> Simulated 2D toy model of attractive Brownian particles that obeys the Arrhenius equation for the formation and destruction of bonds. <br> Demonstrated that the system tends to configurations that result in increased entropy production when driven with a periodic driving force.</p>
-<p><strong>Designing, programming, 3D printing, and building a hovering quadcopter drone</strong> <br> <em>Making and Tinkering Lite 1, NTU</em> <br> Programmed a Arduino microcontroller. <br> Designed printed circuit board (PCB) in Autodesk EAGLE. <br> Designed and 3D printed drone in Autodesk Fusion360. <br> Simulated physical system in COMSOL Multiphysics.</p>
+<section id="misc-projects" class="level3">
+<h3 class="anchored" data-anchor-id="misc-projects">Misc Projects</h3>
+<p><strong>Strain estimation for hazard forecasting before and after 2011 Japan Tohoku earthquake</strong> by analysis of seismic GPS displacement data and computation of seismic strains from velocity fields. <br> <em>ES7008 Geophysical Data Analysis, NTU</em> <!-- <br> --> <!-- Analyzed seismic GPS displacement data in Python. --> <!-- <br> --> <!-- Estimated seismic strains with velocity fields using Delaunay triangulation. --> <!-- <br> --> <!-- Demonstrated correlations between earthquake event hotspots and strain hotspots, before and after Tohoku earthquake. --></p>
+<p><strong>Variations in statistical complexity of genome sequences across species</strong> by analysis of genome sequences from GenBank assembly with Baum-Welch algorithm. <br> <em>CE7412 Computational and Systems Biology, NTU</em> <!-- <br> --> <!-- Analyzed genome sequences of human, chimpanzee, rhesus macaque, dog, and fruit fly, from GenBank assembly in R. --> <!-- <br> --> <!-- Applied the Baum-Welch algorithm and Akaike information criterion to compute the average statistical complexity of their genomes. --> <!-- <br> --> <!-- Suggested that increased biological complexity corresponds to decreased statistical complexity in genomes. --></p>
+<p><strong>Detecting adversarial attack of deep neural networks for image recognition from image complexity</strong> by Fast Gradient Sign Method (FGSM), DeepFool, One Pixel Attack, and Jacobian-Based Saliency Map Attack (JSMA). <br> <em>PH3502 Chaotic Dynamical Systems, NTU</em> <!-- <br> --> <!-- Trained image recognition deep neural networks with MNIST, Fashion-MNIST, and CIFAR10 datasets in Python. --> <!-- <br> --> <!-- Applied adversarial attacks such as Fast Gradient Sign Method (FGSM), DeepFool, One Pixel Attack, Jacobian-Based Saliency Map Attack (JSMA). --> <!-- <br> --> <!-- Showed that FGSM and DeepFool can be detected from its increased image complexity. --></p>
+<p><strong>Monte Carlo photon transport in multilayered biological tissues</strong> with Henyey-Greenstein scattering for diagnostic imaging and photon therapy. <br> <em>PH4505 Computational Physics, NTU</em> <!-- <br> --> <!-- Simulated photon transports in biological tissues by means of random walk in Python. --> <!-- <br> --> <!-- Demonstrated the applications of computational methods on medical areas such as biomedical imaging and photon therapy. --></p>
+<p><strong>Monte Carlo simulation of periodic-driven Brownian particles</strong> with Arrhenius equation, demonstrating dissipation-driven adaptation. <br> <em>PAP723 Numerical Methods for Physicists, NTU</em> <!-- <br> --> <!-- Simulated 2D toy model of attractive Brownian particles that obeys the Arrhenius equation for the formation and destruction of bonds. --> <!-- <br> --> <!-- Demonstrated that the system tends to configurations that result in increased entropy production when driven with a periodic driving force. --></p>
+<p><strong>Designing, programming, 3D printing, and building a hovering quadcopter drone</strong> with Arduino, Autodesk EAGLE, Fusion360, and COMSOL Multiphysics. <br> <em>Making and Tinkering Lite 1, NTU</em> <!-- <br> --> <!-- Programmed a Arduino microcontroller. --> <!-- <br> --> <!-- Designed printed circuit board (PCB) in Autodesk EAGLE. --> <!-- <br> --> <!-- Designed and 3D printed drone in Autodesk Fusion360. --> <!-- <br> --> <!-- Simulated physical system in COMSOL Multiphysics. --></p>
 
 
 </section>
@@ -360,13 +367,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

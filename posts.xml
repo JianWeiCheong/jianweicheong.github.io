@@ -9,7 +9,7 @@
 <link>https://jianweicheong.codeberg.page/posts.html</link>
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
-<generator>quarto-1.7.34</generator>
+<generator>quarto-1.8.26</generator>
 <lastBuildDate>Fri, 29 Aug 2025 16:00:00 GMT</lastBuildDate>
 <item>
   <title>Scientific colormaps and why you should care</title>
@@ -40,7 +40,7 @@
 <blockquote class="blockquote">
 <p>“One good use for this new color map might be: ‘My ignorant boss keeps insisting on using the jet color map even though it is terrible. I can drop this one in and he won’t notice the difference but it will be somewhat better, even if still problematical in many ways.’”</p>
 </blockquote>
-<p>You see, I believe that it our responsibility to not only ensure that scientific results are not misrepresented, but also to ensure that it is accessible to people with CVD.</p>
+<p>You see, I believe that it is our responsibility to not only ensure that scientific results are not misrepresented, but also to ensure that it is accessible to people with CVD.</p>
 <p>A typical plotting library will provide a myriad of different colormaps, and one should have some restrain to not choose a colormap too freely.</p>
 </section>
 <section id="so-which-colormap" class="level1 page-columns page-full">
@@ -152,7 +152,7 @@ Zhou, Liang, and Charles D. Hansen. 2016. <span>“A Survey of Colormaps in Visu
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Disclaimer
+<span class="screen-reader-only">Important</span>Disclaimer
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -201,12 +201,12 @@ Disclaimer
 <p>Despite that, Fish’s interpretation became so popular that it was even <a href="https://www.youtube.com/watch?v=YEaucytiEwM">discussed by Carl Sagan on <em>Cosmos</em></a><sup>5</sup>. Sagan’s argument is that if one can pick and choose from a large number of stars from any vantage point, then one can always find a constellation of stars that resembles Betty Hill’s star map<sup>6</sup>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Sagan demonstrated that by removing the lines, there are hardly any resemblance between the two maps at all. <a href="../media/posts/betty-hill-star-map/sagan_comparison.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://jianweicheong.codeberg.page/media/posts/betty-hill-star-map/sagan_comparison.png" class="img-fluid"></a></p></div><div id="fn6"><p><sup>6</sup>&nbsp;More on this later as we attempt to try this out for ourselves.</p></div></div><p>Nevertheless, the most significant result of Fish’s interpretation is that the two big circles (often thought of as the home systems of the aliens) turns out to be the Zeta Reticuli binary star system. This is what sparked the beginning of the association between Grey-type aliens and Zeta Reticuli.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Misleading visuals of Fish’s interpretation
+<span class="screen-reader-only">Warning</span>Misleading visuals of Fish’s interpretation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -233,13 +233,13 @@ Misleading visuals of Fish’s interpretation
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Skip this if you are not interested.
+<span class="screen-reader-only">Note</span>Skip this if you are not interested.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
@@ -270,10 +270,10 @@ background-color: null;
 font-style: inherit;">as</span> f:</span>
 <span id="cb1-7">    df <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> hipparcos.load_dataframe(f)</span></code></pre></div>
+font-style: inherit;">=</span> hipparcos.load_dataframe(f)</span></code></pre></div></div>
 <p>To get the positions of nearby stars relative to our Sun, we first retrieve the <a href="https://en.wikipedia.org/wiki/Jet_Propulsion_Laboratory_Development_Ephemeris">JPL ephemeris DE421</a>, which contains the positions of major bodies in the Solar System from 1900–2050, before finding the Sun’s position relative to the Solar System’s barycenter on 19 September 1961.</p>
 <p>These are actually mostly unneeded information, but <em>Skyfield</em> requires a <em>Barycentric</em> object to retrieve the observed position of stars with respect to that object’s position at a certain time, and we will have to make do since we want <em>Skyfield</em> to do the calculations for us.</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">eph <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">eph <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> load(<span class="st" style="color: #20794D;
 background-color: null;
@@ -298,9 +298,9 @@ background-color: null;
 font-style: inherit;">20</span>)</span>
 <span id="cb2-6">sun_barycentric <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> sun.at(t)</span></code></pre></div>
+font-style: inherit;">=</span> sun.at(t)</span></code></pre></div></div>
 <p>Next, we let <em>Skyfield</em> calculate the observed position (in terms of <img src="https://latex.codecogs.com/png.latex?x">, <img src="https://latex.codecogs.com/png.latex?y">, <img src="https://latex.codecogs.com/png.latex?z"> coordinates and distance relative to the Sun) of each star in the dataframe of the catalog, before storing them in their corresponding list. We also convert the units from <a href="https://en.wikipedia.org/wiki/Astronomical_unit">AU (astronomical unit)</a> to <a href="https://en.wikipedia.org/wiki/Parsec">parsec</a> as it’s easier to work with. Note that <code>hips</code> contains each star’s designation in the catalog, e.g., the star Sirius has the designation HIP 32349.</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">au_1_parsec <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">au_1_parsec <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -358,9 +358,9 @@ font-style: inherit;">1</span>])</span>
 <span id="cb3-18">    coords_pc_z.append(coords_pc[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>])</span>
-<span id="cb3-19">    hips.append(i)</span></code></pre></div>
+<span id="cb3-19">    hips.append(i)</span></code></pre></div></div>
 <p>Finally, we store these data for each star in a new dataframe, filtered it such that we only keep stars within 30 parsecs (~100 light years), leaving us with just 2350 stars, before saving it to a CSV file.</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">df_new <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">df_new <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame(</span>
 <span id="cb4-2">    np.array([hips, coords_pc_x, coords_pc_y, coords_pc_z, distances_pc]).T,</span>
@@ -394,7 +394,7 @@ font-style: inherit;">"30pc_stars.csv"</span>, index<span class="op" style="colo
 background-color: null;
 font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
-font-style: inherit;">False</span>)</span></code></pre></div>
+font-style: inherit;">False</span>)</span></code></pre></div></div>
 </div>
 </div>
 </div>
@@ -409,7 +409,7 @@ font-style: inherit;">False</span>)</span></code></pre></div>
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Skip this if you are not interested
+<span class="screen-reader-only">Note</span>Skip this if you are not interested
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -417,7 +417,7 @@ Skip this if you are not interested
 <div class="callout-body-container callout-body">
 <p>First, let us load the CSV file that we saved earlier and store them in the list <code>stars</code>.</p>
 <p>It’s quite troublesome to install external packages to Blender’s builtin Python, and so we used the builtin <code>csv</code> package instead of <code>pandas</code> dataframe this time.</p>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> bpy</span>
 <span id="cb5-2"><span class="im" style="color: #00769E;
@@ -452,9 +452,9 @@ font-style: inherit;">for</span> entry <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">in</span> reader:</span>
-<span id="cb5-9">        stars.append(entry)</span></code></pre></div>
+<span id="cb5-9">        stars.append(entry)</span></code></pre></div></div>
 <p>In Blender, I have prepared different <em>materials</em> for the Sun (<code>sun</code>), stars in Fish’s interpretations (<code>starmap</code>), and the rest of the stars (<code>starlight</code>). We can refer to these materials in Python as follows.</p>
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">sun_mat <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">sun_mat <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> bpy.data.materials.get(<span class="st" style="color: #20794D;
 background-color: null;
@@ -468,9 +468,9 @@ font-style: inherit;">"starmap"</span>)</span>
 background-color: null;
 font-style: inherit;">=</span> bpy.data.materials.get(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"starlight"</span>)</span></code></pre></div>
+font-style: inherit;">"starlight"</span>)</span></code></pre></div></div>
 <p>I also made a helper function to easily place stars as <em>UV spheres</em>.</p>
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">def</span> uv_sphere_add(radius<span class="op" style="color: #5E5E5E;
@@ -510,9 +510,9 @@ font-style: inherit;">=</span> name</span>
 <span id="cb7-6">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">return</span> obj</span></code></pre></div>
+font-style: inherit;">return</span> obj</span></code></pre></div></div>
 <p>Creating the Sun and adding the <code>sun</code> material to it is as simple as</p>
-<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">sun_obj <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">sun_obj <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> uv_sphere_add(<span class="fl" style="color: #AD0000;
 background-color: null;
@@ -529,9 +529,9 @@ background-color: null;
 font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>))</span>
-<span id="cb8-2">sun_obj.data.materials.append(sun_mat)</span></code></pre></div>
+<span id="cb8-2">sun_obj.data.materials.append(sun_mat)</span></code></pre></div></div>
 <p>We can now repeat the process for each star. By checking the HIP designations of the stars in Fish’s interpretation, we can change the materials of these stars to the <code>starmap</code> material, while keeping the <code>starlight</code> material for the rest of the stars. Also note that we scaled the positions up by a factor of 10, i.e., 1 parsec correspond to 10 units of distance in Blender.</p>
-<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">fish_starmap <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">fish_starmap <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [</span>
 <span id="cb9-2">    <span class="st" style="color: #20794D;
@@ -628,7 +628,7 @@ font-style: inherit;">in</span> fish_starmap:</span>
 background-color: null;
 font-weight: bold;
 font-style: inherit;">else</span>:</span>
-<span id="cb9-17">        star_obj.data.materials.append(starlight_mat)</span></code></pre></div>
+<span id="cb9-17">        star_obj.data.materials.append(starlight_mat)</span></code></pre></div></div>
 </div>
 </div>
 </div>
@@ -896,12 +896,12 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
 <p>Since we only observes these preferred states (and that our macroscopic reality is built out of them), we deemed them as “natural” which led to these apparent weirdness, e.g., how can something that takes the “natural” states of spin up and spin down, be placed in the “unintuitive” state of “spin up and spin down at the same time”?</p>
 <p>So there are some credence to the weirdness and hype. However, again, just like how the computer science of classical computation is independent of the physics of electricity and semiconductors (or their interpretations) etc., the computer science of quantum computation should also be seen as separate from the interpretations of what’s happening in the physical systems that implements them.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Extra notes
+<span class="screen-reader-only">Note</span>Extra notes
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1166,10 +1166,10 @@ Zeravcic, Zorana, and Michael P. Brenner. 2014. <span>“Self-Replicating Colloi
 <h2 class="anchored" data-anchor-id="sum-recursion">Sum: recursion</h2>
 <p>Ignoring the fact that the function <code>sum</code> is built-in in both Python and Haskell, let’s see how one might write a <code>sum</code> function that sum all the elements in a list.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">def</span> <span class="bu" style="color: null;
@@ -1193,10 +1193,10 @@ font-style: inherit;">+=</span> x</span>
 <span id="cb1-5">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">return</span> sum_all</span></code></pre></div>
+font-style: inherit;">return</span> sum_all</span></code></pre></div></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sum</span><span class="ot" style="color: #003B4F;
 background-color: null;
@@ -1224,7 +1224,7 @@ font-style: inherit;">=</span> x <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">sum</span> xs</span></code></pre></div>
+font-style: inherit;">sum</span> xs</span></code></pre></div></div>
 </div>
 </div>
 </div>
@@ -1240,10 +1240,10 @@ font-style: inherit;">sum</span> xs</span></code></pre></div>
 <p>Given a list of matrices, the function <code>tensor_all</code> returns the tensor product of all the elements of the list in sequence, e.g., given the list of matrices <img src="https://latex.codecogs.com/png.latex?Ms%20=%20%5BA,%20B,%20C%5D">, <code>tensor_all(Ms)</code> should return their tensor product <img src="https://latex.codecogs.com/png.latex?A%5Cotimes%20B%5Cotimes%20C">.</p>
 </blockquote>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
@@ -1272,10 +1272,10 @@ font-style: inherit;">=</span> np.kron(tensor_prod, M)</span>
 <span id="cb3-8">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">return</span> tensor_prod</span></code></pre></div>
+font-style: inherit;">return</span> tensor_prod</span></code></pre></div></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb4-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb4-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">import</span> <span class="dt" style="color: #AD0000;
@@ -1301,7 +1301,7 @@ font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">foldl</span> kronecker <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span></span></code></pre></div>
+font-style: inherit;">1</span></span></code></pre></div></div>
 </div>
 </div>
 </div>
@@ -1309,12 +1309,12 @@ font-style: inherit;">1</span></span></code></pre></div>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">Note we have used the <code>hmatrix</code> library which is imported by <code>import Numeric.LinearAlgebra</code>. <a href="https://pechersky.github.io/haskell-numpy-docs/">This documentation</a> is a good resource for a comparison between <code>hmatrix</code> and Python’s <code>numpy</code>.</span></div></div>
 <p>In Haskell, it should be obvious that we can perform a recursion like the case for <code>sum</code>. However, here we introduced the function <code>foldl</code>, which stands for “fold left”. <code>foldl</code> takes in a binary function (in this case <code>kronecker</code>), the initial accumulator (in this case <code>1</code>), and a list (e.g., <code>[a, b, c]</code>). It then returns <code>kronecker(kronecker(kronecker(1, a), b), c)</code>. There is also <code>foldr</code>, or “fold right”, which instead returns <code>kronecker(a, kronecker(b, kronecker(c, 1)))</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Point-free style programming
+<span class="screen-reader-only">Tip</span>Point-free style programming
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1326,10 +1326,10 @@ Point-free style programming
 </div>
 <p>If instead, we want to “accumulate” the result of each loop into a list, i.e., we want the function to return <img src="https://latex.codecogs.com/png.latex?%5BA,%20A%20%5Cotimes%20B,%20A%5Cotimes%20B%5Cotimes%20C%5D">, then, in the Python example we have to append the accumulator <code>tensor_prod</code> in each loop into a list. On the other hand, in the Haskell example, we can simply replace <code>foldl</code> with <code>scanl</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
@@ -1362,10 +1362,10 @@ font-style: inherit;">=</span> np.kron(tensor_prod, M)</span>
 <span id="cb5-10">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">return</span> tensor_prod_list</span></code></pre></div>
+font-style: inherit;">return</span> tensor_prod_list</span></code></pre></div></div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb6-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb6-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">import</span> <span class="dt" style="color: #AD0000;
@@ -1391,7 +1391,7 @@ font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scanl</span> kronecker <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span></span></code></pre></div>
+font-style: inherit;">1</span></span></code></pre></div></div>
 </div>
 </div>
 </div>
@@ -1415,10 +1415,10 @@ font-style: inherit;">1</span></span></code></pre></div>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">For completeness, the function <code>collision</code> performs the operation of <img src="https://latex.codecogs.com/png.latex?%0A%5Crho_%7Bt+1%7D%0A=%20%5Csum_i%20K_i%20%5Crho_t%20K_i%5E%5Cdagger,%0A"> where <img src="https://latex.codecogs.com/png.latex?K_i"> are Kraus operators, and the function <code>entropy</code> computes <img src="https://latex.codecogs.com/png.latex?%0AS%5Cleft(%5Crho_t%5Cright)%20=%20-%5Cmathrm%7BTr%7D%20%5Cleft(%5Crho_t%20%5Clog%20%5Crho_t%5Cright).%0A"> Therefore, what we want is simply the list of <img src="https://latex.codecogs.com/png.latex?%5Csmall%5BS(%5Crho_0),%20S(%5Crho_1),%20%5Cldots,%20S(%5Crho_%7Bn-1%7D)%5D"></span></div></div>
 <p>This might look complicated if one does not know quantum mechanics. However, if we assume that the collision and entropy calculations are done for us in the functions <code>collision</code> and <code>entropy</code>, then we simply want a list of <code>n</code> entropy values, i.e., <code>entropy_list = [entropy(rho), entropy(collision(rho)), entropy(collision(collision(rho))),...]</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> scipy <span class="im" style="color: #00769E;
 background-color: null;
@@ -1485,10 +1485,10 @@ font-style: inherit;">=</span> collision(ks, rho)</span>
 <span id="cb7-16">    <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
-font-style: inherit;">return</span> entropy_list</span></code></pre></div>
+font-style: inherit;">return</span> entropy_list</span></code></pre></div></div>
 </div>
 <div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
-<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb8-1"><span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb8-1"><span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">collision ::</span> [<span class="dt" style="color: #AD0000;
 background-color: null;
@@ -1585,17 +1585,17 @@ font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">take</span> n (<span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">iterate</span> (collision ks) rho)</span></code></pre></div>
+font-style: inherit;">iterate</span> (collision ks) rho)</span></code></pre></div></div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Extra things to note for the Haskell example
+<span class="screen-reader-only">Note</span>Extra things to note for the Haskell example
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1603,7 +1603,7 @@ Extra things to note for the Haskell example
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Similar to Python, Haskell has list comprehension, which has a mathematical syntax as seen in the function <code>collision</code>, e.g.,</p>
-<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb9-1">example <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb9-1">example <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> [p <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1621,10 +1621,10 @@ font-style: inherit;">5</span>, q <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">/=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0</span>]</span></code></pre></div>
+font-style: inherit;">0</span>]</span></code></pre></div></div>
 <p>would give a list of the set <img src="https://latex.codecogs.com/png.latex?%5C%7Bpq%5C%20%7C%5C%20p%20%5Cin%20P,%5C%20q%20%5Cin%20Q,%5C%20p%20%5Cgeq%205,%5C%20q%20%5Cneq%200%20%5C%7D."></p>
 <p>On the other hand, Python’s list comprehension is less concise:</p>
-<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">example <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">example <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [p <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1654,9 +1654,9 @@ font-style: inherit;">and</span> q <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">!=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0</span>]</span></code></pre></div></li>
+font-style: inherit;">0</span>]</span></code></pre></div></div></li>
 <li><p>In the <code>entropy</code> and <code>calc_entropies</code> functions, we have used the <code>where</code> keyword, which allows us to break a function into smaller constituents, e.g.,</p>
-<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb11-1">exampleFunc a b c <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb11-1">exampleFunc a b c <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> n <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1688,9 +1688,9 @@ font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> b <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">*</span> c</span></code></pre></div>
+font-style: inherit;">*</span> c</span></code></pre></div></div>
 <p>Alternatively, we can also use the <code>let</code> and <code>in</code> keyword:</p>
-<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb12-1">exampleFunc a b c <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb12-1">exampleFunc a b c <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span></span>
 <span id="cb12-2">  <span class="kw" style="color: #003B4F;
@@ -1727,7 +1727,7 @@ font-weight: bold;
 font-style: inherit;">in</span></span>
 <span id="cb12-8">    n <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">/</span> d</span></code></pre></div></li>
+font-style: inherit;">/</span> d</span></code></pre></div></div></li>
 </ul>
 </div>
 </div>
@@ -1742,7 +1742,7 @@ font-style: inherit;">/</span> d</span></code></pre></div></li>
 <p>Implicitly, what’s happening is the following:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathtt%7Bcalc%5C_entropies%20::%20%5BMatrix%5C%20C%5D%5C%20-%3E%5C%20%7D%20%5Cunderbrace%7B%5Cmathtt%7BMatrix%5C%20C%5C%20-%3E%20Int%5C%20-%3E%20%5BFloat%5D%7D%7D_%5Ctext%7Bfunction%20$f$%7D%0A"> <img src="https://latex.codecogs.com/png.latex?%0Af%5C%20%5Cmathtt%7B::%20Matrix%5C%20C%5C%20-%3E%5C%20%7D%20%5Cunderbrace%7B%5Cmathtt%7BInt%5C%20-%3E%20%5BFloat%5D%7D%7D_%5Ctext%7Bfunction%20$g$%7D%0A"> <img src="https://latex.codecogs.com/png.latex?%0Ag%5C%20%5Cmathtt%7B::%20Int%5C%20-%3E%20%5BFloat%5D%7D%0A"></p>
 <p>where the function <code>calc_entropies</code> takes in <code>[Matrix C]</code> as its input, and returns a function <img src="https://latex.codecogs.com/png.latex?f"> as its output. The function <img src="https://latex.codecogs.com/png.latex?f"> then takes in <code>Matrix C</code> as the input and returns another function <img src="https://latex.codecogs.com/png.latex?g"> as the output. Finally, the function <img src="https://latex.codecogs.com/png.latex?g"> takes in <code>Int</code> as the input and returns <code>[Float]</code> as the final output. This means that functions in Haskell are indeed pure in that they only take in one input and one output, and any functions that appear to take in multiple inputs are in fact taking in only one input and returning a function that takes in also one input, and so on and so forth. This is called currying. Because of this, we can also apply the functions “partially”, for example:</p>
-<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb13-1">f a b <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb13-1">f a b <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1751,15 +1751,15 @@ font-style: inherit;">+</span> b</span>
 background-color: null;
 font-style: inherit;">=</span> f <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">5</span></span></code></pre></div>
+font-style: inherit;">5</span></span></code></pre></div></div>
 <p>where we only provide one argument to <code>f</code> when it is expecting two, to create a new function <code>g</code>. This means that <code>f 5 10</code> and <code>g 10</code> would give the same output of <code>15</code>. Currying or partial function application can be a powerful tool for the abstraction and expressiveness of your code.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example of the usefulness of currying
+<span class="screen-reader-only">Tip</span>Example of the usefulness of currying
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -1768,10 +1768,10 @@ Example of the usefulness of currying
 <p>Unitary operations are common in quantum mechanics, and are how quantum computers perform computations on quantum states or qubits. They are defined as follows: <img src="https://latex.codecogs.com/png.latex?%0A%7C%5Cpsi'%5Crangle%20=%20U%20%7C%5Cpsi%5Crangle.%0A"></p>
 <p>We can define a function <code>unitary_oper</code> to implement this.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" aria-controls="tabset-5-1" aria-selected="true">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" aria-controls="tabset-5-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" aria-controls="tabset-5-1" aria-selected="true" href="">Python</a></li><li class="nav-item"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" aria-controls="tabset-5-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" aria-labelledby="tabset-5-1-tab">
-<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">def</span> unitary_oper(U, ket):</span>
@@ -1780,10 +1780,10 @@ background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> U <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">@</span> ket</span></code></pre></div>
+font-style: inherit;">@</span> ket</span></code></pre></div></div>
 </div>
 <div id="tabset-5-2" class="tab-pane" aria-labelledby="tabset-5-2-tab">
-<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb15-1"><span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb15-1"><span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">unitary_oper ::</span> <span class="dt" style="color: #AD0000;
 background-color: null;
@@ -1806,13 +1806,13 @@ font-style: inherit;">C</span></span>
 background-color: null;
 font-style: inherit;">=</span> u <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">&lt;&gt;</span> ket</span></code></pre></div>
+font-style: inherit;">&lt;&gt;</span> ket</span></code></pre></div></div>
 </div>
 </div>
 </div>
 <p>There are many common unitaries <img src="https://latex.codecogs.com/png.latex?U"> used in quantum computations, referred to as <a href="https://en.wikipedia.org/wiki/Quantum_logic_gate">quantum logic gates</a>. For example there are the Pauli X gate and the Hadamard gate which are defined as <img src="https://latex.codecogs.com/png.latex?%0AX%20=%0A%5Cbegin%7Bpmatrix%7D%0A0%20&amp;%201%20%5C%5C%0A1%20&amp;%200%0A%5Cend%7Bpmatrix%7D,%5Cquad%0AH%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%0A%5Cbegin%7Bpmatrix%7D%0A1%20&amp;%201%20%5C%5C%0A1%20&amp;%20-1%0A%5Cend%7Bpmatrix%7D.%0A"></p>
 <p>Currying or partial-function application allows us to easily define these new gate operations on top of the existing <code>unitary_oper</code> function:</p>
-<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb16-1">pauli_x <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb16-1">pauli_x <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> unitary_oper (<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1853,7 +1853,7 @@ font-style: inherit;">1</span>, <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1</span>])</span></code></pre></div>
+font-style: inherit;">1</span>])</span></code></pre></div></div>
 <p>We can then easily apply the Pauli X and Hadamard gates on a qubit <img src="https://latex.codecogs.com/png.latex?%7C0%5Crangle%20=%20%5B1,%200%5D%5ET"> with <code>pauli_x (2&gt;&lt;1) [1, 0]</code> and <code>hadamard (2&gt;&lt;1) [1, 0]</code>. This can make the code more concise and clearer.</p>
 </div>
 </div>
@@ -1862,7 +1862,7 @@ font-style: inherit;">1</span>])</span></code></pre></div>
 <section id="lazy-evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="lazy-evaluation">Lazy evaluation</h3>
 <p>Moving on to the function itself:</p>
-<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb17-1">calc_entropies ks rho n <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb17-1">calc_entropies ks rho n <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1877,11 +1877,11 @@ font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">take</span> n (<span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">iterate</span> (collision ks) rho)</span></code></pre></div>
+font-style: inherit;">iterate</span> (collision ks) rho)</span></code></pre></div></div>
 <p>The first line features the function <code>map</code>, which is another part and parcel of the functional programmer. It simply apply a function to every element of a list:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Cunderbrace%7B%5Cmathtt%7Bmap%5Cquad%20entropy%7D%7D_%5Ctext%7Bapply%20entropy%20function%20to%20each%20element%20of%7D%5Cquad%20%5Cmathtt%7Brho%5C_list%7D%0A"></p>
 <p>and has the corresponding Python code of</p>
-<div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">entropy_list <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">entropy_list <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [entropy(rho) <span class="cf" style="color: #003B4F;
 background-color: null;
@@ -1904,12 +1904,12 @@ font-style: inherit;">for</span> rho <span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">in</span> rho_list:</span>
-<span id="cb18-6">    entropy_list.append(entropy(rho))</span></code></pre></div>
+<span id="cb18-6">    entropy_list.append(entropy(rho))</span></code></pre></div></div>
 <p>Finally, in the last line we have</p>
 <p><img src="https://latex.codecogs.com/png.latex?%5Cmathtt%7Bwhere%5Cquad%20rho%5C_list%7D%20="> <img src="https://latex.codecogs.com/png.latex?%0A%5Cunderbrace%7B%5Cmathtt%7Btake%5Cquad%20n%7D%7D_%5Ctext%7Btake%20first%20$n$%20of%7D%5Cquad%20%5Cunderbrace%7B%5Cmathtt%7B(iterate%5Cquad%20(collision%5Cquad%20ks)%5Cquad%20rho)%7D%7D_%5Ctext%7Breturns%20an%20infinite-sized%20list%20of%20%5Brho,%20collision(rho),%20collision(collision(rho)),...%5D%7D%0A"> which gives <code>rho_list = [rho, collision(rho), collision(collison(rho)),...]</code> up till <code>n</code> number of elements in the list.</p>
 <p>Also note that we can reduce the number of parenthesis by using <code>$</code> instead, e.g., <code>rho_list = take n $ iterate (collision ks) rho</code>.</p>
 <p>It might be quite surprising that the <code>iterate</code> function returns an infinite-sized list. For example, <code>iterate add1 10</code> gives <code>[11, 12, 13, 14, 15, ...]</code> to infinity, where the function <code>add1</code> is applied on <code>10</code> ad infinitum. If we were to write the corresponding Python code for <code>rho_list = take n (iterate (collision ks) rho)</code>, it might look something like</p>
-<div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">rhos <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">rhos <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> []</span>
 <span id="cb19-2"><span class="cf" style="color: #003B4F;
@@ -1925,7 +1925,7 @@ font-style: inherit;">=</span> collision(ks, rho)</span>
 <span id="cb19-5"></span>
 <span id="cb19-6">rho_list <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> rhos[:n]</span></code></pre></div>
+font-style: inherit;">=</span> rhos[:n]</span></code></pre></div></div>
 <p>which runs forever and result in a list of infinite size. However, this is not a problem in Haskell, thanks to the fact that Haskell is <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><strong><em>lazy-evaluated</em></strong></a>. This means that Haskell only evaluate values when required, and so since we only require the first <code>n</code> elements of the infinite list, Haskell only evaluate that first <code>n</code> elements.</p>
 <p>If this Python code is lazy-evaluated like in Haskell, one might imagine that the program looks ahead and saw that it only require the first <code>n</code> elements as stated in <code>rho_list = rhos[:n]</code>, and so it stops the <code>while True</code> loop after only running <code>n</code> times.</p>
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -131,7 +132,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -279,19 +280,19 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="sum-recursion">Sum: recursion</h2>
 <p>Ignoring the fact that the function <code>sum</code> is built-in in both Python and Haskell, let’s see how one might write a <code>sum</code> function that sum all the elements in a list.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="bu">sum</span>(xs):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="bu">sum</span>(xs):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    sum_all <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> xs:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        sum_all <span class="op">+=</span> x</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sum_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sum_all</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span><span class="ot"> ::</span> [<span class="dt">Float</span>] <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span><span class="ot"> ::</span> [<span class="dt">Float</span>] <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span> [] <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span> (x<span class="op">:</span>xs) <span class="ot">=</span> x <span class="op">+</span> <span class="fu">sum</span> xs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span> (x<span class="op">:</span>xs) <span class="ot">=</span> x <span class="op">+</span> <span class="fu">sum</span> xs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -307,23 +308,23 @@ window.Quarto = {
 <p>Given a list of matrices, the function <code>tensor_all</code> returns the tensor product of all the elements of the list in sequence, e.g., given the list of matrices <span class="math inline">Ms = [A, B, C]</span>, <code>tensor_all(Ms)</code> should return their tensor product <span class="math inline">A\otimes B\otimes C</span>.</p>
 </blockquote>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tensor_all(Ms):</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    tensor_prod <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> M <span class="kw">in</span> Ms:</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        tensor_prod <span class="op">=</span> np.kron(tensor_prod, M)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor_prod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor_prod</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Numeric.LinearAlgebra</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Numeric.LinearAlgebra</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">tensor_all ::</span> [<span class="dt">Matrix</span> <span class="dt">C</span>] <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tensor_all <span class="ot">=</span> <span class="fu">foldl</span> kronecker <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tensor_all <span class="ot">=</span> <span class="fu">foldl</span> kronecker <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -331,12 +332,12 @@ window.Quarto = {
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">Note we have used the <code>hmatrix</code> library which is imported by <code>import Numeric.LinearAlgebra</code>. <a href="https://pechersky.github.io/haskell-numpy-docs/">This documentation</a> is a good resource for a comparison between <code>hmatrix</code> and Python’s <code>numpy</code>.</span></div></div>
 <p>In Haskell, it should be obvious that we can perform a recursion like the case for <code>sum</code>. However, here we introduced the function <code>foldl</code>, which stands for “fold left”. <code>foldl</code> takes in a binary function (in this case <code>kronecker</code>), the initial accumulator (in this case <code>1</code>), and a list (e.g., <code>[a, b, c]</code>). It then returns <code>kronecker(kronecker(kronecker(1, a), b), c)</code>. There is also <code>foldr</code>, or “fold right”, which instead returns <code>kronecker(a, kronecker(b, kronecker(c, 1)))</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Point-free style programming
+<span class="screen-reader-only">Tip</span>Point-free style programming
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -348,10 +349,10 @@ Point-free style programming
 </div>
 <p>If instead, we want to “accumulate” the result of each loop into a list, i.e., we want the function to return <span class="math inline">[A, A \otimes B, A\otimes B\otimes C]</span>, then, in the Python example we have to append the accumulator <code>tensor_prod</code> in each loop into a list. On the other hand, in the Haskell example, we can simply replace <code>foldl</code> with <code>scanl</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tensor_all(Ms):</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    tensor_prod <span class="op">=</span> <span class="dv">1</span></span>
@@ -360,13 +361,13 @@ Point-free style programming
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        tensor_prod <span class="op">=</span> np.kron(tensor_prod, M)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        tensor_prod_list.append(tensor_prod)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor_prod_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor_prod_list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="sourceCode" id="cb6"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Numeric.LinearAlgebra</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Numeric.LinearAlgebra</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ot">tensor_all ::</span> [<span class="dt">Matrix</span> <span class="dt">C</span>] <span class="ot">-&gt;</span> [<span class="dt">Matrix</span> <span class="dt">C</span>]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>tensor_all <span class="ot">=</span> <span class="fu">scanl</span> kronecker <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>tensor_all <span class="ot">=</span> <span class="fu">scanl</span> kronecker <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -395,10 +396,10 @@ S\left(\rho_t\right) = -\mathrm{Tr} \left(\rho_t \log \rho_t\right).
 </span> Therefore, what we want is simply the list of <span class="math display">\small[S(\rho_0), S(\rho_1), \ldots, S(\rho_{n-1})]</span></span></div></div>
 <p>This might look complicated if one does not know quantum mechanics. However, if we assume that the collision and entropy calculations are done for us in the functions <code>collision</code> and <code>entropy</code>, then we simply want a list of <code>n</code> entropy values, i.e., <code>entropy_list = [entropy(rho), entropy(collision(rho)), entropy(collision(collision(rho))),...]</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> collision(ks, rho):</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>([k <span class="op">@</span> rho <span class="op">@</span> k.conj().T <span class="cf">for</span> k <span class="kw">in</span> ks])</span>
@@ -413,10 +414,10 @@ S\left(\rho_t\right) = -\mathrm{Tr} \left(\rho_t \log \rho_t\right).
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        entropy_list.append(rho_entropy)</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        rho <span class="op">=</span> collision(ks, rho)</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> entropy_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> entropy_list</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="sourceCode" id="cb8"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ot">collision ::</span> [<span class="dt">Matrix</span> <span class="dt">C</span>] <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ot">collision ::</span> [<span class="dt">Matrix</span> <span class="dt">C</span>] <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>collision ks rho <span class="ot">=</span> <span class="fu">sum</span> [k <span class="op">&lt;&gt;</span> rho <span class="op">&lt;&gt;</span> tr k <span class="op">|</span> k <span class="ot">&lt;-</span> ks]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ot">entropy ::</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
@@ -427,17 +428,17 @@ S\left(\rho_t\right) = -\mathrm{Tr} \left(\rho_t \log \rho_t\right).
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ot">calc_entropies ::</span> [<span class="dt">Matrix</span> <span class="dt">C</span>] <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> [<span class="dt">Float</span>]</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>calc_entropies ks rho n <span class="ot">=</span> <span class="fu">map</span> entropy rho_list</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    rho_list <span class="ot">=</span> <span class="fu">take</span> n (<span class="fu">iterate</span> (collision ks) rho)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    rho_list <span class="ot">=</span> <span class="fu">take</span> n (<span class="fu">iterate</span> (collision ks) rho)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Extra things to note for the Haskell example
+<span class="screen-reader-only">Note</span>Extra things to note for the Haskell example
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -445,26 +446,26 @@ Extra things to note for the Haskell example
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Similar to Python, Haskell has list comprehension, which has a mathematical syntax as seen in the function <code>collision</code>, e.g.,</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">=</span> [p <span class="op">*</span> q <span class="op">|</span> p <span class="ot">&lt;-</span> ps, q <span class="ot">&lt;-</span> qs, p <span class="op">&gt;=</span> <span class="dv">5</span>, q <span class="op">/=</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">=</span> [p <span class="op">*</span> q <span class="op">|</span> p <span class="ot">&lt;-</span> ps, q <span class="ot">&lt;-</span> qs, p <span class="op">&gt;=</span> <span class="dv">5</span>, q <span class="op">/=</span> <span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>would give a list of the set <span class="math display">\{pq\ |\ p \in P,\ q \in Q,\ p \geq 5,\ q \neq 0 \}.</span></p>
 <p>On the other hand, Python’s list comprehension is less concise:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> [p <span class="op">*</span> q <span class="cf">for</span> p <span class="kw">in</span> ps <span class="cf">for</span> q <span class="kw">in</span> qs <span class="cf">if</span> p <span class="op">&gt;=</span> <span class="dv">5</span> <span class="kw">and</span> q <span class="op">!=</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>example <span class="op">=</span> [p <span class="op">*</span> q <span class="cf">for</span> p <span class="kw">in</span> ps <span class="cf">for</span> q <span class="kw">in</span> qs <span class="cf">if</span> p <span class="op">&gt;=</span> <span class="dv">5</span> <span class="kw">and</span> q <span class="op">!=</span> <span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>In the <code>entropy</code> and <code>calc_entropies</code> functions, we have used the <code>where</code> keyword, which allows us to break a function into smaller constituents, e.g.,</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>exampleFunc a b c <span class="ot">=</span> n <span class="op">/</span> d</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>exampleFunc a b c <span class="ot">=</span> n <span class="op">/</span> d</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">=</span> x <span class="op">+</span> y</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">=</span> x <span class="op">-</span> y</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">=</span> a <span class="op">+</span> b <span class="op">+</span> c</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">=</span> a <span class="op">*</span> b <span class="op">*</span> c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">=</span> a <span class="op">*</span> b <span class="op">*</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Alternatively, we can also use the <code>let</code> and <code>in</code> keyword:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>exampleFunc a b c <span class="ot">=</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>exampleFunc a b c <span class="ot">=</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">=</span> x <span class="op">+</span> y</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">=</span> x <span class="op">-</span> y</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">=</span> a <span class="op">+</span> b <span class="op">+</span> c</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">=</span> a <span class="op">*</span> b <span class="op">*</span> c</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">in</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    n <span class="op">/</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    n <span class="op">/</span> d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 </div>
 </div>
@@ -487,16 +488,16 @@ f\ \mathtt{:: Matrix\ C\ -&gt;\ } \underbrace{\mathtt{Int\ -&gt; [Float]}}_\text
 g\ \mathtt{:: Int\ -&gt; [Float]}
 </span></p>
 <p>where the function <code>calc_entropies</code> takes in <code>[Matrix C]</code> as its input, and returns a function <span class="math inline">f</span> as its output. The function <span class="math inline">f</span> then takes in <code>Matrix C</code> as the input and returns another function <span class="math inline">g</span> as the output. Finally, the function <span class="math inline">g</span> takes in <code>Int</code> as the input and returns <code>[Float]</code> as the final output. This means that functions in Haskell are indeed pure in that they only take in one input and one output, and any functions that appear to take in multiple inputs are in fact taking in only one input and returning a function that takes in also one input, and so on and so forth. This is called currying. Because of this, we can also apply the functions “partially”, for example:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f a b <span class="ot">=</span> a <span class="op">+</span> b</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> f <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f a b <span class="ot">=</span> a <span class="op">+</span> b</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> f <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where we only provide one argument to <code>f</code> when it is expecting two, to create a new function <code>g</code>. This means that <code>f 5 10</code> and <code>g 10</code> would give the same output of <code>15</code>. Currying or partial function application can be a powerful tool for the abstraction and expressiveness of your code.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Example of the usefulness of currying
+<span class="screen-reader-only">Tip</span>Example of the usefulness of currying
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -507,15 +508,15 @@ Example of the usefulness of currying
 </span></p>
 <p>We can define a function <code>unitary_oper</code> to implement this.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Haskell</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Haskell</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unitary_oper(U, ket):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U <span class="op">@</span> ket</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unitary_oper(U, ket):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> U <span class="op">@</span> ket</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="sourceCode" id="cb15"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">unitary_oper ::</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>unitary_oper u ket <span class="ot">=</span> u <span class="op">&lt;&gt;</span> ket</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">unitary_oper ::</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span> <span class="ot">-&gt;</span> <span class="dt">Matrix</span> <span class="dt">C</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>unitary_oper u ket <span class="ot">=</span> u <span class="op">&lt;&gt;</span> ket</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -532,8 +533,8 @@ H = \frac{1}{\sqrt{2}}
 \end{pmatrix}.
 </span></p>
 <p>Currying or partial-function application allows us to easily define these new gate operations on top of the existing <code>unitary_oper</code> function:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pauli_x <span class="ot">=</span> unitary_oper (<span class="dv">2</span><span class="op">&gt;&lt;</span><span class="dv">2</span>) [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>hadamard <span class="ot">=</span> unitary_oper (cmap (<span class="op">/</span> <span class="fu">sqrt</span> <span class="dv">2</span>) (<span class="dv">2</span><span class="op">&gt;&lt;</span><span class="dv">2</span>) [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pauli_x <span class="ot">=</span> unitary_oper (<span class="dv">2</span><span class="op">&gt;&lt;</span><span class="dv">2</span>) [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>hadamard <span class="ot">=</span> unitary_oper (cmap (<span class="op">/</span> <span class="fu">sqrt</span> <span class="dv">2</span>) (<span class="dv">2</span><span class="op">&gt;&lt;</span><span class="dv">2</span>) [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can then easily apply the Pauli X and Hadamard gates on a qubit <span class="math inline">|0\rangle = [1, 0]^T</span> with <code>pauli_x (2&gt;&lt;1) [1, 0]</code> and <code>hadamard (2&gt;&lt;1) [1, 0]</code>. This can make the code more concise and clearer.</p>
 </div>
 </div>
@@ -542,32 +543,32 @@ H = \frac{1}{\sqrt{2}}
 <section id="lazy-evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="lazy-evaluation">Lazy evaluation</h3>
 <p>Moving on to the function itself:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>calc_entropies ks rho n <span class="ot">=</span> <span class="fu">map</span> entropy rho_list</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>calc_entropies ks rho n <span class="ot">=</span> <span class="fu">map</span> entropy rho_list</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    rho_list <span class="ot">=</span> <span class="fu">take</span> n (<span class="fu">iterate</span> (collision ks) rho)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    rho_list <span class="ot">=</span> <span class="fu">take</span> n (<span class="fu">iterate</span> (collision ks) rho)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first line features the function <code>map</code>, which is another part and parcel of the functional programmer. It simply apply a function to every element of a list:</p>
 <p><span class="math display">
 \underbrace{\mathtt{map\quad entropy}}_\text{apply entropy function to each element of}\quad \mathtt{rho\_list}
 </span></p>
 <p>and has the corresponding Python code of</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>entropy_list <span class="op">=</span> [entropy(rho) <span class="cf">for</span> rho <span class="kw">in</span> rho_list]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>entropy_list <span class="op">=</span> [entropy(rho) <span class="cf">for</span> rho <span class="kw">in</span> rho_list]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or alternatively</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>entropy_list <span class="op">=</span> []</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> rho <span class="kw">in</span> rho_list:</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    entropy_list.append(entropy(rho))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    entropy_list.append(entropy(rho))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Finally, in the last line we have</p>
 <p><span class="math inline">\mathtt{where\quad rho\_list} =</span> <span class="math display">
 \underbrace{\mathtt{take\quad n}}_\text{take first $n$ of}\quad \underbrace{\mathtt{(iterate\quad (collision\quad ks)\quad rho)}}_\text{returns an infinite-sized list of [rho, collision(rho), collision(collision(rho)),...]}
 </span> which gives <code>rho_list = [rho, collision(rho), collision(collison(rho)),...]</code> up till <code>n</code> number of elements in the list.</p>
 <p>Also note that we can reduce the number of parenthesis by using <code>$</code> instead, e.g., <code>rho_list = take n $ iterate (collision ks) rho</code>.</p>
 <p>It might be quite surprising that the <code>iterate</code> function returns an infinite-sized list. For example, <code>iterate add1 10</code> gives <code>[11, 12, 13, 14, 15, ...]</code> to infinity, where the function <code>add1</code> is applied on <code>10</code> ad infinitum. If we were to write the corresponding Python code for <code>rho_list = take n (iterate (collision ks) rho)</code>, it might look something like</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rhos <span class="op">=</span> []</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rhos <span class="op">=</span> []</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    rhos.append(rho)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> collision(ks, rho)</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>rho_list <span class="op">=</span> rhos[:n]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>rho_list <span class="op">=</span> rhos[:n]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which runs forever and result in a list of infinite size. However, this is not a problem in Haskell, thanks to the fact that Haskell is <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><strong><em>lazy-evaluated</em></strong></a>. This means that Haskell only evaluate values when required, and so since we only require the first <code>n</code> elements of the infinite list, Haskell only evaluate that first <code>n</code> elements.</p>
 <p>If this Python code is lazy-evaluated like in Haskell, one might imagine that the program looks ahead and saw that it only require the first <code>n</code> elements as stated in <code>rho_list = rhos[:n]</code>, and so it stops the <code>while True</code> loop after only running <code>n</code> times.</p>
 
@@ -628,13 +629,14 @@ H = \frac{1}{\sqrt{2}}
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

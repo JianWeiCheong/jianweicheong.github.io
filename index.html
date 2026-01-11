@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,13 +33,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -128,7 +129,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -260,7 +261,7 @@ Reading Time
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-categories="cHJvZ3JhbW1pbmc=" data-listing-date-sort="1756483200000" data-listing-file-modified-sort="1756559751361" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1309" data-listing-title-sort="Scientific colormaps and why you should care" data-listing-filename-sort="colormaps.qmd">
+<tr data-index="0" data-categories="cHJvZ3JhbW1pbmc=" data-listing-date-sort="1756483200000" data-listing-file-modified-sort="1757414868604" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1310" data-listing-title-sort="Scientific colormaps and why you should care" data-listing-filename-sort="colormaps.qmd">
 <td>
 <span class="listing-date">Aug 30, 2025</span>
 </td>
@@ -364,12 +365,13 @@ Reading Time
 <section id="list-of-publications" class="level3">
 <h3 data-anchor-id="list-of-publications">List of publications</h3>
 <ol type="1">
-<li><p>J. W. Cheong, A. Pradana, and L. Y. Chew, <strong>Non-Markovian refrigeration and heat flow in the quantum switch</strong>, <a href="https://doi.org/10.1103/physreva.110.022220">Physical Review A, 110(2), 022220 (2024)</a>.</p></li>
-<li><p>L. Y. Chew, A. Pradana, L. He, and J. W. Cheong, <strong>Stochastic thermodynamics of finite-tape information ratchet</strong>, <a href="https://doi.org/10.1140/epjs/s11734-023-00994-3">European Physical Journal Special Topics (2023)</a>.</p></li>
-<li><p>J. W. Cheong, A. Pradana, and L. Y. Chew, <strong>Effects of non-Markovianity on daemonic ergotropy in the quantum switch</strong>, <a href="https://doi.org/10.1103/PhysRevA.108.012201">Physical Review A, 108(1), 012201 (2023)</a>.</p></li>
-<li><p>L. He, J. W. Cheong, A. Pradana, and L. Y. Chew, <strong>Effects of correlation in an information ratchet with finite tape</strong>, <a href="https://doi.org/10.1103/PhysRevE.107.024130">Physical Review E, 107(2), 024130 (2023)</a>.</p></li>
-<li><p>J. W. Cheong, A. Pradana, and L. Y. Chew, <strong>Communication advantage of quantum compositions of channels from non-Markovianity</strong>, <a href="https://doi.org/10.1103/PhysRevA.106.052410">Physical Review A, 106(5), 052410 (2022)</a>.</p></li>
-<li><p>L. He, A. Pradana, J. W. Cheong, and L. Y. Chew, <strong>Information processing second law for an information ratchet with finite tape</strong>, <a href="https://doi.org/10.1103/PhysRevE.105.054131">Physical Review E, 105(5), 054131 (2022)</a>.</p></li>
+<li><p><strong>Thermodynamic Functionality of Non-detailed Balance Finite-Tape Information Ratchet</strong>. <br> L. Y. Chew, J. W. Cheong, and A. Pradana, <a href="https://doi.org/10.1007/978-3-032-03921-7_18">International Conference on Geometric Science of Information, Springer Nature Switzerland, pp.&nbsp;173–181 (2025)</a></p></li>
+<li><p><strong>Non-Markovian refrigeration and heat flow in the quantum switch</strong>. <br> J. W. Cheong, A. Pradana, and L. Y. Chew, <a href="https://doi.org/10.1103/physreva.110.022220">Physical Review A, 110(2), 022220 (2024)</a>.</p></li>
+<li><p><strong>Stochastic thermodynamics of finite-tape information ratchet</strong>. <br> L. Y. Chew, A. Pradana, L. He, and J. W. Cheong, <a href="https://doi.org/10.1140/epjs/s11734-023-00994-3">European Physical Journal Special Topics (2023)</a></p></li>
+<li><p><strong>Effects of non-Markovianity on daemonic ergotropy in the quantum switch</strong>. <br> J. W. Cheong, A. Pradana, and L. Y. Chew, <a href="https://doi.org/10.1103/PhysRevA.108.012201">Physical Review A, 108(1), 012201 (2023)</a></p></li>
+<li><p><strong>Effects of correlation in an information ratchet with finite tape</strong>. <br> L. He, J. W. Cheong, A. Pradana, and L. Y. Chew, <a href="https://doi.org/10.1103/PhysRevE.107.024130">Physical Review E, 107(2), 024130 (2023)</a></p></li>
+<li><p><strong>Communication advantage of quantum compositions of channels from non-Markovianity</strong>. <br> J. W. Cheong, A. Pradana, and L. Y. Chew, <a href="https://doi.org/10.1103/PhysRevA.106.052410">Physical Review A, 106(5), 052410 (2022)</a></p></li>
+<li><p><strong>Information processing second law for an information ratchet with finite tape</strong>. <br> L. He, A. Pradana, J. W. Cheong, and L. Y. Chew, <a href="https://doi.org/10.1103/PhysRevE.105.054131">Physical Review E, 105(5), 054131 (2022)</a>.</p></li>
 </ol>
 <hr>
 
@@ -423,13 +425,14 @@ Reading Time
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
