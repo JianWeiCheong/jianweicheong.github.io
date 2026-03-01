@@ -2,6 +2,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/typst-lilaq.html",
       "/posts/colormaps.html",
       "/posts/betty-hill-star-map.html",
       "/posts/tools-academic.html",
@@ -14,6 +15,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/typst-lilaq.html",
       "/posts/colormaps.html",
       "/posts/betty-hill-star-map.html",
       "/posts/tools-academic.html",

@@ -10,7 +10,1176 @@
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Fri, 29 Aug 2025 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 28 Feb 2026 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>Plotting with live preview in Typst with Lilaq</title>
+  <link>https://jianweicheong.codeberg.page/posts/typst-lilaq.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="plotting-is-a-chore" class="level1 page-columns page-full">
+<h1>Plotting is a chore</h1>
+<p>Beyond using the program’s default plotting library, such as in <a href="https://en.wikipedia.org/wiki/MATLAB">MATLAB</a> or <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, the most dominant plotting libraries in science are most likely Python’s <a href="https://matplotlib.org/">Matplotlib</a> and R’s <a href="https://ggplot2.tidyverse.org/">ggplot</a>, with Julia’s <a href="https://docs.makie.org/stable/">Makie.jl</a> or <a href="https://docs.juliaplots.org/latest/">Plots.jl</a> steadily gaining traction<sup>1</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;There are of course a myriad of other popular libraries in use, such as <a href="https://seaborn.pydata.org/">Seaborn</a>, <a href="https://plotly.com/python/">Plotly</a>, <a href="https://altair-viz.github.io/">Altair</a>, <a href="https://vega.github.io/vega/">Vega</a>/<a href="https://vega.github.io/vega-lite/">Vega-lite</a>, <a href="https://d3js.org/">D3.js</a>, or even <a href="https://tikz.dev/pgfplots/">PGFplots</a> etc.</p></div></div><p>These are great of course, but plotting with them has always been a chore to me. I don’t know about you, but for me, some of the most boring parts of my work is writing the same templates of codes over and over again. You know, initializing a bunch of empty lists/arrays, looping over some parameters, then adding computation results to them etc.</p>
+<p>In the case of plotting, this comes in the form of creating <code>Figure</code> and <code>Axis</code> objects, looping over subplot indices, messing with the levels of the colormap etc. Of course, one can easily plot something quick and dirty, but if I want something complicated or at least presentable, I have to write a bunch of boilerplate code, especially if I want more advanced layouts.</p>
+<p>While the elegant <a href="https://en.wikipedia.org/wiki/Wilkinson%27s_Grammar_of_Graphics">grammar of graphics</a> workflow of ggplot (and more recently <a href="https://tidierorg.github.io/Tidier.jl/v1.6.1/">Tidier.jl</a>), can ease this pain for complicated plots, some old-schoolers still swear by the simple but powerful <a href="http://gnuplot.info/">gnuplot</a>. Being a lightweight command line program, gnuplot<sup>2</sup> is favored for quick and boilerplate-free plotting.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Pronounced “<em>NEW</em>plot” as in the <a href="https://en.wikipedia.org/wiki/Wildebeest">animal gnu</a> (US pronunciation), and has nothing to do with the <a href="https://en.wikipedia.org/wiki/GNU">GNU project</a>, pronounced “<em>GNOO</em>”.</p></div></div><p>Here’s an example where a nice figure can be plotted with no boilerplate code in gnuplot. There’s no importing of libraries or creating of <code>Figure</code> or <code>Axis</code> objects etc.</p>
+<div class="column-page-right">
+<div class="columns">
+<div class="column">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">gnuplot</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Matplotlib</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Makie.jl</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" aria-controls="tabset-1-4" aria-selected="false" href="">ggplot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> title <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span></span>
+<span id="cb1-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> xlabel <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span></span>
+<span id="cb1-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> ylabel <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span></span>
+<span id="cb1-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> samples 100</span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">plot</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">[-</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">10:10</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">]</span> 2<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>sin<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">/cos</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">2*x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">title</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2sin(x)/cos(2x)"</span></span></code></pre></div></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb2-3"></span>
+<span id="cb2-4">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.linspace(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb2-5">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> np.sin(x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> np.cos(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x)</span>
+<span id="cb2-6"></span>
+<span id="cb2-7">plt.figure()</span>
+<span id="cb2-8">plt.plot(x, y, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r'</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">$</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">2</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\s</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">in</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cos</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">2x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">$</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb2-9">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span>)</span>
+<span id="cb2-10">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>)</span>
+<span id="cb2-11">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>)</span>
+<span id="cb2-12">plt.legend()</span></code></pre></div></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">using</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">CairoMakie</span></span>
+<span id="cb3-2"></span>
+<span id="cb3-3">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb3-4">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> @. <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sin</span>(x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cos</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>x)</span>
+<span id="cb3-5"></span>
+<span id="cb3-6">fig <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Figure</span>()</span>
+<span id="cb3-7">ax <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Axis</span>(fig[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>],</span>
+<span id="cb3-8">    title <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span>,</span>
+<span id="cb3-9">    xlabel <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>,</span>
+<span id="cb3-10">    ylabel <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>)</span>
+<span id="cb3-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lines!</span>(ax, x, y, label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> L<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2\sin(x)/\cos(2x)"</span>)</span>
+<span id="cb3-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">axislegend</span>()</span></code></pre></div></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" aria-labelledby="tabset-1-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb4-2"></span>
+<span id="cb4-3">x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length.out =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb4-4">y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sin</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cos</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x)</span>
+<span id="cb4-5">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y)</span>
+<span id="cb4-6"></span>
+<span id="cb4-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(df, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span>,</span>
+<span id="cb4-10">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>,</span>
+<span id="cb4-11">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>,</span>
+<span id="cb4-12">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">expression</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sin</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cos</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x)))</span></code></pre></div></div>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/typst-lilaq/gnuplot.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>And a slightly more complicated example where we plot data from a CSV file (I don’t even want to write the Matplotlib, Makie.jl, and ggplot versions of this).</p>
+<div class="column-page-right">
+<div class="columns">
+<div class="column">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">gnuplot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> nokey  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># turn off legend</span></span>
+<span id="cb5-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> datafile separator <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">","</span></span>
+<span id="cb5-3"></span>
+<span id="cb5-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> pm3d at bs  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># plot at bottom and surface</span></span>
+<span id="cb5-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> dgrid3d 100,100</span>
+<span id="cb5-6"></span>
+<span id="cb5-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> multiplot layout 1,2</span>
+<span id="cb5-8"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">splot</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data.csv"</span> using 2:3:5 with pm3d</span>
+<span id="cb5-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">splot</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data.csv"</span> using 2:3:12 with pm3d</span>
+<span id="cb5-10"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">unset</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">multiplot</span></span></code></pre></div></div>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/typst-lilaq/gnuplot2.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>Being a separate program from where your data are typically computed/generated<sup>3</sup>, gnuplot requires one to save their data out into some data format, such as CSV, before loading into gnuplot to perform the plotting. Putting aside the fact that this is good programming practice for scientists in general, this is powerful because the same gnuplot script can quickly visualize different datasets in a consistent manner.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Though there’s actually various libraries that calls gnuplot without leaving your favorite programming language, e.g., <a href="https://github.com/dkogan/gnuplotlib">gnuplotlib</a>, <a href="https://mbaz.github.io/Gaston.jl/v2/">Gaston.jl</a>, <a href="https://github.com/SiegeLord/RustGnuplot">RustGnuplot</a>, and <a href="https://en.wikipedia.org/wiki/Gnuplot#Programming_and_application_interfaces">various others</a>.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;Interestingly, there is now also <a href="https://gridpaper.org/">Gridpaper</a> by <a href="https://harishnarayanan.org/">Harish Narayanan</a>, which uses gnuplot compiled to <a href="https://en.wikipedia.org/wiki/WebAssembly">WebAssembly</a> under the hood.</p></div></div><p>Nevertheless, even though I love gnuplot, it shares a common problem with the other plotting libraries (and most programming languages) in that iterating between plots are slow. Maybe I am spoilt by the <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop"><em>Read-eval-print loop</em></a> of Lisp, but I wish plotting is more interactive or responsive, like <a href="https://www.desmos.com/calculator">Desmos</a><sup>4</sup>, instead of the same old: save file, run it, wait, and repeat because you realized you made a mistake. Of course, one can set up <a href="https://ipywidgets.readthedocs.io/en/latest/">Jupyter notebook widgets</a> or a <a href="https://shiny.posit.co/">Shiny dashboard</a> for interactivity, but then we are back to writing boilerplate codes.</p>
+</section>
+<section id="enters-typst-and-lilaq" class="level1 page-columns page-full">
+<h1>Enters Typst and Lilaq</h1>
+<p>I have mentioned <a href="https://github.com/typst/typst">Typst</a> before, as well as the plotting library <a href="https://lilaq.org/">Lilaq</a>, lauding the former for its fast live preview due to its incremental compilation. Specifically, the <a href="https://myriad-dreamin.github.io/tinymist/">tinymist</a> <a href="https://en.wikipedia.org/wiki/Language_Server_Protocol">LSP</a> is able to trigger the preview “<a href="https://myriad-dreamin.github.io/tinymist/feature/preview.html">on type</a>”, i.e., with every keystroke<sup>5</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Or one can use the <a href="https://typst.app/">web app</a> which also has instant live preview.</p></div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="../media/posts/typst-lilaq/webapp.webm" class="img-fluid" controls=""><a href="../media/posts/typst-lilaq/webapp.webm">Video</a></video></p>
+<figcaption>Plotting with instant live preview in the web app.</figcaption>
+</figure>
+</div>
+<div class="column-page-right">
+<div class="columns">
+<div class="column">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Lilaq</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">gnuplot</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Matplotlib</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false" href="">Makie.jl</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" aria-controls="tabset-3-5" aria-selected="false" href="">ggplot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode typst code-with-copy"><code class="sourceCode typst"><span id="cb6-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#</span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"@preview/lilaq:0.5.0"</span> as lq</span>
+<span id="cb6-2"></span>
+<span id="cb6-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#set</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">page</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>margin<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5em</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">auto</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">auto</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb6-4"></span>
+<span id="cb6-5"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">xs</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>linspace<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> num<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb6-6"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">ys</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> xs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>map<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>*calc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>sin<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> / calc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>cos<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>*x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">))</span></span>
+<span id="cb6-7"></span>
+<span id="cb6-8"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#</span>lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>diagram<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span id="cb6-9">  lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>xs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> ys<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$2sin(x)\/cos(2x)$</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">),</span></span>
+<span id="cb6-10">  xlabel<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$x$</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb6-11">  ylabel<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$y$</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb6-12">  title<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span></span>
+<span id="cb6-13"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> title <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span></span>
+<span id="cb7-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> xlabel <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span></span>
+<span id="cb7-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> ylabel <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span></span>
+<span id="cb7-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> samples 100</span>
+<span id="cb7-5"></span>
+<span id="cb7-6"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">plot</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">[-</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">10:10</span><span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">]</span> 2<span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">*</span>sin<span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">/cos</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">(</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">2*x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">title</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2sin(x)/cos(2x)"</span></span></code></pre></div></div>
+</div>
+<div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb8-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb8-3"></span>
+<span id="cb8-4">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.linspace(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb8-5">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> np.sin(x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> np.cos(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x)</span>
+<span id="cb8-6"></span>
+<span id="cb8-7">plt.figure()</span>
+<span id="cb8-8">plt.plot(x, y, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r'</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">$</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">2</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\s</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">in</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">/</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cos</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">2x</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">$</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb8-9">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span>)</span>
+<span id="cb8-10">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>)</span>
+<span id="cb8-11">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>)</span>
+<span id="cb8-12">plt.legend()</span></code></pre></div></div>
+</div>
+<div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">using</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">CairoMakie</span></span>
+<span id="cb9-2"></span>
+<span id="cb9-3">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb9-4">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> @. <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sin</span>(x) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cos</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>x)</span>
+<span id="cb9-5"></span>
+<span id="cb9-6">fig <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Figure</span>()</span>
+<span id="cb9-7">ax <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Axis</span>(fig[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>],</span>
+<span id="cb9-8">    title <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span>,</span>
+<span id="cb9-9">    xlabel <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>,</span>
+<span id="cb9-10">    ylabel <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>)</span>
+<span id="cb9-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lines!</span>(ax, x, y, label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> L<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2\sin(x)/\cos(2x)"</span>)</span>
+<span id="cb9-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">axislegend</span>()</span></code></pre></div></div>
+</div>
+<div id="tabset-3-5" class="tab-pane" aria-labelledby="tabset-3-5-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb10-2"></span>
+<span id="cb10-3">x <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length.out =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb10-4">y <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sin</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cos</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x)</span>
+<span id="cb10-5">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y)</span>
+<span id="cb10-6"></span>
+<span id="cb10-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(df, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> x, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> y)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb10-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This is an example plot"</span>,</span>
+<span id="cb10-10">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"x"</span>,</span>
+<span id="cb10-11">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"y"</span>,</span>
+<span id="cb10-12">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">expression</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sin</span>(x) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cos</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x)))</span></code></pre></div></div>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/typst-lilaq/lilaq.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>I would argue that while we sacrificed some conciseness and brevity for responsiveness as compared to gnuplot, this is a little better than Matplotlib and Makie.jl. Not to mention first-class Math support like LaTeX.</p>
+<div class="column-page-right">
+<div class="columns">
+<div class="column">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true" href="">Lilaq</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false" href="">gnuplot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode typst code-with-copy"><code class="sourceCode typst"><span id="cb11-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#</span><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"@preview/lilaq:0.5.0"</span> as lq</span>
+<span id="cb11-2"></span>
+<span id="cb11-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#set</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">page</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>margin<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5em</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">auto</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">auto</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-4"></span>
+<span id="cb11-5"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">data</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>load-txt<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>read<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">),</span> header<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-6"></span>
+<span id="cb11-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">z1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> array<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>zip<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>..data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>E<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>chunks<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> exact<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">))</span></span>
+<span id="cb11-8"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">z2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> array<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>zip<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>..data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>Em<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>chunks<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> exact<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">))</span></span>
+<span id="cb11-9"></span>
+<span id="cb11-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">colormesh1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>colormesh<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>xA<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>dedup<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(),</span> data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>xB<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>dedup<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(),</span> z1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-11"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#let</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">colormesh2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>colormesh<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>xA<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>dedup<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(),</span> data<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>xB<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>dedup<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(),</span> z2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-12"></span>
+<span id="cb11-13"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#</span>lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>diagram<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>colormesh1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-14"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#</span>lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>colorbar<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>colormesh1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-15"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#</span>lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>diagram<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>colormesh2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-16"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">#</span>lq<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>colorbar<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>colormesh2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+</div>
+<div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> nokey</span>
+<span id="cb12-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> datafile separator <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">","</span></span>
+<span id="cb12-3"></span>
+<span id="cb12-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> pm3d at b</span>
+<span id="cb12-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> view map</span>
+<span id="cb12-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> dgrid3d 100,100</span>
+<span id="cb12-7"></span>
+<span id="cb12-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">set</span> multiplot layout 1,2</span>
+<span id="cb12-9"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">splot</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data.csv"</span> using 2:3:5 with pm3d</span>
+<span id="cb12-10"><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">splot</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data.csv"</span> using 2:3:12 with pm3d</span>
+<span id="cb12-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">unset</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">multiplot</span></span></code></pre></div></div>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/typst-lilaq/lilaq2.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>Lilaq is still little verbose, particularly the reshaping of the data into a 2D array for the plotting of the colormesh in this case, which gnuplot takes care of automatically with <code>set dgrid3d 100,100</code>.</p>
+<p>Still, the interactivity and responsiveness is great especially for data exploratory work.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="../media/posts/typst-lilaq/webapp2.webm" class="img-fluid" controls=""><a href="../media/posts/typst-lilaq/webapp2.webm">Video</a></video></p>
+<figcaption>Iterating between plots instantly.</figcaption>
+</figure>
+</div>
+</section>
+<section id="is-it-really-that-important" class="level1 page-columns page-full">
+<h1>Is it really that important?</h1>
+<p>To be honest, not really.</p>
+<p>In scientific computing, many encounters the “<a href="https://discourse.julialang.org/t/two-language-problem-what-is-it/82925">two-language problem</a>”, where the initial prototyping and exploratory research work is performed in a programming language that is highly productive or interactive, such as Python, R, or MATLAB.</p>
+<p>However, when the exploratory work is done and when one require fast number crunching (say in a supercomputer), one has to rewrite the program (or at least the computationally expensive parts) in a high-performance language such as C, C++, Fortran, or Rust.</p>
+<p>Julia <a href="https://docs.julialang.org/en/v1/#man-introduction">aims to solve this problem</a> with just-in-time (<a href="https://en.wikipedia.org/wiki/Just-in-time_compilation">JIT</a>) compilation and <a href="https://en.wikipedia.org/wiki/LLVM">LLVM</a><sup>6</sup>, combining the syntax and interactivity of dynamic languages, with the performance and speed of statically-typed languages.</p>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;There is now also <a href="https://lfortran.org/">LFortran</a> that attempts the same, also with LLVM.</p></div></div><p>While the context is obviously not the same, you could say that I’m looking for a <strong>“Julia” of plotting</strong>. Using plotting libraries such as Matplotlib for complicated plots is like the worst of both worlds: bloated code yet (relatively) slow iteration of plots.</p>
+<p>Why can’t we have the best of both worlds instead: <strong>plot with stupid simple syntax and see the results instantly as we change the code</strong>? I believe gnuplot and Lilaq are the closest we have to this right now, approaching this ideal from the two opposite ends of simple syntax and instant preview, respectively.</p>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>programming</category>
+  <category>software</category>
+  <guid>https://jianweicheong.codeberg.page/posts/typst-lilaq.html</guid>
+  <pubDate>Sat, 28 Feb 2026 16:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Scientific colormaps and why you should care</title>
   <link>https://jianweicheong.codeberg.page/posts/colormaps.html</link>
