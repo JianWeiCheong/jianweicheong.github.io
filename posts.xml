@@ -9,7 +9,7 @@
 <link>https://jianweicheong.codeberg.page/posts.html</link>
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
-<generator>quarto-1.8.27</generator>
+<generator>quarto-1.9.36</generator>
 <lastBuildDate>Sat, 28 Feb 2026 16:00:00 GMT</lastBuildDate>
 <item>
   <title>Plotting with live preview in Typst with Lilaq</title>
@@ -1218,7 +1218,7 @@ font-style: inherit;">multiplot</span></span></code></pre></div></div>
 <p>But a lot of these programs favors quantity over quality. How do I know if that pretty colormap my favorite plotting library provided is perceptually uniform, linear, and CVD-friendly?</p>
 <p>Generally, one just have to know the families of colormaps that were designed with these standards in mind, and plotting libraries with good documentations tend to properly group them into these families, e.g., take a look at <a href="https://juliagraphics.github.io/ColorSchemes.jl/stable/catalogue/">Julia’s</a> where anything grouped under “scientific” or “colorcet” are generally fine.</p>
 <p>Nevertheless, here are some general recommendations:</p>
-<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez, Anderton, and Renslow (2018)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(Crameri, Shephard, and Heron 2020)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (2015)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
+<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez et al. (2018)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(Crameri et al. 2020)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (2015)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/colormaps_seq.svg" class="img-fluid figure-img"></p>
@@ -1228,7 +1228,7 @@ font-style: inherit;">multiplot</span></span></code></pre></div></div>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><a href="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="img-fluid"></a></p>
-<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri, Shephard, and Heron (2020)</span>.</p>
+<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri et al. (2020)</span>.</p>
 <p>Comparison between <code>jet</code> and <code>batlow</code>.</p>
 <p>Also check out <a href="https://www.youtube.com/watch?v=iDPzWARbFrs">his talk</a> at the University of Oslo <a href="https://www.mn.uio.no/geo/english/about/organisation/geohyd/events/archive/2021/">GEOHYD Lunch Seminar 2021</a>.</p>
 </div></div><p>For diverging colormaps, there’s <a href="https://colorbrewer2.org/">ColorBrewer’s</a> <code>RdBu</code>, ColorCET’s <code>CET-D07</code>, or the CVD-friendlier <code>CET-CBD1</code>, though you can’t really go wrong with the rest of the colormaps by Fabio Crameri either (Matplotlib provides Crameri’s <code>berlin</code>, <code>managua</code>, and <code>vanimo</code>).</p>
@@ -1277,24 +1277,24 @@ font-style: inherit;">multiplot</span></span></code></pre></div></div>
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-BorkinEvaluation2011" class="csl-entry">
-Borkin, M., K. Gajos, A. Peters, D. Mitsouras, S. Melchionna, F. Rybicki, C. Feldman, and H. Pfister. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
+Borkin, M., K. Gajos, A. Peters, et al. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
 </div>
 <div id="ref-CrameriThe2020" class="csl-entry">
 Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. 2020. <span>“The Misuse of Colour in Science Communication.”</span> <em>Nature Communications</em> 11 (1). <a href="https://doi.org/10.1038/s41467-020-19160-7">https://doi.org/10.1038/s41467-020-19160-7</a>.
 </div>
 <div id="ref-KovesiColour2015" class="csl-entry">
-Kovesi, Peter. 2015. <span>“Good Colour Maps: How to Design Them.”</span> <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
+Kovesi, Peter. 2015. <em>Good Colour Maps: How to Design Them</em>. <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
 </div>
 <div id="ref-LandiniColor2011" class="csl-entry">
 Landini, Gabriel, and D Giles Perryer. 2011. <span>“More on Color Blindness.”</span> <em>Nature Methods</em> 8 (11): 891–91. <a href="https://doi.org/10.1038/nmeth.1737">https://doi.org/10.1038/nmeth.1737</a>.
 </div>
 <div id="ref-NunezOptimizing2018" class="csl-entry">
-Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> Edited by Jesús Malo. <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
+Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
 </div>
 <div id="ref-PetroffColor2024" class="csl-entry">
-Petroff, Matthew A. 2024. <span>“Accessible Color Sequences for Data Visualization.”</span> <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
+Petroff, Matthew A. 2024. <em>Accessible Color Sequences for Data Visualization</em>. <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
 </div>
 <div id="ref-WongPoints2011" class="csl-entry">
 Wong, Bang. 2011. <span>“Points of View: Color Blindness.”</span> <em>Nature Methods</em> 8 (6): 441–41. <a href="https://doi.org/10.1038/nmeth.1618">https://doi.org/10.1038/nmeth.1618</a>.
@@ -1993,9 +1993,9 @@ font-style: inherit;">else</span>:</span>
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-PimentelJupyter2019" class="csl-entry">
-Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2019. <span>“A Large-Scale Study about Quality and Reproducibility of Jupyter Notebooks.”</span> In <em>2019 IEEE/ACM 16th International Conference on Mining Software Repositories (MSR)</em>. IEEE. <a href="https://doi.org/10.1109/msr.2019.00077">https://doi.org/10.1109/msr.2019.00077</a>.
+Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2019. <span>“A Large-Scale Study about Quality and Reproducibility of Jupyter Notebooks.”</span> <em>2019 IEEE/ACM 16th International Conference on Mining Software Repositories (MSR)</em>, May. <a href="https://doi.org/10.1109/msr.2019.00077">https://doi.org/10.1109/msr.2019.00077</a>.
 </div>
 </div></section></div> ]]></description>
   <category>software</category>
@@ -2090,7 +2090,7 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
 <h1>Entanglement — the actual spice</h1>
 <p>The Bloch sphere might reminds one of analog computers, where quantities can take a continuum of values instead of the 0s and 1s in digital computers. In fact, if we can build an analog computer with two degrees of freedom like the Bloch sphere, then it can function exactly like a single qubit.</p>
 <p>The “quantumness” only comes in if we include the concept of <em>entanglement</em><sup>5</sup>. Entanglement is the main spice that makes quantum systems special, preventing it from being replicated by classical systems, e.g., the analog computer with two degrees of freedom.</p>
-<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Entanglement is often conflated with the phrase “<em>spooky action at a distance</em>”. The latter describes the apparent nonlocal collapse of the wave function. <span class="citation" data-cites="EinsteinEPR1935">Einstein, Podolsky, and Rosen (1935)</span> used entanglement as an example to illustrate the significance of this nonlocal collapse, which eventually led to this conflation.</p></div></div><p>Imagine what would happen if we have two qubits.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Entanglement is often conflated with the phrase “<em>spooky action at a distance</em>”. The latter describes the apparent nonlocal collapse of the wave function. <span class="citation" data-cites="EinsteinEPR1935">Einstein et al. (1935)</span> used entanglement as an example to illustrate the significance of this nonlocal collapse, which eventually led to this conflation.</p></div></div><p>Imagine what would happen if we have two qubits.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://jianweicheong.codeberg.page/media/posts/quantum-computing/bloch2.svg" class="img-fluid figure-img"></p>
@@ -2129,7 +2129,7 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-EinsteinEPR1935" class="csl-entry">
 Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?”</span> <em>Physical Review</em> 47 (10): 777–80. <a href="https://doi.org/10.1103/physrev.47.777">https://doi.org/10.1103/physrev.47.777</a>.
 </div>
@@ -2166,26 +2166,26 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 <section id="a-physicists-perspective-the-conspiracy" class="level1 page-columns page-full">
 <h1>A Physicist’s perspective — the conspiracy</h1>
 <p>The study of life is typically assumed to fall under the domain of Biology. However, physicists have also been attempting to uncover a physical principle that leads to life’s emergence and its behaviors <span class="citation" data-cites="PrigogineBiological1971">(Prigogine and Nicolis 1971)</span>. A hint lies in the stark difference between life and inanimate matter: life’s ability to efficiently absorb or consume useful energy and dissipating it as heat, resulting in increased entropy production.</p>
-<p>While this have been pointed out by Erwin Schrödinger in his seminar book <a href="https://en.wikipedia.org/wiki/What_Is_Life%3F"><em>What is life?</em></a> back in the 1940s, it has undergone rigorous thermodynamic treatment in recent years, thanks to advances in the physics of non-equilibrium thermodynamics <span class="citation" data-cites="CollinVerification2005 MichaelianThermodynamic2011">(Collin et al. 2005; K. Michaelian 2011)</span>.</p>
-<p>In short, in the presence of an external non-equilibrium energy source (like the Sun), systems adapt and self-organize themselves to better absorb energy and dissipate heat or entropy. This process has come to be known as <em>dissipation-driven adaptation</em> <span class="citation" data-cites="EnglandStatistical2013 PerunovStatistical2016">(England 2013; Perunov, Marsland, and England 2016)</span>.</p>
+<p>While this have been pointed out by Erwin Schrödinger in his seminar book <a href="https://en.wikipedia.org/wiki/What_Is_Life%3F"><em>What is life?</em></a> back in the 1940s, it has undergone rigorous thermodynamic treatment in recent years, thanks to advances in the physics of non-equilibrium thermodynamics <span class="citation" data-cites="CollinVerification2005 MichaelianThermodynamic2011">(Collin et al. 2005; Michaelian 2011)</span>.</p>
+<p>In short, in the presence of an external non-equilibrium energy source (like the Sun), systems adapt and self-organize themselves to better absorb energy and dissipate heat or entropy. This process has come to be known as <em>dissipation-driven adaptation</em> <span class="citation" data-cites="EnglandStatistical2013 PerunovStatistical2016">(England 2013; Perunov et al. 2016)</span>.</p>
 <p>Life is hypothesized to be such a dissipative system that serves to increase entropy production.</p>
 <p>From the birth of planetoids in the dusts of protoplanetary disks to the formation of vortices we see in chaotic turbulent flows such as hurricanes. Stable structures with low internal entropy arise out of such chaotic interactions in order to more efficiently dissipate entropy.</p>
 <p>Life might be one of such order out of chaos, a long-running, universe-scale conspiracy to increase the entropy of the cosmos.</p>
 <section id="self-organization-order-out-of-chaos" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="self-organization-order-out-of-chaos">Self-organization — order out of chaos</h2>
-<p>Self-organization of complex structures in the presence of an external energy source have been demonstrated both experimentally and computationally. In a computational simulation involving 20 particles in a simplified chemical space, complex bonding patterns emerged under resonance with a periodic drive, increasing the rate of work absorption and heat dissipation <span class="citation" data-cites="KachmanSelfOrganized2017">(Kachman, Owen, and England 2017)</span>.</p>
+<p>Self-organization of complex structures in the presence of an external energy source have been demonstrated both experimentally and computationally. In a computational simulation involving 20 particles in a simplified chemical space, complex bonding patterns emerged under resonance with a periodic drive, increasing the rate of work absorption and heat dissipation <span class="citation" data-cites="KachmanSelfOrganized2017">(Kachman et al. 2017)</span>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../media/posts/life-conspiracy/kondepudi.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Reprinted from @KondepudiEnddirected2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/kondepudi.png" class="img-fluid figure-img" alt="Reprinted from Kondepudi, Kay, and Dixon (2015)"></a></p>
-<figcaption>Reprinted from <span class="citation" data-cites="KondepudiEnddirected2015">Kondepudi, Kay, and Dixon (2015)</span></figcaption>
+<p><a href="../media/posts/life-conspiracy/kondepudi.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Reprinted from @KondepudiEnddirected2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/kondepudi.png" class="img-fluid figure-img" alt="Reprinted from Kondepudi et al. (2015)"></a></p>
+<figcaption>Reprinted from <span class="citation" data-cites="KondepudiEnddirected2015">Kondepudi et al. (2015)</span></figcaption>
 </figure>
 </div>
 <p>Setup and result of self-organizing conducting beads.</p>
-</div></div><p>Experimentally, conducting beads 4mm in diameter immersed in oil in a petri dish were shown to self-organize to a complex, tree-like structure when subjected to a high voltage. This occurred at a critical point and was accompanied by a spike in entropy dissipation <span class="citation" data-cites="KondepudiEnddirected2015">(Kondepudi, Kay, and Dixon 2015)</span>. Silver nanorods were also observed to self-organized in the presence of a doughnut-shaped laser source, with resulting structures depending on the wavelengths and polarization of the laser source <span class="citation" data-cites="ItoSelective2013">(Ito et al. 2013)</span>.</p>
-<p>Likewise, by considering UVC light of 230nm to 270nm from the Sun as the non-equilibrium energy source (a range of wavelengths that were most intense in the early Earth), it was demonstrated that RNA polymers could proliferate via photochemical reactions, and that DNA polymers would denature from absorption and dissipation at these UVC wavelengths. These are crucial steps for self-replication without enzymes <span class="citation" data-cites="MichaelianMicroscopic2017 MichaelianUVC2019">(Karo Michaelian 2017; Karo Michaelian and Padilla 2019)</span>.</p>
-<p>Homochirality in DNA and RNA was also shown to be achieved via photochemical reactions with UVC wavelengths light <span class="citation" data-cites="MichaelianHomochirality2018">(Karo Michaelian 2018)</span>. Correlations also exist between the maximum absorbance wavelengths of early life’s nucleobases and amino acids, and UVC wavelengths <span class="citation" data-cites="MichaelianFundamental2015">(K. Michaelian and Simeonov 2015)</span>.</p>
+</div></div><p>Experimentally, conducting beads 4mm in diameter immersed in oil in a petri dish were shown to self-organize to a complex, tree-like structure when subjected to a high voltage. This occurred at a critical point and was accompanied by a spike in entropy dissipation <span class="citation" data-cites="KondepudiEnddirected2015">(Kondepudi et al. 2015)</span>. Silver nanorods were also observed to self-organized in the presence of a doughnut-shaped laser source, with resulting structures depending on the wavelengths and polarization of the laser source <span class="citation" data-cites="ItoSelective2013">(Ito et al. 2013)</span>.</p>
+<p>Likewise, by considering UVC light of 230nm to 270nm from the Sun as the non-equilibrium energy source (a range of wavelengths that were most intense in the early Earth), it was demonstrated that RNA polymers could proliferate via photochemical reactions, and that DNA polymers would denature from absorption and dissipation at these UVC wavelengths. These are crucial steps for self-replication without enzymes <span class="citation" data-cites="MichaelianMicroscopic2017 MichaelianUVC2019">(Michaelian 2017; Michaelian and Padilla 2019)</span>.</p>
+<p>Homochirality in DNA and RNA was also shown to be achieved via photochemical reactions with UVC wavelengths light <span class="citation" data-cites="MichaelianHomochirality2018">(Michaelian 2018)</span>. Correlations also exist between the maximum absorbance wavelengths of early life’s nucleobases and amino acids, and UVC wavelengths <span class="citation" data-cites="MichaelianFundamental2015">(Michaelian and Simeonov 2015)</span>.</p>
 <p>These findings suggest that in the RNA world during early Earth era, RNA or pre-RNA polymers may have self-organized or adapted to efficeintly absorb and dissipate UVC solar spectrum, a prime example of dissipative adaptation in the emergence of life.</p>
 </section>
 <section id="self-replication-the-more-the-merrier" class="level2">
@@ -2204,15 +2204,15 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../media/posts/life-conspiracy/michaelian.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Reprinted from @MichaelianFundamental2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/michaelian.png" class="img-fluid figure-img" alt="Reprinted from K. Michaelian and Simeonov (2015)"></a></p>
-<figcaption>Reprinted from <span class="citation" data-cites="MichaelianFundamental2015">K. Michaelian and Simeonov (2015)</span></figcaption>
+<p><a href="../media/posts/life-conspiracy/michaelian.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Reprinted from @MichaelianFundamental2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/michaelian.png" class="img-fluid figure-img" alt="Reprinted from Michaelian and Simeonov (2015)"></a></p>
+<figcaption>Reprinted from <span class="citation" data-cites="MichaelianFundamental2015">Michaelian and Simeonov (2015)</span></figcaption>
 </figure>
 </div>
 <p>Correlations between solar spectrum and the emergence of organic compounds and cells in the five different periods. As Earth’s conditions changes, more complex organic compounds evolved to suit these conditions. The general trends are a shift from UVC absorbing to visible spectrum absorbing compounds, and a shift to oxygen based respiration.</p>
-</div></div><p>This seems to be evident throughout life’s history, where its evolution has underwent avalanche dynamics with quick and sudden changes in complexity rather than smooth and gradual evolution <span class="citation" data-cites="PaczuskiAvalanche1996">(Paczuski, Maslov, and Bak 1996)</span>. Some even modeled these sudden transitions of evolution as a Big Bang model with “evolutionary inflation” akin to the cosmological inflation model <span class="citation" data-cites="KooninBiological2007">(Koonin 2007)</span>. Simulated artificial life have also demonstrated how the fitness or how the population adapts to the environment, can undergo multiple discontinuous jumps <span class="citation" data-cites="AdamiSelforganized1995">(Adami 1995)</span>.</p>
-<p>Correlating Earth’s historical environmental changes (like solar spectrum, temperature, and atmospheric compositions) with organic compounds’ emergence and evolution shows that life has consistently adapted to better survive and absorb energy according to the prevailing condition in that period <span class="citation" data-cites="MichaelianFundamental2015">(K. Michaelian and Simeonov 2015)</span>.</p>
+</div></div><p>This seems to be evident throughout life’s history, where its evolution has underwent avalanche dynamics with quick and sudden changes in complexity rather than smooth and gradual evolution <span class="citation" data-cites="PaczuskiAvalanche1996">(Paczuski et al. 1996)</span>. Some even modeled these sudden transitions of evolution as a Big Bang model with “evolutionary inflation” akin to the cosmological inflation model <span class="citation" data-cites="KooninBiological2007">(Koonin 2007)</span>. Simulated artificial life have also demonstrated how the fitness or how the population adapts to the environment, can undergo multiple discontinuous jumps <span class="citation" data-cites="AdamiSelforganized1995">(Adami 1995)</span>.</p>
+<p>Correlating Earth’s historical environmental changes (like solar spectrum, temperature, and atmospheric compositions) with organic compounds’ emergence and evolution shows that life has consistently adapted to better survive and absorb energy according to the prevailing condition in that period <span class="citation" data-cites="MichaelianFundamental2015">(Michaelian and Simeonov 2015)</span>.</p>
 <p>An interesting example is the case of adenosine triphosphate (ATP) synthase, an enzyme that lies along the cell membrane of a cell that breaks down ATP to adenosine diphosphate (ADP) and a phosphate. This breakage releases energy that powers the cell.</p>
-<p>Using a kinetic model of the ATP synthase process reveals that both its entropy production and the Shannon entropy of the transitional states, are maximized at a catalytic dwell angle<sup>4</sup> consistent with the actual ATP synthase’s angle, indicating that the ATP synthase evolved to optimize entropy production <span class="citation" data-cites="DewarFunctional2006">(Dewar, Juretić, and Županović 2006)</span>.</p>
+<p>Using a kinetic model of the ATP synthase process reveals that both its entropy production and the Shannon entropy of the transitional states, are maximized at a catalytic dwell angle<sup>4</sup> consistent with the actual ATP synthase’s angle, indicating that the ATP synthase evolved to optimize entropy production <span class="citation" data-cites="DewarFunctional2006">(Dewar et al. 2006)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;The ATP synthase rotates in angles of <img src="https://latex.codecogs.com/png.latex?120%5E%7B%5Ccirc%7D"> for each ATP to ADP + P<img src="https://latex.codecogs.com/png.latex?_i"> reaction. However, at the moment of breakage of ATP bonds to ADP + P<img src="https://latex.codecogs.com/png.latex?_i">, the synthase will pause for a short amount of time of around 2ms <span class="citation" data-cites="UenoATP2005">(Ueno et al. 2005)</span>. The angle at which this pause happens is known as the catalytic dwell.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;One should keep in mind that none of these results were shown for complex life such as us humans, and one should not have the illusion that this hints at some sort of “<a href="https://en.wikipedia.org/wiki/Lamarckism">Lamarckism</a>”.</p></div></div><p>These findings suggest that the process of self-organization to an external energy source is an ongoing, dynamic phenomenon that continues in response to changing conditions.<sup>5</sup></p>
 </section>
 </section>
@@ -2230,7 +2230,7 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-AdamiSelforganized1995" class="csl-entry">
 Adami, C. 1995. <span>“Self-Organized Criticality in Living Systems.”</span> <em>Physics Letters A</em> 203 (1): 29–32. <a href="https://doi.org/10.1016/0375-9601(95)00372-a">https://doi.org/10.1016/0375-9601(95)00372-a</a>.
 </div>
@@ -2250,7 +2250,7 @@ Dewar, R. C., D. Juretić, and P. Županović. 2006. <span>“The Functional Des
 England, Jeremy L. 2013. <span>“Statistical Physics of Self-Replication.”</span> <em>The Journal of Chemical Physics</em> 139 (12). <a href="https://doi.org/10.1063/1.4818538">https://doi.org/10.1063/1.4818538</a>.
 </div>
 <div id="ref-ItoSelective2013" class="csl-entry">
-Ito, Syoji, Hiroaki Yamauchi, Mamoru Tamura, Shimpei Hidaka, Hironori Hattori, Taichi Hamada, Keisuke Nishida, et al. 2013. <span>“Selective Optical Assembly of Highly Uniform Nanoparticles by Doughnut-Shaped Beams.”</span> <em>Scientific Reports</em> 3 (1). <a href="https://doi.org/10.1038/srep03047">https://doi.org/10.1038/srep03047</a>.
+Ito, Syoji, Hiroaki Yamauchi, Mamoru Tamura, et al. 2013. <span>“Selective Optical Assembly of Highly Uniform Nanoparticles by Doughnut-Shaped Beams.”</span> <em>Scientific Reports</em> 3 (1). <a href="https://doi.org/10.1038/srep03047">https://doi.org/10.1038/srep03047</a>.
 </div>
 <div id="ref-KachmanSelfOrganized2017" class="csl-entry">
 Kachman, Tal, Jeremy A. Owen, and Jeremy L. England. 2017. <span>“Self-Organized Resonance During Search of a Diverse Chemical Space.”</span> <em>Physical Review Letters</em> 119 (3). <a href="https://doi.org/10.1103/physrevlett.119.038001">https://doi.org/10.1103/physrevlett.119.038001</a>.
@@ -2271,7 +2271,7 @@ Michaelian, K. 2011. <span>“Thermodynamic Dissipation Theory for the Origin of
 Michaelian, Karo. 2017. <span>“Microscopic Dissipative Structuring and Proliferation at the Origin of Life.”</span> <em>Heliyon</em> 3 (10): e00424. <a href="https://doi.org/10.1016/j.heliyon.2017.e00424">https://doi.org/10.1016/j.heliyon.2017.e00424</a>.
 </div>
 <div id="ref-MichaelianHomochirality2018" class="csl-entry">
-———. 2018. <span>“Homochirality Through Photon-Induced Denaturing of RNA/DNA at the Origin of Life.”</span> <em>Life</em> 8 (2): 21. <a href="https://doi.org/10.3390/life8020021">https://doi.org/10.3390/life8020021</a>.
+Michaelian, Karo. 2018. <span>“Homochirality Through Photon-Induced Denaturing of RNA/DNA at the Origin of Life.”</span> <em>Life</em> 8 (2): 21. <a href="https://doi.org/10.3390/life8020021">https://doi.org/10.3390/life8020021</a>.
 </div>
 <div id="ref-MichaelianUVC2019" class="csl-entry">
 Michaelian, Karo, and Norberto Santillán Padilla. 2019. <span>“UVC Photon-Induced Denaturing of DNA: A Possible Dissipative Route to Archean Enzyme-Less Replication.”</span> <em>Heliyon</em> 5 (6): e01902. <a href="https://doi.org/10.1016/j.heliyon.2019.e01902">https://doi.org/10.1016/j.heliyon.2019.e01902</a>.

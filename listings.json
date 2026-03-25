@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/posts.html",
+    "listing": "/index.html",
     "items": [
       "/posts/typst-lilaq.html",
       "/posts/colormaps.html",
@@ -13,7 +13,7 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/posts.html",
     "items": [
       "/posts/typst-lilaq.html",
       "/posts/colormaps.html",

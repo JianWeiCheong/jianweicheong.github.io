@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Scientific colormaps and why you should care – Jian Wei Cheong</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -25,7 +28,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,15 +54,14 @@ div.csl-indent {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -266,7 +267,7 @@ window.Quarto = {
 <p>But a lot of these programs favors quantity over quality. How do I know if that pretty colormap my favorite plotting library provided is perceptually uniform, linear, and CVD-friendly?</p>
 <p>Generally, one just have to know the families of colormaps that were designed with these standards in mind, and plotting libraries with good documentations tend to properly group them into these families, e.g., take a look at <a href="https://juliagraphics.github.io/ColorSchemes.jl/stable/catalogue/">Julia’s</a> where anything grouped under “scientific” or “colorcet” are generally fine.</p>
 <p>Nevertheless, here are some general recommendations:</p>
-<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez, Anderton, and Renslow (<a href="#ref-NunezOptimizing2018" role="doc-biblioref">2018</a>)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(<a href="#ref-CrameriThe2020" role="doc-biblioref">Crameri, Shephard, and Heron 2020</a>)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (<a href="#ref-KovesiColour2015" role="doc-biblioref">2015</a>)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
+<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez et al. (<a href="#ref-NunezOptimizing2018" role="doc-biblioref">2018</a>)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(<a href="#ref-CrameriThe2020" role="doc-biblioref">Crameri et al. 2020</a>)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (<a href="#ref-KovesiColour2015" role="doc-biblioref">2015</a>)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../media/posts/scientific-colormaps/colormaps_seq.svg" class="img-fluid figure-img"></p>
@@ -276,7 +277,7 @@ window.Quarto = {
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><a href="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="img-fluid"></a></p>
-<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri, Shephard, and Heron (<a href="#ref-CrameriThe2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri et al. (<a href="#ref-CrameriThe2020" role="doc-biblioref">2020</a>)</span>.</p>
 <p>Comparison between <code>jet</code> and <code>batlow</code>.</p>
 <p>Also check out <a href="https://www.youtube.com/watch?v=iDPzWARbFrs">his talk</a> at the University of Oslo <a href="https://www.mn.uio.no/geo/english/about/organisation/geohyd/events/archive/2021/">GEOHYD Lunch Seminar 2021</a>.</p>
 </div></div><p>For diverging colormaps, there’s <a href="https://colorbrewer2.org/">ColorBrewer’s</a> <code>RdBu</code>, ColorCET’s <code>CET-D07</code>, or the CVD-friendlier <code>CET-CBD1</code>, though you can’t really go wrong with the rest of the colormaps by Fabio Crameri either (Matplotlib provides Crameri’s <code>berlin</code>, <code>managua</code>, and <code>vanimo</code>).</p>
@@ -325,24 +326,24 @@ window.Quarto = {
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-BorkinEvaluation2011" class="csl-entry" role="listitem">
-Borkin, M., K. Gajos, A. Peters, D. Mitsouras, S. Melchionna, F. Rybicki, C. Feldman, and H. Pfister. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
+Borkin, M., K. Gajos, A. Peters, et al. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
 </div>
 <div id="ref-CrameriThe2020" class="csl-entry" role="listitem">
 Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. 2020. <span>“The Misuse of Colour in Science Communication.”</span> <em>Nature Communications</em> 11 (1). <a href="https://doi.org/10.1038/s41467-020-19160-7">https://doi.org/10.1038/s41467-020-19160-7</a>.
 </div>
 <div id="ref-KovesiColour2015" class="csl-entry" role="listitem">
-Kovesi, Peter. 2015. <span>“Good Colour Maps: How to Design Them.”</span> <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
+Kovesi, Peter. 2015. <em>Good Colour Maps: How to Design Them</em>. <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
 </div>
 <div id="ref-LandiniColor2011" class="csl-entry" role="listitem">
 Landini, Gabriel, and D Giles Perryer. 2011. <span>“More on Color Blindness.”</span> <em>Nature Methods</em> 8 (11): 891–91. <a href="https://doi.org/10.1038/nmeth.1737">https://doi.org/10.1038/nmeth.1737</a>.
 </div>
 <div id="ref-NunezOptimizing2018" class="csl-entry" role="listitem">
-Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> Edited by Jesús Malo. <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
+Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
 </div>
 <div id="ref-PetroffColor2024" class="csl-entry" role="listitem">
-Petroff, Matthew A. 2024. <span>“Accessible Color Sequences for Data Visualization.”</span> <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
+Petroff, Matthew A. 2024. <em>Accessible Color Sequences for Data Visualization</em>. <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
 </div>
 <div id="ref-WongPoints2011" class="csl-entry" role="listitem">
 Wong, Bang. 2011. <span>“Points of View: Color Blindness.”</span> <em>Nature Methods</em> 8 (6): 441–41. <a href="https://doi.org/10.1038/nmeth.1618">https://doi.org/10.1038/nmeth.1618</a>.
