@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -156,6 +191,9 @@ div.csl-indent {
   <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
   <li><a href="#typst" id="toc-typst" class="nav-link" data-scroll-target="#typst">Typst</a></li>
   <li><a href="#an-rss-feed-reader" id="toc-an-rss-feed-reader" class="nav-link" data-scroll-target="#an-rss-feed-reader">An RSS feed reader</a></li>
+  <li><a href="#shiny" id="toc-shiny" class="nav-link" data-scroll-target="#shiny">Shiny</a></li>
+  <li><a href="#a-general-purpose-editor" id="toc-a-general-purpose-editor" class="nav-link" data-scroll-target="#a-general-purpose-editor">A general purpose editor</a></li>
+  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux">Linux</a></li>
   <li><a href="#marimo-over-jupyter" id="toc-marimo-over-jupyter" class="nav-link" data-scroll-target="#marimo-over-jupyter">Marimo over Jupyter</a></li>
   </ul>
 </nav>
@@ -187,6 +225,12 @@ div.csl-indent {
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 27, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -263,13 +307,52 @@ div.csl-indent {
 </div>
 <p>Given how important keeping up with current developments in the field is for a researcher, an RSS feed reader (and there are many) makes the aggravating task of checking for new papers effortless, and greatly increases one’s exposure to current research.</p>
 </section>
+<section id="shiny" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="shiny">Shiny</h2>
+<p><a href="https://shiny.posit.co/">Shiny</a> is an interactive and reactive dashboard/web app package that came out of the R community like Quarto (it is now also available for Python).</p>
+<p>For most academics, in addition to exploring, analyzing, and visualizing your data and results by yourself, you will have to present and discuss your results with your colleagues. Most of the time such discussions take place with an opened PDF document or a couple of slides with plots. It is also not uncommon for someone to ask a question where the only answer is:</p>
+<p>“I’ll go back and check.”,</p>
+<p>even when you already have the data, because opening your favorite programming language and plotting it will take too long, leaving everyone in awkward silence while you embarrass yourself with your programming skills.</p>
+<p>Here’s the solution: instead of static plots, use Shiny to present your results<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>!</p>
+<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;Or any other interactive dashboard app, e.g., there’s <a href="https://plotly.com/dash/">Dash</a> by Plotly, or <a href="https://panel.holoviz.org/">Panel</a> by HoloViz, or heck even Jupyter widgets.</p></div></div><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../media/posts/tools-academic/shiny_demo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="A Shiny web app with interactive and reactive elements I made for a class discussing the logistic map. See more examples here."><img src="../media/posts/tools-academic/shiny_demo.png" class="img-fluid figure-img" alt="A Shiny web app with interactive and reactive elements I made for a class discussing the logistic map. See more examples here."></a></p>
+<figcaption>A Shiny web app with interactive and reactive elements I made for a class discussing the <a href="https://en.wikipedia.org/wiki/Logistic_map">logistic map</a>. See more examples <a href="https://shiny.posit.co/r/gallery/">here</a>.</figcaption>
+</figure>
+</div>
+<p>Shiny is quite powerful. You can even <a href="https://shiny.posit.co/r/gallery/widgets/file-upload/">let user upload say a CSV file</a> and let them <a href="https://shiny.posit.co/r/gallery/application-layout/plot-plus-three-columns/">choose which columns of the uploaded data to plot</a>. If you find the code too boilerplate-ish, you can also write <a href="https://quarto.org/docs/interactive/shiny/">Shiny in Quarto</a>, easily adding Markdown and LaTeX maths into your Shiny app.</p>
+<p>As an interactive and reactive app, Shiny requires a server to run, i.e., typically your own laptop while presenting. But it is also possible to publish your Shiny app online on <a href="https://www.shinyapps.io/">shinyapps.io</a> or <a href="https://connect.posit.cloud/">Posit Connect</a><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;Both of which are free with limitations.</p></div></div></section>
+<section id="a-general-purpose-editor" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="a-general-purpose-editor">A general purpose editor</h2>
+<p>Typically, one uses different <a href="https://en.wikipedia.org/wiki/Integrated_development_environment">integrated development environments</a> (IDEs) for different purposes, e.g., <a href="https://texstudio.org/">TeXstudio</a> or <a href="https://www.overleaf.com/">Overleaf</a> for LaTeX, <a href="https://posit.co/downloads">RStudio</a> for R, <a href="https://www.spyder-ide.org/">Spyder</a> or <a href="https://jupyter.org/">Jupyter</a> for Python, etc.</p>
+<p>However, there are general purpose editors that can function as IDEs for almost anything. One popular example is <a href="https://code.visualstudio.com/">VS Code</a><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>, which tops the <a href="https://survey.stackoverflow.co/2025/technology#1-dev-id-es">Stack Overflow survey</a> as the most used editor almost every year.</p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;VS Code is what most people starts with, but use <a href="https://vscodium.com/">VSCodium</a> if you want VS Code without Microsoft’s telemetry and tracking.</p></div><div id="fn12"><p><sup>12</sup>&nbsp;As shown in the screenshot/video examples for Pandoc, Quarto, and Typst above</p></div></div><p>Other well-known editors that comes up in most online discourse are probably <a href="https://www.sublimetext.com/">Sublime Text</a>, <a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">Vim</a>/<a href="https://neovim.io/">Neovim</a>, and <a href="https://www.gnu.org/software/emacs/">Emacs</a>. Personally, I am using <a href="https://helix-editor.com/">Helix</a><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> and Emacs.</p>
+<p>Having a single general purpose editor makes entry to new programming languages or markup languages easy; why learn different tools for different programming languages when they are just plain text at the end of the day? There’s no need to download a new program, just start writing in what you are already comfortable with.</p>
+<p>The editor will then be just another general purpose tool on your computer that you are already comfortable with, just like your file explorer, browser, image/video viewer, notepad etc., improving your productivity.</p>
+<p>This is even more true for a Linux user, who might write simple shell scripts or edit config files frequently. This is partly why there are very enthusiastic Vim/Neovim and Emacs communities in the Linux space<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn13"><p><sup>13</sup>&nbsp;Here are some examples of people being enthusiastic about their editors. Vim/Neovim: <a href="https://www.youtube.com/watch?v=AAkrmfkC1L4">link</a>, <a href="https://www.youtube.com/watch?v=ST7vnfKjfvY">link</a>, <a href="https://www.youtube.com/watch?v=DOtM1mrWjUo">link</a>, <a href="https://www.youtube.com/watch?v=RmEtH5FQs28">link</a>. Emacs: <a href="https://www.youtube.com/watch?v=DMbrNhx2zWQ">link</a>, <a href="https://www.youtube.com/watch?v=urcL86UpqZc">link</a>.</p></div></div><p>Speaking of Linux…</p>
+</section>
+<section id="linux" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="linux">Linux</h2>
+<p>Free<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> and open source, highly customizable, actually respect you instead of shoving products and ads down your throat, actually own and control your tools instead of the other way round, doesn’t spy on you, no bloatware with random preinstalled programs that you don’t care about.</p>
+<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;both in terms of <a href="https://en.wikipedia.org/wiki/Free_software">freedom</a> and price.</p></div></div><p>Honestly, there are so many good reasons to use Linux. But on a more practical level, Linux open the doors to more efficient and productive workflows.</p>
+<p>Perhaps you might find it hard to get started with all the tools that we talked about above. Going to each of their website, look for a download button, running the .exe to install it, figure out where and how you should be writing the Markdown or Typst codes, figure out how to compile it from a command prompt, only to see an error because the command prompt is not at the same directory as your file etc.</p>
+<p>All these complications is one of the reason why most people use Overleaf instead of having a local installation of LaTeX. More specifically, I believe the main roadblock seems to be the lack of a good general purpose editor and an accessible terminal in the typical workflow of Windows users.</p>
+<p>Furthermore, installation of programs is extremely easy in most Linux <a href="https://en.wikipedia.org/wiki/Linux_distribution">distro</a>. For example, here’s how I install Firefox, Pandoc, Typst, LaTeX, R, and Julia all in one go in <a href="https://archlinux.org/">Arch Linux</a><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;Want to use C/C++ or Python? Guess what, they are already preinstalled in almost all Linux distros.</p></div></div><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> firefox pandoc typst texlive r julia</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and to update all programs installed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-Syu</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ultimately, I find the accessibility and efficiency in installing and working with various programs an important factor in whether academics try, utilize, and tinker with tools that can improve their workflow and productivity, and Linux is the gateway to these<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn16"><p><sup>16</sup>&nbsp;You might be worried about Windows-exclusive software not working on Linux. These do exists, but I find the lost of Linux-exclusive software on a Windows machine worse, e.g., my PDF viewer <a href="https://github.com/pwmt/zathura">zathura</a>, bibliography manager <a href="https://codeberg.org/lukeflo/bibiman">bibiman</a>, terminal emulator <a href="https://codeberg.org/dnkl/foot">foot</a>, and window compositor <a href="https://github.com/niri-wm/niri">niri</a>.</p></div></div><p>You might not be convinced by this. But imagine having to do your work on a smart phone instead of a PC. The lost accessibility to software and the inefficiency in working with them will greatly affect how you work as compared to on a PC. The transition from Windows to Linux will feel the same for an experienced Linux user.</p>
+</section>
 <section id="marimo-over-jupyter" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="marimo-over-jupyter">Marimo over Jupyter</h2>
 <p>Here’s a bonus one.</p>
-<p>I take the somewhat popular yet controversial opinion that Jupyter notebooks are a scourge to scientific research. There are some annoying issues, such as how it’s saved as JSON instead of plain Python files, and how it teaches bad programming practices and habits to scientists. The latter can easily compound with carelessness to lead to invisible bugs and mistakes that produce wrong results, which might even end up in published research<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>!</p>
-<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;I haven’t encounter many researchers who actually write <a href="https://en.wikipedia.org/wiki/Unit_testing">unit tests</a> for their spaghetti code function.</p></div></div><p>But much more troubling is the fact that Jupyter notebooks increase the chances of making these mistakes due to the creation of hidden states. In fact, a study showed that out of over 800 000+ valid notebooks on GitHub, only ~24% are executed without errors, and only ~4% produced the same results <span class="citation" data-cites="PimentelJupyter2019">(<a href="#ref-PimentelJupyter2019" role="doc-biblioref">Pimentel et al. 2019</a>)</span>.</p>
-<p>Perhaps this warrant a separate post<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, but in short, if one wants to present some results with their corresponding codes, use Quarto, and if one really require a notebook environment, use <a href="https://marimo.io/">Marimo</a>, an alternative to Jupyter notebooks (only for Python).</p>
-<div class="no-row-height column-margin column-container"><div id="fn10"><p><sup>10</sup>&nbsp;For now, take a look at <a href="https://www.youtube.com/watch?v=7jiPeIFXb6U">this talk</a> from JupyterCon 2018 to understand some of the problems with Jupyter notebooks, as well as this <a href="https://docs.marimo.io/faq/#what-problems-does-marimo-solve">FAQ from Marimo</a>.</p></div></div><p>The main difference between Marimo notebooks and Jupyter notebooks is the fact that the former is <em>reactive</em>. What this means is that Marimo notebooks always run in the correct order and always rerun the entire notebook on edits, eliminating the hidden states that plagues Jupyter notebooks.</p>
+<p>I take the somewhat popular yet controversial opinion that Jupyter notebooks are a scourge to scientific research. There are some annoying issues, such as how it’s saved as JSON instead of plain Python files, and how it teaches bad programming practices and habits to scientists. The latter can easily compound with carelessness to lead to invisible bugs and mistakes that produce wrong results, which might even end up in published research<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>!</p>
+<div class="no-row-height column-margin column-container"><div id="fn17"><p><sup>17</sup>&nbsp;I haven’t encounter many researchers who actually write <a href="https://en.wikipedia.org/wiki/Unit_testing">unit tests</a> for their spaghetti code function.</p></div></div><p>But much more troubling is the fact that Jupyter notebooks increase the chances of making these mistakes due to the creation of hidden states. In fact, a study showed that out of over 800 000+ valid notebooks on GitHub, only ~24% are executed without errors, and only ~4% produced the same results <span class="citation" data-cites="PimentelJupyter2019">(<a href="#ref-PimentelJupyter2019" role="doc-biblioref">Pimentel et al. 2019</a>)</span>.</p>
+<p>Perhaps this warrant a separate post<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>, but in short, if one wants to present some results with their corresponding codes, use Quarto, and if one really require a notebook environment, use <a href="https://marimo.io/">Marimo</a>, an alternative to Jupyter notebooks (only for Python).</p>
+<div class="no-row-height column-margin column-container"><div id="fn18"><p><sup>18</sup>&nbsp;For now, take a look at <a href="https://www.youtube.com/watch?v=7jiPeIFXb6U">this talk</a> from JupyterCon 2018 to understand some of the problems with Jupyter notebooks, as well as this <a href="https://docs.marimo.io/faq/#what-problems-does-marimo-solve">FAQ from Marimo</a>.</p></div></div><p>The main difference between Marimo notebooks and Jupyter notebooks is the fact that the former is <em>reactive</em>. What this means is that Marimo notebooks always run in the correct order and always rerun the entire notebook on edits, eliminating the hidden states that plagues Jupyter notebooks.</p>
 <p>If a code cell defining a variable is deleted, but the variable is used elsewhere, an error will be thrown. On the other hand, Jupyter notebooks continue to sneakily use that variable even when the programmer meant to remove it from the program.</p>
 <p>A researcher should be aware of how certain shortcomings of their tools can be detrimental to their work, and should be open to finding alternatives or engage in self-improvement to eliminate them to minimize bad research outputs.</p>
 <p>For example, learning to write properly unit tested functions instead of spaghetti codes, or learning to use type hinting in Python (which has been around since version 3.5) to pair with type checkers to minimize invisible bugs caused by carelessness that can lead to wrong published results.</p>
