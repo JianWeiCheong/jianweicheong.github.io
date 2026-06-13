@@ -297,7 +297,7 @@ window.Quarto = {
 <p>What’s the best way to do this?</p>
 <p>It’s obvious that we can use a dataframe, e.g., <a href="https://pandas.pydata.org/">pandas</a>, <a href="https://pola.rs/">polars</a>, <a href="https://dataframes.juliadata.org/">DataFrames.jl</a> etc., so that we can store all the input parameters and output values into a columnar format to be saved as a parquet file.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R (tidyverse)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Julia (DataFrames.jl)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Python (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Python (polars)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Python (Naive)</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R (tidyverse)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Julia (DataFrames.jl)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Python (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Python (polars)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">Python (Naive way)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -668,7 +668,7 @@ window.Quarto = {
 <section id="tidyverse-with-different-backends" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="tidyverse-with-different-backends">Tidyverse with different backends</h2>
 <p>Unfortunately, the tidyverse (using <a href="https://dplyr.tidyverse.org/">dplyr</a>/<a href="https://tidyr.tidyverse.org/">tidyr</a>) and pandas codes are actually quite slow, particularly, we are acting on <span class="math inline">100 \times 100 \times 100 = 1000000</span> rows, i.e., the number of Cartesian products for <code>x1</code>, <code>x2</code>, and <code>x3</code>.</p>
-<p>This is one of the reason why polars and <a href="https://en.wikipedia.org/wiki/DuckDB">DuckDB</a> are now getting more popular over pandas for data science in Python due to their speed.</p>
+<p>This is one of the reasons why polars and <a href="https://en.wikipedia.org/wiki/DuckDB">DuckDB</a> are now getting more popular over pandas for data science in Python due to their speed.</p>
 <p>But it’s quite a chore to convert your pandas code to polars for example: you’ll have to change <code>columns</code> to <code>schema</code>, <code>apply</code> to <code>map_rows</code>, <code>result_type='expand'</code> to <code>.unnest()</code>, <code>axis=1</code> to <code>how='horizontal'</code>, <code>query</code> to <code>filter</code>, <code>assign</code> to <code>with_columns</code> etc.</p>
 <p>What about R? There’s a <a href="https://pola-rs.github.io/r-polars/">polars package for R</a>, how hard is it to switch?</p>
 <p>Because the tidyverse workflow and syntax is such a joy to use, how about we keep using the tidyverse code, but just let it run polars in the background? That’s exactly what <a href="https://www.tidypolars.etiennebacher.com/">tidypolars</a> does!</p>
@@ -718,23 +718,23 @@ window.Quarto = {
 <div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;This reminds me of Julia’s <a href="https://sciml.ai/">SciML</a>, where different packages all works together thanks to Julia’s <a href="https://en.wikipedia.org/wiki/Multiple_dispatch">multiple dispatch</a>. Since we are talking about parallelization, another shout out to Julia is the ability to allow one to multithread their for loops just by adding the <code>Threads.@threads</code> macros in front of it, e.g., <code>Threads.@threads for x in 0:1000 ...</code>.</p></div></div><p>Here’s a little benchmark for the above codes. For more accurate benchmarks, refer to <a href="https://duckdblabs.github.io/db-benchmark/">this</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ewxyppuvjz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ewxyppuvjz table {
+<div id="csehzsqlfy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#csehzsqlfy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ewxyppuvjz thead, #ewxyppuvjz tbody, #ewxyppuvjz tfoot, #ewxyppuvjz tr, #ewxyppuvjz td, #ewxyppuvjz th {
+#csehzsqlfy thead, #csehzsqlfy tbody, #csehzsqlfy tfoot, #csehzsqlfy tr, #csehzsqlfy td, #csehzsqlfy th {
   border-style: none;
 }
 
-#ewxyppuvjz p {
+#csehzsqlfy p {
   margin: 0;
   padding: 0;
 }
 
-#ewxyppuvjz .gt_table {
+#csehzsqlfy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -760,12 +760,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_caption {
+#csehzsqlfy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ewxyppuvjz .gt_title {
+#csehzsqlfy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -777,7 +777,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#ewxyppuvjz .gt_subtitle {
+#csehzsqlfy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -789,7 +789,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#ewxyppuvjz .gt_heading {
+#csehzsqlfy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -801,13 +801,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_bottom_border {
+#csehzsqlfy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_col_headings {
+#csehzsqlfy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -822,7 +822,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_col_heading {
+#csehzsqlfy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -842,7 +842,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#ewxyppuvjz .gt_column_spanner_outer {
+#csehzsqlfy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -854,15 +854,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#ewxyppuvjz .gt_column_spanner_outer:first-child {
+#csehzsqlfy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ewxyppuvjz .gt_column_spanner_outer:last-child {
+#csehzsqlfy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ewxyppuvjz .gt_column_spanner {
+#csehzsqlfy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -874,11 +874,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#ewxyppuvjz .gt_spanner_row {
+#csehzsqlfy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ewxyppuvjz .gt_group_heading {
+#csehzsqlfy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -904,7 +904,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#ewxyppuvjz .gt_empty_group_heading {
+#csehzsqlfy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -919,15 +919,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#ewxyppuvjz .gt_from_md > :first-child {
+#csehzsqlfy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ewxyppuvjz .gt_from_md > :last-child {
+#csehzsqlfy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ewxyppuvjz .gt_row {
+#csehzsqlfy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -946,7 +946,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#ewxyppuvjz .gt_stub {
+#csehzsqlfy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -959,7 +959,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ewxyppuvjz .gt_stub_row_group {
+#csehzsqlfy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -973,15 +973,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#ewxyppuvjz .gt_row_group_first td {
+#csehzsqlfy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ewxyppuvjz .gt_row_group_first th {
+#csehzsqlfy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ewxyppuvjz .gt_summary_row {
+#csehzsqlfy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -991,16 +991,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ewxyppuvjz .gt_first_summary_row {
+#csehzsqlfy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_first_summary_row.thick {
+#csehzsqlfy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ewxyppuvjz .gt_last_summary_row {
+#csehzsqlfy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1010,7 +1010,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_grand_summary_row {
+#csehzsqlfy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1020,7 +1020,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ewxyppuvjz .gt_first_grand_summary_row {
+#csehzsqlfy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1030,7 +1030,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_last_grand_summary_row_top {
+#csehzsqlfy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1040,11 +1040,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_striped {
+#csehzsqlfy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ewxyppuvjz .gt_table_body {
+#csehzsqlfy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1053,7 +1053,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_footnotes {
+#csehzsqlfy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1067,7 +1067,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_footnote {
+#csehzsqlfy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1076,7 +1076,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ewxyppuvjz .gt_sourcenotes {
+#csehzsqlfy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1090,7 +1090,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#ewxyppuvjz .gt_sourcenote {
+#csehzsqlfy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1098,72 +1098,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#ewxyppuvjz .gt_left {
+#csehzsqlfy .gt_left {
   text-align: left;
 }
 
-#ewxyppuvjz .gt_center {
+#csehzsqlfy .gt_center {
   text-align: center;
 }
 
-#ewxyppuvjz .gt_right {
+#csehzsqlfy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ewxyppuvjz .gt_font_normal {
+#csehzsqlfy .gt_font_normal {
   font-weight: normal;
 }
 
-#ewxyppuvjz .gt_font_bold {
+#csehzsqlfy .gt_font_bold {
   font-weight: bold;
 }
 
-#ewxyppuvjz .gt_font_italic {
+#csehzsqlfy .gt_font_italic {
   font-style: italic;
 }
 
-#ewxyppuvjz .gt_super {
+#csehzsqlfy .gt_super {
   font-size: 65%;
 }
 
-#ewxyppuvjz .gt_footnote_marks {
+#csehzsqlfy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ewxyppuvjz .gt_asterisk {
+#csehzsqlfy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ewxyppuvjz .gt_indent_1 {
+#csehzsqlfy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ewxyppuvjz .gt_indent_2 {
+#csehzsqlfy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ewxyppuvjz .gt_indent_3 {
+#csehzsqlfy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ewxyppuvjz .gt_indent_4 {
+#csehzsqlfy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ewxyppuvjz .gt_indent_5 {
+#csehzsqlfy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ewxyppuvjz .katex-display {
+#csehzsqlfy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ewxyppuvjz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#csehzsqlfy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1192,7 +1192,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="Language">Python</td>
-<td class="gt_row gt_left" headers="Package">Naive</td>
+<td class="gt_row gt_left" headers="Package">Naive way</td>
 <td class="gt_row gt_right" headers="Median (seconds)">0.8925</td>
 <td class="gt_row gt_right" headers="Standard deviation">0.01650</td>
 </tr>
@@ -1275,14 +1275,14 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Quantum object: dims=[[2, 2], [2, 2]], shape=(4, 4), type='oper', dtype=Dense, isherm=True
 Qobj data =
-[[ 0.22612993+0.j         -0.01875093-0.11907119j -0.07325729-0.00612975j
-   0.16134078-0.03234316j]
- [-0.01875093+0.11907119j  0.15167522+0.j          0.01315867+0.03342269j
-  -0.07587032+0.01727456j]
- [-0.07325729+0.00612975j  0.01315867-0.03342269j  0.20168422+0.j
-  -0.07189708+0.02630134j]
- [ 0.16134078+0.03234316j -0.07587032-0.01727456j -0.07189708-0.02630134j
-   0.42051063+0.j        ]]
+[[ 0.23766069+0.00000000e+00j -0.12235266-1.04414855e-01j
+   0.1342473 -3.25719171e-02j  0.01416946+8.07667926e-02j]
+ [-0.12235266+1.04414855e-01j  0.36023742+0.00000000e+00j
+  -0.09647204+1.98926694e-01j -0.24404032-3.03698913e-02j]
+ [ 0.1342473 +3.25719171e-02j -0.09647204-1.98926694e-01j
+   0.15602805-6.93889390e-18j  0.0481154 +1.36967243e-01j]
+ [ 0.01416946-8.07667926e-02j -0.24404032+3.03698913e-02j
+   0.0481154 -1.36967243e-01j  0.24607384+0.00000000e+00j]]
  signature: (other: 'Qobj') -&gt; 'Qobj'</code></pre>
 </div>
 </div>
@@ -1351,7 +1351,7 @@ U = e^{-iH_\text{int} t},
 <section id="but-llm" class="level1 page-columns page-full">
 <h1>But LLM?</h1>
 <p>There are some growing sentiments that it no longer matters what language or package one uses, as one can simply ask an LLM to write the code for you.</p>
-<p>Here, I’ll state two claims that I believe applies to the current state of LLM at the time of writing (June 2026), that leads to corollaries on why I think the language still matters.</p>
+<p>Here, I’ll make two claims that I believe applies to the current state of LLM at the time of writing (June 2026), that leads to corollaries on why I think the language still matters.</p>
 <ol type="1">
 <li><p>Current LLMs are not perfect, and can still generate bug-ridden codes.</p></li>
 <li><p>Different from software development, in scientific computing and data analysis, bugs can be invisible by simply manifesting as plots or values that are incorrect.</p></li>
