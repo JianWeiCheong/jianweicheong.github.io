@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/r-heart.html",
       "/posts/tools-academic.html",
       "/posts/typst-lilaq.html",
       "/posts/colormaps.html",
@@ -15,6 +16,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/r-heart.html",
       "/posts/tools-academic.html",
       "/posts/typst-lilaq.html",
       "/posts/colormaps.html",
