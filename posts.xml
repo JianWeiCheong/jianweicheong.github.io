@@ -9,8 +9,220 @@
 <link>https://jianweicheong.codeberg.page/posts.html</link>
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
-<generator>quarto-1.9.38</generator>
-<lastBuildDate>Fri, 12 Jun 2026 16:00:00 GMT</lastBuildDate>
+<generator>quarto-1.9.37</generator>
+<lastBuildDate>Wed, 05 Aug 2026 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>Spooky action at a distance is NOT about entanglement</title>
+  <link>https://jianweicheong.codeberg.page/posts/spooky-action.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>If you look up the phrase “<em>spooky action at a distance</em>”, be it on YouTube, Google, or an LLM, you’ll most likely get the answer that it refers to the phenomenon of <em><a href="https://en.wikipedia.org/wiki/Quantum_entanglement">quantum entanglement</a></em>.</p>
+<p>There are a myriad of YouTube videos or Reddit comments, where when explaining “spooky action at a distance” to the general public, people default to the standard pop-sci explanation that concerns entanglement.</p>
+<p>It goes something like this:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Two quantum particles are somehow made to be correlated with each other, e.g., if one is <em>spin up</em>, the other must be <em>spin down</em>.</li>
+<li>Emphasize that but each of them are neither <em>spin up</em> nor <em>spin down</em> before “observation”, and are in a “superposition” instead.</li>
+<li>The two particles are then separated by a great distance.</li>
+<li>Next, bewilder your audience by claiming that when you “observe” one particle, and say it turns out to be <em>spin up</em>, the other particle must instantly becomes <em>spin down</em>, despite the great distance.</li>
+<li>Finally, claim that this is because the two particles are entangled, and that this entanglement connects the two particles across the great distance.</li>
+</ol>
+</blockquote>
+<p>For the learned reader however, these 5 steps translate to:</p>
+<ol type="1">
+<li>Two particles are entangled,</li>
+<li>and entangled particles are in a superposition. <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D(%7C%5Cuparrow%5Cdownarrow%5Crangle%20+%20%7C%5Cdownarrow%5Cuparrow%5Crangle)%0A"></li>
+<li>Measurement leads to the <strong><em>instantaneous collapse of the wavefunction</em></strong> to the measurement basis (typically the basis states that are in superposition). <img src="https://latex.codecogs.com/png.latex?%0A%7C%5Cuparrow%5Cdownarrow%5Crangle%20%5Cquad%20%5Ctext%7Bor%7D%20%5Cquad%20%7C%5Cdownarrow%5Cuparrow%5Crangle%0A"></li>
+</ol>
+<p>Wait a minute… did I just say “<em>instantaneous collapse of the wavefunction</em>”?</p>
+<p>As in the phenomenon that physics undergraduates learn that applies to all wavefunctions during a measurement, <strong>with or without</strong> entanglement? You know, the one where you have to apply the <em><a href="https://en.wikipedia.org/wiki/Born_rule">Born rule</a></em> suddenly, and to update the wavefunction by hand manually instead of using the <em><a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation">Schrödinger equation</a></em> without understanding why? The one that is a <strong>separate phenomenon from entanglement</strong>? <img src="https://latex.codecogs.com/png.latex?%0A%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%7C%5Cuparrow%5Crangle%20+%20%7C%5Cdownarrow%5Crangle%20%5Cquad%20%5Clongrightarrow%20%5Cquad%20%7C%5Cuparrow%5Crangle%20%5Cquad%20%5Ctext%7Bor%7D%20%5Cquad%20%7C%5Cdownarrow%5Crangle%0A"></p>
+<p>In fact, this pop-sci description always consists of two parts: the entanglement of the two particles, followed by the measurement of one particle. Quite plainly, the magic happens in the second step, the measurement process, and does not happen in the first step with just entanglement by itself.</p>
+<p>So what is happening? Why do so many people get it wrong<sup>1</sup>?</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;In the “<a href="https://en.wikipedia.org/wiki/Educational_entertainment">edutainment</a>” space, I’ve only came across two instances where this was explained correctly: <a href="https://www.youtube.com/@veritasium">Veritasium</a> and <a href="https://en.wikipedia.org/wiki/Sabine_Hossenfelder">Sabine Hossenfelder</a>.</p></div></div><p>You see, the phrase “<em>spooky action at a distance</em>” is a pop-sci term, and rarely or never comes up in the standard textbooks of quantum mechanics. As such, the standard pop-sci description of it has dominated and spread like a virus into the minds of physicists and physics-enthusiasts alike. We would just default to parrotting the same things without thinking too much into it.</p>
+<p>But any physics undergraduate who paused for a moment, and thought about it for awhile, should have realized that it refers to the deeper problem/phenomenon of a measurement rather than entanglement.</p>
+<p>And it is a shame that this deeper problem is often neglected or conflated with entanglement despite its deep and philosophical implications that concerns free will and the nature of reality.</p>
+<section id="but-what-about-einsteins-epr-paper" class="level1 page-columns page-full">
+<h1>But what about Einstein’s EPR paper?</h1>
+<p>Let’s look at the timeline:</p>
+<ul>
+<li><p>1927: Einstein first raised his issues with quantum mechanics at the fifth Solvey conference, arguing that it is incomplete. He used the term “peculiar mechanism of action at a distance” <span class="citation" data-cites="BacciagaluppiQuantum2009">(Bacciagaluppi and Valentini 2009, 485–87)</span>.</p></li>
+<li><p>1935: Einstein, Podolsky, and Rosen published the famous <a href="https://en.wikipedia.org/wiki/Einstein%E2%80%93Podolsky%E2%80%93Rosen_paradox">EPR paper</a> that introduced quantum entanglement. There is no mention of the phrase “action at a distance” in the paper <span class="citation" data-cites="EinsteinEPR1935">(Einstein, Podolsky, and Rosen 1935)</span>.</p></li>
+<li><p>1947: In a letter to Max Born where Einstein maintains his position that quantum mechanics is incomplete, the term “spooky actions at a distance” was used and popularized <span class="citation" data-cites="BornBornEinstein1971">(Born et al. 1971, 157–58)</span>.</p></li>
+</ul>
+<p>It seems to me that the Einstein’s “action at a distance” problem with quantum mechanics predates the concept of quantum entanglement, and that the case of the two entangled particles in the EPR paper that everyone parrots now is simply one example that demonstrates the issue.</p>
+<p>Furthermore, in the context of the letters to Max Born in 1947:</p>
+<blockquote class="blockquote">
+<p>“I cannot seriously believe in it because the theory cannot be reconciled with the idea that physics should represent a reality in time and space, free from spooky actions at a distance.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“But I am quite convinced that someone will eventually come up with a theory whose objects, connected by laws, are not probabilities but considered facts, as used to be taken for granted until quite recently.”</p>
+</blockquote>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>On an unrelated note, it blows my mind how difficult it is to find an accessible copy of this document, despite it being 70 years old and so well-known.</p>
+</div></div><p>It seems clear to me that Einstein’s problems with “spooky actions at a distance” concerns the nature of “realism” and it’s contradiction with “locality”, rather than entanglement.</p>
+<p>This should be clear if we look at his 1927 example at the fifth Solvey conference.</p>
+<section id="einsteins-1927-example-without-entanglement" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="einsteins-1927-example-without-entanglement">Einstein’s 1927 example without entanglement</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/spooky-action/einstein1927.png" class="img-fluid figure-img"></p>
+<figcaption>Reproduced from <span class="citation" data-cites="BacciagaluppiQuantum2009">Bacciagaluppi and Valentini (2009)</span>, pp.&nbsp;486.</figcaption>
+</figure>
+</div>
+<p>I’ll paraphrase a little:</p>
+<blockquote class="blockquote">
+<p>Consider sending a single particle through a single slit that lands on the (hemisphere) screen. The particle will diffract through the slit, with a position wavefunction <img src="https://latex.codecogs.com/png.latex?%5CPsi(x)"> that spreads out due to the diffraction. However, when the particle lands on the screen and is detected at just a single position <img src="https://latex.codecogs.com/png.latex?x'">, quantum mechanics dictates that the wavefunction <img src="https://latex.codecogs.com/png.latex?%5CPsi(x)"> will collapse to just a single position that is localized at <img src="https://latex.codecogs.com/png.latex?x'"> (a Dirac delta), with probability <img src="https://latex.codecogs.com/png.latex?%7C%5CPsi(x')%7C%5E2">.</p>
+</blockquote>
+<p>This is just standard textbook quantum mechanics.</p>
+<blockquote class="blockquote">
+<p>What this means however, is that when the particle is detected at position <img src="https://latex.codecogs.com/png.latex?x'"> on the screen, there is a “peculiar mechanism of action at a distance” that instantaneously prevents the particle from being detected at any other point on the screen (i.e., collapsing the wavefunction), regardless of its distance from <img src="https://latex.codecogs.com/png.latex?x'">.</p>
+</blockquote>
+<p>One might imagine that the left and the right ends of the (hemisphere) screen are a great distance from each other. Right before the particle’s wavefunction hits the screen, the wavefunction exists on both the left and the right ends. But the instant it hits the screen, say at the right end, instantaneously, the wavefunction that existed at the left end of the screen must disappears under some “peculiar mechanism of action at a distance”.</p>
+<p>Einstein argues that if we take the viewpoint that the wavefunction <img src="https://latex.codecogs.com/png.latex?%5CPsi(x)"> is indeed a complete description of the particle’s position, then we must consider that the particle is potentially present at all <img src="https://latex.codecogs.com/png.latex?x"> where <img src="https://latex.codecogs.com/png.latex?%7C%5CPsi(x)%7C%5E2"> is nonzero (which can span a great distance), and give up on locality when it ends up appearing at just a single <img src="https://latex.codecogs.com/png.latex?x'">.</p>
+<p>Einstein instead prefers the viewpoint that the wavefunction <img src="https://latex.codecogs.com/png.latex?%5CPsi(x)"> represents just a probabilistic ensemble due to our lack of knowledge (of hidden variables), and that in reality the particle has just a single <em>actual</em> path. In other words, the wavefunction <img src="https://latex.codecogs.com/png.latex?%5CPsi(x)"> (and thus quantum mechanics) is not a complete description of the single particle.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>These two different viewpoints where we either give up locality or the ontic existence of the path of the particle is where the discussions regarding “<a href="https://en.wikipedia.org/wiki/Bell's_theorem">local realism</a>” stems from.</p>
+</div></div><p>This example touches on the main issue of “spooky action at a distance” (but without any mention of entanglement), where the wavefunction is “updated” instantaneously regardless of distances when it is measured at just one location.</p>
+</section>
+</section>
+<section id="hardys-modern-example" class="level1 page-columns page-full">
+<h1>Hardy’s modern example</h1>
+<p>We have come a long way since then, and there are now many examples that demonstrate this intuitively and formally without the long-winded explanation about entanglement.</p>
+<p>Here’s an example provided by <a href="https://en.wikipedia.org/wiki/Lucien_Hardy">Lucien Hardy</a> <span class="citation" data-cites="HardyEPR1995">(Hardy 1995)</span><sup>2</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;I cheated a little here, as to formalize this example mathematically, the concept of entanglement is still required. The detection of a photon in one path is entangled to a “vacuum mode” at the other path, i.e., a non-detection. But I’ll argue that in terms of the intuitive understanding of the setup, no mention of entanglement is necessary.</p></div></div><div id="fig-hardy" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hardy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/spooky-action/hardy.svg" class="img-fluid figure-img"></p>
+<figcaption>Before measurement.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/spooky-action/hardy2.svg" class="img-fluid figure-img"></p>
+<figcaption>After measurement.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hardy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The red lines visualize the position wavefunction of the photon, where the hump represents the probability of finding the photon. Before measurement, it spans both paths, but once the detector measured the photon to be found in path 1, it must collapses at path 2 even if it is a great distance away.
+</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<ol type="1">
+<li>Send a single photon to a beam splitter.</li>
+<li>The beam splitter has a 50% chance of letting the photon pass through, and a 50% chance of deflecting the photon to another path.</li>
+<li>The single photon is now in a superposition of two paths, and we can let the photon propagate as far as we want down the two paths, so that the two paths are separated by a great distance.</li>
+<li>Supposed we measure the photon in path 1 using a detector, and found it to be in path 1.</li>
+<li>Quantum mechanics dictates that instantaneously, the “potential” photon in path 2 must disappears, regardless of the great distance between the two paths, such that a detector at path 2 can now never detect the photon at path 2.</li>
+</ol>
+</blockquote>
+<p>Additionally, if instead we were to remove the detector at the very last minute before the photon would have hit the detector in path 1, then a detector at path 2 can still potentially detect the photon at path 2, as though like our choice of putting the detector in path 1 affects what happens in path 2 a great distance away.</p>
+<p>Hardy took Redhead’s definition of locality of <span class="citation" data-cites="RedheadIncompleteness1987">(Redhead 1987)</span>: “elements of physical reality pertaining to one system cannot be affected by measurements performed ‘at-a-distance’ on another system.”</p>
+<p>If we assume that the photon’s paths down either path 1 or path 2 are “ontologically real”, then our action of putting a detector at path 1 somehow affects the “reality” in path 2, regardless of the great distance separating them, i.e., we have to give up on locality.</p>
+<section id="a-more-cartoonish-example-with-schrödingers-cat" class="level2">
+<h2 class="anchored" data-anchor-id="a-more-cartoonish-example-with-schrödingers-cat">A more cartoonish example with Schrödinger’s cat</h2>
+<p>Since the <a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat">Schrödinger’s cat thought experiment</a> is quite well-known among the general public, perhaps augmenting it to explain the underlying issue might be the way to go.</p>
+<p>The original Schrödinger’s cat thought experiment goes like this:</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li>A cat is kept in a box that is isolated from the rest of the world.</li>
+<li>In the box is a vial of poison gas that is rigged to be released to kill the cat depending on the measurement outcome of a quantum system that has a 50% chance of occurring (typically detecting a radioactive decay that has a 50% chance of decaying).</li>
+<li>Because of this, before opening the box to the outside world, the cat is in a quantum superposition of being dead and alive.</li>
+<li>But once the box is opened, the cat will collapse to a single state of either dead or alive.</li>
+</ol>
+</blockquote>
+<p>Consider instead that if the vial of poison did not release, instead of simply leaving the cat alive, a trap door opens beneath the cat, dropping it into an underground tunnel that connects to your neighbor’s house.</p>
+<p>The bored cat can then go through the long tunnel and enters your neighbor’s house, in which it will take a nap on the couch.</p>
+<p>Now, before opening the box in your house to check for the cat, the cat is in a superposition of being dead in the box locally in your house, or alive and asleep some distance away in your neighbor’s house.</p>
+<p>So if you were to open the box to check, quantum mechanics dictates that instantaneously, the action that you performed locally in your house, somehow affects what happens in your neighbor’s house despite that it is a distance away.</p>
+<p>This is the “spooky action at a distance”.</p>
+<p>The state of the cat spans a great distance between the two houses, but somehow changes instantaneously <em>everywhere</em> based on actions performed only locally.</p>
+</section>
+</section>
+<section id="so-where-are-we-at-now" class="level1 page-columns page-full">
+<h1>So where are we at now?</h1>
+<p>One reason this <em><a href="https://en.wikipedia.org/wiki/Measurement_problem">measurement problem</a></em> is often ignored is because there is already a mainstream interpretation that physicists learn in textbooks<sup>3</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Of course, there is a zoo of interpretations of quantum mechanics, the most well-known of which is the <em><a href="https://en.wikipedia.org/wiki/Many-worlds_interpretation">many-worlds interpretation</a></em>.</p></div></div><p>This is the regnant <a href="https://en.wikipedia.org/wiki/Copenhagen_interpretation">Copenhagen interpretation</a>, where it is accepted that there is indeed no “real” existence of the cat at either houses before measurement, and that we just have to accept the manual updating of the collapse of the wavefunction by hand.</p>
+<p>To quote Wikipedia: “no truth can be attributed to an object except according to the results of its measurement”. In other words, it makes little sense to ask why a measurement at your house can affect the “reality” at your neighbor’s house, if we accept that there is no “truth” statement that can be made about a cat at your neighbor’s house before measurement in the first place.</p>
+<p>Sometimes, this interpretation manifests as the students learning that the wavefunction is simply a “probability wave” describing the position of the particle, and has no real existence until measurement. This of course runs the risk of conflating with Einstein’s preferred view that it is only a probabilistic description because of our lack of information (of hidden variables)<sup>4</sup>, but I guess students are typically more concerned with being able to solve an exam problem rather than the philosophical aspects.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;The real answer is that we just don’t know what the wavefunction is physically, or that it simply is its own definition without any analog for our intuition.</p></div></div></section>
+<section id="appendix" class="level1 page-columns page-full">
+<h1>Appendix</h1>
+<section id="but-entanglement-is-still-a-connection-across-distances-right" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="but-entanglement-is-still-a-connection-across-distances-right">But entanglement is still a connection across distances right?</h2>
+<p>Not really.</p>
+<p>Entanglement is simply correlations, and correlations, once created, can be maintained over great distances, thus nonlocal, regardless if it is quantum or classical. Correlations are not connections.</p>
+<p>Indeed, if we have two entangled particles, <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B">, and if we were to do some operation to <img src="https://latex.codecogs.com/png.latex?A">, the other particle <img src="https://latex.codecogs.com/png.latex?B"> will NOT be affected. What will happen instead is that the correlations/entanglement between them will weaken as we just perturbed our particle <img src="https://latex.codecogs.com/png.latex?A"> away from its initial state that was much more correlated/entangled with <img src="https://latex.codecogs.com/png.latex?B">.</p>
+<p>Formally, we call this a <em>local operation</em>. And local operations cannot increase correlations/entanglement, nor can it affect the other particle that we did not perform the operation on.</p>
+<p>In fact, the intuition behind this should be quite straightforward, and do not detract from our everyday lives.</p>
+<p>For example, supposed if we print out 2 copies of a picture, and give each to Alice and Bob. Since the pictures are the same, they are correlated.</p>
+<p>Now, Alice can draw something on her own copy of the picture, but doing so will inevitably make her picture different from Bob’s, i.e., correlations must decrease.</p>
+<p>The only way to increase the correlation, is for Alice and Bob to communicate, and draw on their copies together in an agreed upon way, i.e., drawing the same thing<sup>5</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Note that this method can only increase classical correlations, and not entanglement (quantum correlations). Formally, this is called <a href="https://en.wikipedia.org/wiki/LOCC"><em>local operation and classical communication</em> (LOCC)</a>.</p></div></div><p>There are no connections connecting the two pictures. They are simply correlated, and Alice and Bob can make them more or less correlated by performing operations on their own copies.</p>
+<p>Instead, the “magic” behind all the things you heard about entanglement somehow being connected across distances IS the instantaneous collapse of the wavefunction, like what we have been discussing throughout this post.</p>
+<p>It is the exception that is different from just “<em>local operation</em>” (see the next part).</p>
+</section>
+<section id="so-what-exactly-is-the-weirdness-about-quantum-mechanics" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="so-what-exactly-is-the-weirdness-about-quantum-mechanics">So what exactly is the weirdness about quantum mechanics?</h2>
+<p>In my opinion, there are 3 main aspects to the measurement problem (that all relates to each other) that when put together, are the weirdest and deepest parts about quantum mechanics.</p>
+<ol type="1">
+<li>Detraction from continuous evolution (e.g., from Schrödinger equation)<sup>6</sup>.</li>
+<li>Probabilistic nature (or true randomness).</li>
+<li>Instantaneous and nonlocal influence of the wavefunction.</li>
+</ol>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;This is what makes it different from normal <em>operations</em> in the previous part.</p></div></div><p>For the most part above, we only touched upon the third aspect of the “spooky” instantaneous and nonlocal update of the wavefunction. But the first two aspects are perhaps more interesting.</p>
+<p>Whenever a quantum system evolves, it can be described by the Schrödinger equation<sup>7</sup>. The quantum system evolves deterministically and in a continuous way. In other words, given the initial state of the quantum system, we can predict and compute the state at any future time.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;I’m oversimplifying as there’s also other kinds of evolution. But the point still stands.</p></div></div><p>Now this is not anything surprising. In fact, this is the case for <strong>ALL known laws of physics</strong>.</p>
+<p>All, except a quantum measurement.</p>
+<p>A quantum measurement is the only known physics of nature, out of the thousands if not tens of thousands of laws and behaviors that spans all of nature and human disciplines, that is not deterministic and features a discontinuous change from all past states<sup>8</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;There are of course seemingly random or discontinuous behaviors in many systems in many domains, but those are due to a lack of information about the full system (like how Einstein thinks is also the case for quantum mechanics). I am instead assuming a <a href="https://en.wikipedia.org/wiki/Laplace%27s_demon">Laplace’s demon</a> situation where even if all information are accessible, we still see such a discontinuous jump from past states.</p></div><div id="fn9"><p><sup>9</sup>&nbsp;Yes, even when you roll a dice or generate a random number on your computer <a href="https://en.wikipedia.org/wiki/Lavarand">from the fluctuations of lava lamps</a>, all these are only <a href="https://en.wikipedia.org/wiki/Pseudorandomness">pseudorandom</a>, and are actually deterministic. You might also notice that either way, free will is inconsistent with the current known laws of physics, as it fits neither determinism nor randomness.</p></div></div><p>This discontinuous change in the state of a quantum system (as far as mainstream opinion goes) is the only true randomness in all of known reality<sup>9</sup>.</p>
+<p>For the computer scientists, this is as if the program of reality is written completely in <a href="https://en.wikipedia.org/wiki/Pure_function">pure deterministic functions</a> with no <a href="https://en.wikipedia.org/wiki/Side_effect_(computer_science)">side effects</a>. All functions, except a single one that somehow requires an <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">IO monad</a>.</p>
+<p>I find this to be the deepest aspect of quantum mechanics, and perhaps all of physics.</p>
+<p>Some people, like Einstein (see the letter to Max Born above), thinks that reality shouldn’t be this way, and that <em>everything</em> should indeed be deterministic and must follows from past states. It seems that the only way forward for this view is to either exploit an unclosed loophole of <a href="https://en.wikipedia.org/wiki/Bell%27s_theorem">Bell’s theorem</a> to take the view of <a href="https://en.wikipedia.org/wiki/Superdeterminism">superdeterminism</a>, or to give up on locality. For most however, this random and discontinuous nature is simply accepted or ignored under the Copenhagen interpretation.</p>
+<p>Personally, I think that there is a lot more behind the measurement problem, and I am optimistic that we will eventually uncover a deeper understanding of it one day.</p>
+
+
+
+</section>
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-BacciagaluppiQuantum2009" class="csl-entry">
+Bacciagaluppi, Guido, and Antony Valentini. 2009. <span>“Quantum Theory at the Crossroads: Reconsidering the 1927 Solvay Conference.”</span> <a href="https://arxiv.org/abs/quant-ph/0609184">https://arxiv.org/abs/quant-ph/0609184</a>.
+</div>
+<div id="ref-BornBornEinstein1971" class="csl-entry">
+Born, Max, Hedwig Born, Irene Born, and Albert Einstein. 1971. <em>The Born-Einstein Letters: Correspondence Between Albert Einstein and Max and Hedwig Born from 1916 to 1955</em>. Walker.
+</div>
+<div id="ref-EinsteinEPR1935" class="csl-entry">
+Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?”</span> <em>Physical Review</em> 47 (10): 777–80. <a href="https://doi.org/10.1103/physrev.47.777">https://doi.org/10.1103/physrev.47.777</a>.
+</div>
+<div id="ref-HardyEPR1995" class="csl-entry">
+Hardy, Lucien. 1995. <span>“The EPR Argument and Nonlocality Without Inequalities for a Single Photona.”</span> <em>Annals of the New York Academy of Sciences</em> 755 (1): 600–615. <a href="https://doi.org/10.1111/j.1749-6632.1995.tb39000.x">https://doi.org/10.1111/j.1749-6632.1995.tb39000.x</a>.
+</div>
+<div id="ref-RedheadIncompleteness1987" class="csl-entry">
+Redhead, Michael. 1987. <span>“Incompleteness, Non Locality and Realism. A Prolegomenon to the Philosophy of Quantum Mechanics.”</span> <em>Revue Philosophique de La France Et de l</em> 180 (4).
+</div>
+</div></section></div> ]]></description>
+  <category>physics</category>
+  <category>philosophy</category>
+  <guid>https://jianweicheong.codeberg.page/posts/spooky-action.html</guid>
+  <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
+</item>
 <item>
   <title>R is still where the heart is</title>
   <link>https://jianweicheong.codeberg.page/posts/r-heart.html</link>
@@ -1957,533 +2169,472 @@ font-style: inherit;">unnest_wider</span>(results)</span></code></pre></div></di
 <p>See any differences between the two codes? There isn’t any as tidytable is a drop-in replacement for tidyverse’s <a href="https://dplyr.tidyverse.org/">dplyr</a>, <a href="https://tidyr.tidyverse.org/">tidyr</a>, and <a href="https://purrr.tidyverse.org/">purrr</a>, but now uses data.table as the backend (instead of tidyverse’s <a href="https://tibble.tidyverse.org/">tibble</a> or R’s default data.frame.</p>
 <p>But what if <code>hugeQuantumSys</code> is the one taking a long time to run? How do I parallelize its run on the 1000000 rows? Simple, use <a href="https://furrr.futureverse.org/">furrr</a> instead of purrr, and replace <code>pmap</code> with <code>future_pmap</code>. You see, the tidyverse has become such a staple in R that a lot of packages are designed around it, which makes integration with it so simple<sup>8</sup>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;This reminds me of Julia’s <a href="https://sciml.ai/">SciML</a>, where different packages all works together thanks to Julia’s <a href="https://en.wikipedia.org/wiki/Multiple_dispatch">multiple dispatch</a>. Since we are talking about parallelization, another shout out to Julia is the ability to allow one to multithread their for loops just by adding the <code>Threads.@threads</code> macros in front of it, e.g., <code>Threads.@threads for x in 0:1000 ...</code>.</p></div></div><p>Here’s a little benchmark for the above codes. For more accurate benchmarks, refer to <a href="https://duckdblabs.github.io/db-benchmark/">this</a>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="csehzsqlfy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#csehzsqlfy table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#csehzsqlfy thead, #csehzsqlfy tbody, #csehzsqlfy tfoot, #csehzsqlfy tr, #csehzsqlfy td, #csehzsqlfy th {
-  border-style: none;
-}
-
-#csehzsqlfy p {
-  margin: 0;
-  padding: 0;
-}
-
-#csehzsqlfy .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#csehzsqlfy .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#csehzsqlfy .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#csehzsqlfy .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#csehzsqlfy .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#csehzsqlfy .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#csehzsqlfy .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#csehzsqlfy .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#csehzsqlfy .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#csehzsqlfy .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#csehzsqlfy .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#csehzsqlfy .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#csehzsqlfy .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#csehzsqlfy .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#csehzsqlfy .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#csehzsqlfy .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#csehzsqlfy .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#csehzsqlfy .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#csehzsqlfy .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#csehzsqlfy .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#csehzsqlfy .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#csehzsqlfy .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#csehzsqlfy .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#csehzsqlfy .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#csehzsqlfy .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#csehzsqlfy .gt_left {
-  text-align: left;
-}
-
-#csehzsqlfy .gt_center {
-  text-align: center;
-}
-
-#csehzsqlfy .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#csehzsqlfy .gt_font_normal {
-  font-weight: normal;
-}
-
-#csehzsqlfy .gt_font_bold {
-  font-weight: bold;
-}
-
-#csehzsqlfy .gt_font_italic {
-  font-style: italic;
-}
-
-#csehzsqlfy .gt_super {
-  font-size: 65%;
-}
-
-#csehzsqlfy .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#csehzsqlfy .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#csehzsqlfy .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#csehzsqlfy .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#csehzsqlfy .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#csehzsqlfy .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#csehzsqlfy .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#csehzsqlfy .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#csehzsqlfy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| echo: false</span></span>
+<span id="cb18-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| warning: false</span></span>
+<span id="cb18-3"></span>
+<span id="cb18-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)</span>
+<span id="cb18-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyr)</span>
+<span id="cb18-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(gt)</span>
+<span id="cb18-7"></span>
+<span id="cb18-8">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(</span>
+<span id="cb18-9"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dplyr &amp; tidyr</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.05</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23.84</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23.95</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.44</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.58</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.65</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.24</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23.82</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24.11</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">23.81</span>),</span>
+<span id="cb18-10"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data.table</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.79</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.80</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.97</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.81</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.79</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.82</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.83</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.81</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.79</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.82</span>),</span>
+<span id="cb18-11"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tidytable</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.77</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.90</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.82</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.90</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.87</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.93</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.77</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.84</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.85</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.86</span>),</span>
+<span id="cb18-12"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pandas</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.04</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.83</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.11</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.11</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.07</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.23</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.15</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.36</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.27</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.52</span>),</span>
+<span id="cb18-13"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">polars</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.29</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.32</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.22</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.20</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.20</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.19</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.19</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.20</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.22</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.19</span>),</span>
+<span id="cb18-14"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">DataFrames.jl (1st run)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.316</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.295</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.296</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.295</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.292</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.294</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.299</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.294</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.292</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.306</span>),</span>
+<span id="cb18-15"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">DataFrames.jl (subsequent runs)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0609</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0865</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0639</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0540</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0292</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0602</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0417</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0576</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0576</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0547</span>),</span>
+<span id="cb18-16"><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Naive way</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.879</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.902</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.891</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.881</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.877</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.895</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.894</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.882</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.930</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.910</span>))</span>
+<span id="cb18-17"></span>
+<span id="cb18-18">df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_longer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_to=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"values"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_to=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Package"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cols=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-19">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(Package) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-20">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarize</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Median (seconds)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">median</span>(values), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Standard deviation</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">signif</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sd</span>(values), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-21">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Median (seconds)</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-22">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Language =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Julia"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Julia"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Python"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Python"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Python"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"R"</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-23">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">relocate</span>(Language) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-24">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-25">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_source_note</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">source_note =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sample size = 10 each."</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-26">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_source_note</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">source_note =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Julia precompiles functions, making them faster for subsequent runs. (1st run) refers to runs without precompilation."</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-27">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_source_note</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">source_note =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Note that there are polars packages for R, Julia, and Rust, but Python was used for this benchmark."</span>)</span></code></pre></div></div>
+<table class="caption-top table">
+<caption>Sample size = 10 each. Julia precompiles functions, making them faster for subsequent runs. (1st run) refers to runs without precompilation. Note that there are polars packages for R, Julia, and Rust, but Python was used for this benchmark.</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 40%">
+<col style="width: 22%">
+<col style="width: 24%">
+</colgroup>
 <thead>
-<tr class="gt_col_headings header">
-<th id="Language" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Language</th>
-<th id="Package" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Package</th>
-<th id="Median-(seconds)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median (seconds)</th>
-<th id="Standard-deviation" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Standard deviation</th>
+<tr class="header">
+<th>Language</th>
+<th>Package</th>
+<th>Median (seconds)</th>
+<th>Standard deviation</th>
 </tr>
 </thead>
-<tbody class="gt_table_body">
+<tbody>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Language">Julia</td>
-<td class="gt_row gt_left" headers="Package">DataFrames.jl (subsequent runs)</td>
-<td class="gt_row gt_right" headers="Median (seconds)">0.0576</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.01480</td>
+<td>Julia</td>
+<td>DataFrames.jl (subsequent runs)</td>
+<td>0.0576</td>
+<td>0.01480</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Language">Julia</td>
-<td class="gt_row gt_left" headers="Package">DataFrames.jl (1st run)</td>
-<td class="gt_row gt_right" headers="Median (seconds)">0.2950</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.00756</td>
+<td>Julia</td>
+<td>DataFrames.jl (1st run)</td>
+<td>0.2950</td>
+<td>0.00756</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Language">Python</td>
-<td class="gt_row gt_left" headers="Package">Naive way</td>
-<td class="gt_row gt_right" headers="Median (seconds)">0.8925</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.01650</td>
+<td>Python</td>
+<td>Naive way</td>
+<td>0.8925</td>
+<td>0.01650</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Language">Python</td>
-<td class="gt_row gt_left" headers="Package">polars</td>
-<td class="gt_row gt_right" headers="Median (seconds)">1.2000</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.04570</td>
+<td>Python</td>
+<td>polars</td>
+<td>1.2000</td>
+<td>0.04570</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Language">R</td>
-<td class="gt_row gt_left" headers="Package">data.table</td>
-<td class="gt_row gt_right" headers="Median (seconds)">2.8100</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.05360</td>
+<td>R</td>
+<td>data.table</td>
+<td>2.8100</td>
+<td>0.05360</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Language">R</td>
-<td class="gt_row gt_left" headers="Package">tidytable</td>
-<td class="gt_row gt_right" headers="Median (seconds)">11.8550</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.05340</td>
+<td>R</td>
+<td>tidytable</td>
+<td>11.8550</td>
+<td>0.05340</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="Language">Python</td>
-<td class="gt_row gt_left" headers="Package">pandas</td>
-<td class="gt_row gt_right" headers="Median (seconds)">13.1900</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.24600</td>
+<td>Python</td>
+<td>pandas</td>
+<td>13.1900</td>
+<td>0.24600</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="Language">R</td>
-<td class="gt_row gt_left" headers="Package">dplyr &amp; tidyr</td>
-<td class="gt_row gt_right" headers="Median (seconds)">24.0800</td>
-<td class="gt_row gt_right" headers="Standard deviation">0.31600</td>
+<td>R</td>
+<td>dplyr &amp; tidyr</td>
+<td>24.0800</td>
+<td>0.31600</td>
 </tr>
-</tbody><tfoot>
-<tr class="gt_sourcenotes odd">
-<td colspan="4" class="gt_sourcenote">Sample size = 10 each.</td>
-</tr>
-<tr class="gt_sourcenotes even">
-<td colspan="4" class="gt_sourcenote">Julia precompiles functions, making them faster for subsequent runs. (1st run) refers to runs without precompilation.</td>
-</tr>
-<tr class="gt_sourcenotes odd">
-<td colspan="4" class="gt_sourcenote">Note that there are polars packages for R, Julia, and Rust, but Python was used for this benchmark.</td>
-</tr>
-</tfoot>
-
+</tbody>
 </table>
-
-</div>
-</div>
-</div>
 <p>It’s important to note that this is not an apples to apples comparison.</p>
 <p>The bottleneck for dplyr/tidyr, pandas, tidytable, and polars is the unnesting operation, but there is no unnesting operation for DataFrames.jl<sup>9</sup>, data.table, and the naive Python solution.</p>
 <div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;DataFrames.jl seems to do this automatically for the named tuple?</p></div></div><p>Still, it’s no surprise that Julia wins by a huge margin. It’s one of the reasons why I have entirely moved from Python to Julia.</p>
@@ -2496,15 +2647,14 @@ font-style: inherit;">unnest_wider</span>(results)</span></code></pre></div></di
 <p>But R don’t have the myriads of packages and libraries you have in Python you say?</p>
 <p>I hear you. In fact, I’m a little annoyed that I can’t find a <a href="https://qutip.org/">QuTiP</a>, <a href="https://qutip.org/QuantumToolbox.jl/stable/">QuantumToolbox.jl</a>, or <a href="https://qojulia.org/">QuantumOptics.jl</a> equivalent in R<sup>11</sup>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;There’s so many quantum <strong>computing</strong> packages though, which are just glorified <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> for matrix multiplications.</p></div></div><p>But no worries, we can simply do this:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1">reticulate<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">reticulate<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">use_virtualenv</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"~/.local/venv/"</span>)</span>
-<span id="cb18-2">qt <span class="ot" style="color: #003B4F;
+<span id="cb19-2">qt <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> reticulate<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2513,24 +2663,24 @@ background-color: null;
 font-style: inherit;">import</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"qutip"</span>)</span>
-<span id="cb18-3"></span>
-<span id="cb18-4">J <span class="ot" style="color: #003B4F;
+<span id="cb19-3"></span>
+<span id="cb19-4">J <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span></span>
-<span id="cb18-5">t <span class="ot" style="color: #003B4F;
+<span id="cb19-5">t <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span></span>
-<span id="cb18-6"></span>
-<span id="cb18-7">Hint <span class="ot" style="color: #003B4F;
+<span id="cb19-6"></span>
+<span id="cb19-7">Hint <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> J <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span></span>
-<span id="cb18-8">    qt<span class="sc" style="color: #5E5E5E;
+<span id="cb19-8">    qt<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2549,7 +2699,7 @@ background-color: null;
 font-style: inherit;">2</span>L)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb18-9">    qt<span class="sc" style="color: #5E5E5E;
+<span id="cb19-9">    qt<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2566,8 +2716,8 @@ background-color: null;
 font-style: inherit;">destroy</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>L))</span>
-<span id="cb18-10"></span>
-<span id="cb18-11">U <span class="ot" style="color: #003B4F;
+<span id="cb19-10"></span>
+<span id="cb19-11">U <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> (<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2582,8 +2732,8 @@ background-color: null;
 font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">expm</span>()</span>
-<span id="cb18-12"></span>
-<span id="cb18-13">rhoIn <span class="ot" style="color: #003B4F;
+<span id="cb19-12"></span>
+<span id="cb19-13">rhoIn <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> qt<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2596,7 +2746,7 @@ background-color: null;
 font-style: inherit;">2</span>L, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>L))</span>
-<span id="cb18-14">rhoOut <span class="ot" style="color: #003B4F;
+<span id="cb19-14">rhoOut <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> U <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2607,11 +2757,10 @@ background-color: null;
 font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">dag</span>()</span>
-<span id="cb18-15"></span>
-<span id="cb18-16"><span class="fu" style="color: #4758AB;
+<span id="cb19-15"></span>
+<span id="cb19-16"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(rhoOut)</span></code></pre></div></div>
-<div class="cell-output cell-output-stdout">
 <pre><code>Quantum object: dims=[[2, 2], [2, 2]], shape=(4, 4), type='oper', dtype=Dense, isherm=True
 Qobj data =
 [[ 0.23766069+0.00000000e+00j -0.12235266-1.04414855e-01j
@@ -2623,8 +2772,6 @@ Qobj data =
  [ 0.01416946-8.07667926e-02j -0.24404032+3.03698913e-02j
    0.0481154 -1.36967243e-01j  0.24607384+0.00000000e+00j]]
  signature: (other: 'Qobj') -&gt; 'Qobj'</code></pre>
-</div>
-</div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p><br>
@@ -2639,18 +2786,18 @@ Qobj data =
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" aria-controls="tabset-5-1" aria-selected="true" href="">main.R</a></li><li class="nav-item"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" aria-controls="tabset-5-2" aria-selected="false" href="">compression.cpp</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" aria-labelledby="tabset-5-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(RcppEigen)</span>
-<span id="cb20-2"></span>
-<span id="cb20-3">reticulate<span class="sc" style="color: #5E5E5E;
+<span id="cb21-2"></span>
+<span id="cb21-3">reticulate<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">use_virtualenv</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"~/.local/venv/"</span>)</span>
-<span id="cb20-4">qt <span class="ot" style="color: #003B4F;
+<span id="cb21-4">qt <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> reticulate<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2659,21 +2806,21 @@ background-color: null;
 font-style: inherit;">import</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"qutip"</span>)</span>
-<span id="cb20-5"></span>
-<span id="cb20-6"><span class="fu" style="color: #4758AB;
+<span id="cb21-5"></span>
+<span id="cb21-6"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">Sys.setenv</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">PKG_CXXFLAGS =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"-I/usr/local/include/qpp"</span>)</span>
-<span id="cb20-7"><span class="fu" style="color: #4758AB;
+<span id="cb21-7"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sourceCpp</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"compression.cpp"</span>)</span>
-<span id="cb20-8"></span>
-<span id="cb20-9">rhoIn <span class="ot" style="color: #003B4F;
+<span id="cb21-8"></span>
+<span id="cb21-9">rhoIn <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> qt<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2692,36 +2839,36 @@ background-color: null;
 font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">full</span>()</span>
-<span id="cb20-10"></span>
-<span id="cb20-11">rhoOut <span class="ot" style="color: #003B4F;
+<span id="cb21-10"></span>
+<span id="cb21-11">rhoOut <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">compressionGate</span>(rhoIn)</span></code></pre></div></div>
 </div>
 <div id="tabset-5-2" class="tab-pane" aria-labelledby="tabset-5-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb21-1"><span class="pp" style="color: #AD0000;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb22-1"><span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">#include </span><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">&lt;RcppEigen.h&gt;</span></span>
-<span id="cb21-2"></span>
-<span id="cb21-3"><span class="co" style="color: #5E5E5E;
+<span id="cb22-2"></span>
+<span id="cb22-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// [[Rcpp::depends(RcppEigen)]]</span></span>
-<span id="cb21-4"></span>
-<span id="cb21-5"><span class="pp" style="color: #AD0000;
+<span id="cb22-4"></span>
+<span id="cb22-5"><span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">#include </span><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">&lt;cmath&gt;</span></span>
-<span id="cb21-6"><span class="pp" style="color: #AD0000;
+<span id="cb22-6"><span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">#include </span><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">&lt;qpp/qpp.hpp&gt;</span></span>
-<span id="cb21-7"></span>
-<span id="cb21-8"><span class="kw" style="color: #003B4F;
+<span id="cb22-7"></span>
+<span id="cb22-8"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">using</span> <span class="kw" style="color: #003B4F;
@@ -2730,18 +2877,18 @@ font-weight: bold;
 font-style: inherit;">namespace</span> qpp<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb21-9"></span>
-<span id="cb21-10"><span class="co" style="color: #5E5E5E;
+<span id="cb22-9"></span>
+<span id="cb22-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">// [[Rcpp:export]]</span></span>
-<span id="cb21-11">cmat compressionGate<span class="op" style="color: #5E5E5E;
+<span id="cb22-11">cmat compressionGate<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">(</span>cmat rhoIn<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">{</span></span>
-<span id="cb21-12">  cmat compress1 <span class="op" style="color: #5E5E5E;
+<span id="cb22-12">  cmat compress1 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> kron<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2774,7 +2921,7 @@ background-color: null;
 font-style: inherit;">.</span>Id2<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">);</span></span>
-<span id="cb21-13">  compress1 <span class="op" style="color: #5E5E5E;
+<span id="cb22-13">  compress1 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*=</span> kron<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2807,7 +2954,7 @@ background-color: null;
 font-style: inherit;">.</span>X<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">);</span></span>
-<span id="cb21-14">  cmat compress2 <span class="op" style="color: #5E5E5E;
+<span id="cb22-14">  cmat compress2 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> kron<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2842,7 +2989,7 @@ background-color: null;
 font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb21-15">                   kron<span class="op" style="color: #5E5E5E;
+<span id="cb22-15">                   kron<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">(</span>gt<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2873,7 +3020,7 @@ background-color: null;
 font-style: inherit;">.</span>pz1<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">);</span></span>
-<span id="cb21-16">  cmat compress <span class="op" style="color: #5E5E5E;
+<span id="cb22-16">  cmat compress <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> compress1 <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2882,8 +3029,8 @@ background-color: null;
 font-style: inherit;">*</span> compress1<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb21-17"></span>
-<span id="cb21-18">  <span class="cf" style="color: #003B4F;
+<span id="cb22-17"></span>
+<span id="cb22-18">  <span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">return</span> compress <span class="op" style="color: #5E5E5E;
@@ -2895,7 +3042,7 @@ background-color: null;
 font-style: inherit;">(</span>compress<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">);</span></span>
-<span id="cb21-19"><span class="op" style="color: #5E5E5E;
+<span id="cb22-19"><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">}</span></span></code></pre></div></div>
 </div>
@@ -2936,10 +3083,10 @@ font-style: inherit;">}</span></span></code></pre></div></div>
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" aria-controls="tabset-6-1" aria-selected="true" href="">What you could have just written</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" aria-controls="tabset-6-2" aria-selected="false" href="">GPT-5 mini (pandas)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" aria-controls="tabset-6-3" aria-selected="false" href="">GPT-5 mini (tidyverse)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" aria-controls="tabset-6-4" aria-selected="false" href="">Claude Haiku 4.5 (pandas)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-5" aria-controls="tabset-6-5" aria-selected="false" href="">Claude Haiku 4.5 (tidyverse)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-6" aria-controls="tabset-6-6" aria-selected="false" href="">Llama 4 Scout (pandas)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-7" aria-controls="tabset-6-7" aria-selected="false" href="">Llama 4 Scout (tidyverse)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-8" aria-controls="tabset-6-8" aria-selected="false" href="">Mistral Small 4 (pandas)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-9" aria-controls="tabset-6-9" aria-selected="false" href="">Mistral Small 4 (tidyverse)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-10" aria-controls="tabset-6-10" aria-selected="false" href="">gpt-oss 120B (pandas)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-11" aria-controls="tabset-6-11" aria-selected="false" href="">gpt-oss 120B (tidyverse)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-12" aria-controls="tabset-6-12" aria-selected="false" href="">Proton Lumo (pandas)</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-13" aria-controls="tabset-6-13" aria-selected="false" href="">Proton Lumo (tidyverse)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" aria-labelledby="tabset-6-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1">df <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">df <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
-<span id="cb22-2">  <span class="fu" style="color: #4758AB;
+<span id="cb23-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(y1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2948,7 +3095,7 @@ background-color: null;
 font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
-<span id="cb22-3">  <span class="fu" style="color: #4758AB;
+<span id="cb23-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -2959,7 +3106,7 @@ background-color: null;
 font-style: inherit;">+</span> y3) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
-<span id="cb22-4">  <span class="fu" style="color: #4758AB;
+<span id="cb23-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2974,29 +3121,29 @@ background-color: null;
 font-style: inherit;">0</span>))) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb22-5">  <span class="fu" style="color: #4758AB;
+<span id="cb23-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-2" class="tab-pane" aria-labelledby="tabset-6-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb23-2"><span class="im" style="color: #00769E;
+<span id="cb24-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> plt</span>
-<span id="cb23-3"></span>
-<span id="cb23-4"><span class="co" style="color: #5E5E5E;
+<span id="cb24-3"></span>
+<span id="cb24-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># example: assume df already exists</span></span>
-<span id="cb23-5"><span class="co" style="color: #5E5E5E;
+<span id="cb24-5"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Step 1: keep only rows where y1 &lt; 2</span></span>
-<span id="cb23-6">df <span class="op" style="color: #5E5E5E;
+<span id="cb24-6">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3005,11 +3152,11 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>].copy()</span>
-<span id="cb23-7"></span>
-<span id="cb23-8"><span class="co" style="color: #5E5E5E;
+<span id="cb24-7"></span>
+<span id="cb24-8"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Step 2: create new column z = y1 + y2 + y3</span></span>
-<span id="cb23-9">df[<span class="st" style="color: #20794D;
+<span id="cb24-9">df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3024,11 +3171,11 @@ background-color: null;
 font-style: inherit;">+</span> df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y3'</span>]</span>
-<span id="cb23-10"></span>
-<span id="cb23-11"><span class="co" style="color: #5E5E5E;
+<span id="cb24-10"></span>
+<span id="cb24-11"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Step 3: split into two series for plotting</span></span>
-<span id="cb23-12">df_pos <span class="op" style="color: #5E5E5E;
+<span id="cb24-12">df_pos <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3037,7 +3184,7 @@ background-color: null;
 font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb23-13">df_neg <span class="op" style="color: #5E5E5E;
+<span id="cb24-13">df_neg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3046,18 +3193,18 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb23-14"></span>
-<span id="cb23-15"><span class="co" style="color: #5E5E5E;
+<span id="cb24-14"></span>
+<span id="cb24-15"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Step 4: plot z vs x1 with two lines</span></span>
-<span id="cb23-16">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<span id="cb24-16">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>))</span>
-<span id="cb23-17">plt.plot(df_pos[<span class="st" style="color: #20794D;
+<span id="cb24-17">plt.plot(df_pos[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_pos[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3078,7 +3225,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'-'</span>)</span>
-<span id="cb23-18">plt.plot(df_neg[<span class="st" style="color: #20794D;
+<span id="cb24-18">plt.plot(df_neg[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_neg[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3099,36 +3246,36 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'-'</span>)</span>
-<span id="cb23-19">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb24-19">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>)</span>
-<span id="cb23-20">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb24-20">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>)</span>
-<span id="cb23-21">plt.title(<span class="st" style="color: #20794D;
+<span id="cb24-21">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z vs x1 (separate lines for z &gt;= 0 and z &lt; 0)'</span>)</span>
-<span id="cb23-22">plt.legend()</span>
-<span id="cb23-23">plt.grid(<span class="va" style="color: #111111;
+<span id="cb24-22">plt.legend()</span>
+<span id="cb24-23">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb23-24">plt.tight_layout()</span>
-<span id="cb23-25">plt.show()</span></code></pre></div></div>
+<span id="cb24-24">plt.tight_layout()</span>
+<span id="cb24-25">plt.show()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-3" class="tab-pane" aria-labelledby="tabset-6-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
-<span id="cb24-2"></span>
-<span id="cb24-3"><span class="co" style="color: #5E5E5E;
+<span id="cb25-2"></span>
+<span id="cb25-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># assume df exists with columns x1, y1, y2, y3</span></span>
-<span id="cb24-4">df_clean <span class="ot" style="color: #003B4F;
+<span id="cb25-4">df_clean <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> df <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb24-5">  <span class="fu" style="color: #4758AB;
+<span id="cb25-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(y1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3139,7 +3286,7 @@ background-color: null;
 font-style: inherit;">%&gt;%</span>                         <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># keep only y1 &lt; 2</span></span>
-<span id="cb24-6">  <span class="fu" style="color: #4758AB;
+<span id="cb25-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3150,7 +3297,7 @@ background-color: null;
 font-style: inherit;">+</span> y3,                   <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># new z column</span></span>
-<span id="cb24-7">         <span class="at" style="color: #657422;
+<span id="cb25-7">         <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">z_sign =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3165,11 +3312,11 @@ background-color: null;
 font-style: inherit;">"z &lt; 0"</span>))  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># grouping column for lines</span></span>
-<span id="cb24-8"></span>
-<span id="cb24-9"><span class="co" style="color: #5E5E5E;
+<span id="cb25-8"></span>
+<span id="cb25-9"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot: two lines (one for z &gt;= 0, one for z &lt; 0)</span></span>
-<span id="cb24-10"><span class="fu" style="color: #4758AB;
+<span id="cb25-10"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(df_clean, <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3182,19 +3329,19 @@ background-color: null;
 font-style: inherit;">color =</span> z_sign)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb24-11">  <span class="fu" style="color: #4758AB;
+<span id="cb25-11">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb24-12">  <span class="fu" style="color: #4758AB;
+<span id="cb25-12">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_point</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span>                             <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># optional: points</span></span>
-<span id="cb24-13">  <span class="fu" style="color: #4758AB;
+<span id="cb25-13">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3215,7 +3362,7 @@ background-color: null;
 font-style: inherit;">"firebrick"</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb24-14">  <span class="fu" style="color: #4758AB;
+<span id="cb25-14">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3232,26 +3379,26 @@ background-color: null;
 font-style: inherit;">"Group"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb24-15">  <span class="fu" style="color: #4758AB;
+<span id="cb25-15">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-4" class="tab-pane" aria-labelledby="tabset-6-4-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb25-2"><span class="im" style="color: #00769E;
+<span id="cb26-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> plt</span>
-<span id="cb25-3"></span>
-<span id="cb25-4"><span class="co" style="color: #5E5E5E;
+<span id="cb26-3"></span>
+<span id="cb26-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Filter dataframe to keep only rows where y1 &lt; 2</span></span>
-<span id="cb25-5">df <span class="op" style="color: #5E5E5E;
+<span id="cb26-5">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3260,11 +3407,11 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>]</span>
-<span id="cb25-6"></span>
-<span id="cb25-7"><span class="co" style="color: #5E5E5E;
+<span id="cb26-6"></span>
+<span id="cb26-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create new column z as the sum of y1, y2, y3</span></span>
-<span id="cb25-8">df[<span class="st" style="color: #20794D;
+<span id="cb26-8">df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3279,22 +3426,22 @@ background-color: null;
 font-style: inherit;">+</span> df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y3'</span>]</span>
-<span id="cb25-9"></span>
-<span id="cb25-10"><span class="co" style="color: #5E5E5E;
+<span id="cb26-9"></span>
+<span id="cb26-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create the plot</span></span>
-<span id="cb25-11">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<span id="cb26-11">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>))</span>
-<span id="cb25-12"></span>
-<span id="cb25-13"><span class="co" style="color: #5E5E5E;
+<span id="cb26-12"></span>
+<span id="cb26-13"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot line for z &gt;= 0</span></span>
-<span id="cb25-14">df_positive <span class="op" style="color: #5E5E5E;
+<span id="cb26-14">df_positive <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3303,7 +3450,7 @@ background-color: null;
 font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb25-15">plt.plot(df_positive[<span class="st" style="color: #20794D;
+<span id="cb26-15">plt.plot(df_positive[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_positive[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3316,11 +3463,11 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'o'</span>)</span>
-<span id="cb25-16"></span>
-<span id="cb25-17"><span class="co" style="color: #5E5E5E;
+<span id="cb26-16"></span>
+<span id="cb26-17"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot line for z &lt; 0</span></span>
-<span id="cb25-18">df_negative <span class="op" style="color: #5E5E5E;
+<span id="cb26-18">df_negative <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3329,7 +3476,7 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb25-19">plt.plot(df_negative[<span class="st" style="color: #20794D;
+<span id="cb26-19">plt.plot(df_negative[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_negative[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3342,28 +3489,28 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'o'</span>)</span>
-<span id="cb25-20"></span>
-<span id="cb25-21">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb26-20"></span>
+<span id="cb26-21">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>)</span>
-<span id="cb25-22">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb26-22">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>)</span>
-<span id="cb25-23">plt.legend()</span>
-<span id="cb25-24">plt.grid(<span class="va" style="color: #111111;
+<span id="cb26-23">plt.legend()</span>
+<span id="cb26-24">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb25-25">plt.show()</span></code></pre></div></div>
+<span id="cb26-25">plt.show()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-5" class="tab-pane" aria-labelledby="tabset-6-5-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
-<span id="cb26-2"></span>
-<span id="cb26-3">df <span class="sc" style="color: #5E5E5E;
+<span id="cb27-2"></span>
+<span id="cb27-3">df <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb26-4">  <span class="fu" style="color: #4758AB;
+<span id="cb27-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(y1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3372,7 +3519,7 @@ background-color: null;
 font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb26-5">  <span class="fu" style="color: #4758AB;
+<span id="cb27-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3383,7 +3530,7 @@ background-color: null;
 font-style: inherit;">+</span> y3) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb26-6">  <span class="fu" style="color: #4758AB;
+<span id="cb27-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3400,12 +3547,12 @@ background-color: null;
 font-style: inherit;">0</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb26-7">  <span class="fu" style="color: #4758AB;
+<span id="cb27-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb26-8">  <span class="fu" style="color: #4758AB;
+<span id="cb27-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_color_manual</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3424,7 +3571,7 @@ background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"blue"</span>),</span>
-<span id="cb26-9">                     <span class="at" style="color: #657422;
+<span id="cb27-9">                     <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3443,45 +3590,45 @@ background-color: null;
 font-style: inherit;">"z &gt;= 0"</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb26-10">  <span class="fu" style="color: #4758AB;
+<span id="cb27-10">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Condition"</span>,</span>
-<span id="cb26-11">       <span class="at" style="color: #657422;
+<span id="cb27-11">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"x1"</span>,</span>
-<span id="cb26-12">       <span class="at" style="color: #657422;
+<span id="cb27-12">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"z"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb26-13">  <span class="fu" style="color: #4758AB;
+<span id="cb27-13">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-6" class="tab-pane" aria-labelledby="tabset-6-6-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb27-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb27-2"><span class="im" style="color: #00769E;
+<span id="cb28-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> plt</span>
-<span id="cb27-3"></span>
-<span id="cb27-4"><span class="co" style="color: #5E5E5E;
+<span id="cb28-3"></span>
+<span id="cb28-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Assuming df is your DataFrame</span></span>
-<span id="cb27-5">df <span class="op" style="color: #5E5E5E;
+<span id="cb28-5">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3492,11 +3639,11 @@ background-color: null;
 font-style: inherit;">2</span>]  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Keep only rows where y1 is less than 2</span></span>
-<span id="cb27-6"></span>
-<span id="cb27-7"><span class="co" style="color: #5E5E5E;
+<span id="cb28-6"></span>
+<span id="cb28-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create a new column 'z' which is the sum of y1, y2, y3</span></span>
-<span id="cb27-8">df[<span class="st" style="color: #20794D;
+<span id="cb28-8">df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3511,18 +3658,18 @@ background-color: null;
 font-style: inherit;">+</span> df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y3'</span>]</span>
-<span id="cb27-9"></span>
-<span id="cb27-10"><span class="co" style="color: #5E5E5E;
+<span id="cb28-9"></span>
+<span id="cb28-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot 'z' against 'x1'</span></span>
-<span id="cb27-11">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<span id="cb28-11">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>))</span>
-<span id="cb27-12">df_pos <span class="op" style="color: #5E5E5E;
+<span id="cb28-12">df_pos <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3531,7 +3678,7 @@ background-color: null;
 font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb27-13">df_neg <span class="op" style="color: #5E5E5E;
+<span id="cb28-13">df_neg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3540,8 +3687,8 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb27-14"></span>
-<span id="cb27-15">plt.plot(df_pos[<span class="st" style="color: #20794D;
+<span id="cb28-14"></span>
+<span id="cb28-15">plt.plot(df_pos[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_pos[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3550,7 +3697,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z &gt;= 0'</span>)</span>
-<span id="cb27-16">plt.plot(df_neg[<span class="st" style="color: #20794D;
+<span id="cb28-16">plt.plot(df_neg[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_neg[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3559,31 +3706,31 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z &lt; 0'</span>)</span>
-<span id="cb27-17"></span>
-<span id="cb27-18">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb28-17"></span>
+<span id="cb28-18">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>)</span>
-<span id="cb27-19">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb28-19">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>)</span>
-<span id="cb27-20">plt.title(<span class="st" style="color: #20794D;
+<span id="cb28-20">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Plot of z against x1'</span>)</span>
-<span id="cb27-21">plt.legend()</span>
-<span id="cb27-22">plt.grid(<span class="va" style="color: #111111;
+<span id="cb28-21">plt.legend()</span>
+<span id="cb28-22">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb27-23">plt.show()</span></code></pre></div></div>
+<span id="cb28-23">plt.show()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-7" class="tab-pane" aria-labelledby="tabset-6-7-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
-<span id="cb28-2"></span>
-<span id="cb28-3">df <span class="sc" style="color: #5E5E5E;
+<span id="cb29-2"></span>
+<span id="cb29-3">df <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb28-4">  <span class="fu" style="color: #4758AB;
+<span id="cb29-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(y1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3592,7 +3739,7 @@ background-color: null;
 font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb28-5">  <span class="fu" style="color: #4758AB;
+<span id="cb29-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3603,7 +3750,7 @@ background-color: null;
 font-style: inherit;">+</span> y3) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb28-6">  <span class="fu" style="color: #4758AB;
+<span id="cb29-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3622,12 +3769,12 @@ background-color: null;
 font-style: inherit;">0</span>))) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb28-7">  <span class="fu" style="color: #4758AB;
+<span id="cb29-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb28-8">  <span class="fu" style="color: #4758AB;
+<span id="cb29-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3636,32 +3783,32 @@ background-color: null;
 font-style: inherit;">"z &gt;= 0"</span>)</span></code></pre></div></div>
 </div>
 <div id="tabset-6-8" class="tab-pane" aria-labelledby="tabset-6-8-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb30-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb29-2"><span class="im" style="color: #00769E;
+<span id="cb30-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> plt</span>
-<span id="cb29-3"><span class="im" style="color: #00769E;
+<span id="cb30-3"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> np</span>
-<span id="cb29-4"></span>
-<span id="cb29-5"><span class="co" style="color: #5E5E5E;
+<span id="cb30-4"></span>
+<span id="cb30-5"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Sample data creation (replace this with your actual DataFrame)</span></span>
-<span id="cb29-6">np.random.seed(<span class="dv" style="color: #AD0000;
+<span id="cb30-6">np.random.seed(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">42</span>)</span>
-<span id="cb29-7">df <span class="op" style="color: #5E5E5E;
+<span id="cb30-7">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({</span>
-<span id="cb29-8">    <span class="st" style="color: #20794D;
+<span id="cb30-8">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>: np.linspace(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -3670,7 +3817,7 @@ background-color: null;
 font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">100</span>),</span>
-<span id="cb29-9">    <span class="st" style="color: #20794D;
+<span id="cb30-9">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y1'</span>: np.random.uniform(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -3679,7 +3826,7 @@ background-color: null;
 font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">100</span>),</span>
-<span id="cb29-10">    <span class="st" style="color: #20794D;
+<span id="cb30-10">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y2'</span>: np.random.uniform(<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3690,7 +3837,7 @@ background-color: null;
 font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">100</span>),</span>
-<span id="cb29-11">    <span class="st" style="color: #20794D;
+<span id="cb30-11">    <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y3'</span>: np.random.uniform(<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3701,12 +3848,12 @@ background-color: null;
 font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">100</span>)</span>
-<span id="cb29-12">})</span>
-<span id="cb29-13"></span>
-<span id="cb29-14"><span class="co" style="color: #5E5E5E;
+<span id="cb30-12">})</span>
+<span id="cb30-13"></span>
+<span id="cb30-14"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Filter rows where y1 &lt; 2</span></span>
-<span id="cb29-15">df_filtered <span class="op" style="color: #5E5E5E;
+<span id="cb30-15">df_filtered <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3715,11 +3862,11 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>].copy()</span>
-<span id="cb29-16"></span>
-<span id="cb29-17"><span class="co" style="color: #5E5E5E;
+<span id="cb30-16"></span>
+<span id="cb30-17"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create new column z as sum of y1, y2, y3</span></span>
-<span id="cb29-18">df_filtered[<span class="st" style="color: #20794D;
+<span id="cb30-18">df_filtered[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3734,11 +3881,11 @@ background-color: null;
 font-style: inherit;">+</span> df_filtered[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y3'</span>]</span>
-<span id="cb29-19"></span>
-<span id="cb29-20"><span class="co" style="color: #5E5E5E;
+<span id="cb30-19"></span>
+<span id="cb30-20"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create a categorical column for z &gt;= 0 and z &lt; 0</span></span>
-<span id="cb29-21">df_filtered[<span class="st" style="color: #20794D;
+<span id="cb30-21">df_filtered[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z_category'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3753,18 +3900,18 @@ background-color: null;
 font-style: inherit;">'z &gt;= 0'</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z &lt; 0'</span>)</span>
-<span id="cb29-22"></span>
-<span id="cb29-23"><span class="co" style="color: #5E5E5E;
+<span id="cb30-22"></span>
+<span id="cb30-23"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot z against x1 with two lines</span></span>
-<span id="cb29-24">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<span id="cb30-24">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>))</span>
-<span id="cb29-25"><span class="cf" style="color: #003B4F;
+<span id="cb30-25"><span class="cf" style="color: #003B4F;
 background-color: null;
 font-weight: bold;
 font-style: inherit;">for</span> category, group <span class="kw" style="color: #003B4F;
@@ -3773,43 +3920,43 @@ font-weight: bold;
 font-style: inherit;">in</span> df_filtered.groupby(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z_category'</span>):</span>
-<span id="cb29-26">    plt.plot(group[<span class="st" style="color: #20794D;
+<span id="cb30-26">    plt.plot(group[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], group[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>], label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>category)</span>
-<span id="cb29-27"></span>
-<span id="cb29-28">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb30-27"></span>
+<span id="cb30-28">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>)</span>
-<span id="cb29-29">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb30-29">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>)</span>
-<span id="cb29-30">plt.title(<span class="st" style="color: #20794D;
+<span id="cb30-30">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z vs x1 by z category'</span>)</span>
-<span id="cb29-31">plt.legend()</span>
-<span id="cb29-32">plt.grid(<span class="va" style="color: #111111;
+<span id="cb30-31">plt.legend()</span>
+<span id="cb30-32">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb29-33">plt.show()</span></code></pre></div></div>
+<span id="cb30-33">plt.show()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-9" class="tab-pane" aria-labelledby="tabset-6-9-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
-<span id="cb30-2"></span>
-<span id="cb30-3"><span class="co" style="color: #5E5E5E;
+<span id="cb31-2"></span>
+<span id="cb31-3"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Assuming df is your dataframe</span></span>
-<span id="cb30-4">df_filtered <span class="ot" style="color: #003B4F;
+<span id="cb31-4">df_filtered <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> df <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb30-5">  <span class="fu" style="color: #4758AB;
+<span id="cb31-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(y1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3818,7 +3965,7 @@ background-color: null;
 font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb30-6">  <span class="fu" style="color: #4758AB;
+<span id="cb31-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3829,7 +3976,7 @@ background-color: null;
 font-style: inherit;">+</span> y3) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb30-7">  <span class="fu" style="color: #4758AB;
+<span id="cb31-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -3846,7 +3993,7 @@ background-color: null;
 font-style: inherit;">"z &lt; 0"</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb30-8">  <span class="fu" style="color: #4758AB;
+<span id="cb31-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3859,61 +4006,61 @@ background-color: null;
 font-style: inherit;">color =</span> z_group)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb30-9">  <span class="fu" style="color: #4758AB;
+<span id="cb31-9">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb30-10">  <span class="fu" style="color: #4758AB;
+<span id="cb31-10">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Plot of z against x1"</span>,</span>
-<span id="cb30-11">       <span class="at" style="color: #657422;
+<span id="cb31-11">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"x1"</span>,</span>
-<span id="cb30-12">       <span class="at" style="color: #657422;
+<span id="cb31-12">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"z"</span>,</span>
-<span id="cb30-13">       <span class="at" style="color: #657422;
+<span id="cb31-13">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"z group"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb30-14">  <span class="fu" style="color: #4758AB;
+<span id="cb31-14">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-10" class="tab-pane" aria-labelledby="tabset-6-10-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb32-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb31-2"><span class="im" style="color: #00769E;
+<span id="cb32-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> plt</span>
-<span id="cb31-3"></span>
-<span id="cb31-4"><span class="co" style="color: #5E5E5E;
+<span id="cb32-3"></span>
+<span id="cb32-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Assume df already exists with columns: x1, y1, y2, y3</span></span>
-<span id="cb31-5"><span class="co" style="color: #5E5E5E;
+<span id="cb32-5"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># -------------------------------------------------</span></span>
-<span id="cb31-6"><span class="co" style="color: #5E5E5E;
+<span id="cb32-6"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># 1. Keep only rows where y1 &lt; 2</span></span>
-<span id="cb31-7">df <span class="op" style="color: #5E5E5E;
+<span id="cb32-7">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3922,11 +4069,11 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>].copy()</span>
-<span id="cb31-8"></span>
-<span id="cb31-9"><span class="co" style="color: #5E5E5E;
+<span id="cb32-8"></span>
+<span id="cb32-9"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># 2. Create a new column z that is the sum of y1, y2, and y3</span></span>
-<span id="cb31-10">df[<span class="st" style="color: #20794D;
+<span id="cb32-10">df[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -3943,28 +4090,28 @@ background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>)</span>
-<span id="cb31-11"></span>
-<span id="cb31-12"><span class="co" style="color: #5E5E5E;
+<span id="cb32-11"></span>
+<span id="cb32-12"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># 3. Plot z vs. x1 with two separate lines:</span></span>
-<span id="cb31-13"><span class="co" style="color: #5E5E5E;
+<span id="cb32-13"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#    - one line for points where z &gt;= 0</span></span>
-<span id="cb31-14"><span class="co" style="color: #5E5E5E;
+<span id="cb32-14"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#    - another line for points where z &lt; 0</span></span>
-<span id="cb31-15">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<span id="cb32-15">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>))</span>
-<span id="cb31-16"></span>
-<span id="cb31-17"><span class="co" style="color: #5E5E5E;
+<span id="cb32-16"></span>
+<span id="cb32-17"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Positive‑z line</span></span>
-<span id="cb31-18">pos <span class="op" style="color: #5E5E5E;
+<span id="cb32-18">pos <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -3973,12 +4120,12 @@ background-color: null;
 font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb31-19">plt.plot(pos[<span class="st" style="color: #20794D;
+<span id="cb32-19">plt.plot(pos[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], pos[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>],</span>
-<span id="cb31-20">         marker<span class="op" style="color: #5E5E5E;
+<span id="cb32-20">         marker<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -3991,16 +4138,16 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'steelblue'</span>,</span>
-<span id="cb31-21">         label<span class="op" style="color: #5E5E5E;
+<span id="cb32-21">         label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z ≥ 0'</span>)</span>
-<span id="cb31-22"></span>
-<span id="cb31-23"><span class="co" style="color: #5E5E5E;
+<span id="cb32-22"></span>
+<span id="cb32-23"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Negative‑z line</span></span>
-<span id="cb31-24">neg <span class="op" style="color: #5E5E5E;
+<span id="cb32-24">neg <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -4009,12 +4156,12 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb31-25">plt.plot(neg[<span class="st" style="color: #20794D;
+<span id="cb32-25">plt.plot(neg[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], neg[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>],</span>
-<span id="cb31-26">         marker<span class="op" style="color: #5E5E5E;
+<span id="cb32-26">         marker<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -4027,43 +4174,43 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'tomato'</span>,</span>
-<span id="cb31-27">         label<span class="op" style="color: #5E5E5E;
+<span id="cb32-27">         label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z &lt; 0'</span>)</span>
-<span id="cb31-28"></span>
-<span id="cb31-29"><span class="co" style="color: #5E5E5E;
+<span id="cb32-28"></span>
+<span id="cb32-29"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Add axis labels, title and legend</span></span>
-<span id="cb31-30">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb32-30">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>)</span>
-<span id="cb31-31">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb32-31">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z (y1 + y2 + y3)'</span>)</span>
-<span id="cb31-32">plt.title(<span class="st" style="color: #20794D;
+<span id="cb32-32">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z vs. x1 separated by sign of z'</span>)</span>
-<span id="cb31-33">plt.legend()</span>
-<span id="cb31-34">plt.grid(<span class="va" style="color: #111111;
+<span id="cb32-33">plt.legend()</span>
+<span id="cb32-34">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb31-35">plt.tight_layout()</span>
-<span id="cb31-36">plt.show()</span></code></pre></div></div>
+<span id="cb32-35">plt.tight_layout()</span>
+<span id="cb32-36">plt.show()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-11" class="tab-pane" aria-labelledby="tabset-6-11-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
-<span id="cb32-2"></span>
-<span id="cb32-3">df <span class="sc" style="color: #5E5E5E;
+<span id="cb33-2"></span>
+<span id="cb33-3">df <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb32-4">  <span class="co" style="color: #5E5E5E;
+<span id="cb33-4">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Keep rows where y1 is less than 2</span></span>
-<span id="cb32-5">  <span class="fu" style="color: #4758AB;
+<span id="cb33-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(y1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -4072,10 +4219,10 @@ background-color: null;
 font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb32-6">  <span class="co" style="color: #5E5E5E;
+<span id="cb33-6">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Add a new column z = y1 + y2 + y3</span></span>
-<span id="cb32-7">  <span class="fu" style="color: #4758AB;
+<span id="cb33-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -4086,10 +4233,10 @@ background-color: null;
 font-style: inherit;">+</span> y3) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb32-8">  <span class="co" style="color: #5E5E5E;
+<span id="cb33-8">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot z vs x1 with separate lines for z &gt;= 0 and z &lt; 0</span></span>
-<span id="cb32-9">  <span class="fu" style="color: #4758AB;
+<span id="cb33-9">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4106,19 +4253,19 @@ background-color: null;
 font-style: inherit;">0</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb32-10">  <span class="fu" style="color: #4758AB;
+<span id="cb33-10">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb32-11">  <span class="fu" style="color: #4758AB;
+<span id="cb33-11">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_colour_manual</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"z sign"</span>,</span>
-<span id="cb32-12">                      <span class="at" style="color: #657422;
+<span id="cb33-12">                      <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4129,14 +4276,14 @@ background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"blue"</span>,</span>
-<span id="cb32-13">                                 <span class="st" style="color: #20794D;
+<span id="cb33-13">                                 <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"FALSE"</span> <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"red"</span>),</span>
-<span id="cb32-14">                      <span class="at" style="color: #657422;
+<span id="cb33-14">                      <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">labels =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4147,7 +4294,7 @@ background-color: null;
 font-style: inherit;">"z &lt; 0"</span>)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb32-15">  <span class="fu" style="color: #4758AB;
+<span id="cb33-15">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -4158,33 +4305,33 @@ background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"z (y1 + y2 + y3)"</span>,</span>
-<span id="cb32-16">       <span class="at" style="color: #657422;
+<span id="cb33-16">       <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"z vs x1 with positive/negative lines"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb32-17">  <span class="fu" style="color: #4758AB;
+<span id="cb33-17">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-12" class="tab-pane" aria-labelledby="tabset-6-12-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb33-1"><span class="im" style="color: #00769E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> pd</span>
-<span id="cb33-2"><span class="im" style="color: #00769E;
+<span id="cb34-2"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">as</span> plt</span>
-<span id="cb33-3"></span>
-<span id="cb33-4"><span class="co" style="color: #5E5E5E;
+<span id="cb34-3"></span>
+<span id="cb34-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Filter the dataframe where y1 &lt; 2</span></span>
-<span id="cb33-5">df_filtered <span class="op" style="color: #5E5E5E;
+<span id="cb34-5">df_filtered <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df[df[<span class="st" style="color: #20794D;
 background-color: null;
@@ -4193,11 +4340,11 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>].copy()</span>
-<span id="cb33-6"></span>
-<span id="cb33-7"><span class="co" style="color: #5E5E5E;
+<span id="cb34-6"></span>
+<span id="cb34-7"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create a new column 'z' as the sum of y1, y2, y3</span></span>
-<span id="cb33-8">df_filtered[<span class="st" style="color: #20794D;
+<span id="cb34-8">df_filtered[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>] <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -4212,11 +4359,11 @@ background-color: null;
 font-style: inherit;">+</span> df_filtered[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'y3'</span>]</span>
-<span id="cb33-9"></span>
-<span id="cb33-10"><span class="co" style="color: #5E5E5E;
+<span id="cb34-9"></span>
+<span id="cb34-10"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Separate data for plotting based on z &gt;= 0 and z &lt; 0</span></span>
-<span id="cb33-11">df_positive <span class="op" style="color: #5E5E5E;
+<span id="cb34-11">df_positive <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df_filtered[df_filtered[<span class="st" style="color: #20794D;
 background-color: null;
@@ -4225,7 +4372,7 @@ background-color: null;
 font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb33-12">df_negative <span class="op" style="color: #5E5E5E;
+<span id="cb34-12">df_negative <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> df_filtered[df_filtered[<span class="st" style="color: #20794D;
 background-color: null;
@@ -4234,18 +4381,18 @@ background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]</span>
-<span id="cb33-13"></span>
-<span id="cb33-14"><span class="co" style="color: #5E5E5E;
+<span id="cb34-13"></span>
+<span id="cb34-14"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot z against x1 with two lines</span></span>
-<span id="cb33-15">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+<span id="cb34-15">plt.figure(figsize<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>))</span>
-<span id="cb33-16">plt.plot(df_positive[<span class="st" style="color: #20794D;
+<span id="cb34-16">plt.plot(df_positive[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_positive[<span class="st" style="color: #20794D;
 background-color: null;
@@ -4258,7 +4405,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'o'</span>)</span>
-<span id="cb33-17">plt.plot(df_negative[<span class="st" style="color: #20794D;
+<span id="cb34-17">plt.plot(df_negative[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>], df_negative[<span class="st" style="color: #20794D;
 background-color: null;
@@ -4271,36 +4418,36 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x'</span>)</span>
-<span id="cb33-18"></span>
-<span id="cb33-19">plt.xlabel(<span class="st" style="color: #20794D;
+<span id="cb34-18"></span>
+<span id="cb34-19">plt.xlabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'x1'</span>)</span>
-<span id="cb33-20">plt.ylabel(<span class="st" style="color: #20794D;
+<span id="cb34-20">plt.ylabel(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'z'</span>)</span>
-<span id="cb33-21">plt.title(<span class="st" style="color: #20794D;
+<span id="cb34-21">plt.title(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Plot of z vs x1 (filtered by y1 &lt; 2)'</span>)</span>
-<span id="cb33-22">plt.legend()</span>
-<span id="cb33-23">plt.grid(<span class="va" style="color: #111111;
+<span id="cb34-22">plt.legend()</span>
+<span id="cb34-23">plt.grid(<span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>)</span>
-<span id="cb33-24">plt.show()</span></code></pre></div></div>
+<span id="cb34-24">plt.show()</span></code></pre></div></div>
 </div>
 <div id="tabset-6-13" class="tab-pane" aria-labelledby="tabset-6-13-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
-<span id="cb34-2"></span>
-<span id="cb34-3">df_processed <span class="ot" style="color: #003B4F;
+<span id="cb35-2"></span>
+<span id="cb35-3">df_processed <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> df <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb34-4">  <span class="co" style="color: #5E5E5E;
+<span id="cb35-4">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Keep only rows where y1 is less than 2</span></span>
-<span id="cb34-5">  <span class="fu" style="color: #4758AB;
+<span id="cb35-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(y1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -4309,10 +4456,10 @@ background-color: null;
 font-style: inherit;">2</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb34-6">  <span class="co" style="color: #5E5E5E;
+<span id="cb35-6">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create a new column 'z' as the sum of y1, y2, and y3</span></span>
-<span id="cb34-7">  <span class="fu" style="color: #4758AB;
+<span id="cb35-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -4323,17 +4470,17 @@ background-color: null;
 font-style: inherit;">+</span> y3) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb34-8">  <span class="co" style="color: #5E5E5E;
+<span id="cb35-8">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Create a categorical column to distinguish lines based on z</span></span>
-<span id="cb34-9">  <span class="fu" style="color: #4758AB;
+<span id="cb35-9">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">group =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">case_when</span>(</span>
-<span id="cb34-10">    z <span class="sc" style="color: #5E5E5E;
+<span id="cb35-10">    z <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -4342,7 +4489,7 @@ background-color: null;
 font-style: inherit;">~</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Positive or Zero"</span>,</span>
-<span id="cb34-11">    z <span class="sc" style="color: #5E5E5E;
+<span id="cb35-11">    z <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -4351,13 +4498,13 @@ background-color: null;
 font-style: inherit;">~</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Negative"</span></span>
-<span id="cb34-12">  )) <span class="sc" style="color: #5E5E5E;
+<span id="cb35-12">  )) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span></span>
-<span id="cb34-13">  <span class="co" style="color: #5E5E5E;
+<span id="cb35-13">  <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Plot z against x1, coloring by the group condition</span></span>
-<span id="cb34-14">  <span class="fu" style="color: #4758AB;
+<span id="cb35-14">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4370,38 +4517,38 @@ background-color: null;
 font-style: inherit;">color =</span> group)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb34-15">  <span class="fu" style="color: #4758AB;
+<span id="cb35-15">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb34-16">  <span class="fu" style="color: #4758AB;
+<span id="cb35-16">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb34-17">    <span class="at" style="color: #657422;
+<span id="cb35-17">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Plot of Z vs X1 (Colored by Sign of Z)"</span>,</span>
-<span id="cb34-18">    <span class="at" style="color: #657422;
+<span id="cb35-18">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"x1"</span>,</span>
-<span id="cb34-19">    <span class="at" style="color: #657422;
+<span id="cb35-19">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"z"</span>,</span>
-<span id="cb34-20">    <span class="at" style="color: #657422;
+<span id="cb35-20">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Z Group"</span></span>
-<span id="cb34-21">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb35-21">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
-<span id="cb34-22">  <span class="fu" style="color: #4758AB;
+<span id="cb35-22">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
 </div>
@@ -4414,7 +4561,7 @@ font-style: inherit;">theme_minimal</span>()</span></code></pre></div></div>
 <div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;Llama 4 Scout actually did well for the tidyverse code, though all of them still use the old <code>%&gt;%</code> syntax for pipes.</p></div></div></section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-WickhamTidy2014" class="csl-entry">
 Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
 </div>
@@ -5631,7 +5778,7 @@ font-style: inherit;">multiplot</span></span></code></pre></div></div>
 <p>But a lot of these programs favors quantity over quality. How do I know if that pretty colormap my favorite plotting library provided is perceptually uniform, linear, and CVD-friendly?</p>
 <p>Generally, one just have to know the families of colormaps that were designed with these standards in mind, and plotting libraries with good documentations tend to properly group them into these families, e.g., take a look at <a href="https://juliagraphics.github.io/ColorSchemes.jl/stable/catalogue/">Julia’s</a> where anything grouped under “scientific” or “colorcet” are generally fine.</p>
 <p>Nevertheless, here are some general recommendations:</p>
-<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez et al. (2018)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(Crameri et al. 2020)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (2015)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
+<p><a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#sequential">Matplotlib’s default</a>, <code>viridis</code>, and a CVD-friendlier version by <span class="citation" data-cites="NunezOptimizing2018">Nuñez, Anderton, and Renslow (2018)</span>, <code>cividis</code>, which I prefer, will suffice for most sequential plots. Though, <code>batlow</code> by <a href="https://www.fabiocrameri.ch/colourmaps/">Fabio Crameri</a> is another favorite and is scientifically derived <span class="citation" data-cites="CrameriThe2020">(Crameri, Shephard, and Heron 2020)</span>. <a href="https://colorcet.com/">ColorCET</a> by <span class="citation" data-cites="KovesiColour2015">Kovesi (2015)</span> also has the CVD-friendly colormap <code>CET-CBL1</code>. All these are good and are widely available in various programs and plotting libraries.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://jianweicheong.codeberg.page/media/posts/scientific-colormaps/colormaps_seq.svg" class="img-fluid figure-img"></p>
@@ -5641,7 +5788,7 @@ font-style: inherit;">multiplot</span></span></code></pre></div></div>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><a href="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1038%2Fs41467-020-19160-7/MediaObjects/41467_2020_19160_Fig1_HTML.png?as=webp" class="img-fluid"></a></p>
-<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri et al. (2020)</span>.</p>
+<p>Reprinted from <span class="citation" data-cites="CrameriThe2020">Crameri, Shephard, and Heron (2020)</span>.</p>
 <p>Comparison between <code>jet</code> and <code>batlow</code>.</p>
 <p>Also check out <a href="https://www.youtube.com/watch?v=iDPzWARbFrs">his talk</a> at the University of Oslo <a href="https://www.mn.uio.no/geo/english/about/organisation/geohyd/events/archive/2021/">GEOHYD Lunch Seminar 2021</a>.</p>
 </div></div><p>For diverging colormaps, there’s <a href="https://colorbrewer2.org/">ColorBrewer’s</a> <code>RdBu</code>, ColorCET’s <code>CET-D07</code>, or the CVD-friendlier <code>CET-CBD1</code>, though you can’t really go wrong with the rest of the colormaps by Fabio Crameri either (Matplotlib provides Crameri’s <code>berlin</code>, <code>managua</code>, and <code>vanimo</code>).</p>
@@ -5690,24 +5837,24 @@ font-style: inherit;">multiplot</span></span></code></pre></div></div>
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-BorkinEvaluation2011" class="csl-entry">
-Borkin, M., K. Gajos, A. Peters, et al. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
+Borkin, M., K. Gajos, A. Peters, D. Mitsouras, S. Melchionna, F. Rybicki, C. Feldman, and H. Pfister. 2011. <span>“Evaluation of Artery Visualizations for Heart Disease Diagnosis.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2479–88. <a href="https://doi.org/10.1109/tvcg.2011.192">https://doi.org/10.1109/tvcg.2011.192</a>.
 </div>
 <div id="ref-CrameriThe2020" class="csl-entry">
 Crameri, Fabio, Grace E. Shephard, and Philip J. Heron. 2020. <span>“The Misuse of Colour in Science Communication.”</span> <em>Nature Communications</em> 11 (1). <a href="https://doi.org/10.1038/s41467-020-19160-7">https://doi.org/10.1038/s41467-020-19160-7</a>.
 </div>
 <div id="ref-KovesiColour2015" class="csl-entry">
-Kovesi, Peter. 2015. <em>Good Colour Maps: How to Design Them</em>. <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
+Kovesi, Peter. 2015. <span>“Good Colour Maps: How to Design Them.”</span> <a href="https://arxiv.org/abs/1509.03700">https://arxiv.org/abs/1509.03700</a>.
 </div>
 <div id="ref-LandiniColor2011" class="csl-entry">
 Landini, Gabriel, and D Giles Perryer. 2011. <span>“More on Color Blindness.”</span> <em>Nature Methods</em> 8 (11): 891–91. <a href="https://doi.org/10.1038/nmeth.1737">https://doi.org/10.1038/nmeth.1737</a>.
 </div>
 <div id="ref-NunezOptimizing2018" class="csl-entry">
-Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
+Nuñez, Jamie R., Christopher R. Anderton, and Ryan S. Renslow. 2018. <span>“Optimizing Colormaps with Consideration for Color Vision Deficiency to Enable Accurate Interpretation of Scientific Data.”</span> Edited by Jesús Malo. <em>PLOS ONE</em> 13 (7): e0199239. <a href="https://doi.org/10.1371/journal.pone.0199239">https://doi.org/10.1371/journal.pone.0199239</a>.
 </div>
 <div id="ref-PetroffColor2024" class="csl-entry">
-Petroff, Matthew A. 2024. <em>Accessible Color Sequences for Data Visualization</em>. <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
+Petroff, Matthew A. 2024. <span>“Accessible Color Sequences for Data Visualization.”</span> <a href="https://arxiv.org/abs/2107.02270">https://arxiv.org/abs/2107.02270</a>.
 </div>
 <div id="ref-WongPoints2011" class="csl-entry">
 Wong, Bang. 2011. <span>“Points of View: Color Blindness.”</span> <em>Nature Methods</em> 8 (6): 441–41. <a href="https://doi.org/10.1038/nmeth.1618">https://doi.org/10.1038/nmeth.1618</a>.
@@ -6453,9 +6600,9 @@ font-style: inherit;">-Syu</span></span></code></pre></div></div>
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-PimentelJupyter2019" class="csl-entry">
-Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2019. <span>“A Large-Scale Study about Quality and Reproducibility of Jupyter Notebooks.”</span> <em>2019 IEEE/ACM 16th International Conference on Mining Software Repositories (MSR)</em>, May. <a href="https://doi.org/10.1109/msr.2019.00077">https://doi.org/10.1109/msr.2019.00077</a>.
+Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2019. <span>“A Large-Scale Study about Quality and Reproducibility of Jupyter Notebooks.”</span> In <em>2019 IEEE/ACM 16th International Conference on Mining Software Repositories (MSR)</em>. IEEE. <a href="https://doi.org/10.1109/msr.2019.00077">https://doi.org/10.1109/msr.2019.00077</a>.
 </div>
 </div></section></div> ]]></description>
   <category>software</category>
@@ -6548,7 +6695,7 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
 <h1>Entanglement — the actual spice</h1>
 <p>The Bloch sphere might reminds one of analog computers, where quantities can take a continuum of values instead of the 0s and 1s in digital computers. In fact, if we can build an analog computer with two degrees of freedom like the Bloch sphere, then it can function exactly like a single qubit.</p>
 <p>The “quantumness” only comes in if we include the concept of <em>entanglement</em><sup>5</sup>. Entanglement is the main spice that makes quantum systems special, preventing it from being replicated by classical systems, e.g., the analog computer with two degrees of freedom.</p>
-<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Entanglement is often conflated with the phrase “<em>spooky action at a distance</em>”. The latter describes the apparent nonlocal collapse of the wave function. <span class="citation" data-cites="EinsteinEPR1935">Einstein et al. (1935)</span> used entanglement as an example to illustrate the significance of this nonlocal collapse, which eventually led to this conflation.</p></div></div><p>Imagine what would happen if we have two qubits.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;Entanglement is often conflated with the phrase “<em>spooky action at a distance</em>”. The latter describes the apparent nonlocal collapse of the wave function. <span class="citation" data-cites="EinsteinEPR1935">Einstein, Podolsky, and Rosen (1935)</span> used entanglement as an example to illustrate the significance of this nonlocal collapse, which eventually led to this conflation.</p></div></div><p>Imagine what would happen if we have two qubits.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://jianweicheong.codeberg.page/media/posts/quantum-computing/bloch2.svg" class="img-fluid figure-img"></p>
@@ -6587,7 +6734,7 @@ Pimentel, Joao Felipe, Leonardo Murta, Vanessa Braganholo, and Juliana Freire. 2
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-EinsteinEPR1935" class="csl-entry">
 Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?”</span> <em>Physical Review</em> 47 (10): 777–80. <a href="https://doi.org/10.1103/physrev.47.777">https://doi.org/10.1103/physrev.47.777</a>.
 </div>
@@ -6624,26 +6771,26 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 <section id="a-physicists-perspective-the-conspiracy" class="level1 page-columns page-full">
 <h1>A Physicist’s perspective — the conspiracy</h1>
 <p>The study of life is typically assumed to fall under the domain of Biology. However, physicists have also been attempting to uncover a physical principle that leads to life’s emergence and its behaviors <span class="citation" data-cites="PrigogineBiological1971">(Prigogine and Nicolis 1971)</span>. A hint lies in the stark difference between life and inanimate matter: life’s ability to efficiently absorb or consume useful energy and dissipating it as heat, resulting in increased entropy production.</p>
-<p>While this have been pointed out by Erwin Schrödinger in his seminar book <a href="https://en.wikipedia.org/wiki/What_Is_Life%3F"><em>What is life?</em></a> back in the 1940s, it has undergone rigorous thermodynamic treatment in recent years, thanks to advances in the physics of non-equilibrium thermodynamics <span class="citation" data-cites="CollinVerification2005 MichaelianThermodynamic2011">(Collin et al. 2005; Michaelian 2011)</span>.</p>
-<p>In short, in the presence of an external non-equilibrium energy source (like the Sun), systems adapt and self-organize themselves to better absorb energy and dissipate heat or entropy. This process has come to be known as <em>dissipation-driven adaptation</em> <span class="citation" data-cites="EnglandStatistical2013 PerunovStatistical2016">(England 2013; Perunov et al. 2016)</span>.</p>
+<p>While this have been pointed out by Erwin Schrödinger in his seminar book <a href="https://en.wikipedia.org/wiki/What_Is_Life%3F"><em>What is life?</em></a> back in the 1940s, it has undergone rigorous thermodynamic treatment in recent years, thanks to advances in the physics of non-equilibrium thermodynamics <span class="citation" data-cites="CollinVerification2005 MichaelianThermodynamic2011">(Collin et al. 2005; K. Michaelian 2011)</span>.</p>
+<p>In short, in the presence of an external non-equilibrium energy source (like the Sun), systems adapt and self-organize themselves to better absorb energy and dissipate heat or entropy. This process has come to be known as <em>dissipation-driven adaptation</em> <span class="citation" data-cites="EnglandStatistical2013 PerunovStatistical2016">(England 2013; Perunov, Marsland, and England 2016)</span>.</p>
 <p>Life is hypothesized to be such a dissipative system that serves to increase entropy production.</p>
 <p>From the birth of planetoids in the dusts of protoplanetary disks to the formation of vortices we see in chaotic turbulent flows such as hurricanes. Stable structures with low internal entropy arise out of such chaotic interactions in order to more efficiently dissipate entropy.</p>
 <p>Life might be one of such order out of chaos, a long-running, universe-scale conspiracy to increase the entropy of the cosmos.</p>
 <section id="self-organization-order-out-of-chaos" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="self-organization-order-out-of-chaos">Self-organization — order out of chaos</h2>
-<p>Self-organization of complex structures in the presence of an external energy source have been demonstrated both experimentally and computationally. In a computational simulation involving 20 particles in a simplified chemical space, complex bonding patterns emerged under resonance with a periodic drive, increasing the rate of work absorption and heat dissipation <span class="citation" data-cites="KachmanSelfOrganized2017">(Kachman et al. 2017)</span>.</p>
+<p>Self-organization of complex structures in the presence of an external energy source have been demonstrated both experimentally and computationally. In a computational simulation involving 20 particles in a simplified chemical space, complex bonding patterns emerged under resonance with a periodic drive, increasing the rate of work absorption and heat dissipation <span class="citation" data-cites="KachmanSelfOrganized2017">(Kachman, Owen, and England 2017)</span>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../media/posts/life-conspiracy/kondepudi.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Reprinted from @KondepudiEnddirected2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/kondepudi.png" class="img-fluid figure-img" alt="Reprinted from Kondepudi et al. (2015)"></a></p>
-<figcaption>Reprinted from <span class="citation" data-cites="KondepudiEnddirected2015">Kondepudi et al. (2015)</span></figcaption>
+<p><a href="../media/posts/life-conspiracy/kondepudi.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Reprinted from @KondepudiEnddirected2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/kondepudi.png" class="img-fluid figure-img" alt="Reprinted from Kondepudi, Kay, and Dixon (2015)"></a></p>
+<figcaption>Reprinted from <span class="citation" data-cites="KondepudiEnddirected2015">Kondepudi, Kay, and Dixon (2015)</span></figcaption>
 </figure>
 </div>
 <p>Setup and result of self-organizing conducting beads.</p>
-</div></div><p>Experimentally, conducting beads 4mm in diameter immersed in oil in a petri dish were shown to self-organize to a complex, tree-like structure when subjected to a high voltage. This occurred at a critical point and was accompanied by a spike in entropy dissipation <span class="citation" data-cites="KondepudiEnddirected2015">(Kondepudi et al. 2015)</span>. Silver nanorods were also observed to self-organized in the presence of a doughnut-shaped laser source, with resulting structures depending on the wavelengths and polarization of the laser source <span class="citation" data-cites="ItoSelective2013">(Ito et al. 2013)</span>.</p>
-<p>Likewise, by considering UVC light of 230nm to 270nm from the Sun as the non-equilibrium energy source (a range of wavelengths that were most intense in the early Earth), it was demonstrated that RNA polymers could proliferate via photochemical reactions, and that DNA polymers would denature from absorption and dissipation at these UVC wavelengths. These are crucial steps for self-replication without enzymes <span class="citation" data-cites="MichaelianMicroscopic2017 MichaelianUVC2019">(Michaelian 2017; Michaelian and Padilla 2019)</span>.</p>
-<p>Homochirality in DNA and RNA was also shown to be achieved via photochemical reactions with UVC wavelengths light <span class="citation" data-cites="MichaelianHomochirality2018">(Michaelian 2018)</span>. Correlations also exist between the maximum absorbance wavelengths of early life’s nucleobases and amino acids, and UVC wavelengths <span class="citation" data-cites="MichaelianFundamental2015">(Michaelian and Simeonov 2015)</span>.</p>
+</div></div><p>Experimentally, conducting beads 4mm in diameter immersed in oil in a petri dish were shown to self-organize to a complex, tree-like structure when subjected to a high voltage. This occurred at a critical point and was accompanied by a spike in entropy dissipation <span class="citation" data-cites="KondepudiEnddirected2015">(Kondepudi, Kay, and Dixon 2015)</span>. Silver nanorods were also observed to self-organized in the presence of a doughnut-shaped laser source, with resulting structures depending on the wavelengths and polarization of the laser source <span class="citation" data-cites="ItoSelective2013">(Ito et al. 2013)</span>.</p>
+<p>Likewise, by considering UVC light of 230nm to 270nm from the Sun as the non-equilibrium energy source (a range of wavelengths that were most intense in the early Earth), it was demonstrated that RNA polymers could proliferate via photochemical reactions, and that DNA polymers would denature from absorption and dissipation at these UVC wavelengths. These are crucial steps for self-replication without enzymes <span class="citation" data-cites="MichaelianMicroscopic2017 MichaelianUVC2019">(Karo Michaelian 2017; Karo Michaelian and Padilla 2019)</span>.</p>
+<p>Homochirality in DNA and RNA was also shown to be achieved via photochemical reactions with UVC wavelengths light <span class="citation" data-cites="MichaelianHomochirality2018">(Karo Michaelian 2018)</span>. Correlations also exist between the maximum absorbance wavelengths of early life’s nucleobases and amino acids, and UVC wavelengths <span class="citation" data-cites="MichaelianFundamental2015">(K. Michaelian and Simeonov 2015)</span>.</p>
 <p>These findings suggest that in the RNA world during early Earth era, RNA or pre-RNA polymers may have self-organized or adapted to efficeintly absorb and dissipate UVC solar spectrum, a prime example of dissipative adaptation in the emergence of life.</p>
 </section>
 <section id="self-replication-the-more-the-merrier" class="level2">
@@ -6662,15 +6809,15 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 <div class="no-row-height column-margin column-container"><div class="">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../media/posts/life-conspiracy/michaelian.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Reprinted from @MichaelianFundamental2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/michaelian.png" class="img-fluid figure-img" alt="Reprinted from Michaelian and Simeonov (2015)"></a></p>
-<figcaption>Reprinted from <span class="citation" data-cites="MichaelianFundamental2015">Michaelian and Simeonov (2015)</span></figcaption>
+<p><a href="../media/posts/life-conspiracy/michaelian.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Reprinted from @MichaelianFundamental2015"><img src="https://jianweicheong.codeberg.page/media/posts/life-conspiracy/michaelian.png" class="img-fluid figure-img" alt="Reprinted from K. Michaelian and Simeonov (2015)"></a></p>
+<figcaption>Reprinted from <span class="citation" data-cites="MichaelianFundamental2015">K. Michaelian and Simeonov (2015)</span></figcaption>
 </figure>
 </div>
 <p>Correlations between solar spectrum and the emergence of organic compounds and cells in the five different periods. As Earth’s conditions changes, more complex organic compounds evolved to suit these conditions. The general trends are a shift from UVC absorbing to visible spectrum absorbing compounds, and a shift to oxygen based respiration.</p>
-</div></div><p>This seems to be evident throughout life’s history, where its evolution has underwent avalanche dynamics with quick and sudden changes in complexity rather than smooth and gradual evolution <span class="citation" data-cites="PaczuskiAvalanche1996">(Paczuski et al. 1996)</span>. Some even modeled these sudden transitions of evolution as a Big Bang model with “evolutionary inflation” akin to the cosmological inflation model <span class="citation" data-cites="KooninBiological2007">(Koonin 2007)</span>. Simulated artificial life have also demonstrated how the fitness or how the population adapts to the environment, can undergo multiple discontinuous jumps <span class="citation" data-cites="AdamiSelforganized1995">(Adami 1995)</span>.</p>
-<p>Correlating Earth’s historical environmental changes (like solar spectrum, temperature, and atmospheric compositions) with organic compounds’ emergence and evolution shows that life has consistently adapted to better survive and absorb energy according to the prevailing condition in that period <span class="citation" data-cites="MichaelianFundamental2015">(Michaelian and Simeonov 2015)</span>.</p>
+</div></div><p>This seems to be evident throughout life’s history, where its evolution has underwent avalanche dynamics with quick and sudden changes in complexity rather than smooth and gradual evolution <span class="citation" data-cites="PaczuskiAvalanche1996">(Paczuski, Maslov, and Bak 1996)</span>. Some even modeled these sudden transitions of evolution as a Big Bang model with “evolutionary inflation” akin to the cosmological inflation model <span class="citation" data-cites="KooninBiological2007">(Koonin 2007)</span>. Simulated artificial life have also demonstrated how the fitness or how the population adapts to the environment, can undergo multiple discontinuous jumps <span class="citation" data-cites="AdamiSelforganized1995">(Adami 1995)</span>.</p>
+<p>Correlating Earth’s historical environmental changes (like solar spectrum, temperature, and atmospheric compositions) with organic compounds’ emergence and evolution shows that life has consistently adapted to better survive and absorb energy according to the prevailing condition in that period <span class="citation" data-cites="MichaelianFundamental2015">(K. Michaelian and Simeonov 2015)</span>.</p>
 <p>An interesting example is the case of adenosine triphosphate (ATP) synthase, an enzyme that lies along the cell membrane of a cell that breaks down ATP to adenosine diphosphate (ADP) and a phosphate. This breakage releases energy that powers the cell.</p>
-<p>Using a kinetic model of the ATP synthase process reveals that both its entropy production and the Shannon entropy of the transitional states, are maximized at a catalytic dwell angle<sup>4</sup> consistent with the actual ATP synthase’s angle, indicating that the ATP synthase evolved to optimize entropy production <span class="citation" data-cites="DewarFunctional2006">(Dewar et al. 2006)</span>.</p>
+<p>Using a kinetic model of the ATP synthase process reveals that both its entropy production and the Shannon entropy of the transitional states, are maximized at a catalytic dwell angle<sup>4</sup> consistent with the actual ATP synthase’s angle, indicating that the ATP synthase evolved to optimize entropy production <span class="citation" data-cites="DewarFunctional2006">(Dewar, Juretić, and Županović 2006)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;The ATP synthase rotates in angles of <img src="https://latex.codecogs.com/png.latex?120%5E%7B%5Ccirc%7D"> for each ATP to ADP + P<img src="https://latex.codecogs.com/png.latex?_i"> reaction. However, at the moment of breakage of ATP bonds to ADP + P<img src="https://latex.codecogs.com/png.latex?_i">, the synthase will pause for a short amount of time of around 2ms <span class="citation" data-cites="UenoATP2005">(Ueno et al. 2005)</span>. The angle at which this pause happens is known as the catalytic dwell.</p></div><div id="fn5"><p><sup>5</sup>&nbsp;One should keep in mind that none of these results were shown for complex life such as us humans, and one should not have the illusion that this hints at some sort of “<a href="https://en.wikipedia.org/wiki/Lamarckism">Lamarckism</a>”.</p></div></div><p>These findings suggest that the process of self-organization to an external energy source is an ongoing, dynamic phenomenon that continues in response to changing conditions.<sup>5</sup></p>
 </section>
 </section>
@@ -6688,7 +6835,7 @@ Einstein, A., B. Podolsky, and N. Rosen. 1935. <span>“Can Quantum-Mechanical D
 </section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-AdamiSelforganized1995" class="csl-entry">
 Adami, C. 1995. <span>“Self-Organized Criticality in Living Systems.”</span> <em>Physics Letters A</em> 203 (1): 29–32. <a href="https://doi.org/10.1016/0375-9601(95)00372-a">https://doi.org/10.1016/0375-9601(95)00372-a</a>.
 </div>
@@ -6708,7 +6855,7 @@ Dewar, R. C., D. Juretić, and P. Županović. 2006. <span>“The Functional Des
 England, Jeremy L. 2013. <span>“Statistical Physics of Self-Replication.”</span> <em>The Journal of Chemical Physics</em> 139 (12). <a href="https://doi.org/10.1063/1.4818538">https://doi.org/10.1063/1.4818538</a>.
 </div>
 <div id="ref-ItoSelective2013" class="csl-entry">
-Ito, Syoji, Hiroaki Yamauchi, Mamoru Tamura, et al. 2013. <span>“Selective Optical Assembly of Highly Uniform Nanoparticles by Doughnut-Shaped Beams.”</span> <em>Scientific Reports</em> 3 (1). <a href="https://doi.org/10.1038/srep03047">https://doi.org/10.1038/srep03047</a>.
+Ito, Syoji, Hiroaki Yamauchi, Mamoru Tamura, Shimpei Hidaka, Hironori Hattori, Taichi Hamada, Keisuke Nishida, et al. 2013. <span>“Selective Optical Assembly of Highly Uniform Nanoparticles by Doughnut-Shaped Beams.”</span> <em>Scientific Reports</em> 3 (1). <a href="https://doi.org/10.1038/srep03047">https://doi.org/10.1038/srep03047</a>.
 </div>
 <div id="ref-KachmanSelfOrganized2017" class="csl-entry">
 Kachman, Tal, Jeremy A. Owen, and Jeremy L. England. 2017. <span>“Self-Organized Resonance During Search of a Diverse Chemical Space.”</span> <em>Physical Review Letters</em> 119 (3). <a href="https://doi.org/10.1103/physrevlett.119.038001">https://doi.org/10.1103/physrevlett.119.038001</a>.
@@ -6729,7 +6876,7 @@ Michaelian, K. 2011. <span>“Thermodynamic Dissipation Theory for the Origin of
 Michaelian, Karo. 2017. <span>“Microscopic Dissipative Structuring and Proliferation at the Origin of Life.”</span> <em>Heliyon</em> 3 (10): e00424. <a href="https://doi.org/10.1016/j.heliyon.2017.e00424">https://doi.org/10.1016/j.heliyon.2017.e00424</a>.
 </div>
 <div id="ref-MichaelianHomochirality2018" class="csl-entry">
-Michaelian, Karo. 2018. <span>“Homochirality Through Photon-Induced Denaturing of RNA/DNA at the Origin of Life.”</span> <em>Life</em> 8 (2): 21. <a href="https://doi.org/10.3390/life8020021">https://doi.org/10.3390/life8020021</a>.
+———. 2018. <span>“Homochirality Through Photon-Induced Denaturing of RNA/DNA at the Origin of Life.”</span> <em>Life</em> 8 (2): 21. <a href="https://doi.org/10.3390/life8020021">https://doi.org/10.3390/life8020021</a>.
 </div>
 <div id="ref-MichaelianUVC2019" class="csl-entry">
 Michaelian, Karo, and Norberto Santillán Padilla. 2019. <span>“UVC Photon-Induced Denaturing of DNA: A Possible Dissipative Route to Archean Enzyme-Less Replication.”</span> <em>Heliyon</em> 5 (6): e01902. <a href="https://doi.org/10.1016/j.heliyon.2019.e01902">https://doi.org/10.1016/j.heliyon.2019.e01902</a>.
