@@ -203,6 +203,10 @@ window.Quarto = {
 <span class="menu-text">CV</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../network.html"> 
+<span class="menu-text">Network</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../contact.html"> 
 <span class="menu-text">Contact</span></a>
   </li>  
@@ -717,100 +721,640 @@ window.Quarto = {
 <p>See any differences between the two codes? There isn’t any as tidytable is a drop-in replacement for tidyverse’s <a href="https://dplyr.tidyverse.org/">dplyr</a>, <a href="https://tidyr.tidyverse.org/">tidyr</a>, and <a href="https://purrr.tidyverse.org/">purrr</a>, but now uses data.table as the backend (instead of tidyverse’s <a href="https://tibble.tidyverse.org/">tibble</a> or R’s default data.frame.</p>
 <p>But what if <code>hugeQuantumSys</code> is the one taking a long time to run? How do I parallelize its run on the 1000000 rows? Simple, use <a href="https://furrr.futureverse.org/">furrr</a> instead of purrr, and replace <code>pmap</code> with <code>future_pmap</code>. You see, the tidyverse has become such a staple in R that a lot of packages are designed around it, which makes integration with it so simple<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;This reminds me of Julia’s <a href="https://sciml.ai/">SciML</a>, where different packages all works together thanks to Julia’s <a href="https://en.wikipedia.org/wiki/Multiple_dispatch">multiple dispatch</a>. Since we are talking about parallelization, another shout out to Julia is the ability to allow one to multithread their for loops just by adding the <code>Threads.@threads</code> macros in front of it, e.g., <code>Threads.@threads for x in 0:1000 ...</code>.</p></div></div><p>Here’s a little benchmark for the above codes. For more accurate benchmarks, refer to <a href="https://duckdblabs.github.io/db-benchmark/">this</a>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">dplyr &amp; tidyr</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">24.05</span>, <span class="fl">23.84</span>, <span class="fl">23.95</span>, <span class="fl">24.44</span>, <span class="fl">24.58</span>, <span class="fl">24.65</span>, <span class="fl">24.24</span>, <span class="fl">23.82</span>, <span class="fl">24.11</span>, <span class="fl">23.81</span>),</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">data.table</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">2.79</span>, <span class="fl">2.80</span>, <span class="fl">2.97</span>, <span class="fl">2.81</span>, <span class="fl">2.79</span>, <span class="fl">2.82</span>, <span class="fl">2.83</span>, <span class="fl">2.81</span>, <span class="fl">2.79</span>, <span class="fl">2.82</span>),</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">tidytable</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">11.77</span>, <span class="fl">11.90</span>, <span class="fl">11.82</span>, <span class="fl">11.90</span>, <span class="fl">11.87</span>, <span class="fl">11.93</span>, <span class="fl">11.77</span>, <span class="fl">11.84</span>, <span class="fl">11.85</span>, <span class="fl">11.86</span>),</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">pandas</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">13.04</span>, <span class="fl">13.83</span>, <span class="fl">13.11</span>, <span class="fl">13.11</span>, <span class="fl">13.07</span>, <span class="fl">13.23</span>, <span class="fl">13.15</span>, <span class="fl">13.36</span>, <span class="fl">13.27</span>, <span class="fl">13.52</span>),</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">polars</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">1.29</span>, <span class="fl">1.32</span>, <span class="fl">1.22</span>, <span class="fl">1.20</span>, <span class="fl">1.20</span>, <span class="fl">1.19</span>, <span class="fl">1.19</span>, <span class="fl">1.20</span>, <span class="fl">1.22</span>, <span class="fl">1.19</span>),</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">DataFrames.jl (1st run)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.316</span>, <span class="fl">0.295</span>, <span class="fl">0.296</span>, <span class="fl">0.295</span>, <span class="fl">0.292</span>, <span class="fl">0.294</span>, <span class="fl">0.299</span>, <span class="fl">0.294</span>, <span class="fl">0.292</span>, <span class="fl">0.306</span>),</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">DataFrames.jl (subsequent runs)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.0609</span>, <span class="fl">0.0865</span>, <span class="fl">0.0639</span>, <span class="fl">0.0540</span>, <span class="fl">0.0292</span>, <span class="fl">0.0602</span>, <span class="fl">0.0417</span>, <span class="fl">0.0576</span>, <span class="fl">0.0576</span>, <span class="fl">0.0547</span>),</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">Naive way</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.879</span>, <span class="fl">0.902</span>, <span class="fl">0.891</span>, <span class="fl">0.881</span>, <span class="fl">0.877</span>, <span class="fl">0.895</span>, <span class="fl">0.894</span>, <span class="fl">0.882</span>, <span class="fl">0.930</span>, <span class="fl">0.910</span>))</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="at">values_to=</span><span class="st">"values"</span>, <span class="at">names_to=</span><span class="st">"Package"</span>, <span class="at">cols=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Package) <span class="sc">|&gt;</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Median (seconds)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(values), <span class="st">`</span><span class="at">Standard deviation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">signif</span>(<span class="fu">sd</span>(values), <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="st">`</span><span class="at">Median (seconds)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Language =</span> <span class="fu">c</span>(<span class="st">"Julia"</span>, <span class="st">"Julia"</span>, <span class="st">"Python"</span>, <span class="st">"Python"</span>, <span class="st">"R"</span>, <span class="st">"R"</span>, <span class="st">"Python"</span>, <span class="st">"R"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">relocate</span>(Language) <span class="sc">|&gt;</span></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="st">"Sample size = 10 each."</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="st">"Julia precompiles functions, making them faster for subsequent runs. (1st run) refers to runs without precompilation."</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="st">"Note that there are polars packages for R, Julia, and Rust, but Python was used for this benchmark."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<table class="caption-top table">
-<caption>Sample size = 10 each. Julia precompiles functions, making them faster for subsequent runs. (1st run) refers to runs without precompilation. Note that there are polars packages for R, Julia, and Rust, but Python was used for this benchmark.</caption>
-<colgroup>
-<col style="width: 12%">
-<col style="width: 40%">
-<col style="width: 22%">
-<col style="width: 24%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Language</th>
-<th>Package</th>
-<th>Median (seconds)</th>
-<th>Standard deviation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Julia</td>
-<td>DataFrames.jl (subsequent runs)</td>
-<td>0.0576</td>
-<td>0.01480</td>
-</tr>
-<tr class="even">
-<td>Julia</td>
-<td>DataFrames.jl (1st run)</td>
-<td>0.2950</td>
-<td>0.00756</td>
-</tr>
-<tr class="odd">
-<td>Python</td>
-<td>Naive way</td>
-<td>0.8925</td>
-<td>0.01650</td>
-</tr>
-<tr class="even">
-<td>Python</td>
-<td>polars</td>
-<td>1.2000</td>
-<td>0.04570</td>
-</tr>
-<tr class="odd">
-<td>R</td>
-<td>data.table</td>
-<td>2.8100</td>
-<td>0.05360</td>
-</tr>
-<tr class="even">
-<td>R</td>
-<td>tidytable</td>
-<td>11.8550</td>
-<td>0.05340</td>
-</tr>
-<tr class="odd">
-<td>Python</td>
-<td>pandas</td>
-<td>13.1900</td>
-<td>0.24600</td>
-</tr>
-<tr class="even">
-<td>R</td>
-<td>dplyr &amp; tidyr</td>
-<td>24.0800</td>
-<td>0.31600</td>
-</tr>
-</tbody>
-</table>
+<div class="cell">
+<div class="cell-output-display">
+<style>
+th, td{ padding: 5px; }
+.lt-table {
+  --bg: 4px solid transparent;
+
+  border-collapse: separate;
+  caption-side: top;
+  margin: 1em auto;
+  border-spacing: 0;
+  border-top: 1.5px solid #888;
+  border-bottom: 1.5px solid #888;
+
+  caption {
+    padding: .5em;
+    text-align: center;
+    .lt-title    { font-size: 1.2em; }
+    .lt-subtitle { font-size: 0.9em; }
+  }
+
+  th { font-weight: normal; }
+  tbody {
+    :not(:last-child) :is(td, th) { border-bottom: 1px   solid #ddd; }
+    .lt-row-group :is(td, th)     { border-bottom: 1.5px solid #ddd; }
+    .lt-row-group { text-align: left; }
+    .lt-row-group { vertical-align: top; }
+  }
+  thead th {
+    border-bottom: 1px solid #888;
+    &:not(:first-child) { border-left: var(--bg); }
+    &:not(:last-child) { border-right: var(--bg); }
+  }
+  .lt-indent { padding-left: 1em; }
+  .lt-spanner-row {
+    .lt-spanner       { border-bottom: 1px solid #bbb; text-align: center; }
+    .lt-spanner-empty { border-bottom: none; }
+  }
+
+  .lt-footer {
+    font-size: 0.85em;
+    .lt-footnote:first-child td { border-top: 1px solid #aaa; }
+    .lt-source-note:first-child td { border-top: 1px dashed #aaa; }
+    .lt-source-note td { font-style: italic; }
+  }
+
+  .al-r { text-align: right; white-space: nowrap; }
+  .al-c { text-align: center; }
+
+  .lt-fnref {
+    color: #06c;
+    &::before { content: " ["; }
+    &::after  { content: "]"; }
+  }
+}
+</style>
+<script>((window.LT=window.LT||{}).q=window.LT.q||[]).push({s:document.currentScript,d:
+{
+  "data": {
+    "Language": ["Julia", "Julia", "Python", "Python", "R", "R", "Python", "R"],
+    "Package": ["DataFrames.jl (subsequent runs)", "DataFrames.jl (1st run)", "Naive way", "polars", "data.table", "tidytable", "pandas", "dplyr & tidyr"],
+    "Median (seconds)": [0.0576, 0.295, 0.8925, 1.2, 2.81, 11.855, 13.19, 24.08],
+    "Standard deviation": [0.0148, 0.00756, 0.0165, 0.0457, 0.0536, 0.0534, 0.246, 0.316]
+  },
+  "footnotes": [
+    {
+      "text": "Sample size = 10 each.",
+      "location": {
+        "type": "column_labels",
+        "columns": ["Median (seconds)"]
+      }
+    },
+    {
+      "text": "Julia precompiles functions, making them faster for subsequent runs. \"(1st run)\" refers to runs without precompilation.",
+      "location": {
+        "type": "body",
+        "columns": ["Package"],
+        "rows": [1, 2]
+      }
+    },
+    {
+      "text": "Note that there are polars packages for R, Julia, and Rust, but Python was used for this benchmark.",
+      "location": {
+        "type": "body",
+        "columns": ["Package"],
+        "rows": [4]
+      }
+    }
+  ]
+}
+})</script>
+<script>
+/* lt.js — build a semantic <table> from a JSON spec.
+ * Call LT.build(spec) from an inline <script> to render a table in place.
+ * One runtime per page renders any number of tables.
+ */
+(root => {
+  "use strict";
+  if (root.LT?.buildHtml) return;  // duplicate inclusion is a no-op
+
+  // `[<]` (not `<`) avoids `</…` so this file is safe to inline in <script>.
+  const esc = s => String(s)
+    .replace(/&/g, "&amp;").replace(/[<]/g, "&lt;")
+    .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const sup = i => `<sup class="lt-fnref">${i}</sup>`;
+  // Stringify, mapping null/undefined to "" (0 and false stringify normally).
+  const str = v => String(v ?? "");
+
+  // --- Number formatting ---
+  const isNum = v => typeof v === "number" && !isNaN(v);
+  // A column is "numeric" if its first non-null value is a number.
+  const numCol = col => col?.length && typeof col.find(v => v != null) === "number";
+
+  function fmtNumber(v, decimals, bigMark) {
+    if (!isNum(v)) return null;
+    let s = decimals != null ? v.toFixed(decimals) : String(v);
+    if (/^-0(\.0+)?$/.test(s)) s = s.slice(1);
+    if (bigMark) {
+      const parts = s.split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, bigMark);
+      s = parts.join(".");
+    }
+    if (s[0] === "-") s = "−" + s.slice(1);
+    return decimals != null || bigMark ? s : null;
+  }
+
+  // --- Pattern merge ---
+  function mergeVals(vals, pattern) {
+    if (!pattern) return vals.filter(v => v !== "").join(" ");
+    let remaining = pattern, result = "";
+    while (remaining) {
+      const m = remaining.match(/<<(.*?)>>/);
+      if (!m) { result += subRefs(remaining, vals); break; }
+      if (m.index > 0) result += subRefs(remaining.slice(0, m.index), vals);
+      const block = m[1],
+            refs = [...block.matchAll(/\{(\d+)\}/g)].map(x => +x[1]);
+      if (!refs.length || refs.every(i => vals[i - 1] !== ""))
+        result += subRefs(block, vals);
+      remaining = remaining.slice(m.index + m[0].length);
+    }
+    return result;
+  }
+  function subRefs(s, vals) {
+    for (let i = 0; i < vals.length; i++)
+      s = s.split("{" + (i + 1) + "}").join(vals[i]);
+    return s;
+  }
+
+  // --- Auto-format numeric columns ---
+  function autoFmt(spec, display, nRow) {
+    if (spec.auto_format === false) return;
+    const data = spec.data || {}, ops = spec.ops || [],
+          colNames = Object.keys(data);
+
+    const fmtCols = new Set();
+    for (const op of ops) {
+      if (op.type === "fmt_number") for (const c of (op.columns || colNames)) fmtCols.add(c);
+    }
+
+    const getLabel = c => {
+      for (const op of ops) {
+        if (op.type === "label" && op.labels?.[c] != null) return op.labels[c];
+      }
+      return c;
+    };
+
+    for (const c of colNames) {
+      if (fmtCols.has(c)) continue;
+      const col = data[c];
+      if (!numCol(col)) continue;
+
+      const lbl = getLabel(c),
+            pct = /%|[ _](pct|percent)$/i.test(lbl);
+
+      if (/year/i.test(lbl) && col.every(v => v == null || /^\d{4}$/.test(String(v)))) continue;
+
+      // Determine decimal places: find max significant decimals across column,
+      // then cap dynamically based on the largest integer-part width (targeting
+      // ~4 total significant digits): e.g., values <1 get up to 4 decimals,
+      // 10-99 get 2, >=1000 get 0.
+      let maxInt = 0, n = 0;
+      for (const v of col) {
+        if (!isNum(v)) continue;
+        // Number of digits before the decimal point
+        const a = Math.abs(pct ? v * 100 : v),
+              intW = a < 1 ? 0 : Math.floor(Math.log10(a)) + 1;
+        if (intW > maxInt) maxInt = intW;
+        // Significant decimals (strip trailing zeros; adjust for pct *100)
+        const m = String(v).match(/\.(\d+)/);
+        if (!m) continue;
+        const d = m[1].replace(/0+$/, "").length - (pct ? 2 : 0);
+        if (d > n) n = d;
+      }
+      // Cap: 4 decimals max, minus integer width (so large numbers get fewer).
+      // n is already >= 0, so only the upper cap is needed.
+      n = Math.min(n, Math.max(4 - maxInt, 0));
+
+      for (let i = 0; i < nRow; i++) {
+        const v = col[i];
+        if (!isNum(v)) continue;
+        const s = fmtNumber(pct ? v * 100 : v, n, " ");
+        if (s != null) display[c][i] = s + (pct ? "%" : "");
+      }
+    }
+  }
+
+  // --- Apply ops to data columns, return display strings per column ---
+  function applyOps(spec) {
+    const data = spec.data || {},
+          ops = spec.ops || [],
+          colNames = Object.keys(data),
+          nRow = colNames.length ? data[colNames[0]].length : 0;
+
+    // Working copy: display[col][row] = string
+    const display = {};
+    for (const c of colNames) {
+      display[c] = data[c].map(str);
+    }
+
+    autoFmt(spec, display, nRow);
+
+    // Run fn(col, row, rawValue) over each existing cell of the given columns.
+    const eachCell = (cols, fn) => {
+      for (const c of cols) {
+        if (!data[c]) continue;
+        for (let i = 0; i < nRow; i++) fn(c, i, data[c][i]);
+      }
+    };
+
+    for (const op of ops) {
+      const cols = op.columns || colNames;
+      switch (op.type) {
+        case "fmt_number":
+          eachCell(cols, (c, i, raw) => {
+            if (!isNum(raw)) return;
+            const v = op.percent === true ? raw * 100 : raw,
+                  psfx = op.percent ? "%" : "",
+                  f = fmtNumber(v, op.decimals, op.big_mark ?? ""),
+                  pfx = op.prefix || "", sfx = (op.suffix || "") + psfx;
+            if (f != null) display[c][i] = pfx + f + sfx;
+            else if (pfx || sfx) display[c][i] = pfx + String(v) + sfx;
+          });
+          break;
+        case "fmt_date":
+          eachCell(cols, (c, i, raw) => {
+            if (raw == null) return;
+            const d = raw instanceof Date ? raw : new Date(raw);
+            if (isNaN(d)) return;
+            display[c][i] = op.method ? d[op.method]() :
+              op.options ? d.toLocaleDateString(op.locale, op.options) :
+              d.toLocaleDateString(op.locale);
+          });
+          break;
+        case "sub":
+          eachCell(cols, (c, i, raw) => {
+            if (op.small != null && isNum(raw) && raw !== 0 &&
+                Math.abs(raw) < op.small) {
+              display[c][i] = op.small_text ?? ("<" + op.small);
+            } else if (op.zero != null && raw === 0) {
+              display[c][i] = op.zero;
+            } else if (op.missing != null && raw == null) {
+              display[c][i] = op.missing;
+            }
+          });
+          break;
+        case "merge": {
+          const mCols = op.columns;
+          if (!mCols || mCols.length < 2) break;
+          const target = mCols[0];
+          for (let i = 0; i < nRow; i++) {
+            const vals = mCols.map(c => display[c]?.[i] ?? "");
+            display[target][i] = mergeVals(vals, op.pattern);
+          }
+          break;
+        }
+      }
+    }
+    return { display, nRow };
+  }
+
+  // --- Resolve structural spec fields from ops + data ---
+  function resolveSpec(spec) {
+    const data = spec.data || {},
+          ops = spec.ops || [],
+          colNames = Object.keys(data),
+          nRow = colNames.length ? data[colNames[0]].length : 0,
+          // Run fn on each op of the given type, in document order.
+          onOp = (t, fn) => { for (const op of ops) if (op.type === t) fn(op); };
+
+    // row_group: array → rowspan mode; string → separator-row mode
+    let rowGroupSep = typeof spec.row_group === "string";
+    const rowGroupCols = Array.isArray(spec.row_group) ? spec.row_group
+          : (spec.row_group ? [spec.row_group] : []);
+    if (!rowGroupSep && rowGroupCols.length === 1 && spec.auto_sep !== false &&
+        !numCol(data[rowGroupCols[0]]) &&
+        data[rowGroupCols[0]]?.some(v => (v + "").length > 20)) rowGroupSep = true;
+
+    // Hidden columns: row_group, merge sources
+    const hidden = new Set();
+    for (const g of rowGroupCols) hidden.add(g);
+    onOp("merge", op => {
+      if (op.hide !== false && op.columns)
+        op.columns.slice(1).forEach(c => hidden.add(c));
+    });
+
+    // Visible columns after hiding
+    let visible = colNames.filter(c => !hidden.has(c));
+
+    // Apply move
+    onOp("move", op => {
+      const toMove = (op.columns || []).filter(c => visible.includes(c));
+      if (!toMove.length) return;
+      const rest = visible.filter(c => !toMove.includes(c));
+      if (op.after == null) {
+        visible = [...toMove, ...rest];
+      } else {
+        const pos = rest.indexOf(op.after);
+        if (pos >= 0) visible = [...rest.slice(0, pos + 1), ...toMove, ...rest.slice(pos + 1)];
+      }
+    });
+
+    // Set arr[i] = val where i is the position of column c in `visible`.
+    const setByCol = (arr, c, val) => { const i = visible.indexOf(c); if (i >= 0) arr[i] = val; };
+
+    // Alignment: default from data type (number→right, else left), then overrides
+    const align = visible.map(c => numCol(data[c]) ? "right" : "left");
+    onOp("align", op => { for (const c of (op.columns || [])) setByCol(align, c, op.align); });
+
+    // Column labels
+    const autoLbl = s => spec.auto_label === false ? s : s.replace(/[._]/g, " ");
+    const colLabels = visible.map(autoLbl);
+    onOp("label", op => {
+      for (const [c, lbl] of Object.entries(op.labels || {})) setByCol(colLabels, c, lbl);
+    });
+
+    // Column widths
+    let colWidths = null;
+    onOp("width", op => {
+      if (!op.widths) return;
+      if (!colWidths) colWidths = visible.map(() => "");
+      for (const [c, w] of Object.entries(op.widths)) setByCol(colWidths, c, w);
+    });
+
+    // Indent
+    const indent = new Array(nRow).fill(0);
+    onOp("indent", op => {
+      if (op.rows) for (const r of op.rows) indent[r - 1] = op.level ?? 1;
+    });
+
+    // Runs of equal consecutive values in col → [{ label, rows (1-based) }].
+    // Used for both separator-row groups and rowspan span sizes.
+    const runs = col => {
+      const out = [];
+      for (let i = 0; i < nRow;) {
+        const label = str(col[i]), rows = [i + 1];
+        while (++i < nRow && str(col[i]) === label) rows.push(i + 1);
+        out.push({ label, rows });
+      }
+      return out;
+    };
+
+    // Row groups from data column (separator-row mode only)
+    let groups = [];
+    if (rowGroupSep && rowGroupCols.length && data[rowGroupCols[0]])
+      groups.push(...runs(data[rowGroupCols[0]]));
+    // Manual groups
+    onOp("row_group", op => groups.push({ label: op.label, rows: op.rows }));
+    // Group ordering
+    onOp("group_order", op => {
+      if (!groups.length) return;
+      const ordered = [], rest = [];
+      for (const lbl of (op.order || [])) {
+        const g = groups.find(x => x.label === lbl);
+        if (g) ordered.push(g);
+      }
+      for (const g of groups) if (!ordered.includes(g)) rest.push(g);
+      groups = [...ordered, ...rest];
+    });
+
+    // Rowspan groups: compute span sizes for each group column
+    const rowSpans = [];
+    if (!rowGroupSep && rowGroupCols.length) {
+      for (const gc of rowGroupCols) {
+        const spans = new Array(nRow).fill(0);
+        for (const r of runs(data[gc] || [])) spans[r.rows[0] - 1] = r.rows.length;
+        // Resolve display label from label ops (last wins)
+        let hdr = gc;
+        onOp("label", op => { if (op.labels?.[gc] != null) hdr = op.labels[gc]; });
+        rowSpans.push({ col: gc, label: hdr, spans });
+      }
+    }
+
+    // Styles: the style ops are consumed directly (css/class/columns/rows/test).
+    const styles = ops.filter(op => op.type === "style");
+
+    // Auto-spanners: split column names on separator, group contiguous prefixes
+    let spanners = spec.spanners || [];
+    if (spec.auto_span) {
+      const sep = typeof spec.auto_span === "string" ? new RegExp(spec.auto_span) : /[._]/;
+      spanners = [...spanners];
+      for (let i = 0; i < visible.length;) {
+        const m = visible[i].match(sep);
+        if (!m) { i++; continue; }
+        const prefix = visible[i].slice(0, m.index);
+        let j = i + 1;
+        while (j < visible.length) {
+          const m2 = visible[j].match(sep);
+          if (!m2 || visible[j].slice(0, m2.index) !== prefix) break;
+          j++;
+        }
+        if (j - i >= 2) {
+          spanners.push({ label: prefix, columns: visible.slice(i, j) });
+          for (let k = i; k < j; k++) {
+            const mk = visible[k].match(sep);
+            if (mk) colLabels[k] = autoLbl(visible[k].slice(mk.index + mk[0].length));
+          }
+        }
+        i = j;
+      }
+    }
+
+    return {
+      visible, align, colLabels, colWidths, indent,
+      groups, rowSpans, styles, spanners,
+      footnotes: spec.footnotes || [],
+      notes: spec.notes || [],
+      header: spec.header || {},
+      nRow
+    };
+  }
+
+  // Footnotes: dedup by text, assign 1..N in first-seen order.
+  function indexFootnotes(fns) {
+    const order = [], idx = {};
+    fns.forEach(f => {
+      if (idx[f.text] == null) { idx[f.text] = order.length + 1; order.push(f.text); }
+    });
+    return { order, idx };
+  }
+
+  // Find the footnote index for a (type, value) location; 0 if none.
+  // `val` is a scalar: the title group, a single column, a spanner label,
+  // or a row-group label, depending on `type`.
+  const matcher = (fns, idx) => (type, val) => {
+    for (const f of fns) {
+      const loc = f.location;
+      if (loc.type !== type) continue;
+      const hit = idx[f.text];
+      if (type === "title" && loc.group === val) return hit;
+      if (type === "column_labels" && loc.columns.includes(val)) return hit;
+      if (type === "column_spanners" && loc.spanners.includes(val)) return hit;
+      if (type === "row_groups") {
+        if (loc.match === "all") return hit;
+        if (loc.match === "exact" && loc.values.includes(val)) return hit;
+        if (loc.match === "starts_with" && val.startsWith(loc.value)) return hit;
+      }
+    }
+    return 0;
+  };
+
+  function sortByGroups(spec) {
+    if (spec.sort === false || !spec.row_group) return;
+    const data = spec.data || {},
+          cols = [].concat(spec.row_group),
+          colNames = Object.keys(data),
+          nRow = colNames.length ? data[colNames[0]].length : 0;
+    if (!nRow) return;
+    const idx = Array.from({length: nRow}, (_, i) => i);
+    idx.sort((a, b) => {
+      for (const c of cols) {
+        const va = data[c]?.[a], vb = data[c]?.[b];
+        if (va == vb) continue;
+        if (va == null) return 1;
+        if (vb == null) return -1;
+        if (va < vb) return -1;
+        if (va > vb) return 1;
+      }
+      return 0;
+    });
+    for (const c of colNames) data[c] = idx.map(i => data[c][i]);
+    // Remap 1-based row indices in ops to reflect the new order
+    const newPos = new Array(nRow);
+    for (let i = 0; i < nRow; i++) newPos[idx[i]] = i + 1;
+    for (const op of (spec.ops || [])) {
+      if (op.rows) op.rows = op.rows.map(r => newPos[r - 1]);
+    }
+  }
+
+  function buildHtml(spec) {
+    sortByGroups(spec);
+    const data = spec.data || {},
+          { display, nRow } = applyOps(spec),
+          { visible: cols, align, colLabels, colWidths, indent,
+            groups, rowSpans, styles, spanners, footnotes: fns, notes, header: hdr } = resolveSpec(spec),
+          reg = indexFootnotes(fns),
+          fIdx = matcher(fns, reg.idx),
+          nGrp = rowSpans.length,
+          nCol = cols.length + nGrp,
+          out = [`<table class="lt-table">`];
+    const mark = (type, val) => { const i = fIdx(type, val); return i ? sup(i) : ""; };
+    const cell = (c, r) => display[c]?.[r - 1] ?? "";
+    // ` name="val"` for a truthy val, else "" — for optional HTML attributes.
+    const attr = (n, v) => v ? ` ${n}="${v}"` : "";
+    // Plain class names per column (alignment + leading-indent), "" if none.
+    const colCls = cols.map((_, i) => (
+      (i === 0 && groups.length ? "lt-indent " : "") +
+      ({right: "al-r", center: "al-c"}[align[i]] || "")
+    ).trimEnd());
+
+    // Visit each cell at (rows × cols) that exists in the table, calling
+    // fn(key, c, r). rows null = all rows; cols falls back to all columns.
+    const eachLoc = (rows, locCols, fn) => {
+      for (let r = 1; r <= nRow; r++) {
+        if (rows && !rows.includes(r)) continue;
+        for (const c of (locCols || cols)) {
+          const ci = cols.indexOf(c);
+          if (ci >= 0) fn(`${r},${ci}`, c, r);
+        }
+      }
+    };
+
+    // Style map: accumulate css (";") and class (" ") per cell.
+    const styleMap = {}, classMap = {};
+    const addTo = (map, key, val, sep) => { map[key] = map[key] ? map[key] + sep + val : val; };
+    for (const s of styles)
+      eachLoc(s.rows, s.columns ? [].concat(s.columns) : null, (key, c, r) => {
+        if (s.test && !s.test(data[c][r - 1])) return;
+        if (s.css) addTo(styleMap, key, s.css, ";");
+        if (s.class) addTo(classMap, key, s.class, " ");
+      });
+
+    // <colgroup>
+    if (colWidths && colWidths.some(w => w)) {
+      out.push(`<colgroup>`);
+      for (let i = 0; i < cols.length; i++)
+        out.push(`<col${attr("style", colWidths[i] ? "width:" + colWidths[i] : "")}>`);
+      out.push(`</colgroup>`);
+    }
+
+    // <caption>: title + subtitle, each a <div> rendered only when non-empty.
+    const caption = [["title", "lt-title"], ["subtitle", "lt-subtitle"]]
+      .filter(([g]) => hdr[g] != null && hdr[g] !== "")
+      .map(([g, cls]) => `<div class="${cls}">${esc(hdr[g])}${mark("title", g)}</div>`);
+    if (caption.length)
+      out.push(`<caption class="lt-caption">`, ...caption, `</caption>`);
+
+    // <thead>
+    out.push(`<thead>`);
+    if (spanners.length) {
+      const emptyTh = `<th class="lt-spanner-empty"></th>`;
+      out.push(`<tr class="lt-spanner-row">`);
+      out.push(emptyTh.repeat(nGrp));
+      for (let k = 0; k < cols.length;) {
+        const sp = spanners.find(s => s.columns[0] === cols[k]);
+        if (sp) {
+          out.push(`<th colspan="${sp.columns.length}" scope="colgroup" class="lt-spanner">${esc(sp.label)}${mark("column_spanners", sp.label)}</th>`);
+          k += sp.columns.length;
+        } else {
+          out.push(emptyTh);
+          k++;
+        }
+      }
+      out.push(`</tr>`);
+    }
+    out.push(`<tr>`);
+    for (const rs of rowSpans) out.push(`<th scope="col">${esc(rs.label)}</th>`);
+    for (let i = 0; i < cols.length; i++)
+      out.push(`<th scope="col"${attr("class", colCls[i])}>${esc(colLabels[i])}${mark("column_labels", cols[i])}</th>`);
+    out.push(`</tr></thead>`);
+
+    // Body footnote markers
+    const bodyMarks = {};
+    for (const f of fns) {
+      if (f.location.type !== "body") continue;
+      const fi = reg.idx[f.text];
+      eachLoc(f.location.rows, f.location.columns || [], key => { bodyMarks[key] = fi; });
+    }
+
+    // Row rendering
+    const pushRow = r => {
+      out.push(`<tr>`);
+      // Rowspan group cells
+      for (const rs of rowSpans) {
+        const span = rs.spans[r - 1];
+        if (span > 0) out.push(`<th scope="row" class="lt-row-group"${attr("rowspan", span > 1 ? span : 0)}>${esc(cell(rs.col, r))}</th>`);
+      }
+      const ind = indent[r - 1] || 0;
+      for (let ci = 0; ci < cols.length; ci++) {
+        const k = `${r},${ci}`,
+              m = bodyMarks[k], cc = classMap[k],
+              cls = [colCls[ci], cc].filter(Boolean).join(" ");
+        let s = styleMap[k] || "";
+        if (ci === 0 && ind) s = (s ? s + ";" : "") + `padding-left:${ind + 1}em`;
+        out.push(`<td${attr("class", cls)}${attr("style", s)}>${esc(cell(cols[ci], r))}${m ? sup(m) : ""}</td>`);
+      }
+      out.push(`</tr>`);
+    };
+
+    // <tbody>
+    out.push(`<tbody>`);
+    if (groups.length) {
+      const seen = {};
+      for (const g of groups) {
+        out.push(`<tr class="lt-row-group"><th colspan="${nCol}" scope="colgroup">${esc(g.label)}${mark("row_groups", g.label)}</th></tr>`);
+        for (const r of g.rows) { seen[r] = 1; pushRow(r); }
+      }
+      for (let r = 1; r <= nRow; r++) if (!seen[r]) pushRow(r);
+    } else {
+      for (let r = 1; r <= nRow; r++) pushRow(r);
+    }
+    out.push(`</tbody>`);
+
+    // <tfoot>: footnotes then source notes, each a full-width row.
+    if (reg.order.length || notes.length) {
+      const footRow = (cls, html) => `<tr class="${cls}"><td colspan="${nCol}">${html}</td></tr>`;
+      out.push(`<tfoot class="lt-footer">`);
+      reg.order.forEach((txt, i) => out.push(footRow("lt-footnote", `${sup(i + 1)} ${esc(txt)}`)));
+      for (const n of notes) out.push(footRow("lt-source-note", esc(n)));
+      out.push(`</tfoot>`);
+    }
+
+    out.push(`</table>`);
+    return out.join("");
+  }
+
+  const mount = (s, spec) => s.insertAdjacentHTML("afterend", buildHtml(spec));
+  // q.push renders immediately; replay any entries queued before we loaded.
+  const q = { push: e => mount(e.s, e.d) };
+  (root.LT?.q || []).forEach(q.push);
+  root.LT = { build: spec => mount(document.currentScript, spec), buildHtml, q };
+})(window);
+</script>
+</div>
+</div>
 <p>It’s important to note that this is not an apples to apples comparison.</p>
 <p>The bottleneck for dplyr/tidyr, pandas, tidytable, and polars is the unnesting operation, but there is no unnesting operation for DataFrames.jl<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>, data.table, and the naive Python solution.</p>
 <div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;DataFrames.jl seems to do this automatically for the named tuple?</p></div></div><p>Still, it’s no surprise that Julia wins by a huge margin. It’s one of the reasons why I have entirely moved from Python to Julia.</p>
@@ -823,22 +1367,22 @@ window.Quarto = {
 <p>But R don’t have the myriads of packages and libraries you have in Python you say?</p>
 <p>I hear you. In fact, I’m a little annoyed that I can’t find a <a href="https://qutip.org/">QuTiP</a>, <a href="https://qutip.org/QuantumToolbox.jl/stable/">QuantumToolbox.jl</a>, or <a href="https://qojulia.org/">QuantumOptics.jl</a> equivalent in R<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;There’s so many quantum <strong>computing</strong> packages though, which are just glorified <a href="https://en.wikipedia.org/wiki/Domain-specific_language">DSL</a> for matrix multiplications.</p></div></div><p>But no worries, we can simply do this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_virtualenv</span>(<span class="st">"~/.local/venv/"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>qt <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"qutip"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>Hint <span class="ot">&lt;-</span> J <span class="sc">*</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    qt<span class="sc">$</span><span class="fu">tensor</span>(qt<span class="sc">$</span><span class="fu">destroy</span>(<span class="dv">2</span>L), qt<span class="sc">$</span><span class="fu">create</span>(<span class="dv">2</span>L)) <span class="sc">+</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    qt<span class="sc">$</span><span class="fu">tensor</span>(qt<span class="sc">$</span><span class="fu">create</span>(<span class="dv">2</span>L), qt<span class="sc">$</span><span class="fu">destroy</span>(<span class="dv">2</span>L))</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>U <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="dv">1</span>i <span class="sc">*</span> Hint <span class="sc">*</span> t)<span class="sc">$</span><span class="fu">expm</span>()</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>rhoIn <span class="ot">&lt;-</span> qt<span class="sc">$</span><span class="fu">rand_dm</span>(<span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">2</span>L))</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>rhoOut <span class="ot">&lt;-</span> U <span class="sc">*</span> rhoIn <span class="sc">*</span> U<span class="sc">$</span><span class="fu">dag</span>()</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rhoOut)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_virtualenv</span>(<span class="st">"~/.local/venv/"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>qt <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"qutip"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>Hint <span class="ot">&lt;-</span> J <span class="sc">*</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    qt<span class="sc">$</span><span class="fu">tensor</span>(qt<span class="sc">$</span><span class="fu">destroy</span>(<span class="dv">2</span>L), qt<span class="sc">$</span><span class="fu">create</span>(<span class="dv">2</span>L)) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    qt<span class="sc">$</span><span class="fu">tensor</span>(qt<span class="sc">$</span><span class="fu">create</span>(<span class="dv">2</span>L), qt<span class="sc">$</span><span class="fu">destroy</span>(<span class="dv">2</span>L))</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>U <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="dv">1</span>i <span class="sc">*</span> Hint <span class="sc">*</span> t)<span class="sc">$</span><span class="fu">expm</span>()</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>rhoIn <span class="ot">&lt;-</span> qt<span class="sc">$</span><span class="fu">rand_dm</span>(<span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">2</span>L))</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>rhoOut <span class="ot">&lt;-</span> U <span class="sc">*</span> rhoIn <span class="sc">*</span> U<span class="sc">$</span><span class="fu">dag</span>()</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rhoOut)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>Quantum object: dims=[[2, 2], [2, 2]], shape=(4, 4), type='oper', dtype=Dense, isherm=True
 Qobj data =
 [[ 0.23766069+0.00000000e+00j -0.12235266-1.04414855e-01j
@@ -870,38 +1414,38 @@ U = e^{-iH_\text{int} t},
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">main.R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">compression.cpp</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcppEigen)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_virtualenv</span>(<span class="st">"~/.local/venv/"</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>qt <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"qutip"</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">PKG_CXXFLAGS =</span> <span class="st">"-I/usr/local/include/qpp"</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sourceCpp</span>(<span class="st">"compression.cpp"</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>rhoIn <span class="ot">&lt;-</span> qt<span class="sc">$</span><span class="fu">rand_dm</span>(<span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">2</span>L, <span class="dv">2</span>L))<span class="sc">$</span><span class="fu">full</span>()</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>rhoOut <span class="ot">&lt;-</span> <span class="fu">compressionGate</span>(rhoIn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RcppEigen)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">use_virtualenv</span>(<span class="st">"~/.local/venv/"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>qt <span class="ot">&lt;-</span> reticulate<span class="sc">::</span><span class="fu">import</span>(<span class="st">"qutip"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">PKG_CXXFLAGS =</span> <span class="st">"-I/usr/local/include/qpp"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sourceCpp</span>(<span class="st">"compression.cpp"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>rhoIn <span class="ot">&lt;-</span> qt<span class="sc">$</span><span class="fu">rand_dm</span>(<span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">2</span>L, <span class="dv">2</span>L))<span class="sc">$</span><span class="fu">full</span>()</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>rhoOut <span class="ot">&lt;-</span> <span class="fu">compressionGate</span>(rhoIn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;RcppEigen.h&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp::depends(RcppEigen)]]</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;qpp/qpp.hpp&gt;</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> qpp<span class="op">;</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp:export]]</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>cmat compressionGate<span class="op">(</span>cmat rhoIn<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  cmat compress1 <span class="op">=</span> kron<span class="op">(</span>st<span class="op">.</span>pz0<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>st<span class="op">.</span>pz1<span class="op">,</span> gt<span class="op">.</span>X<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">);</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  compress1 <span class="op">*=</span> kron<span class="op">(</span>st<span class="op">.</span>pz0<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>st<span class="op">.</span>pz1<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">,</span> gt<span class="op">.</span>X<span class="op">);</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  cmat compress2 <span class="op">=</span> kron<span class="op">(</span>gt<span class="op">.</span>Id2<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>gt<span class="op">.</span>Id2<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">)</span> <span class="op">+</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>                   kron<span class="op">(</span>gt<span class="op">.</span>Id2<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>gt<span class="op">.</span>X<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">);</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  cmat compress <span class="op">=</span> compress1 <span class="op">*</span> compress2 <span class="op">*</span> compress1<span class="op">;</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> compress <span class="op">*</span> rhoIn <span class="op">*</span> adjoint<span class="op">(</span>compress<span class="op">);</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;RcppEigen.h&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp::depends(RcppEigen)]]</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;qpp/qpp.hpp&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> qpp<span class="op">;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp:export]]</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>cmat compressionGate<span class="op">(</span>cmat rhoIn<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  cmat compress1 <span class="op">=</span> kron<span class="op">(</span>st<span class="op">.</span>pz0<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>st<span class="op">.</span>pz1<span class="op">,</span> gt<span class="op">.</span>X<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">);</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  compress1 <span class="op">*=</span> kron<span class="op">(</span>st<span class="op">.</span>pz0<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>st<span class="op">.</span>pz1<span class="op">,</span> gt<span class="op">.</span>Id2<span class="op">,</span> gt<span class="op">.</span>X<span class="op">);</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  cmat compress2 <span class="op">=</span> kron<span class="op">(</span>gt<span class="op">.</span>Id2<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>gt<span class="op">.</span>Id2<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">)</span> <span class="op">+</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>                   kron<span class="op">(</span>gt<span class="op">.</span>Id2<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">,</span> st<span class="op">.</span>pz0<span class="op">)</span> <span class="op">+</span> kron<span class="op">(</span>gt<span class="op">.</span>X<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">,</span> st<span class="op">.</span>pz1<span class="op">);</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  cmat compress <span class="op">=</span> compress1 <span class="op">*</span> compress2 <span class="op">*</span> compress1<span class="op">;</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> compress <span class="op">*</span> rhoIn <span class="op">*</span> adjoint<span class="op">(</span>compress<span class="op">);</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -940,290 +1484,290 @@ U = e^{-iH_\text{int} t},
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">What you could have just written</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">GPT-5 mini (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">GPT-5 mini (tidyverse)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false" href="">Claude Haiku 4.5 (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-5" role="tab" aria-controls="tabset-6-5" aria-selected="false" href="">Claude Haiku 4.5 (tidyverse)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-6" role="tab" aria-controls="tabset-6-6" aria-selected="false" href="">Llama 4 Scout (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-7" role="tab" aria-controls="tabset-6-7" aria-selected="false" href="">Llama 4 Scout (tidyverse)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-8" role="tab" aria-controls="tabset-6-8" aria-selected="false" href="">Mistral Small 4 (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-9" role="tab" aria-controls="tabset-6-9" aria-selected="false" href="">Mistral Small 4 (tidyverse)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-10" role="tab" aria-controls="tabset-6-10" aria-selected="false" href="">gpt-oss 120B (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-11" role="tab" aria-controls="tabset-6-11" aria-selected="false" href="">gpt-oss 120B (tidyverse)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-12" role="tab" aria-controls="tabset-6-12" aria-selected="false" href="">Proton Lumo (pandas)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-13-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-13" role="tab" aria-controls="tabset-6-13" aria-selected="false" href="">Proton Lumo (tidyverse)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x1, z, <span class="at">color =</span> <span class="fu">factor</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x1, z, <span class="at">color =</span> <span class="fu">factor</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># example: assume df already exists</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: keep only rows where y1 &lt; 2</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: create new column z = y1 + y2 + y3</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[<span class="st">'y1'</span>] <span class="op">+</span> df[<span class="st">'y2'</span>] <span class="op">+</span> df[<span class="st">'y3'</span>]</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: split into two series for plotting</span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>df_pos <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>df_neg <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: plot z vs x1 with two lines</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">5</span>))</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>plt.plot(df_pos[<span class="st">'x1'</span>], df_pos[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>plt.plot(df_neg[<span class="st">'x1'</span>], df_neg[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>, color<span class="op">=</span><span class="st">'tab:red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'z vs x1 (separate lines for z &gt;= 0 and z &lt; 0)'</span>)</span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># example: assume df already exists</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: keep only rows where y1 &lt; 2</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: create new column z = y1 + y2 + y3</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[<span class="st">'y1'</span>] <span class="op">+</span> df[<span class="st">'y2'</span>] <span class="op">+</span> df[<span class="st">'y3'</span>]</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: split into two series for plotting</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>df_pos <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>df_neg <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: plot z vs x1 with two lines</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">5</span>))</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>plt.plot(df_pos[<span class="st">'x1'</span>], df_pos[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>, color<span class="op">=</span><span class="st">'tab:blue'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>plt.plot(df_neg[<span class="st">'x1'</span>], df_neg[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>, color<span class="op">=</span><span class="st">'tab:red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'z vs x1 (separate lines for z &gt;= 0 and z &lt; 0)'</span>)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assume df exists with columns x1, y1, y2, y3</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span>                         <span class="co"># keep only y1 &lt; 2</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3,                   <span class="co"># new z column</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">z_sign =</span> <span class="fu">if_else</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"z &gt;= 0"</span>, <span class="st">"z &lt; 0"</span>))  <span class="co"># grouping column for lines</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: two lines (one for z &gt;= 0, one for z &lt; 0)</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> z_sign)) <span class="sc">+</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>                             <span class="co"># optional: points</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"z &gt;= 0"</span> <span class="ot">=</span> <span class="st">"steelblue"</span>, <span class="st">"z &lt; 0"</span> <span class="ot">=</span> <span class="st">"firebrick"</span>)) <span class="sc">+</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x1"</span>, <span class="at">y =</span> <span class="st">"z (y1+y2+y3)"</span>, <span class="at">color =</span> <span class="st">"Group"</span>) <span class="sc">+</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assume df exists with columns x1, y1, y2, y3</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span>                         <span class="co"># keep only y1 &lt; 2</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3,                   <span class="co"># new z column</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">z_sign =</span> <span class="fu">if_else</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"z &gt;= 0"</span>, <span class="st">"z &lt; 0"</span>))  <span class="co"># grouping column for lines</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: two lines (one for z &gt;= 0, one for z &lt; 0)</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> z_sign)) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span>                             <span class="co"># optional: points</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"z &gt;= 0"</span> <span class="ot">=</span> <span class="st">"steelblue"</span>, <span class="st">"z &lt; 0"</span> <span class="ot">=</span> <span class="st">"firebrick"</span>)) <span class="sc">+</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x1"</span>, <span class="at">y =</span> <span class="st">"z (y1+y2+y3)"</span>, <span class="at">color =</span> <span class="st">"Group"</span>) <span class="sc">+</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter dataframe to keep only rows where y1 &lt; 2</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>]</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new column z as the sum of y1, y2, y3</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[<span class="st">'y1'</span>] <span class="op">+</span> df[<span class="st">'y2'</span>] <span class="op">+</span> df[<span class="st">'y3'</span>]</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot line for z &gt;= 0</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>df_positive <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>plt.plot(df_positive[<span class="st">'x1'</span>], df_positive[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot line for z &lt; 0</span></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>df_negative <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.plot(df_negative[<span class="st">'x1'</span>], df_negative[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter dataframe to keep only rows where y1 &lt; 2</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>]</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new column z as the sum of y1, y2, y3</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[<span class="st">'y1'</span>] <span class="op">+</span> df[<span class="st">'y2'</span>] <span class="op">+</span> df[<span class="st">'y3'</span>]</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot line for z &gt;= 0</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>df_positive <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>plt.plot(df_positive[<span class="st">'x1'</span>], df_positive[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot line for z &lt; 0</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>df_negative <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>plt.plot(df_negative[<span class="st">'x1'</span>], df_negative[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-5-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> z <span class="sc">&gt;=</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"blue"</span>),</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"z &lt; 0"</span>, <span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"z &gt;= 0"</span>)) <span class="sc">+</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Condition"</span>,</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"x1"</span>,</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"z"</span>) <span class="sc">+</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> z <span class="sc">&gt;=</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"blue"</span>),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"z &lt; 0"</span>, <span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"z &gt;= 0"</span>)) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Condition"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"x1"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"z"</span>) <span class="sc">+</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-6-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming df is your DataFrame</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>]  <span class="co"># Keep only rows where y1 is less than 2</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'z' which is the sum of y1, y2, y3</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[<span class="st">'y1'</span>] <span class="op">+</span> df[<span class="st">'y2'</span>] <span class="op">+</span> df[<span class="st">'y3'</span>]</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 'z' against 'x1'</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>df_pos <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>df_neg <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>plt.plot(df_pos[<span class="st">'x1'</span>], df_pos[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>)</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>plt.plot(df_neg[<span class="st">'x1'</span>], df_neg[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>)</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Plot of z against x1'</span>)</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming df is your DataFrame</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>]  <span class="co"># Keep only rows where y1 is less than 2</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'z' which is the sum of y1, y2, y3</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[<span class="st">'y1'</span>] <span class="op">+</span> df[<span class="st">'y2'</span>] <span class="op">+</span> df[<span class="st">'y3'</span>]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot 'z' against 'x1'</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>df_pos <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>df_neg <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>plt.plot(df_pos[<span class="st">'x1'</span>], df_pos[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>plt.plot(df_neg[<span class="st">'x1'</span>], df_neg[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Plot of z against x1'</span>)</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-7-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> <span class="fu">factor</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>))) <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"z &gt;= 0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> <span class="fu">factor</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>))) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"z &gt;= 0"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-8-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data creation (replace this with your actual DataFrame)</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x1'</span>: np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>),</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y1'</span>: np.random.uniform(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">100</span>),</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y2'</span>: np.random.uniform(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">100</span>),</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y3'</span>: np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter rows where y1 &lt; 2</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new column z as sum of y1, y2, y3</span></span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>df_filtered[<span class="st">'z'</span>] <span class="op">=</span> df_filtered[<span class="st">'y1'</span>] <span class="op">+</span> df_filtered[<span class="st">'y2'</span>] <span class="op">+</span> df_filtered[<span class="st">'y3'</span>]</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a categorical column for z &gt;= 0 and z &lt; 0</span></span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>df_filtered[<span class="st">'z_category'</span>] <span class="op">=</span> np.where(df_filtered[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="st">'z &gt;= 0'</span>, <span class="st">'z &lt; 0'</span>)</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot z against x1 with two lines</span></span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> category, group <span class="kw">in</span> df_filtered.groupby(<span class="st">'z_category'</span>):</span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    plt.plot(group[<span class="st">'x1'</span>], group[<span class="st">'z'</span>], label<span class="op">=</span>category)</span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'z vs x1 by z category'</span>)</span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data creation (replace this with your actual DataFrame)</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x1'</span>: np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>),</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y1'</span>: np.random.uniform(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">100</span>),</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y2'</span>: np.random.uniform(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">100</span>),</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y3'</span>: np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter rows where y1 &lt; 2</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new column z as sum of y1, y2, y3</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>df_filtered[<span class="st">'z'</span>] <span class="op">=</span> df_filtered[<span class="st">'y1'</span>] <span class="op">+</span> df_filtered[<span class="st">'y2'</span>] <span class="op">+</span> df_filtered[<span class="st">'y3'</span>]</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a categorical column for z &gt;= 0 and z &lt; 0</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>df_filtered[<span class="st">'z_category'</span>] <span class="op">=</span> np.where(df_filtered[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="st">'z &gt;= 0'</span>, <span class="st">'z &lt; 0'</span>)</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot z against x1 with two lines</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> category, group <span class="kw">in</span> df_filtered.groupby(<span class="st">'z_category'</span>):</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    plt.plot(group[<span class="st">'x1'</span>], group[<span class="st">'z'</span>], label<span class="op">=</span>category)</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'z vs x1 by z category'</span>)</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-9-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming df is your dataframe</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z_group =</span> <span class="fu">ifelse</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"z &gt;= 0"</span>, <span class="st">"z &lt; 0"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> z_group)) <span class="sc">+</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Plot of z against x1"</span>,</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"x1"</span>,</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"z"</span>,</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"z group"</span>) <span class="sc">+</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming df is your dataframe</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z_group =</span> <span class="fu">ifelse</span>(z <span class="sc">&gt;=</span> <span class="dv">0</span>, <span class="st">"z &gt;= 0"</span>, <span class="st">"z &lt; 0"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> z_group)) <span class="sc">+</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Plot of z against x1"</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"x1"</span>,</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"z"</span>,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"z group"</span>) <span class="sc">+</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-10-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume df already exists with columns: x1, y1, y2, y3</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------------------------------</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Keep only rows where y1 &lt; 2</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Create a new column z that is the sum of y1, y2, and y3</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[[<span class="st">'y1'</span>, <span class="st">'y2'</span>, <span class="st">'y3'</span>]].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Plot z vs. x1 with two separate lines:</span></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co">#    - one line for points where z &gt;= 0</span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co">#    - another line for points where z &lt; 0</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Positive‑z line</span></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>plt.plot(pos[<span class="st">'x1'</span>], pos[<span class="st">'z'</span>],</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>         marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'steelblue'</span>,</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'z ≥ 0'</span>)</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Negative‑z line</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>neg <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>plt.plot(neg[<span class="st">'x1'</span>], neg[<span class="st">'z'</span>],</span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>         marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'tomato'</span>,</span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'z &lt; 0'</span>)</span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axis labels, title and legend</span></span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
-<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z (y1 + y2 + y3)'</span>)</span>
-<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'z vs. x1 separated by sign of z'</span>)</span>
-<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume df already exists with columns: x1, y1, y2, y3</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------------------------------</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Keep only rows where y1 &lt; 2</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Create a new column z that is the sum of y1, y2, and y3</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'z'</span>] <span class="op">=</span> df[[<span class="st">'y1'</span>, <span class="st">'y2'</span>, <span class="st">'y3'</span>]].<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Plot z vs. x1 with two separate lines:</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">#    - one line for points where z &gt;= 0</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">#    - another line for points where z &lt; 0</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Positive‑z line</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>plt.plot(pos[<span class="st">'x1'</span>], pos[<span class="st">'z'</span>],</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>         marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'steelblue'</span>,</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'z ≥ 0'</span>)</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Negative‑z line</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>neg <span class="op">=</span> df[df[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>plt.plot(neg[<span class="st">'x1'</span>], neg[<span class="st">'z'</span>],</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>         marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'tomato'</span>,</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'z &lt; 0'</span>)</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axis labels, title and legend</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z (y1 + y2 + y3)'</span>)</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'z vs. x1 separated by sign of z'</span>)</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-11-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep rows where y1 is less than 2</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a new column z = y1 + y2 + y3</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot z vs x1 with separate lines for z &gt;= 0 and z &lt; 0</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">colour =</span> z <span class="sc">&gt;=</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name =</span> <span class="st">"z sign"</span>,</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span>  <span class="ot">=</span> <span class="st">"blue"</span>,</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"z ≥ 0"</span>, <span class="st">"z &lt; 0"</span>)) <span class="sc">+</span></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x1"</span>, <span class="at">y =</span> <span class="st">"z (y1 + y2 + y3)"</span>,</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"z vs x1 with positive/negative lines"</span>) <span class="sc">+</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep rows where y1 is less than 2</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a new column z = y1 + y2 + y3</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot z vs x1 with separate lines for z &gt;= 0 and z &lt; 0</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">colour =</span> z <span class="sc">&gt;=</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">name =</span> <span class="st">"z sign"</span>,</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span>  <span class="ot">=</span> <span class="st">"blue"</span>,</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"red"</span>),</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"z ≥ 0"</span>, <span class="st">"z &lt; 0"</span>)) <span class="sc">+</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"x1"</span>, <span class="at">y =</span> <span class="st">"z (y1 + y2 + y3)"</span>,</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"z vs x1 with positive/negative lines"</span>) <span class="sc">+</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-12-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the dataframe where y1 &lt; 2</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'z' as the sum of y1, y2, y3</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>df_filtered[<span class="st">'z'</span>] <span class="op">=</span> df_filtered[<span class="st">'y1'</span>] <span class="op">+</span> df_filtered[<span class="st">'y2'</span>] <span class="op">+</span> df_filtered[<span class="st">'y3'</span>]</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate data for plotting based on z &gt;= 0 and z &lt; 0</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>df_positive <span class="op">=</span> df_filtered[df_filtered[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>df_negative <span class="op">=</span> df_filtered[df_filtered[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot z against x1 with two lines</span></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>plt.plot(df_positive[<span class="st">'x1'</span>], df_positive[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>plt.plot(df_negative[<span class="st">'x1'</span>], df_negative[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>, marker<span class="op">=</span><span class="st">'x'</span>)</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Plot of z vs x1 (filtered by y1 &lt; 2)'</span>)</span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter the dataframe where y1 &lt; 2</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df[df[<span class="st">'y1'</span>] <span class="op">&lt;</span> <span class="dv">2</span>].copy()</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column 'z' as the sum of y1, y2, y3</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>df_filtered[<span class="st">'z'</span>] <span class="op">=</span> df_filtered[<span class="st">'y1'</span>] <span class="op">+</span> df_filtered[<span class="st">'y2'</span>] <span class="op">+</span> df_filtered[<span class="st">'y3'</span>]</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate data for plotting based on z &gt;= 0 and z &lt; 0</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>df_positive <span class="op">=</span> df_filtered[df_filtered[<span class="st">'z'</span>] <span class="op">&gt;=</span> <span class="dv">0</span>]</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>df_negative <span class="op">=</span> df_filtered[df_filtered[<span class="st">'z'</span>] <span class="op">&lt;</span> <span class="dv">0</span>]</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot z against x1 with two lines</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>plt.plot(df_positive[<span class="st">'x1'</span>], df_positive[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &gt;= 0'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>plt.plot(df_negative[<span class="st">'x1'</span>], df_negative[<span class="st">'z'</span>], label<span class="op">=</span><span class="st">'z &lt; 0'</span>, marker<span class="op">=</span><span class="st">'x'</span>)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'z'</span>)</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Plot of z vs x1 (filtered by y1 &lt; 2)'</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-13" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-13-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>df_processed <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep only rows where y1 is less than 2</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a new column 'z' as the sum of y1, y2, and y3</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a categorical column to distinguish lines based on z</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">case_when</span>(</span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Positive or Zero"</span>,</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Negative"</span></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot z against x1, coloring by the group condition</span></span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> group)) <span class="sc">+</span></span>
-<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Plot of Z vs X1 (Colored by Sign of Z)"</span>,</span>
-<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"x1"</span>,</span>
-<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"z"</span>,</span>
-<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Z Group"</span></span>
-<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>df_processed <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Keep only rows where y1 is less than 2</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(y1 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a new column 'z' as the sum of y1, y2, and y3</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">z =</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3) <span class="sc">%&gt;%</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a categorical column to distinguish lines based on z</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">case_when</span>(</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Positive or Zero"</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    z <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Negative"</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot z against x1, coloring by the group condition</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> z, <span class="at">color =</span> group)) <span class="sc">+</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Plot of Z vs X1 (Colored by Sign of Z)"</span>,</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"x1"</span>,</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"z"</span>,</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Z Group"</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
