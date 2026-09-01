@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/posts.html",
+    "listing": "/index.html",
     "items": [
       "/posts/spooky-action.html",
       "/posts/r-heart.html",
@@ -15,7 +15,7 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/posts.html",
     "items": [
       "/posts/spooky-action.html",
       "/posts/r-heart.html",

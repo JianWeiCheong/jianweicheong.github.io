@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jianweicheong.codeberg.page/cv.html</loc>
-    <lastmod>2026-08-20T12:53:51.956Z</lastmod>
+    <loc>https://jianweicheong.codeberg.page/network.html</loc>
+    <lastmod>2026-09-01T16:41:08.001Z</lastmod>
   </url>
   <url>
-    <loc>https://jianweicheong.codeberg.page/contact.html</loc>
-    <lastmod>2025-01-26T12:29:23.096Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts.html</loc>
-    <lastmod>2026-05-22T15:44:07.725Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/tools-academic.html</loc>
-    <lastmod>2026-07-25T16:33:24.286Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/quantum-computing.html</loc>
-    <lastmod>2026-07-25T16:33:06.797Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/colormaps.html</loc>
-    <lastmod>2026-07-25T16:32:50.398Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/haskell-numerical.html</loc>
-    <lastmod>2026-05-22T15:40:33.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/why-fedora.html</loc>
-    <lastmod>2026-05-22T15:40:57.244Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</loc>
-    <lastmod>2026-07-25T16:32:58.870Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/typst-lilaq.html</loc>
-    <lastmod>2026-07-25T16:49:39.993Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/betty-hill-star-map.html</loc>
-    <lastmod>2026-05-22T15:40:11.080Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/r-heart.html</loc>
-    <lastmod>2026-07-25T16:43:25.586Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jianweicheong.codeberg.page/posts/spooky-action.html</loc>
-    <lastmod>2026-08-05T17:05:17.761Z</lastmod>
+    <loc>https://jianweicheong.codeberg.page/software.html</loc>
+    <lastmod>2026-03-25T16:53:20.266Z</lastmod>
   </url>
   <url>
     <loc>https://jianweicheong.codeberg.page/index.html</loc>
     <lastmod>2026-05-22T15:48:04.950Z</lastmod>
   </url>
   <url>
-    <loc>https://jianweicheong.codeberg.page/software.html</loc>
-    <lastmod>2026-03-25T16:53:20.266Z</lastmod>
+    <loc>https://jianweicheong.codeberg.page/posts/spooky-action.html</loc>
+    <lastmod>2026-08-05T17:05:17.761Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/r-heart.html</loc>
+    <lastmod>2026-09-01T13:17:45.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/betty-hill-star-map.html</loc>
+    <lastmod>2026-05-22T15:40:11.080Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/typst-lilaq.html</loc>
+    <lastmod>2026-07-25T16:49:39.993Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/life-conspiracy.html</loc>
+    <lastmod>2026-07-25T16:32:58.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/why-fedora.html</loc>
+    <lastmod>2026-05-22T15:40:57.244Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/haskell-numerical.html</loc>
+    <lastmod>2026-05-22T15:40:33.408Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/colormaps.html</loc>
+    <lastmod>2026-07-25T16:32:50.398Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/quantum-computing.html</loc>
+    <lastmod>2026-07-25T16:33:06.797Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts/tools-academic.html</loc>
+    <lastmod>2026-07-25T16:33:24.286Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/posts.html</loc>
+    <lastmod>2026-05-22T15:44:07.725Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/contact.html</loc>
+    <lastmod>2026-09-01T17:07:55.293Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jianweicheong.codeberg.page/cv.html</loc>
+    <lastmod>2026-08-20T12:53:51.956Z</lastmod>
   </url>
 </urlset>
