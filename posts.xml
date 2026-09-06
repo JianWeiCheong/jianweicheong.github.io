@@ -10,7 +10,996 @@
 <atom:link href="https://jianweicheong.codeberg.page/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Personal page of Jian Wei Cheong</description>
 <generator>quarto-1.9.37</generator>
-<lastBuildDate>Wed, 05 Aug 2026 16:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 05 Sep 2026 16:00:00 GMT</lastBuildDate>
+<item>
+  <title>Can you teach programming in 15 minutes?</title>
+  <link>https://jianweicheong.codeberg.page/posts/program-15-min.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<blockquote class="blockquote">
+<p><em>“You think you know when you learn, are more sure when you can write, even more when you can teach, but certain when you can program.”</em></p>
+<div style="text-align: right;">
+<p>— <a href="https://en.wikipedia.org/wiki/Alan_Perlis">Alan Perlis</a> <br> First recipient of the Turing Award</p>
+</div>
+</blockquote>
+<p>For 3 years now I have conducted a programming class to high-school level students as part of my school’s annual outreach program, teaching them basic Python to compute and plot the <a href="https://en.wikipedia.org/wiki/Logistic_map">logistic map</a> in a 2 hours class. With 6 classes per year for 3 years, that’s 36 hours of classes, surprisingly more than a year of teaching tutorial classes.</p>
+<p>With the advent of vibecoding though, this is the first year that I have to begin with the quote above, in an attempt to motivate the students into learning how to program themselves. Though, I’m sure the cool visualizations and simulations that I showed did much of the heavylifting.</p>
+<p>The students didn’t sign up for a programming class afterall. Instead, they signed up for a 3 days camp to experience what doing a Physics degree is like. In the 3 days, they participated in various lab activities, doing cool experiments with lasers or fabricating a solar cell etc.</p>
+<p>And then they come to my class and have to endure sitting in front of a computer for 2 hours, all while getting thrown errors from Python. So we already lost half the battle here.</p>
+<p>Of course, most have no programming experience, and the actual teaching of basic Python programming spans just around <strong>15 minutes</strong>, where they follow along a haphazard explanation about arrays, for loops, plotting, or whatnot in a Jupyter notebook, but with as little computing jargon as possible.</p>
+<p>Afterwards, we let go and let them apply what they learned in the 15 minutes to solve a few simple tasks. A couple of TAs and me will then walk around and guide them if they encounter any problems. “Hands-on” is the point of their 3 days camp afterall.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Here’s the breakdown of the 2 hours:</p>
+<ol type="1">
+<li>Introduction and theory (15 minutes)</li>
+<li>Learning Python (15 minutes)</li>
+<li>Doing the tasks (1.5 hours)</li>
+</ol>
+</div></div><section id="the-tasks" class="level1 page-columns page-full">
+<h1>The tasks</h1>
+<p>Their tasks are quite simple really.</p>
+<p>After some introduction about the idea of population dynamics and chaos at the start of the class, we got them to derive the logistic map:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0Ax_%7Bn+1%7D%20=%20Ax_n(1-x_n),%0A"> where <img src="https://latex.codecogs.com/png.latex?0%20%5Cleq%20x_n%20%5Cleq%201"> and <img src="https://latex.codecogs.com/png.latex?0%20%5Cleq%20A%20%5Cleq%204">.</p>
+<p><img src="https://latex.codecogs.com/png.latex?x_n"> models a proportion of population at year <img src="https://latex.codecogs.com/png.latex?n">, and <img src="https://latex.codecogs.com/png.latex?A"> is a parameter that might represent some environmental conditions. Depending on the values of <img src="https://latex.codecogs.com/png.latex?A">, the population can rise and fall, or exhibit complex behaviors.</p>
+<section id="first-task" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="first-task">First task</h2>
+<p>Their first task is to plot <img src="https://latex.codecogs.com/png.latex?x_n"> against <img src="https://latex.codecogs.com/png.latex?n"> for some specified values of <img src="https://latex.codecogs.com/png.latex?A"> and an arbitrary <img src="https://latex.codecogs.com/png.latex?x_0">.</p>
+<p>After much iteration, we decided that the simplest solution is to make use of Numpy’s arrays:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb1-3"></span>
+<span id="cb1-4">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.zeros(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>)</span>
+<span id="cb1-5">x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span></span>
+<span id="cb1-6"></span>
+<span id="cb1-7">A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span></span>
+<span id="cb1-8"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>):</span>
+<span id="cb1-9">    x[n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x[n] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x[n])</span>
+<span id="cb1-10"></span>
+<span id="cb1-11">plt.plot(x)</span></code></pre></div></div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>The students actually worked on multiple questions with different values of <img src="https://latex.codecogs.com/png.latex?A">, and explanations were given in between to allow them to appreciate and understand what the plots are showing, e.g., <em>fixed points</em>, <em>stability</em>, <em>period doubling</em>, <em>onset of chaos</em> etc.</p>
+</div></div><p>where we have taken <img src="https://latex.codecogs.com/png.latex?A%20=%200.5"> and <img src="https://latex.codecogs.com/png.latex?x_0%20=%200.2">.</p>
+<p>Other than the <code>np.zeros(50)</code> and the <code>for</code> loop, this translates directly to the equation, with <code>x[0]</code> being <img src="https://latex.codecogs.com/png.latex?x_0">, and <code>x[n+1] = A * x[n] * (1 - x[n])</code> being <img src="https://latex.codecogs.com/png.latex?x_%7Bn+1%7D%20=%20Ax_n(1%20-%20x_n)">.</p>
+<p>We made sure to teach more than just what are needed in the solutions though, so that the students can try to come up with their own solutions.</p>
+</section>
+<section id="second-task" class="level2">
+<h2 class="anchored" data-anchor-id="second-task">Second task</h2>
+<p>The second task is more challenging; they are to plot a <a href="https://en.wikipedia.org/wiki/Bifurcation_diagram">bifurcation diagram</a> for a range of <img src="https://latex.codecogs.com/png.latex?A">.</p>
+<p>Again, we tried our best to come up with what we think is the simplest solution of</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> A <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> np.linspace(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span>):</span>
+<span id="cb2-2">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.zeros(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600</span>)</span>
+<span id="cb2-3">    x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span></span>
+<span id="cb2-4"></span>
+<span id="cb2-5">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">599</span>):</span>
+<span id="cb2-6">        x[n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x[n] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x[n])</span>
+<span id="cb2-7"></span>
+<span id="cb2-8">    plt.plot([A] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>, x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>:], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">','</span>)</span>
+<span id="cb2-9"></span>
+<span id="cb2-10">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$A$"</span>)</span>
+<span id="cb2-11">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$x_n$"</span>)</span></code></pre></div></div>
+<p>Quite simply, we repeat the first task but for different values of <img src="https://latex.codecogs.com/png.latex?A">, and plot multiple values of <img src="https://latex.codecogs.com/png.latex?x_n"> for each <img src="https://latex.codecogs.com/png.latex?A">. The only caveat is that we only want to plot for large values of <img src="https://latex.codecogs.com/png.latex?n"> so that the population has time to reach its long-time behavior for each <img src="https://latex.codecogs.com/png.latex?A">. This is the reason for the <code>x[300:]</code>.</p>
+<p>The result is quite spectacular. It captures the <em>period-doubling route to chaos</em>, <em>intermittency route to chaos</em>, <em>islands of stability</em>, the <em>fractal</em> nature of the map etc., demonstrating that such a simple equation can lead to complex and chaotic behaviors. Imagine how the actual and much more complex evolution of real-world populations would look like!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jianweicheong.codeberg.page/media/posts/program-15-min/demo2.png" class="img-fluid figure-img"></p>
+<figcaption>Bifurcation diagram of the logistic map.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="what-students-struggle-with" class="level1">
+<h1>What students struggle with</h1>
+<p>This is like 16 lines of Python code (4 are the same for both tasks), and Python is widely touted as one of the easiest to learn programming language.</p>
+<p>So this shouldn’t be too difficult right?</p>
+<p>Here are some difficulties that the students struggled with that I noticed:</p>
+<ol type="1">
+<li><p><strong>Not understanding or forgetting about indentation.</strong> Python’s supposed simplicity of replacing braces with indentations seems to backfire here.</p></li>
+<li><p><strong>Missing colons for the <code>for</code> loop.</strong> The colon is quite elusive and easy to forget.</p></li>
+<li><p><strong>Confusing <code>[]</code> and <code>()</code>.</strong> Though this will never convince me that MATLAB’s choice of using <code>()</code> for both function calls and array indexing is sane.</p></li>
+<li><p><strong>The need to initialize arrays is quite arcane.</strong> Can you teach data structures on top of basic Python programming in 15 minutes?</p></li>
+<li><p>Relating to the previous point, <strong>zero-based indexing.</strong> “Why is the last index not <img src="https://latex.codecogs.com/png.latex?x_%7B50%7D"> when I did <code>np.zeros(50)</code>?”</p></li>
+<li><p><strong>Struggling to wrap their heads around the imperative <code>for</code> loops and nested <code>for</code> loops.</strong></p></li>
+<li><p>Relating to the previous point, <strong>not even knowing how to start iterating <code>x[n]</code> imperatively.</strong> Even without the <code>for</code> loop.</p></li>
+</ol>
+<p>There are of course other minor things like doing <code>Ax[n](1 - x[n])</code> instead of <code>A * x[n] * (1 - x[n])</code>, secretly copy-pasting from ChatGPT, not reading error messages, or getting <a href="../posts/tools-academic.html#marimo-over-jupyter">bamboozled by Jupyter’s hidden states</a>.</p>
+<p>But ultimately, in my opinion, it mostly comes down to 2 things:</p>
+<ul>
+<li><strong><em>Syntax</em></strong> or little quirks of the language (Points 1 to 5).</li>
+<li>Wrapping their heads around the <strong><em>imperative way</em></strong> of looping through each index and iterating each <img src="https://latex.codecogs.com/png.latex?x_n"> one by one (Points 6 and 7).</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Disclaimer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I know I’m overstating this, as no one will actually be learning programming in 15 minutes. The goal is for the students to have fun interacting with Python along with cool visualizations that relates to physics, not to actually learn programming. Hence the 15 minutes “lesson” and 1.5 hours “hands-on”.</p>
+<p>But humor me for a second, and consider what if it’s actually possible to learn <em>something</em> related to programming in 15 minutes?</p>
+</div>
+</div>
+</section>
+<section id="so-what-should-the-students-actually-be-learning" class="level1 page-columns page-full">
+<h1>So what should the students actually be learning?</h1>
+<p>Here’s my thesis:</p>
+<p>Students should learn</p>
+<ol type="1">
+<li>the idea <strong><em>behind</em></strong> programming, not <strong><em>the</em></strong> programming,</li>
+<li>to <strong>compose small behaviors</strong> into large solutions.</li>
+</ol>
+<p>You might be scratching your head here as this is quite vague, but these 2 points are really in the spirit of <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra">Edsger Dijkstra</a>’s well-known quote of</p>
+<blockquote class="blockquote">
+<p><em>“Computer science is no more about computers than astronomy is about telescopes.”</em></p>
+</blockquote>
+<section id="the-idea-behind-programming" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="the-idea-behind-programming">The idea behind programming</h2>
+<p>For the first point, students shouldn’t be spending their time overcoming and “learning” the syntax and little quirks about the language.</p>
+<p>If they are, and if they leave the class feeling like they learned something because Python eventually stopped throwing error messages at them, then we have really failed them in their education.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Important aside
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I might be being overly dramatic, but <strong>I think the point I’m making here is related to a crisis in modern education</strong>, where this is just one example.</p>
+<p>In school, what we teach falls broadly into two categories: <strong>skills</strong> and <strong>disciplines</strong>.</p>
+<p>Skills are useful and immediately applicable knowledge, but expires quickly. Teaching Python, Microsoft Office, or more recently, using LLMs, are some examples.</p>
+<p>Disciplines, by contrast, are foundational knowledge that makes us better than those who came before us. They are not as immediately applicable, but dates very slowly; this is long-term knowledge and human wisdom. Subjects like Mathematics, Physics, History, and of course Computer Science etc. are some examples.</p>
+<p>In <a href="https://www.youtube.com/watch?v=Ia55clAtdMs">his TEDx talk</a>, <a href="https://en.wikipedia.org/wiki/Simon_Peyton_Jones">Simon Peyton Jones</a> observes that in his field of computer science, people have lost sight of the foundational discipline, and that there is too much focus on <strong>technology</strong> rather than <strong>ideas</strong>.</p>
+<p>Perhaps this warrants a separate post, but not only do I think that Simon’s observations hold true for our entire learning culture, I think we are moving more and more towards this direction. We judge whether something is worth learning based on its “usefulness” in the current job market, and the result is a population that is highly educated on paper but not “in vivo” so to speak.</p>
+</div>
+</div>
+<p>In the linked TEDx talk in the aside, Simon gave a video example of how some school children performed a sorting algorithm just by following some rules themselves, without any computers, bringing to life Dijkstra’s quote above, where “this clearly is about <em>computation</em> and not about technology”.</p>
+<p>I wish we could demonstrate this for our class, but alas the students ended up debugging Python codes most of the time, and “learned” Python instead of something deeper.</p>
+<p>So how can we do better?</p>
+<p>I don’t really know, maybe we can go back to pre-2000s and teach <a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Lisp</a> as it is typically praised for having lesser syntax and grammars than other languages<sup>1</sup>?</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Many universities, and most famously MIT until 2008, used to teach Lisp (or its dialects) for their computer science courses before Python and Java took over.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;Working through SICM really is an example of Alan Perlis’s quote above.</p></div></div><p>Lisp still has some interests in the field of Physics, e.g., <a href="https://www.rigetti.com/">Rigetti</a>’s <a href="https://coalton-lang.github.io/20220906-quantum-compiler/">Quilc</a>, <a href="https://samritchie.io/">Sam Ritchie</a>’s <a href="https://www.youtube.com/watch?v=Jv2JgzAl5yU">Emmy</a>, and of course the popular <a href="https://en.wikipedia.org/wiki/Structure_and_Interpretation_of_Classical_Mechanics">SICM</a><sup>2</sup>. <a href="https://en.wikipedia.org/wiki/Robert_C._Martin">Uncle Bob</a> also <a href="https://blog.cleancoder.com/uncle-bob/2019/08/22/WhyClojure.html">thinks that</a> Lisp will outlasts all other languages and eventually becomes the standard language that all programmers use.</p>
+</section>
+<section id="learning-small-behaviors-and-composing-them-to-solve-big-problems" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="learning-small-behaviors-and-composing-them-to-solve-big-problems">Learning small behaviors and composing them to solve big problems</h2>
+<p>To convince you of the second point, take a look at how you can do the first task in Haskell</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Yes, this post turns out to be another thinly-veiled propaganda for functional programming.</p>
+</div></div><div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Haskell</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb3-1">logisticMap a xn <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> xn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> xn)</span>
+<span id="cb3-2"></span>
+<span id="cb3-3">xs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">take</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">iterate</span> (logisticMap <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>) <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>)</span>
+<span id="cb3-4"></span>
+<span id="cb3-5">main <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> plotList [] xs</span></code></pre></div></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.zeros(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>)</span>
+<span id="cb4-2">x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span></span>
+<span id="cb4-3"></span>
+<span id="cb4-4">A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span></span>
+<span id="cb4-5"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">49</span>):</span>
+<span id="cb4-6">    x[n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x[n] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x[n])</span>
+<span id="cb4-7"></span>
+<span id="cb4-8">plt.plot(x)</span></code></pre></div></div>
+</div>
+</div>
+</div>
+<p>and the second task</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">Haskell</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Haskell (with plotting)</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb5-1">task1 a <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">drop</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">take</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">iterate</span> (logisticMap a) <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>))</span>
+<span id="cb5-2"></span>
+<span id="cb5-3">aValues <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> toList (linspace <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span> (<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.0</span>))</span>
+<span id="cb5-4"></span>
+<span id="cb5-5">xs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span> task1 aValues</span></code></pre></div></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb6-1">task1 a <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">drop</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">take</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">iterate</span> (logisticMap a) <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>))</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">aValues <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> toList (linspace <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span> (<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.0</span>))</span>
+<span id="cb6-4"></span>
+<span id="cb6-5">points <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> [(a, xs) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> a <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> aValues, xs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> task1 a]</span>
+<span id="cb6-6"></span>
+<span id="cb6-7">main <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> plotPath [<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">PlotStyle</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Points</span>] points</span></code></pre></div></div>
+</div>
+<div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> A <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> np.linspace(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span>):</span>
+<span id="cb7-2">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.zeros(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600</span>)</span>
+<span id="cb7-3">    x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span></span>
+<span id="cb7-4"></span>
+<span id="cb7-5">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> n <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">599</span>):</span>
+<span id="cb7-6">        x[n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x[n] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x[n])</span>
+<span id="cb7-7"></span>
+<span id="cb7-8">    plt.plot([A] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>, x[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>:], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">','</span>)</span></code></pre></div></div>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>I cheated a little here as I removed the type declarations and library imports for both Haskell solutions. Though, they are more related to the first point about quirks of the language than the second point that I’m trying to make here.</p>
+<p>I’ve also separated the solution for plotting as again it involves quirks about the language, particularly list comprehension. Though, it simply corresponds to the mathematical form of <img src="https://latex.codecogs.com/png.latex?%5C%7B(A,%20x_n)%20%7C%20A%20%5Cin%20%5B3.4,%204%5D,%20x_n%20%5Cin%20%5Ctextrm%7Btask1%7D(A)%5C%7D">.</p>
+</div></div><p>Of course, if one is unfamiliar with functional programming, one would be confused on what are <code>map</code>, <code>iterate</code>, <code>take</code>, and <code>drop</code>.</p>
+<p>But turns out, these 4 functions appear in almost <strong>all functional programming languages</strong><sup>3</sup>. This way, learning programming stops being about learning syntax and becomes about learning vocabularies.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Type of one them into <a href="https://hoogletranslate.com/">Hoogle Translate</a> and “translate” it to other languages.</p></div></div><p>We can teach the simple behaviors of these 4 functions (and more!) to the students in 15 minutes, and they will try to figure out how to put them together to solve complex problem.</p>
+<p>Again, remember Dijkstra’s quote, or the school children performing a sorting algorithm without any computers; how to compose these functions together is independent of the programming language, and so we can simply use words to describe them, e.g.,</p>
+<ol type="1">
+<li>We <code>iterate</code> the logistic map function with some <img src="https://latex.codecogs.com/png.latex?A"> (ad infinitum), on an initial value of <img src="https://latex.codecogs.com/png.latex?0.2">.</li>
+<li>We then <code>take</code> just the first 600 values, and <code>drop</code> the first 300 of these 600 values to get values from years 301 to 600.</li>
+<li>We then <code>map</code> step 2 to a range of values of <img src="https://latex.codecogs.com/png.latex?A%20%5Cin%20%5B3.4,%204%5D">.</li>
+</ol>
+<p>This is not very different from composing universal logic gates such as NAND, NOT, XOR, etc. to build complicated machines, a feat that kids and teens are capable of as evident in games like Minecraft with its <a href="https://minecraft.wiki/w/Redstone_mechanics">redstone circuits</a>.</p>
+<p>Compare this with Python’s imperative ways of doing things:</p>
+<ol type="1">
+<li>We initialize an array <code>x</code> with 600 values.</li>
+<li>We set the first index of the array <code>x[0]</code> to be <img src="https://latex.codecogs.com/png.latex?0.2">.</li>
+<li>We loop through each index <code>x[n]</code> from 0 to 598, and compute the value for the next index <code>x[n+1]</code> for some <img src="https://latex.codecogs.com/png.latex?A">.</li>
+<li>We keep only the last 300 values of <code>x</code> with <code>x[300:]</code>.</li>
+<li>We then put steps 1 to 4 in a loop that loops over <img src="https://latex.codecogs.com/png.latex?A%20%5Cin%20%5B3.4,%204%5D">.</li>
+</ol>
+<p>In my opinion, in the imperative case, we are forcing our thinking and ideas to be compatible with the design of the language. For example, this solution only works because Numpy is an array programming language, and we have to work around quirks of its designs, e.g., the range of index to loop over is somewhat unintuitively 0 to 598. For languages that don’t have array data structures, or have different quirks about how arrays are used, our solution would change.</p>
+<p>In contrast, in the functional case, it’s simply function applications, i.e., <code>map(drop(take(iterate(...))))</code>, or in pipe notation, <code>iterate(logisticMap, 0.2) |&gt; take(600) |&gt; drop(300) |&gt; map(aValues)</code><sup>4</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;I’m simplifying here, but the point still stands.</p></div></div><p>For example, if one is familiar with functional programming vocabularies, one can do the same for different languages:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Julia</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Rust</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false" href="">Scala</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">using</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">IterTools</span></span>
+<span id="cb8-2"></span>
+<span id="cb8-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">logistic_map</span>(A) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> xn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-&gt;</span> A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> xn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> xn)</span>
+<span id="cb8-4"></span>
+<span id="cb8-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">task1</span>(A) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span></span>
+<span id="cb8-6">    <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-7">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">iterated</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">logistic_map</span>(A)) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-8">    (x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">take</span>(x, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600</span>)) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-9">    (x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">drop</span>(x, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>)) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb8-10">    collect</span>
+<span id="cb8-11"></span>
+<span id="cb8-12">xs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(task1, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, length<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span>))</span></code></pre></div></div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(purrr)</span>
+<span id="cb9-2"></span>
+<span id="cb9-3">logistic_map <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(A) {</span>
+<span id="cb9-4">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x) A <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x)</span>
+<span id="cb9-5">}</span>
+<span id="cb9-6"></span>
+<span id="cb9-7">task1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(A) {</span>
+<span id="cb9-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">accumulate</span>(</span>
+<span id="cb9-9">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq_len</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">599</span>),</span>
+<span id="cb9-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.init =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>,</span>
+<span id="cb9-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.f =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span>(x, unused) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">logistic_map</span>(A)(x)</span>
+<span id="cb9-12">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb9-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tail</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>)</span>
+<span id="cb9-14">}</span>
+<span id="cb9-15"></span>
+<span id="cb9-16">xs <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(</span>
+<span id="cb9-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length.out =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span>),</span>
+<span id="cb9-18">  task1</span>
+<span id="cb9-19">)</span></code></pre></div></div>
+</div>
+<div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fn</span> task1(a<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">f64</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-&gt;</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Vec</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">f64</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-2">    <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">std::iter::</span>successors(<span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Some</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">move</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&amp;</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-3">        <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">Some</span>(a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x))</span>
+<span id="cb10-4">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span>)</span>
+<span id="cb10-5">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>skip(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>)</span>
+<span id="cb10-6">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>take(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>)</span>
+<span id="cb10-7">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>collect()</span>
+<span id="cb10-8"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb10-9"></span>
+<span id="cb10-10"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">fn</span> main() <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span></span>
+<span id="cb10-11">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">let</span> xs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Vec</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Vec</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">f64</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;&gt;</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> linspace(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span>)</span>
+<span id="cb10-12">        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>into_iter()</span>
+<span id="cb10-13">        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>map(task1)</span>
+<span id="cb10-14">        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>collect()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb10-15"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span></code></pre></div></div>
+</div>
+<div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode scala code-with-copy"><code class="sourceCode scala"><span id="cb11-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">logisticMap</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>a<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Double</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)(</span>x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Double</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">):</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Double</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span></span>
+<span id="cb11-2">  a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-3"></span>
+<span id="cb11-4"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">task1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>a<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Double</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">):</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Vector</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Double</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span></span>
+<span id="cb11-5">  <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Iterator</span></span>
+<span id="cb11-6">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">iterate</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">logisticMap</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>a<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">))</span></span>
+<span id="cb11-7">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">drop</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-8">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">take</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span id="cb11-9">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>toVector</span>
+<span id="cb11-10"></span>
+<span id="cb11-11"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">val</span> xs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Vector</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Vector</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="ex" style="color: null;
+background-color: null;
+font-style: inherit;">Double</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]]</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span></span>
+<span id="cb11-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">linspace</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.4</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">).</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>task1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div></div>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Note that in the case of R, we use a different vocabulary, <code>accumulate</code>, instead, which is also known as <code>scan</code> in functional programming.</p>
+<p>Also note that in the case of Rust and Scala, there is actually no <code>linspace</code> function, so you’ll have to roll your own or use a third-party package.</p>
+</div></div><p>While different languages use different names for the same vocabularies, e.g., <code>iterated</code>, <code>tail</code>, <code>skip</code>, <code>successors</code> etc., in my opinion, such a functional way of doing things makes it easier to reason about the code, and much more difficult to make a logical error.</p>
+</section>
+</section>
+<section id="does-it-actually-matter" class="level1">
+<h1>Does it actually matter?</h1>
+<p>Perhaps not, as the goal is for the students to have some fun playing around with programming. In fact, a number of students have told us that they enjoyed the class and felt a sense of accomplishment when Python finally plots the pretty plots after they navigated all the errors.</p>
+<p>Furthermore, the entire industry is stuck on imperative programming anyway, and Python programming is widely used in Physics careers. So it is no surprise that we are forced to teach Python (and in Jupyter notebooks) as part of the University’s policy.</p>
+<p>Still, it doesn’t hurt to dream a little of what might be possible in teaching programming in a manner that is deeper, more transferable, and engages the students’ thinking more than just learning the programming language or technology, especially considering the rise of AI agents that can <a href="https://en.wikipedia.org/wiki/GPT-6_Astra">program an entire 3D game in a prompt</a>.</p>
+<p>Finally, I’ll end with this quote</p>
+<blockquote class="blockquote">
+<p><em>“When the limestone of imperative programming has worn away, the granite of functional programming will be revealed underneath.”</em></p>
+<div style="text-align: right;">
+<p>— Simon Peyton Jones</p>
+</div>
+</blockquote>
+<p>Until then, I suppose we’ll keep feeding this vicious cycle of teaching students imperative Python and Jupyter notebooks, even when they outsource it all to ChatGPT anyway.</p>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a> ]]></description>
+  <category>programming</category>
+  <guid>https://jianweicheong.codeberg.page/posts/program-15-min.html</guid>
+  <pubDate>Sat, 05 Sep 2026 16:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Spooky action at a distance is NOT about entanglement</title>
   <link>https://jianweicheong.codeberg.page/posts/spooky-action.html</link>
