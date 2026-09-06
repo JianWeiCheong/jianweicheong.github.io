@@ -520,7 +520,7 @@ font-style: inherit;">','</span>)</span></code></pre></div></div>
 <ol type="1">
 <li>We <code>iterate</code> the logistic map function with some <img src="https://latex.codecogs.com/png.latex?A"> (ad infinitum), on an initial value of <img src="https://latex.codecogs.com/png.latex?0.2">.</li>
 <li>We then <code>take</code> just the first 600 values, and <code>drop</code> the first 300 of these 600 values to get values from years 301 to 600.</li>
-<li>We then <code>map</code> step 2 to a range of values of <img src="https://latex.codecogs.com/png.latex?A%20%5Cin%20%5B3.4,%204%5D">.</li>
+<li>We then <code>map</code> steps 1 and 2 to a range of values of <img src="https://latex.codecogs.com/png.latex?A%20%5Cin%20%5B3.4,%204%5D">.</li>
 </ol>
 <p>This is not very different from composing universal logic gates such as NAND, NOT, XOR, etc. to build complicated machines, a feat that kids and teens are capable of as evident in games like Minecraft with its <a href="https://minecraft.wiki/w/Redstone_mechanics">redstone circuits</a>.</p>
 <p>Compare this with Python’s imperative ways of doing things:</p>
