@@ -522,8 +522,8 @@ font-style: inherit;">','</span>)</span></code></pre></div></div>
 <li>We then <code>take</code> just the first 600 values, and <code>drop</code> the first 300 of these 600 values to get values from years 301 to 600.</li>
 <li>We then <code>map</code> steps 1 and 2 to a range of values of <img src="https://latex.codecogs.com/png.latex?A%20%5Cin%20%5B3.4,%204%5D">.</li>
 </ol>
-<p>This is not very different from composing universal logic gates such as NAND, NOT, XOR, etc. to build complicated machines, a feat that kids and teens are capable of as evident in games like Minecraft with its <a href="https://minecraft.wiki/w/Redstone_mechanics">redstone circuits</a>.</p>
-<p>Compare this with Python’s imperative ways of doing things:</p>
+<p>This is not very different from composing universal logic gates such as NAND, NOT, XOR, etc. to build complicated machines<sup>4</sup>, a feat that kids and teens are capable of as evident in games like Minecraft with its <a href="https://minecraft.wiki/w/Redstone_mechanics">redstone circuits</a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Take a look at <a href="https://www.youtube.com/watch?v=7JK6qtpKLoQ">this video by peppidesu</a> on how functional programming is about composing smaller building blocks into more complex machinery.</p></div></div><p>Compare this with Python’s imperative ways of doing things:</p>
 <ol type="1">
 <li>We initialize an array <code>x</code> with 600 values.</li>
 <li>We set the first index of the array <code>x[0]</code> to be <img src="https://latex.codecogs.com/png.latex?0.2">.</li>
@@ -532,8 +532,8 @@ font-style: inherit;">','</span>)</span></code></pre></div></div>
 <li>We then put steps 1 to 4 in a loop that loops over <img src="https://latex.codecogs.com/png.latex?A%20%5Cin%20%5B3.4,%204%5D">.</li>
 </ol>
 <p>In my opinion, in the imperative case, we are forcing our thinking and ideas to be compatible with the design of the language. For example, this solution only works because Numpy is an array programming language, and we have to work around quirks of its designs, e.g., the range of index to loop over is somewhat unintuitively 0 to 598. For languages that don’t have array data structures, or have different quirks about how arrays are used, our solution would change.</p>
-<p>In contrast, in the functional case, it’s simply function applications, i.e., <code>map(drop(take(iterate(...))))</code>, or in pipe notation, <code>iterate(logisticMap, 0.2) |&gt; take(600) |&gt; drop(300) |&gt; map(aValues)</code><sup>4</sup>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;I’m simplifying here, but the point still stands.</p></div></div><p>For example, if one is familiar with functional programming vocabularies, one can do the same for different languages:</p>
+<p>In contrast, in the functional case, it’s simply function applications, i.e., <code>map(drop(take(iterate(...))))</code>, or in pipe notation, <code>iterate(logisticMap, 0.2) |&gt; take(600) |&gt; drop(300) |&gt; map(aValues)</code><sup>5</sup>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;I’m simplifying here, but the point still stands.</p></div></div><p>For example, if one is familiar with functional programming vocabularies, one can do the same for different languages:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">Julia</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false" href="">Rust</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false" href="">Scala</a></li></ul>
 <div class="tab-content">
