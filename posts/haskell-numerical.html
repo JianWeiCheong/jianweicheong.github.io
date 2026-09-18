@@ -271,10 +271,10 @@ window.Quarto = {
 
 <section id="why-haskell" class="level1 page-columns page-full">
 <h1>Why Haskell?</h1>
-<p>Recently, I have been experimenting with <a href="https://en.wikipedia.org/wiki/Haskell">Haskell</a>, which I find to be quite enjoyable to program in thanks to its unique programming paradigm. So much so that I am considering using it for numerical computations in my research.</p>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"><strong>Side-effects</strong> refer to having an effect on the “outside world” such as printing a string to terminal or writing to a file etc. Of course, we do want some side-effects for the program to do anything useful. In Haskell, side-effects are handled by <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">monads</a>, which is a beast of a topic on its own. Monads allow the pure and impure (side-effects) to be clearly separated in Haskell.</span></div></div>
+<p>Recently, I have been experimenting with <a href="https://en.wikipedia.org/wiki/Haskell">Haskell</a>, which I find to be quite enjoyable to program in thanks to its unique programming paradigm. So much so that I am considering using it for numerical computations for my work.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside"><strong>Side-effects</strong> refer to having an effect on the “outside world” such as printing a string to the terminal or writing to a file etc. Of course, we do want some side-effects for the program to do anything useful. In Haskell, side-effects are handled by <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">monads</a>, which is a beast of a topic on its own. Monads allow the pure and impure (side-effects) to be clearly separated in Haskell.</span></div></div>
 <p>Haskell (named after logician <a href="https://en.wikipedia.org/wiki/Haskell_Curry">Haskell Curry</a>) is a <a href="https://en.wikipedia.org/wiki/Purely_functional_programming">purely functional programming language</a> in the mathematical sense. Every function in Haskell simply takes an input and returns an output; nothing more, nothing less. It cannot mutate variables, and it cannot produce <strong><em>side-effects</em></strong>.</p>
-<p>Purely functional programming languages are typically declarative, i.e., one does not write step-by-step instructions like imperative languages such as Python, C, C++, etc. For example, there are no loops in Haskell; one has to rely on recursion or functions such as ‘fold’ and ‘scan’.</p>
+<p>Purely functional programming languages are typically declarative, i.e., one does not write step-by-step instructions like imperative languages such as Python, C, C++, etc. For example, there are no loops in Haskell; one has to rely on recursion or <a href="https://en.wikipedia.org/wiki/Higher-order_function">higher-order functions</a> such as ‘fold’ and ‘scan’.</p>
 <p>The two main reasons for my consideration to use it for numerical computations are:</p>
 <ol type="1">
 <li><p>Conciseness: Haskell’s declarative style greatly increase its conciseness. Prototyping and experimentation are frequent in computational research. Concise codes can reduce this programming time, and allow faster prototyping.</p></li>
@@ -285,7 +285,7 @@ window.Quarto = {
 <li>Immutability and the absence of side-effects in functions can also reduce hidden bugs. For instance, the risk of a function modifying a variable without the coder’s knowledge is mitigated, and parallel computations are less likely to produce incorrect results due to variable mutations in <a href="https://en.wikipedia.org/wiki/Race_condition">race conditions</a>.</li>
 </ul></li>
 </ol>
-<p>I am neither a software developer nor am I computer science trained, and so some technical aspects of the language might escape me. Therefore, in this article, we will only examine some simple examples to compare traditional imperative languages like Python with the purely functional Haskell.</p>
+<p>Though, I am neither a software developer nor am I computer science trained, and so some technical aspects of the language might escape me. Therefore, in this article, we will only examine some simple examples to compare traditional imperative languages like Python with the purely functional Haskell.</p>
 </section>
 <section id="some-examples" class="level1 page-columns page-full">
 <h1>Some examples</h1>
@@ -356,7 +356,7 @@ window.Quarto = {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Note that in the Haskell example, we could have written the function as <code>tensor_all ms = foldl kronecker 1 ms</code>, where the input to the function, the list of matrices <code>ms</code>, is specified. However, since <code>ms</code> is simply the input to the corresponding function on both sides of the expression, we can omit it and simply write <code>tensor_all = foldl kronecker 1</code>. This is referred to as <a href="https://en.wikipedia.org/wiki/Tacit_programming">tacit/point-free style programming</a>.</p>
+<p>Note that in the Haskell example, we could have written the function as <code>tensor_all ms = foldl kronecker 1 ms</code>, where the input to the function, the list of matrices <code>ms</code>, is specified. However, since <code>ms</code> is simply the input to the corresponding function on both sides of the expression, we can omit it and simply write <code>tensor_all = foldl kronecker 1</code>, as if we “cancel” it out on both sides. This is referred to as <a href="https://en.wikipedia.org/wiki/Tacit_programming">tacit/point-free style programming</a>.</p>
 </div>
 </div>
 </div>
@@ -500,7 +500,7 @@ f\ \mathtt{:: Matrix\ C\ -&gt;\ } \underbrace{\mathtt{Int\ -&gt; [Float]}}_\text
 </span> <span class="math display">
 g\ \mathtt{:: Int\ -&gt; [Float]}
 </span></p>
-<p>where the function <code>calc_entropies</code> takes in <code>[Matrix C]</code> as its input, and returns a function <span class="math inline">f</span> as its output. The function <span class="math inline">f</span> then takes in <code>Matrix C</code> as the input and returns another function <span class="math inline">g</span> as the output. Finally, the function <span class="math inline">g</span> takes in <code>Int</code> as the input and returns <code>[Float]</code> as the final output. This means that functions in Haskell are indeed pure in that they only take in one input and return one output, and any functions that appear to take in multiple inputs are in fact taking in only one input and returning a function that takes in also one input as its output, and so on and so forth. This is called currying. Because of this, we can also apply the functions “partially”, for example:</p>
+<p>where the function <code>calc_entropies</code> takes in <code>[Matrix C]</code> as its input, and returns a function <span class="math inline">f</span> as its output. The function <span class="math inline">f</span> then takes in <code>Matrix C</code> as the input and returns another function <span class="math inline">g</span> as the output. Finally, the function <span class="math inline">g</span> takes in <code>Int</code> as the input and returns <code>[Float]</code> as the final output. This means that functions in Haskell are indeed pure in that they only take in one input and return one output, and any functions that appear to take in multiple inputs are in fact taking in only one input and returning a function that also takes in one input as its output, and so on and so forth. This is called currying. Because of this, we can also apply the functions “partially”, for example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>f a b <span class="ot">=</span> a <span class="op">+</span> b</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">=</span> f <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where we only provided one argument to <code>f</code> when it is expecting two, to create a new function <code>g</code>. This means that <code>f 5 10</code> and <code>g 10</code> would give the same output of <code>15</code>. Currying or partial function application can be a powerful tool for the abstraction and expressiveness of your code.</p>
@@ -516,7 +516,7 @@ g\ \mathtt{:: Int\ -&gt; [Float]}
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Unitary operations are common in quantum mechanics, and are how quantum computers perform computations on quantum states or qubits. They are defined as follows: <span class="math display">
+<p>Unitary operations are common in quantum mechanics, and are how quantum computers perform computations on quantum states or qubits. For example, the unitary <span class="math inline">U</span> can act on a quantum state <span class="math inline">|\psi\rangle</span> as follows: <span class="math display">
 |\psi'\rangle = U |\psi\rangle.
 </span></p>
 <p>We can define a function <code>unitary_oper</code> to implement this.</p>
@@ -559,7 +559,7 @@ H = \frac{1}{\sqrt{2}}
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode haskell code-with-copy"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>calc_entropies ks rho n <span class="ot">=</span> <span class="fu">map</span> entropy rho_list</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    rho_list <span class="ot">=</span> <span class="fu">take</span> n (<span class="fu">iterate</span> (collision ks) rho)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The first line features the function <code>map</code>, which is another part and parcel of the functional programmer. It simply apply a function to every element of a list:</p>
+<p>The first line features the function <code>map</code>, which is the main tool of the functional programmer. It simply apply a function to every element of a list:</p>
 <p><span class="math display">
 \underbrace{\mathtt{map\quad entropy}}_\text{apply entropy function to each element of}\quad \mathtt{rho\_list}
 </span></p>
@@ -582,7 +582,7 @@ H = \frac{1}{\sqrt{2}}
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    rho <span class="op">=</span> collision(ks, rho)</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>rho_list <span class="op">=</span> rhos[:n]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>which runs forever and result in a list of infinite size. However, this is not a problem in Haskell, thanks to the fact that Haskell is <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><strong><em>lazy-evaluated</em></strong></a>. This means that Haskell only evaluate values when required, and so since we only require the first <code>n</code> elements of the infinite list, Haskell only evaluate that first <code>n</code> elements.</p>
+<p>which runs forever and result in a list of infinite size. However, this is not a problem in Haskell, thanks to the fact that Haskell is <a href="https://en.wikipedia.org/wiki/Lazy_evaluation"><strong><em>lazy-evaluated</em></strong></a>. This means that Haskell only evaluates values when required, and so since we only require the first <code>n</code> elements of the infinite list, Haskell only evaluate that first <code>n</code> elements.</p>
 <p>If this Python code is lazy-evaluated like in Haskell, one might imagine that the program looks ahead and saw that it only require the first <code>n</code> elements as stated in <code>rho_list = rhos[:n]</code>, and so it stops the <code>while True</code> loop after only running <code>n</code> times.</p>
 </section>
 </section>
@@ -590,7 +590,7 @@ H = \frac{1}{\sqrt{2}}
 <section id="conclusion" class="level1 page-columns page-full">
 <h1>Conclusion</h1>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">Websites like <a href="https://hoogle.haskell.org/">Hoogle</a> and <a href="https://hoogletranslate.com/">Hoogle translate</a> can greatly ease the learning curve of Haskell.</span></div></div>
-<p>Overall, I find Haskell’s expressions to be much more concise and clearer than imperative statements in Python or most ALGOL family of languages. Of course, if one is unfamiliar with <a href="https://en.wikipedia.org/wiki/Higher-order_function">higher-order functions</a> such as <code>map</code>, <code>iterate</code>, <code>foldl</code>, or even <a href="https://en.wikipedia.org/wiki/Combinatory_logic">combinators</a> etc., then Haskell definitely look less concise and less clear, but this is just the standard experience of learning a new language.</p>
+<p>Overall, I find Haskell’s expressions to be much more concise and clearer than imperative statements in Python or most ALGOL family of languages. Of course, if one is unfamiliar with higher-order functions such as <code>map</code>, <code>iterate</code>, <code>foldl</code>, or even <a href="https://en.wikipedia.org/wiki/Combinatory_logic">combinators</a> etc., then Haskell definitely look less concise and less clear, but this is just the standard experience of learning a new language.</p>
 <p>It is also often said that learning Haskell will change the way you write code even in other programming languages, and will make you a better programmer in general, e.g., favoring small and pure composable functions, preferring immutable data structures, or embracing “higher-order thinking”. In other words, learning Haskell is more than just picking up new syntax; it reshapes how you approach programming.</p>
 
 

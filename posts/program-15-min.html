@@ -274,15 +274,15 @@ window.Quarto = {
 <p>— <a href="https://en.wikipedia.org/wiki/Alan_Perlis">Alan Perlis</a> <br> First recipient of the Turing Award</p>
 </div>
 </blockquote>
-<p>For 3 years now I have conducted a programming class to high-school level students as part of my school’s annual outreach program, teaching them basic Python to compute and plot the <a href="https://en.wikipedia.org/wiki/Logistic_map">logistic map</a> in a 2 hours class. With 6 classes per year for 3 years, that’s 36 hours of classes, surprisingly more than a year of teaching tutorial classes.</p>
-<p>With the advent of vibecoding though, this is the first year that I have to begin with the quote above, in an attempt to motivate the students into learning how to program themselves. Though, I’m sure the cool visualizations and simulations that I showed did much of the heavylifting.</p>
-<p>The students didn’t sign up for a programming class afterall. Instead, they signed up for a 3 days camp to experience what doing a Physics degree is like. In the 3 days, they participated in various lab activities, doing cool experiments with lasers or fabricating a solar cell etc.</p>
-<p>And then they come to my class and have to endure sitting in front of a computer for 2 hours, all while getting thrown errors from Python. So we already lost half the battle here.</p>
+<p>For three years now I have conducted a programming class to high-school level students as part of my school’s annual outreach program, teaching them basic Python to compute and plot the <a href="https://en.wikipedia.org/wiki/Logistic_map">logistic map</a> in a two hours class. With six classes per year for three years, that’s 36 hours of classes, surprisingly more than a year of teaching tutorial classes.</p>
+<p>With the advent of vibecoding though, this is the first year where I have to begin with the quote above, in an attempt to motivate the students into learning how to program themselves. Though, I’m sure the cool visualizations and simulations that I showed did much of the heavylifting.</p>
+<p>The students didn’t sign up for a programming class afterall. Instead, they signed up for a three days camp to experience what doing a Physics degree is like. In the three days, they participated in various lab activities, doing cool experiments with lasers or fabricating a solar cell etc.</p>
+<p>And then they come to my class and have to endure sitting in front of a computer for two hours, all while getting thrown errors from Python. So we already lost half the battle here.</p>
 <p>Of course, most have no programming experience, and the actual teaching of basic Python programming spans just around <strong>15 minutes</strong>, where they follow along a haphazard explanation about arrays, for loops, plotting, or whatnot in a Jupyter notebook, but with as little computing jargon as possible.</p>
-<p>Afterwards, we let go and let them apply what they learned in the 15 minutes to solve a few simple tasks. A couple of TAs and me will then walk around and guide them if they encounter any problems. “Hands-on” is the point of their 3 days camp afterall.</p>
+<p>Afterwards, we let go and let them apply what they learned in the 15 minutes to solve a few simple tasks. A couple of TAs and me will then walk around and guide them if they encounter any problems. “Hands-on” is the point of their three days camp afterall.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Here’s the breakdown of the 2 hours:</p>
+<p>Here’s the breakdown of the two hours:</p>
 <ol type="1">
 <li>Introduction and theory (15 minutes)</li>
 <li>Learning Python (15 minutes)</li>
@@ -295,7 +295,7 @@ window.Quarto = {
 <p><span class="math display">
 x_{n+1} = Ax_n(1-x_n),
 </span> where <span class="math inline">0 \leq x_n \leq 1</span> and <span class="math inline">0 \leq A \leq 4</span>.</p>
-<p><span class="math inline">x_n</span> models a proportion of population at year <span class="math inline">n</span>, and <span class="math inline">A</span> is a parameter that might represent some environmental conditions. Depending on the values of <span class="math inline">A</span>, the population can rise and fall, or exhibit complex behaviors.</p>
+<p><span class="math inline">x_n</span> models a proportion of population at year <span class="math inline">n</span>, and <span class="math inline">A</span> is a parameter that might represents some environmental conditions. Depending on the values of <span class="math inline">A</span>, the population can rise and fall, or exhibit complex behaviors.</p>
 <section id="first-task" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="first-task">First task</h2>
 <p>Their first task is to plot <span class="math inline">x_n</span> against <span class="math inline">n</span> for some specified values of <span class="math inline">A</span> and an arbitrary <span class="math inline">x_0</span>.</p>
@@ -345,7 +345,7 @@ x_{n+1} = Ax_n(1-x_n),
 </section>
 <section id="what-students-struggle-with" class="level1">
 <h1>What students struggle with</h1>
-<p>This is like 16 lines of Python code (4 are the same for both tasks), and Python is widely touted as one of the easiest to learn programming language.</p>
+<p>This is like 16 lines of Python code (four are the same for both tasks), and Python is widely touted as one of the easiest to learn programming language.</p>
 <p>So this shouldn’t be too difficult right?</p>
 <p>Here are some difficulties that the students struggled with that I noticed:</p>
 <ol type="1">
@@ -358,7 +358,7 @@ x_{n+1} = Ax_n(1-x_n),
 <li><p>Relating to the previous point, <strong>not even knowing how to start iterating <code>x[n]</code> imperatively.</strong> Even without the <code>for</code> loop.</p></li>
 </ol>
 <p>There are of course other minor things like doing <code>Ax[n](1 - x[n])</code> instead of <code>A * x[n] * (1 - x[n])</code>, secretly copy-pasting from ChatGPT, not reading error messages, or getting <a href="../posts/tools-academic.html#marimo-over-jupyter">bamboozled by Jupyter’s hidden states</a>.</p>
-<p>But ultimately, in my opinion, it mostly comes down to 2 things:</p>
+<p>But ultimately, in my opinion, it mostly comes down to two things:</p>
 <ul>
 <li><strong><em>Syntax</em></strong> or little quirks of the language (Points 1 to 5).</li>
 <li>Wrapping their heads around the <strong><em>imperative way</em></strong> of looping through each index and iterating each <span class="math inline">x_n</span> one by one (Points 6 and 7).</li>
@@ -386,7 +386,7 @@ x_{n+1} = Ax_n(1-x_n),
 <li>the idea <strong><em>behind</em></strong> programming, not <strong><em>the</em></strong> programming,</li>
 <li>to <strong>compose small behaviors</strong> into large solutions.</li>
 </ol>
-<p>You might be scratching your head here as this is quite vague, but these 2 points are really in the spirit of <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra">Edsger Dijkstra</a>’s well-known quote of</p>
+<p>You might be scratching your head here as this is quite vague, but these two points are really in the spirit of <a href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra">Edsger Dijkstra</a>’s well-known quote of</p>
 <blockquote class="blockquote">
 <p><em>“Computer science is no more about computers than astronomy is about telescopes.”</em></p>
 </blockquote>
@@ -405,10 +405,10 @@ x_{n+1} = Ax_n(1-x_n),
 </div>
 <div class="callout-body-container callout-body">
 <p>I might be being overly dramatic, but <strong>I think the point I’m making here is related to a crisis in modern education</strong>, where this is just one example.</p>
-<p>In school, what we teach falls broadly into two categories: <strong>skills</strong> and <strong>disciplines</strong>.</p>
-<p>Skills are useful and immediately applicable knowledge, but expires quickly. Teaching Python, Microsoft Office, or more recently, using LLMs, are some examples.</p>
-<p>Disciplines, by contrast, are foundational knowledge that makes us better than those who came before us. They are not as immediately applicable, but dates very slowly; this is long-term knowledge and human wisdom. Subjects like Mathematics, Physics, History, and of course Computer Science etc. are some examples.</p>
-<p>In <a href="https://www.youtube.com/watch?v=Ia55clAtdMs">his TEDx talk</a>, <a href="https://en.wikipedia.org/wiki/Simon_Peyton_Jones">Simon Peyton Jones</a> observes that in his field of computer science, people have lost sight of the foundational discipline, and that there is too much focus on <strong>technology</strong> rather than <strong>ideas</strong>.</p>
+<p>In <a href="https://www.youtube.com/watch?v=Ia55clAtdMs">his TEDx talk</a>, <a href="https://en.wikipedia.org/wiki/Simon_Peyton_Jones">Simon Peyton Jones</a> notes that in school, what we teach falls broadly into two categories: <strong>skills</strong> and <strong>disciplines</strong>.</p>
+<p>Skills are useful and immediately applicable knowledge, but becomes outdated quickly. Teaching Python, Microsoft Office, or more recently, using LLMs, are some examples.</p>
+<p>Disciplines, by contrast, are foundational knowledge that makes us better than those who came before us. They are not as immediately applicable, but do not become outdated quickly; this is long-term knowledge and human wisdom. Subjects like Mathematics, Physics, History, and of course Computer Science etc. are some examples.</p>
+<p>Simon observes that in his field of computer science, people have lost sight of the foundational discipline, and that there is too much focus on <strong>technology</strong> rather than <strong>ideas</strong>.</p>
 <p>Perhaps this warrants a separate post, but not only do I think that Simon’s observations hold true for our entire learning culture, I think we are moving more and more towards this direction. We judge whether something is worth learning based on its “usefulness” in the current job market, and the result is a population that is highly educated on paper but not “in vivo” so to speak.</p>
 </div>
 </div>
@@ -483,8 +483,8 @@ x_{n+1} = Ax_n(1-x_n),
 <p>I cheated a little here as I removed the type declarations and library imports for both Haskell solutions. Though, they are more related to the first point about quirks of the language than the second point that I’m trying to make here.</p>
 <p>I’ve also separated the solution for plotting as again it involves quirks about the language, particularly list comprehension. Though, it simply corresponds to the mathematical form of <span class="math inline">\{(A, x_n) | A \in [3.4, 4], x_n \in \textrm{task1}(A)\}</span>.</p>
 </div></div><p>Of course, if one is unfamiliar with functional programming, one would be confused on what are <code>map</code>, <code>iterate</code>, <code>take</code>, and <code>drop</code>.</p>
-<p>But turns out, these 4 functions appear in almost <strong>all functional programming languages</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. This way, learning programming stops being about learning syntax and becomes about learning vocabularies.</p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Type of one them into <a href="https://hoogletranslate.com/">Hoogle Translate</a> and “translate” it to other languages.</p></div></div><p>We can teach the simple behaviors of these 4 functions (and more!) to the students in 15 minutes, and they will try to figure out how to put them together to solve complex problem.</p>
+<p>But turns out, these four functions appear in almost <strong>all functional programming languages</strong><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. This way, learning programming stops being about learning syntax and becomes about learning vocabularies.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Type of one them into <a href="https://hoogletranslate.com/">Hoogle Translate</a> and “translate” it to other languages.</p></div></div><p>We can teach the simple behaviors of these four functions (and more!) to the students in 15 minutes, and they will try to figure out how to put them together to solve complex problem.</p>
 <p>Again, remember Dijkstra’s quote, or the school children performing a sorting algorithm without any computers; how to compose these functions together is independent of the programming language, and so we can simply use words to describe them, e.g.,</p>
 <ol type="1">
 <li>We <code>iterate</code> the logistic map function with some <span class="math inline">A</span> (ad infinitum), on an initial value of <span class="math inline">0.2</span>.</li>
@@ -576,7 +576,7 @@ x_{n+1} = Ax_n(1-x_n),
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Note that in the case of R, we use a different vocabulary, <code>accumulate</code>, instead, which is also known as <code>scan</code> in functional programming.</p>
+<p>Note that in the case of R, we used a different vocabulary, <code>accumulate</code>, instead, which is also known as <code>scan</code> in Haskell.</p>
 <p>Also note that in the case of Rust and Scala, there is actually no <code>linspace</code> function, so you’ll have to roll your own or use a third-party package.</p>
 </div></div><p>While different languages use different names for the same vocabularies, e.g., <code>iterated</code>, <code>tail</code>, <code>skip</code>, <code>successors</code> etc., in my opinion, such a functional way of doing things makes it easier to reason about the code, and much more difficult to make a logical error.</p>
 </section>
@@ -593,7 +593,7 @@ x_{n+1} = Ax_n(1-x_n),
 <p>— Simon Peyton Jones</p>
 </div>
 </blockquote>
-<p>Until then, I suppose we’ll keep feeding this vicious cycle of teaching students imperative Python and Jupyter notebooks, even when they outsource it all to ChatGPT anyway.</p>
+<p>Until then, I suppose we’ll keep feeding this vicious cycle of teaching students imperative Python and Jupyter notebooks, even when they will be outsourcing it to ChatGPT anyway.</p>
 
 
 </section>

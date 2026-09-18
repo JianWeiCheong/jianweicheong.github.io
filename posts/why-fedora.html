@@ -187,17 +187,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Here, I provide a list of reasons on why I think Fedora is a good starting point for new Linux users, which comes down to a single advantage: good defaults.</p>
+<p>Here, I provide a list of reasons on why I think Fedora is a good starting point for new Linux users. It comes down to a single advantage: good defaults.</p>
 <section id="semi-rolling-release" class="level1">
 <h1>Semi-rolling release</h1>
 <p>When you use your computer, here’s what you might expect:</p>
 <ol type="1">
-<li>You want all your programs to be updated to the latest versions.</li>
-<li>You want the stuffs running in the background to be updated to the latest versions.</li>
-<li>You don’t want major changes to your user experience or to how things are done.</li>
+<li>All user programs are the latest versions.</li>
+<li>All system programs needed for the operating system are the latest versions.</li>
+<li>But you don’t want your experience to keep changing.</li>
 </ol>
-<p>This is reasonable; you want frequent updates because you want the latest features, or security and bug fixes. But at the same time, you don’t want your desktop to completely change after an update (think Windows 7 to 8, or 10 to 11).</p>
-<p>Fedora’s semi-rolling release cycle abide by these: you get frequent updates (including kernel updates), but some packages like the desktop environment GNOME, or major software decisions (like moving to a new technology), are only updated in a major version release that the user must initiate.</p>
+<p>This is reasonable; you want frequent updates because you want the latest features or security and bug fixes. But at the same time, you don’t want your desktop to completely change after an update (think Windows 7 to 8, or 10 to 11).</p>
+<p>Fedora’s semi-rolling release cycle abides by these: you get frequent program updates (including kernel updates), but some packages like the desktop environment GNOME, or major software decisions (like moving to a new technology), are only updated in a major version release that the user must initiate.</p>
+<p>This is a good middle ground between the two extremes of rolling-release where everything gets updated, and “stable”-release where you are often using programs that have not been updated in years.</p>
 </section>
 <section id="wayland" class="level1">
 <h1>Wayland</h1>
@@ -210,11 +211,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="swap-on-zram" class="level1">
 <h1>Swap on ZRAM</h1>
-<p>Linux systems offers a “swap” space, where memory on the RAM can be copied to disk space, freeing the RAM in the process. Swap is an <a href="https://chrisdown.name/2018/01/02/in-defence-of-swap.html">important part</a> of a Linux operating system. However, sensitive information stored on RAM can be copied to disk, risking potential security issues. <code>ZRAM</code> solves these problems by having the swap space remain in the RAM with compression, ensuring that no sensitive information will be stored on disk.</p>
+<p>Linux systems offer a “swap” space, where memory on the RAM can be copied to disk space, freeing the RAM in the process. Swap is an <a href="https://chrisdown.name/2018/01/02/in-defence-of-swap.html">important part</a> of a Linux operating system. However, sensitive information stored on RAM can be copied to disk, risking potential security issues. <code>ZRAM</code> solves these problems by having the swap space remain in the RAM with compression, ensuring that no sensitive information will be stored on disk.</p>
 </section>
 <section id="btrfs" class="level1">
 <h1>Btrfs</h1>
-<p>Most Linux distros have traditionally used the <code>ext4</code> filesystem. <code>btrfs</code> is a newer file system that offers advantages over <code>ext4</code>:</p>
+<p>Most Linux distros have traditionally used the <code>ext4</code> filesystem. <code>btrfs</code> is a newer filesystem that offers advantages over <code>ext4</code>:</p>
 <ul>
 <li>Compression leads to less disk space used.</li>
 <li>Compression also extends the lifespan of flash-based devices (SSDs, etc.).</li>
@@ -243,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="flatpak-enabled" class="level1">
 <h1>Flatpak enabled</h1>
-<p><code>Flatpak</code> is supposed to be a new and universal way of installing programs. <code>Flatpak</code> is now available on almost all major distros and is also the most popular way of installing programs on the Steam Deck.</p>
+<p><code>Flatpak</code> is supposed to be a new and universal way of installing programs. It is now available on almost all major distros and is also the most popular way of installing programs on the Steam Deck.</p>
 <p>Ubuntu on the other hand, while often recommended to beginners, decided to <a href="https://discourse.ubuntu.com/t/ubuntu-flavor-packaging-defaults/34061?u=d0od">drop Flatpak</a> in favor of <code>snap</code>, which is their own alternative that is much less popular. <code>snap</code> packages <a href="https://askubuntu.com/questions/1185091/why-apt-package-chromium-browser-installs-snap-package-instead">masquerade as traditional packages</a>, which can cause confusion for new users. They also <a href="https://forum.snapcraft.io/t/sudo-snap-install-or-just-snap-install/3909">encourage users to sign up an Ubuntu One account</a> just to install <code>snap</code> packages without root.</p>
 </section>
 <section id="speed-of-adopting-new-technologies" class="level1">
@@ -253,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="whats-next" class="level1">
 <h1>What’s next?</h1>
-<p>If you just want a usable system with no interest in learning more about the Linux ecosystem, then I believe Fedora is the ideal choice. However, I do not encourage people to stay on Fedora for the rest of their Linux journey. Rather, one should try out different Linux distros and explore alternatives to learn more about the Linux ecosystem.</p>
+<p>If you just want a usable system with no interest in learning more about the Linux ecosystem, then I believe Fedora is the ideal choice. However, I encourage people to venture out on their own in their Linux journey. One should try out different Linux distros and explore alternatives to learn more about the Linux ecosystem.</p>
 <p>Eventually, as you gain more understanding of the Linux ecosystem, you will develop your own opinions on things. For example, you might be <a href="https://flatkill.org/2020/">against Flatpak</a>, or perhaps you might think that <a href="https://nosystemd.org/">systemd has major problems</a>. Regardless, the greatest strength of the Linux ecosystem is the power to make your own choices on what software and technologies you prefer.</p>
 
 
